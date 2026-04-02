@@ -365,7 +365,13 @@ Réponds UNIQUEMENT avec ce JSON (pas de markdown, pas d'explication) :
             max_tokens=1000,
             messages=[{'role': 'user', 'content': prompt}],
         )
-        data = json.loads(resp.content[0].text)
+        text = resp.content[0].text.strip()
+        if text.startswith('```'):
+            text = text.split('```', 2)[1]
+            if text.startswith('json'):
+                text = text[4:]
+            text = text.strip()
+        data = json.loads(text)
         result = []
         for sel in data.get('selected', []):
             idx = sel['index'] - 1

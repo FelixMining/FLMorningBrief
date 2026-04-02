@@ -10,7 +10,7 @@
       "active": true,
       "label": "Actualites mondiales",
       "nb_articles": 3,
-      "langue": ["fr", "en"],
+      "langue": ["fr"],
       "sources": ["newsapi", "guardian", "gnews"],
       "fallback": "contenu_partiel"
     },
@@ -18,7 +18,7 @@
       "active": true,
       "label": "Tech & IA",
       "nb_articles": 5,
-      "langue": ["en"],
+      "langue": ["fr"],
       "sujets": ["IA generative", "LLM", "hardware", "startups"],
       "sources": ["newsapi_tech", "hackernews", "arxiv"],
       "fallback": "contenu_partiel"

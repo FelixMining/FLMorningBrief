@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Morning Brief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #0e0c0a;
+      --surface: #161410;
+      --card:    #1e1b16;
+      --border:  #2e2a22;
+      --border-hi: #3e3830;
+      --accent:  #c8a96e;
+      --accent-dim: rgba(200,169,110,0.12);
+      --text:    #f0ebe0;
+      --text-2:  #8a7f6e;
+      --text-3:  #4a4236;
+      --green:   #6ab187;
+      --display: 'Playfair Display', Georgia, serif;
+      --body:    'Source Serif 4', Georgia, serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      /* paper grain */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+
+    .wrap {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+
+    /* ── Masthead ──────────────────────────────── */
+    .masthead {
+      padding: 40px 0 0;
+      text-align: center;
+      position: relative;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .masthead-top-rule {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .masthead-top-rule::before,
+    .masthead-top-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .masthead-top-rule span {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-3);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .masthead-title {
+      font-family: var(--display);
+      font-size: clamp(34px, 8vw, 52px);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--body);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+
+    .masthead-bottom-rule {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 0;
+    }
+    .masthead-bottom-rule::before,
+    .masthead-bottom-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .masthead-bottom-rule .ornament {
+      font-size: 11px;
+      color: var(--accent);
+      opacity: 0.7;
+      padding: 0 10px;
+      letter-spacing: 0.15em;
+    }
+
+    /* Gear icon top-right */
+    .gear-btn {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.2s;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .gear-btn:hover { color: var(--accent); border-color: var(--border-hi); }
+    .gear-btn svg { width: 14px; height: 14px; }
+
+    /* ── Dateline ──────────────────────────────── */
+    .dateline {
+      padding: 14px 0 18px;
+      text-align: center;
+      font-family: var(--body);
+      font-size: 12px;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: fadeUp 0.5s 0.1s ease both;
+    }
+
+    /* ── Hero ──────────────────────────────────── */
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--accent);
+      padding: 28px 24px 24px;
+      margin-bottom: 40px;
+      animation: fadeUp 0.5s 0.2s ease both;
+    }
+
+    .hero-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      opacity: 0.8;
+    }
+
+    .hero-date {
+      font-family: var(--display);
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      min-height: 36px;
+    }
+
+    .hero-cta {
+      display: block;
+      width: 100%;
+      background: var(--accent);
+      color: #0e0c0a;
+      text-align: center;
+      text-decoration: none;
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 20px;
+      border-radius: 2px;
+      transition: opacity 0.15s, transform 0.1s;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+    .hero-cta:hover { opacity: 0.9; }
+    .hero-cta:active { transform: scale(0.99); }
+
+    .hero-cta.unavailable {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-3);
+      cursor: default;
+    }
+    .hero-cta.unavailable:hover { opacity: 1; }
+
+    .hero-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-3);
+      font-style: italic;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 5px var(--green);
+      flex-shrink: 0;
+    }
+    .status-dot.pending { background: var(--text-3); box-shadow: none; }
+
+    /* skeleton for hero date */
+    .skel-line {
+      height: 28px;
+      width: 70%;
+      background: linear-gradient(90deg, var(--border) 25%, var(--border-hi) 50%, var(--border) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* ── Archive ───────────────────────────────── */
+    .archive-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 18px;
+      animation: fadeUp 0.5s 0.3s ease both;
+    }
+    .archive-title {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .archive-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .archive-list {
+      animation: fadeUp 0.5s 0.4s ease both;
+    }
+
+    .archive-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text-2);
+      transition: color 0.15s, padding-left 0.15s;
+      cursor: pointer;
+    }
+    .archive-row:first-child { border-top: 1px solid var(--border); }
+    .archive-row:hover { color: var(--text); padding-left: 4px; }
+
+    .archive-row-date {
+      font-family: var(--body);
+      font-size: 14px;
+    }
+    .archive-row-arrow {
+      font-size: 14px;
+      color: var(--text-3);
+      transition: color 0.15s, transform 0.15s;
+    }
+    .archive-row:hover .archive-row-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    /* Skeleton rows */
+    .skel-row {
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .skel-row:first-child { border-top: 1px solid var(--border); }
+    .skel-text {
+      height: 14px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--border) 25%, var(--border-hi) 50%, var(--border) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+
+    .archive-more {
+      display: block;
+      text-align: right;
+      font-family: var(--body);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--text-3);
+      text-decoration: none;
+      padding-top: 16px;
+      transition: color 0.15s;
+      animation: fadeUp 0.5s 0.5s ease both;
+    }
+    .archive-more:hover { color: var(--accent); }
+
+    .archive-error {
+      padding: 20px 0;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--text-3);
+      text-align: center;
+    }
+
+    /* ── Footer ────────────────────────────────── */
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeUp 0.5s 0.6s ease both;
+    }
+    .footer-name {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--text-3);
+    }
+    .footer-gear {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-gear:hover { color: var(--accent); }
+    .footer-gear svg { width: 12px; height: 12px; }
+
+    /* ── Animations ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ── Masthead ─────────────────────────────── -->
+  <header class="masthead">
+    <a href="dashboard.html" class="gear-btn" title="Configuration">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+        <circle cx="8" cy="8" r="2.5"/>
+        <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/>
+      </svg>
+    </a>
+
+    <div class="masthead-top-rule">
+      <span>Édition quotidienne</span>
+    </div>
+
+    <div class="masthead-title">FL Morning Brief</div>
+    <div class="masthead-subtitle">Votre brief matinal automatisé</div>
+
+    <div class="masthead-bottom-rule">
+      <div class="ornament">◆</div>
+    </div>
+  </header>
+
+  <!-- ── Dateline ──────────────────────────────── -->
+  <div class="dateline" id="dateline">Chargement…</div>
+
+  <!-- ── Hero ─────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-label">Édition du jour</div>
+    <div class="hero-date" id="hero-date">
+      <div class="skel-line"></div>
+    </div>
+    <a class="hero-cta unavailable" id="hero-cta" href="#" onclick="return false">
+      Chargement…
+    </a>
+    <div class="hero-status" id="hero-status">
+      <div class="status-dot pending"></div>
+      <span>Vérification…</span>
+    </div>
+  </section>
+
+  <!-- ── Archive ───────────────────────────────── -->
+  <section>
+    <div class="archive-header">
+      <h2 class="archive-title">Éditions précédentes</h2>
+      <div class="archive-divider"></div>
+    </div>
+
+    <div class="archive-list" id="archive-list">
+      <!-- Skeleton -->
+      <div class="skel-row"><div class="skel-text" style="width:62%"></div></div>
+      <div class="skel-row"><div class="skel-text" style="width:55%"></div></div>
+      <div class="skel-row"><div class="skel-text" style="width:68%"></div></div>
+      <div class="skel-row"><div class="skel-text" style="width:58%"></div></div>
+    </div>
+
+    <a href="briefs/index.html" class="archive-more" id="archive-more" style="display:none">
+      Voir toutes les éditions →
+    </a>
+  </section>
+
+  <!-- ── Footer ───────────────────────────────── -->
+  <footer>
+    <span class="footer-name">FL Morning Brief</span>
+    <a href="dashboard.html" class="footer-gear">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+        <circle cx="8" cy="8" r="2.5"/>
+        <path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/>
+      </svg>
+      Configuration
+    </a>
+  </footer>
+
+</div>
+
+<script>
+  const BASE   = 'https://felixmining.github.io/FLMorningBrief/briefs/';
+  const API    = 'https://api.github.com/repos/FelixMining/FLMorningBrief/contents/briefs';
+  const MAX_ARCHIVE = 10;
+
+  // ── Helpers ────────────────────────────────────
+  function formatDateFR(dateStr) {
+    const d = new Date(dateStr + 'T12:00:00');
+    const jours = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+    const mois  = ['janvier','février','mars','avril','mai','juin',
+                   'juillet','août','septembre','octobre','novembre','décembre'];
+    return `${jours[d.getDay()]} ${d.getDate()} ${mois[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  function formatDateShort(dateStr) {
+    const d = new Date(dateStr + 'T12:00:00');
+    const mois = ['jan.','fév.','mars','avr.','mai','juin',
+                  'juil.','août','sept.','oct.','nov.','déc.'];
+    return `${d.getDate()} ${mois[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  function today() {
+    return new Date().toLocaleDateString('sv-SE'); // "2026-04-02"
+  }
+
+  // ── Dateline ───────────────────────────────────
+  function renderDateline() {
+    const d     = new Date();
+    const jours = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+    const mois  = ['janvier','février','mars','avril','mai','juin',
+                   'juillet','août','septembre','octobre','novembre','décembre'];
+    document.getElementById('dateline').textContent =
+      `${jours[d.getDay()]} ${d.getDate()} ${mois[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  // ── Hero ───────────────────────────────────────
+  function renderHero(briefs) {
+    const t         = today();
+    const hasToday  = briefs.length > 0 && briefs[0] === t;
+    const dateEl    = document.getElementById('hero-date');
+    const ctaEl     = document.getElementById('hero-cta');
+    const statusEl  = document.getElementById('hero-status');
+
+    dateEl.textContent = formatDateFR(t);
+
+    if (hasToday) {
+      ctaEl.href      = BASE + t + '.html';
+      ctaEl.textContent = 'Lire le brief →';
+      ctaEl.classList.remove('unavailable');
+      ctaEl.onclick   = null;
+      statusEl.innerHTML = `
+        <div class="status-dot"></div>
+        <span>Généré ce matin à 06h00</span>`;
+    } else {
+      ctaEl.textContent = '⏱ Disponible à 06h00';
+      ctaEl.classList.add('unavailable');
+      ctaEl.onclick = () => false;
+      statusEl.innerHTML = `
+        <div class="status-dot pending"></div>
+        <span>Prochain brief généré automatiquement demain à 06h00</span>`;
+    }
+  }
+
+  // ── Archive ────────────────────────────────────
+  function renderArchive(briefs) {
+    const t      = today();
+    const past   = briefs.filter(b => b !== t);
+    const shown  = past.slice(0, MAX_ARCHIVE);
+    const listEl = document.getElementById('archive-list');
+    const moreEl = document.getElementById('archive-more');
+
+    if (shown.length === 0) {
+      listEl.innerHTML = '<div class="archive-error">Aucune édition précédente.</div>';
+      return;
+    }
+
+    listEl.innerHTML = shown.map(date => `
+      <a class="archive-row" href="${BASE}${date}.html" target="_blank" rel="noopener">
+        <span class="archive-row-date">${formatDateFR(date)}</span>
+        <span class="archive-row-arrow">→</span>
+      </a>
+    `).join('');
+
+    if (past.length > MAX_ARCHIVE) {
+      moreEl.style.display = 'block';
+    }
+  }
+
+  // ── Main ───────────────────────────────────────
+  renderDateline();
+
+  fetch(API)
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    })
+    .then(files => {
+      const briefs = files
+        .filter(f => /^\d{4}-\d{2}-\d{2}\.html$/.test(f.name))
+        .map(f => f.name.replace('.html', ''))
+        .sort()
+        .reverse();
+
+      renderHero(briefs);
+      renderArchive(briefs);
+    })
+    .catch(err => {
+      console.warn('API error:', err);
+      // Fallback : afficher quand même le lien du jour sans confirmation
+      const t = today();
+      document.getElementById('hero-date').textContent = formatDateFR(t);
+      const cta = document.getElementById('hero-cta');
+      cta.href = BASE + t + '.html';
+      cta.textContent = 'Lire le brief →';
+      cta.classList.remove('unavailable');
+      cta.onclick = null;
+      document.getElementById('hero-status').innerHTML = `
+        <div class="status-dot pending"></div>
+        <span>Impossible de vérifier le statut</span>`;
+      document.getElementById('archive-list').innerHTML =
+        '<div class="archive-error">Impossible de charger les éditions précédentes.</div>';
+    });
+</script>
+</body>
+</html>

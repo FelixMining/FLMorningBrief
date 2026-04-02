@@ -1,0 +1,60 @@
+name: Generate Morning Brief
+
+on:
+  schedule:
+    # 5h00 UTC = 6h00 Paris (hiver) / 7h00 Paris (été)
+    # Pour passer à 4h00 UTC en été : changer en "0 4 * * *"
+    - cron: '0 5 * * *'
+
+  # Déclenchement manuel depuis l'onglet Actions → utile pour tester
+  workflow_dispatch:
+
+# Droit d'écriture pour committer les briefs générés
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+
+      # ── 1. Checkout ──────────────────────────────────────────────────
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          # Récupère tout l'historique pour que git push fonctionne
+          fetch-depth: 1
+
+      # ── 2. Python ────────────────────────────────────────────────────
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # ── 3. Dépendances ───────────────────────────────────────────────
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # ── 4. Génération ────────────────────────────────────────────────
+      - name: Generate brief
+        env:
+          NEWSAPI_KEY:        ${{ secrets.NEWSAPI_KEY }}
+          GUARDIAN_KEY:       ${{ secrets.GUARDIAN_KEY }}
+          YOUTUBE_KEY:        ${{ secrets.YOUTUBE_KEY }}
+          ANTHROPIC_API_KEY:  ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python generate.py
+
+      # ── 5. Commit + push ─────────────────────────────────────────────
+      - name: Commit and push brief
+        run: |
+          git config user.name  "FL Morning Brief"
+          git config user.email "action@github.com"
+          git add briefs/
+          # git diff --staged --quiet : silencieux si rien à committer (idempotent)
+          git diff --staged --quiet || (
+            git commit -m "Brief du $(date -u +%Y-%m-%d)" &&
+            git push
+          )

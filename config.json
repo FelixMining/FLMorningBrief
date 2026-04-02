@@ -1,0 +1,89 @@
+{
+  "schedule": {
+    "cron_utc": "0 5 * * *",
+    "timezone": "Europe/Paris",
+    "note": "0 5 * * * = 6h00 Paris hiver | changer en 0 4 * * * en ete"
+  },
+
+  "sections": {
+    "news": {
+      "active": true,
+      "label": "Actualites mondiales",
+      "nb_articles": 3,
+      "langue": ["fr", "en"],
+      "sources": ["newsapi", "guardian", "gnews"],
+      "fallback": "contenu_partiel"
+    },
+    "tech": {
+      "active": true,
+      "label": "Tech & IA",
+      "nb_articles": 5,
+      "langue": ["en"],
+      "sujets": ["IA generative", "LLM", "hardware", "startups"],
+      "sources": ["newsapi_tech", "hackernews", "arxiv"],
+      "fallback": "contenu_partiel"
+    },
+    "finance": {
+      "active": true,
+      "label": "Finance & Marches",
+      "indices": ["^FCHI", "^GSPC", "^NDX"],
+      "actions": [],
+      "crypto": ["BTC-USD", "ETH-USD"],
+      "fear_greed": true,
+      "macro_calendar": true,
+      "cours_live": true,
+      "fallback": "contenu_partiel"
+    },
+    "youtube": {
+      "active": true,
+      "label": "Suggestion video",
+      "chaines": [
+        { "nom": "Micode",            "id": "UCYnvxJ-PKiGXo_tYXpWAC-w" },
+        { "nom": "Underscore_",       "id": "UCfsznjef2zGJnrCRQBXqo6Q" },
+        { "nom": "Benjamin Code",     "id": "UCLOAPb7ATQUs_nDs9ViLcMg" },
+        { "nom": "Defend Intelligence","id": "UCmTjBtYMK8hkMT0G_0S0hEQ" },
+        { "nom": "V2F",               "id": "UCJ6_b8PDzKfBmSHtRMqPB7Q" }
+      ],
+      "max_age_hours": 24,
+      "fallback_max_age_hours": 168,
+      "nb_suggestions": 2,
+      "fallback": "algo_pertinent"
+    },
+    "culture": {
+      "active": true,
+      "label": "Culture generale",
+      "mot_du_jour": true,
+      "qcm_count": 3,
+      "qcm_themes": ["histoire", "sciences", "geographie", "culture pop", "tech"],
+      "fallback": "contenu_partiel"
+    }
+  },
+
+  "models": {
+    "summaries":  "claude-haiku-4-5-20251001",
+    "selection":  "claude-haiku-4-5-20251001",
+    "creative":   "claude-sonnet-4-6",
+    "note": "summaries=resumes articles | selection=tri/filtrage | creative=QCM+mot du jour"
+  },
+
+  "sources": {
+    "newsapi_key":   "SECRET",
+    "guardian_key":  "SECRET",
+    "youtube_key":   "SECRET",
+    "note": "Les valeurs SECRET sont des secrets GitHub Actions, pas stockes ici en clair"
+  },
+
+  "ux": {
+    "audio_tts":      false,
+    "feedback_loop":  false,
+    "dark_mode":      true,
+    "progress_bar":   true,
+    "temps_lecture":  true,
+    "archive":        true
+  },
+
+  "archive": {
+    "base_url": "https://felixmining.github.io/FLMorningBrief",
+    "briefs_dir": "briefs"
+  }
+}

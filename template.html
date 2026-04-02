@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Morning Brief — {{ brief.date_fr }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  {# ── Calcul du temps de lecture total ── #}
+  {% set ns = namespace(total=0) %}
+  {% if brief.sections.news.active %}
+    {% for a in brief.sections.news.articles %}{% set ns.total = ns.total + a.reading_time %}{% endfor %}
+  {% endif %}
+  {% if brief.sections.tech.active %}
+    {% for a in brief.sections.tech.articles %}{% set ns.total = ns.total + a.reading_time %}{% endfor %}
+  {% endif %}
+  {% if brief.sections.youtube.active and brief.sections.youtube.videos %}
+    {% set ns.total = ns.total + 20 %}
+  {% endif %}
+  {% set total_time = ns.total %}
+
+  <style>
+    :root {
+      --bg:      #0d0d10;
+      --surface: #161619;
+      --card:    #1e1e23;
+      --border:  #2a2a32;
+      --text:    #e8e4dc;
+      --text-2:  #7a7a8c;
+      --text-3:  #3a3a45;
+      --accent:  #6366f1;
+      --amber:   #f59e0b;
+      --green:   #22c55e;
+      --red:     #ef4444;
+      --serif:   'Instrument Serif', Georgia, serif;
+      --sans:    'DM Sans', system-ui, sans-serif;
+      --mono:    'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      /* subtle noise texture */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    }
+
+    /* ── Progress bar ─────────────────────────── */
+    {% if config.ux.progress_bar %}
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--amber);
+      z-index: 100;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(245,158,11,0.5);
+    }
+    {% endif %}
+
+    /* ── Layout ───────────────────────────────── */
+    .wrap {
+      max-width: 430px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+
+    /* ── Header ───────────────────────────────── */
+    .header {
+      padding: 52px 0 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .header-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-family: var(--sans);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .header-date {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(38px, 9vw, 52px);
+      color: var(--text);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .header-year {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--text-2);
+      margin-bottom: 20px;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-3);
+    }
+    .header-meta .sep { color: var(--border); }
+    .header-meta .time-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--amber);
+    }
+    .header-meta .time-badge svg {
+      width: 12px; height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── Nav pills ────────────────────────────── */
+    .nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 36px;
+      scrollbar-width: none;
+    }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 13px;
+      font-size: 12px;
+      color: var(--text-2);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .nav a:hover { border-color: var(--accent); color: var(--text); }
+
+    /* ── Section ──────────────────────────────── */
+    .section { margin-bottom: 48px; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon { font-size: 16px; }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      flex: 1;
+    }
+    .section-count {
+      font-size: 11px;
+      color: var(--text-3);
+      font-family: var(--sans);
+    }
+
+    /* ── Article cards ────────────────────────── */
+    .article-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .article-card:hover { border-color: #3a3a50; }
+    .article-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .source-badge {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      color: #818cf8;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .source-badge.hn {
+      background: rgba(245,158,11,0.1);
+      border-color: rgba(245,158,11,0.3);
+      color: #fbbf24;
+    }
+    .read-time {
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .article-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .article-summary {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: 14px;
+    }
+    .article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      transition: gap 0.15s;
+    }
+    .article-link:hover { gap: 7px; }
+
+    /* ── Finance ──────────────────────────────── */
+    .finance-group-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+      margin-top: 18px;
+    }
+    .finance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .asset-tile {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 14px 12px;
+    }
+    .asset-tile.up   { border-color: rgba(34,197,94,0.2); }
+    .asset-tile.down { border-color: rgba(239,68,68,0.2); }
+    .asset-name {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+    .asset-price {
+      font-family: var(--mono);
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .asset-change {
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+    .up   .asset-change { color: var(--green); }
+    .down .asset-change { color: var(--red); }
+    .flat .asset-change { color: var(--text-3); }
+
+    /* Fear & Greed */
+    .fear-greed {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .fg-label-top {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .fg-bar-wrap {
+      position: relative;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right,
+        #ef4444 0%, #ef4444 25%,
+        #f97316 25%, #f97316 45%,
+        #eab308 45%, #eab308 55%,
+        #84cc16 55%, #84cc16 75%,
+        #22c55e 75%, #22c55e 100%
+      );
+      margin-bottom: 10px;
+    }
+    .fg-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      background: var(--bg);
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+    .fg-bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .fg-value {
+      font-family: var(--mono);
+      font-size: 22px;
+      color: var(--text);
+    }
+    .fg-sentiment {
+      font-size: 13px;
+      color: var(--text-2);
+    }
+
+    /* ── YouTube ──────────────────────────────── */
+    .video-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .video-card:hover { border-color: #3a3a50; }
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .video-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: background 0.15s;
+    }
+    .video-card:hover .video-play { background: rgba(0,0,0,0.2); }
+    .video-play-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-play-icon svg {
+      width: 16px; height: 16px;
+      margin-left: 3px;
+      fill: #0d0d10;
+    }
+    .video-info {
+      padding: 14px 16px;
+    }
+    .video-channel {
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .video-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    /* ── Mot du jour ──────────────────────────── */
+    .mot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mot-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px; right: 12px;
+      font-family: var(--serif);
+      font-size: 120px;
+      color: var(--border);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .mot-classe {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .mot-word {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 36px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .mot-def {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-2);
+      margin-bottom: 10px;
+    }
+    .mot-etym {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-bottom: 12px;
+      border-left: 2px solid var(--border);
+      padding-left: 10px;
+    }
+    .mot-exemple {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* ── QCM ──────────────────────────────────── */
+    .qcm-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+    .qcm-theme {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .qcm-question {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .qcm-options {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .qcm-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+      font-family: var(--sans);
+    }
+    .qcm-option:hover:not(:disabled) {
+      background: rgba(99,102,241,0.07);
+      border-color: rgba(99,102,241,0.3);
+      color: var(--text);
+    }
+    .qcm-option:disabled { cursor: default; }
+    .qcm-option.correct {
+      background: rgba(34,197,94,0.12);
+      border-color: #22c55e;
+      color: #86efac;
+    }
+    .qcm-option.wrong {
+      background: rgba(239,68,68,0.1);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+    .qcm-explanation {
+      display: none;
+      margin-top: 12px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-3);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    /* ── Footer ───────────────────────────────── */
+    .footer {
+      padding: 24px 0 8px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-gen {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .footer-archive {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-archive:hover { color: var(--text-2); }
+  </style>
+</head>
+<body>
+
+{% if config.ux.progress_bar %}<div id="progress"></div>{% endif %}
+
+<div class="wrap">
+
+  <!-- ── Header ─────────────────────────────── -->
+  <header class="header">
+    <div class="header-eyebrow">FL Morning Brief</div>
+    {% set date_parts = brief.date_fr.split(' ') %}
+    <div class="header-date">{{ date_parts[0] }} {{ date_parts[1] }} {{ date_parts[2] }}</div>
+    <div class="header-year">{{ date_parts[3] if date_parts|length > 3 else '' }}</div>
+    <div class="header-meta">
+      <span>{{ brief.generated_at }}</span>
+      <span class="sep">·</span>
+      {% if total_time > 0 %}
+      <span class="time-badge">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="6" cy="6" r="5"/><path d="M6 3v3l2 1.5"/>
+        </svg>
+        ~{{ total_time }} min
+      </span>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- ── Navigation ─────────────────────────── -->
+  <nav class="nav">
+    {% if brief.sections.news.active %}
+      <a href="#news">🌍 Actu</a>
+    {% endif %}
+    {% if brief.sections.tech.active %}
+      <a href="#tech">🤖 Tech</a>
+    {% endif %}
+    {% if brief.sections.finance.active %}
+      <a href="#finance">📈 Finance</a>
+    {% endif %}
+    {% if brief.sections.youtube.active %}
+      <a href="#youtube">▶️ Vidéo</a>
+    {% endif %}
+    {% if brief.sections.culture.active %}
+      <a href="#culture">🧠 Culture</a>
+    {% endif %}
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Actualités
+  ══════════════════════════════════════════ -->
+  {% if brief.sections.news.active and brief.sections.news.articles %}
+  <section class="section" id="news">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <h2 class="section-title">Actualités</h2>
+      <span class="section-count">{{ brief.sections.news.articles|length }} articles</span>
+    </div>
+
+    {% for article in brief.sections.news.articles %}
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">{{ article.source }}</span>
+        {% if config.ux.temps_lecture and article.reading_time %}
+          <span class="read-time">{{ article.reading_time }} min</span>
+        {% endif %}
+      </div>
+      <h3 class="article-title">{{ article.title }}</h3>
+      {% if article.summary %}
+        <p class="article-summary">{{ article.summary }}</p>
+      {% endif %}
+      {% if article.url %}
+        <a class="article-link" href="{{ article.url | e }}" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Tech & IA
+  ══════════════════════════════════════════ -->
+  {% if brief.sections.tech.active and brief.sections.tech.articles %}
+  <section class="section" id="tech">
+    <div class="section-header">
+      <span class="section-icon">🤖</span>
+      <h2 class="section-title">Tech & IA</h2>
+      <span class="section-count">{{ brief.sections.tech.articles|length }} articles</span>
+    </div>
+
+    {% for article in brief.sections.tech.articles %}
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge {% if article.source == 'Hacker News' %}hn{% endif %}">
+          {{ article.source }}
+        </span>
+        {% if config.ux.temps_lecture and article.reading_time %}
+          <span class="read-time">{{ article.reading_time }} min</span>
+        {% endif %}
+      </div>
+      <h3 class="article-title">{{ article.title }}</h3>
+      {% if article.summary %}
+        <p class="article-summary">{{ article.summary }}</p>
+      {% endif %}
+      {% if article.url %}
+        <a class="article-link" href="{{ article.url | e }}" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Finance
+  ══════════════════════════════════════════ -->
+  {% if brief.sections.finance.active %}
+  <section class="section" id="finance">
+    <div class="section-header">
+      <span class="section-icon">📈</span>
+      <h2 class="section-title">Finance</h2>
+    </div>
+
+    {% if brief.sections.finance.indices %}
+    <div class="finance-group-label">Indices</div>
+    <div class="finance-grid">
+      {% for asset in brief.sections.finance.indices %}
+      {% if asset.change_pct is not none %}
+        {% if asset.change_pct > 0 %}{% set cls = 'up' %}
+        {% elif asset.change_pct < 0 %}{% set cls = 'down' %}
+        {% else %}{% set cls = 'flat' %}{% endif %}
+      {% else %}{% set cls = 'flat' %}{% endif %}
+      <div class="asset-tile {{ cls }}">
+        <div class="asset-name">{{ asset.name }}</div>
+        <div class="asset-price">
+          {% if asset.price is not none %}
+            {{ "{:,.0f}".format(asset.price) }}
+          {% else %}—{% endif %}
+        </div>
+        <div class="asset-change">
+          {% if asset.change_pct is not none %}
+            {% if asset.change_pct > 0 %}↑ +{{ "%.2f"|format(asset.change_pct) }}%
+            {% elif asset.change_pct < 0 %}↓ {{ "%.2f"|format(asset.change_pct) }}%
+            {% else %}— 0.00%{% endif %}
+          {% else %}—{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if brief.sections.finance.crypto %}
+    <div class="finance-group-label">Crypto</div>
+    <div class="finance-grid">
+      {% for asset in brief.sections.finance.crypto %}
+      {% if asset.change_pct is not none %}
+        {% if asset.change_pct > 0 %}{% set cls = 'up' %}
+        {% elif asset.change_pct < 0 %}{% set cls = 'down' %}
+        {% else %}{% set cls = 'flat' %}{% endif %}
+      {% else %}{% set cls = 'flat' %}{% endif %}
+      <div class="asset-tile {{ cls }}">
+        <div class="asset-name">{{ asset.name }}</div>
+        <div class="asset-price">
+          {% if asset.price is not none %}
+            ${{ "{:,.0f}".format(asset.price) if asset.price >= 1000 else "{:.2f}".format(asset.price) }}
+          {% else %}—{% endif %}
+        </div>
+        <div class="asset-change">
+          {% if asset.change_pct is not none %}
+            {% if asset.change_pct > 0 %}↑ +{{ "%.2f"|format(asset.change_pct) }}%
+            {% elif asset.change_pct < 0 %}↓ {{ "%.2f"|format(asset.change_pct) }}%
+            {% else %}— 0.00%{% endif %}
+          {% else %}—{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if brief.sections.finance.fear_greed %}
+    {% set fg = brief.sections.finance.fear_greed %}
+    <div class="fear-greed">
+      <div class="fg-label-top">Fear & Greed Index</div>
+      <div class="fg-bar-wrap">
+        <div class="fg-marker" style="left: {{ fg.value }}%"></div>
+      </div>
+      <div class="fg-bottom">
+        <span class="fg-value">{{ fg.value }}</span>
+        <span class="fg-sentiment">{{ fg.label }}</span>
+      </div>
+    </div>
+    {% endif %}
+
+  </section>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════
+       SECTION : YouTube
+  ══════════════════════════════════════════ -->
+  {% if brief.sections.youtube.active and brief.sections.youtube.videos %}
+  <section class="section" id="youtube">
+    <div class="section-header">
+      <span class="section-icon">▶️</span>
+      <h2 class="section-title">Vidéo du jour</h2>
+    </div>
+
+    {% for video in brief.sections.youtube.videos %}
+    <a class="video-card" href="{{ video.url | e }}" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        {% if video.thumbnail %}
+          <img src="{{ video.thumbnail | e }}" alt="" loading="lazy">
+        {% endif %}
+        <div class="video-play">
+          <div class="video-play-icon">
+            <svg viewBox="0 0 16 16"><polygon points="5,3 13,8 5,13"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-channel">{{ video.channel }}</div>
+        <div class="video-title">{{ video.title }}</div>
+      </div>
+    </a>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Culture
+  ══════════════════════════════════════════ -->
+  {% if brief.sections.culture.active %}
+  <section class="section" id="culture">
+    <div class="section-header">
+      <span class="section-icon">🧠</span>
+      <h2 class="section-title">Culture</h2>
+    </div>
+
+    {% if brief.sections.culture.mot_du_jour %}
+    {% set m = brief.sections.culture.mot_du_jour %}
+    <div class="mot-card">
+      <div class="mot-classe">{{ m.classe }}</div>
+      <div class="mot-word">{{ m.mot }}</div>
+      <p class="mot-def">{{ m.definition }}</p>
+      {% if m.etymologie %}
+        <p class="mot-etym">{{ m.etymologie }}</p>
+      {% endif %}
+      {% if m.exemple %}
+        <p class="mot-exemple">« {{ m.exemple }} »</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% for q in brief.sections.culture.qcm %}
+    <div class="qcm-item" data-idx="{{ loop.index0 }}">
+      <div class="qcm-theme">{{ q.theme }}</div>
+      <div class="qcm-question">{{ q.question }}</div>
+      <div class="qcm-options">
+        {% for opt in q.options %}
+        <button
+          class="qcm-option"
+          onclick="selectAnswer({{ loop.index0 }}, {{ loop.index0 }}, {{ q.answer_index }}, '{{ q.explanation | e }}', {{ loop.index0 }})">
+          {{ opt }}
+        </button>
+        {% endfor %}
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    {% endfor %}
+
+  </section>
+  {% endif %}
+
+  <!-- ── Footer ─────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer-gen">
+      Généré le {{ brief.date_fr }} à {{ brief.generated_at }}
+    </p>
+    {% if config.ux.archive %}
+    <a class="footer-archive" href="{{ config.archive.base_url | e }}/briefs/index.html">
+      ← Toutes les éditions
+    </a>
+    {% endif %}
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  // ── Progress bar ──────────────────────────
+  {% if config.ux.progress_bar %}
+  const progressEl = document.getElementById('progress');
+  function updateProgress() {
+    const scrolled = window.scrollY;
+    const total    = document.documentElement.scrollHeight - window.innerHeight;
+    const pct      = total > 0 ? (scrolled / total) * 100 : 0;
+    progressEl.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  {% endif %}
+
+  // ── QCM ───────────────────────────────────
+  // selectAnswer(qcmContainerIdx, optionIdx, correctIdx, explanation, _unused)
+  // Note: les index Jinja2 loop.index0 pour qcm et options sont calculés différemment
+  // On utilise l'attribut data-idx du .qcm-item pour identifier le bon bloc
+
+  function selectAnswer(qcmIdx, optionIdx, correctIdx, explanation, _) {
+    // Retrouver le .qcm-item via data-idx
+    const container = document.querySelector(`.qcm-item[data-idx="${qcmIdx}"]`);
+    if (!container) return;
+    const btns = container.querySelectorAll('.qcm-option');
+    btns.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === correctIdx)  btn.classList.add('correct');
+      else if (i === optionIdx) btn.classList.add('wrong');
+    });
+    const expEl = container.querySelector('.qcm-explanation');
+    expEl.textContent = explanation;
+    expEl.style.display = 'block';
+  }
+
+  // Correction du binding des boutons QCM
+  // Le onclick inline Jinja2 ne peut pas passer l'index du bouton directement
+  // On re-bind au chargement pour avoir les bons index
+  document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {
+    const qcmIdx    = parseInt(qcmEl.dataset.idx);
+    const btns      = qcmEl.querySelectorAll('.qcm-option');
+    btns.forEach(function(btn, optIdx) {
+      btn.onclick = null; // retire le onclick inline
+      btn.addEventListener('click', function() {
+        if (btn.disabled) return;
+        // correctIdx et explanation sont encodés en data attributes
+        const correctIdx  = parseInt(qcmEl.dataset.correct  || '0');
+        const explanation = qcmEl.dataset.explanation || '';
+        selectAnswer(qcmIdx, optIdx, correctIdx, explanation);
+      });
+    });
+  });
+</script>
+
+{# Note : pour que le JS QCM fonctionne, on injecte les data-* sur le .qcm-item #}
+{# C'est fait via une seconde passe de script inline dans la boucle — voir ci-dessous #}
+<script>
+  // Injecte correctIdx et explanation sur chaque .qcm-item via un objet JS
+  const qcmData = [
+    {% for q in brief.sections.culture.qcm %}
+    { correct: {{ q.answer_index }}, explanation: {{ q.explanation | tojson }} }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ];
+  document.querySelectorAll('.qcm-item').forEach(function(el, i) {
+    if (qcmData[i]) {
+      el.dataset.correct      = qcmData[i].correct;
+      el.dataset.explanation  = qcmData[i].explanation;
+    }
+  });
+</script>
+
+</body>
+</html>

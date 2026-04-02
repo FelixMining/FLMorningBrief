@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Morning Brief — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #080810;
+      --surface:   #0e0e1c;
+      --card:      #12121f;
+      --border:    #1c1c30;
+      --border-hi: #2a2a45;
+      --accent:    #6366f1;
+      --accent-dim:#3f42a8;
+      --accent-glow: rgba(99,102,241,0.18);
+      --success:   #10b981;
+      --warn:      #f59e0b;
+      --error:     #ef4444;
+      --text:      #dde1f0;
+      --text-2:    #7c82a8;
+      --text-3:    #3e4268;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'DM Sans', sans-serif;
+      --radius:    10px;
+      --radius-sm: 6px;
+      --transition: 0.18s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0 0 100px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ──────────────────────────────── */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px 14px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .header-title {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .header-title h1 {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .header-title span {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-2);
+      font-family: var(--mono);
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--text-3);
+      transition: background var(--transition);
+      flex-shrink: 0;
+    }
+    .status-dot.ok   { background: var(--success); box-shadow: 0 0 6px var(--success); }
+    .status-dot.err  { background: var(--error); }
+    .status-dot.spin {
+      background: var(--accent);
+      animation: pulse-dot 1s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    /* ── Main layout ─────────────────────────── */
+    .main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 20px 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* ── Cards / Accordion ───────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    .card:focus-within { border-color: var(--border-hi); }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      user-select: none;
+      transition: background var(--transition);
+    }
+    .card-header:hover { background: rgba(255,255,255,0.02); }
+
+    .card-icon {
+      width: 28px; height: 28px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .card-header h2 {
+      font-size: 13px;
+      font-weight: 500;
+      flex: 1;
+      color: var(--text);
+    }
+    .card-header .badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+    }
+    .chevron {
+      width: 16px; height: 16px;
+      color: var(--text-3);
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+    .card.open .chevron { transform: rotate(180deg); }
+
+    .card-body {
+      display: none;
+      padding: 4px 16px 18px;
+      border-top: 1px solid var(--border);
+    }
+    .card.open .card-body { display: block; }
+
+    /* ── Section card with toggle ────────────── */
+    .section-card { }
+    .section-card.disabled .card-body { opacity: 0.45; pointer-events: none; }
+
+    /* ── Form elements ───────────────────────── */
+    .field { margin-top: 14px; }
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 6px;
+    }
+    .field .hint {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 5px;
+      font-family: var(--mono);
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="password"],
+    select {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 13px;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    input[type="number"] { width: 80px; }
+    select { cursor: pointer; }
+
+    /* select arrow */
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%237c82a8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+    }
+
+    .row { display: flex; gap: 10px; align-items: center; }
+    .row .field { flex: 1; }
+
+    /* ── Toggle switch ───────────────────────── */
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .toggle-wrap label {
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      margin: 0;
+    }
+    .toggle-input { display: none; }
+    .toggle-track {
+      width: 36px; height: 20px;
+      background: var(--border-hi);
+      border-radius: 10px;
+      position: relative;
+      transition: background var(--transition);
+      flex-shrink: 0;
+    }
+    .toggle-input:checked + .toggle-track { background: var(--accent); }
+    .toggle-track::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 14px; height: 14px;
+      background: #fff;
+      border-radius: 50%;
+      transition: left var(--transition);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    .toggle-input:checked + .toggle-track::after { left: 19px; }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .toggle-row:last-child { border-bottom: none; }
+    .toggle-row-label {
+      font-size: 13px;
+      color: var(--text);
+    }
+    .toggle-row-desc {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    /* ── Section header toggle ───────────────── */
+    .section-toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── Tag input ───────────────────────────── */
+    .tag-input {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 7px 8px;
+      min-height: 40px;
+      cursor: text;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .tag-input:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(99,102,241,0.4);
+      color: #a5b4fc;
+      border-radius: 4px;
+      padding: 2px 7px 2px 8px;
+      font-size: 12px;
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+    .tag-pill button {
+      background: none;
+      border: none;
+      color: #a5b4fc;
+      cursor: pointer;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity var(--transition);
+    }
+    .tag-pill button:hover { opacity: 1; }
+    .tag-input input {
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 12px;
+      outline: none;
+      min-width: 80px;
+      flex: 1;
+      padding: 2px 2px;
+      box-shadow: none;
+      font-family: var(--mono);
+      width: auto;
+    }
+
+    /* ── Checkbox langue ─────────────────────── */
+    .checkbox-group { display: flex; gap: 16px; }
+    .check-wrap {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+    }
+    .check-wrap input[type="checkbox"] {
+      width: 15px; height: 15px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .check-wrap span {
+      font-size: 13px;
+      color: var(--text);
+      font-family: var(--mono);
+    }
+
+    /* ── YouTube channels ────────────────────── */
+    .channels-list { display: flex; flex-direction: column; gap: 8px; }
+    .channel-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      transition: border-color var(--transition);
+    }
+    .channel-row:focus-within { border-color: var(--border-hi); }
+    .channel-row .ch-nom {
+      flex: 0 0 120px;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--border);
+      padding-right: 10px;
+      color: var(--text);
+      font-size: 13px;
+      font-family: var(--sans);
+      outline: none;
+      box-shadow: none;
+      min-width: 0;
+    }
+    .channel-row .ch-id {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-2);
+      font-size: 11px;
+      font-family: var(--mono);
+      outline: none;
+      box-shadow: none;
+      min-width: 0;
+    }
+    .channel-row button {
+      background: none;
+      border: none;
+      color: var(--text-3);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 0 2px;
+      transition: color var(--transition);
+      flex-shrink: 0;
+    }
+    .channel-row button:hover { color: var(--error); }
+    .add-channel-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1px dashed var(--border-hi);
+      border-radius: var(--radius-sm);
+      color: var(--text-2);
+      font-size: 12px;
+      font-family: var(--sans);
+      padding: 8px 12px;
+      cursor: pointer;
+      width: 100%;
+      transition: border-color var(--transition), color var(--transition);
+      margin-top: 6px;
+    }
+    .add-channel-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── UX toggles grid ─────────────────────── */
+    .ux-grid {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Models section ──────────────────────── */
+    .model-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .model-row:last-child { border-bottom: none; }
+    .model-label {
+      flex: 1;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .model-label small {
+      display: block;
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+    .model-row select { width: 180px; flex-shrink: 0; }
+
+    /* ── API Keys warning ────────────────────── */
+    .warning-banner {
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      margin-top: 14px;
+      font-size: 12px;
+      color: #fbbf24;
+      line-height: 1.5;
+    }
+    .warning-banner a {
+      color: #fbbf24;
+      text-decoration: underline;
+    }
+
+    /* ── Connection panel ────────────────────── */
+    .connect-grid {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    .connect-grid .field { flex: 1; }
+    .btn-sm {
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      border-radius: var(--radius-sm);
+      color: var(--text-2);
+      font-size: 12px;
+      font-family: var(--sans);
+      padding: 9px 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition);
+    }
+    .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Schedule ────────────────────────────── */
+    .sched-row { display: flex; gap: 10px; align-items: flex-end; }
+    .sched-row .field { flex: 0 0 auto; }
+    .sched-row input[type="number"] { width: 70px; }
+    .sched-separator {
+      font-size: 18px;
+      color: var(--text-3);
+      padding-bottom: 8px;
+    }
+    .sched-preview {
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sched-preview .cron-val { color: var(--accent); }
+
+    /* ── Cost hint ───────────────────────────── */
+    .cost-hint {
+      margin-top: 14px;
+      padding: 10px 12px;
+      background: rgba(16,185,129,0.06);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      color: #34d399;
+      font-family: var(--mono);
+    }
+
+    /* ── Sticky save bar ─────────────────────── */
+    .save-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 12px 16px;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .save-bar-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .save-info {
+      flex: 1;
+      font-size: 11px;
+      color: var(--text-3);
+      font-family: var(--mono);
+    }
+    .dirty-badge {
+      display: none;
+      width: 6px; height: 6px;
+      background: var(--warn);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--warn);
+    }
+    .dirty-badge.visible { display: inline-block; }
+    .btn-save {
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--sans);
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: opacity var(--transition), transform var(--transition);
+      white-space: nowrap;
+    }
+    .btn-save:hover { opacity: 0.9; }
+    .btn-save:active { transform: scale(0.98); }
+    .btn-save:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    /* ── Toast ───────────────────────────────── */
+    .toast-container {
+      position: fixed;
+      bottom: 72px; left: 0; right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 200;
+      pointer-events: none;
+    }
+    .toast {
+      background: var(--card);
+      border: 1px solid var(--border-hi);
+      border-radius: var(--radius);
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--text);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      animation: toast-in 0.22s ease forwards;
+      max-width: 340px;
+      text-align: center;
+      font-family: var(--mono);
+    }
+    .toast.ok    { border-color: rgba(16,185,129,0.4); color: #34d399; }
+    .toast.err   { border-color: rgba(239,68,68,0.4); color: #f87171; }
+    .toast.fade  { animation: toast-out 0.22s ease forwards; }
+    @keyframes toast-in  { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes toast-out { from { opacity:1; transform:translateY(0); } to { opacity:0; transform:translateY(-8px); } }
+
+    /* ── Divider ─────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0;
+    }
+
+    @media (min-width: 640px) {
+      .main { padding: 24px 0 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-title">
+      <h1>FL Morning Brief</h1>
+      <span>dashboard</span>
+    </div>
+    <div class="status-pill">
+      <div class="status-dot" id="status-dot"></div>
+      <span id="status-text">Non connecté</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ── 1. Connexion ── -->
+  <div class="card open" id="card-connexion">
+    <div class="card-header" onclick="toggleCard('card-connexion')">
+      <div class="card-icon">🔑</div>
+      <h2>Connexion GitHub</h2>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="connect-grid">
+        <div class="field">
+          <label>GitHub Personal Access Token</label>
+          <input type="password" id="pat-input" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off">
+        </div>
+        <button class="btn-sm" onclick="testConnection()">Tester</button>
+      </div>
+      <p class="hint" style="margin-top:8px;color:var(--text-3);font-size:11px;">
+        Scope requis : <span style="font-family:var(--mono);color:var(--text-2)">repo</span> — stocké dans <span style="font-family:var(--mono);color:var(--text-2)">localStorage</span>, jamais transmis ailleurs
+      </p>
+    </div>
+  </div>
+
+  <!-- ── 2. Planification ── -->
+  <div class="card" id="card-schedule">
+    <div class="card-header" onclick="toggleCard('card-schedule')">
+      <div class="card-icon">⏰</div>
+      <h2>Planification</h2>
+      <span class="badge" id="sched-badge">05:00 UTC</span>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="sched-row">
+        <div class="field">
+          <label>Heure (UTC)</label>
+          <select id="sched-hour" onchange="updateSchedPreview()">
+            <option value="4">04</option>
+            <option value="5" selected>05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+          </select>
+        </div>
+        <div class="sched-separator">:</div>
+        <div class="field">
+          <label>Minute</label>
+          <select id="sched-min" onchange="updateSchedPreview()">
+            <option value="0" selected>00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+          </select>
+        </div>
+      </div>
+      <div class="sched-preview" id="sched-preview">
+        <span>cron:</span>
+        <span class="cron-val" id="sched-cron-val">0 5 * * *</span>
+        <span style="margin-left:auto;color:var(--text-3)" id="sched-paris-time">= 6h00 Paris (hiver) / 7h00 (été)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3a. Actualités ── -->
+  <div class="card section-card" id="card-news">
+    <div class="card-header" onclick="toggleCard('card-news')">
+      <div class="card-icon">🌍</div>
+      <h2>Actualités mondiales</h2>
+      <div class="section-toggle-wrap" onclick="event.stopPropagation()">
+        <input type="checkbox" id="news-active" class="toggle-input" onchange="updateSectionState('card-news','news-active')">
+        <label for="news-active" class="toggle-track"></label>
+      </div>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="field">
+        <label>Nombre d'articles</label>
+        <input type="number" id="news-nb" value="3" min="1" max="10" onchange="markDirty()">
+      </div>
+      <div class="field">
+        <label>Langue des sources</label>
+        <div class="checkbox-group">
+          <label class="check-wrap">
+            <input type="checkbox" id="news-lang-fr" value="fr" checked onchange="markDirty()">
+            <span>FR</span>
+          </label>
+          <label class="check-wrap">
+            <input type="checkbox" id="news-lang-en" value="en" checked onchange="markDirty()">
+            <span>EN</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3b. Tech & IA ── -->
+  <div class="card section-card" id="card-tech">
+    <div class="card-header" onclick="toggleCard('card-tech')">
+      <div class="card-icon">🤖</div>
+      <h2>Tech & IA</h2>
+      <div class="section-toggle-wrap" onclick="event.stopPropagation()">
+        <input type="checkbox" id="tech-active" class="toggle-input" onchange="updateSectionState('card-tech','tech-active')">
+        <label for="tech-active" class="toggle-track"></label>
+      </div>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="field">
+        <label>Nombre d'articles</label>
+        <input type="number" id="tech-nb" value="5" min="1" max="10" onchange="markDirty()">
+      </div>
+      <div class="field">
+        <label>Sujets prioritaires</label>
+        <div class="tag-input" id="tech-sujets-wrap" onclick="focusTagInput(this)"></div>
+        <p class="hint">Entrée ou virgule pour ajouter</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3c. Finance ── -->
+  <div class="card section-card" id="card-finance">
+    <div class="card-header" onclick="toggleCard('card-finance')">
+      <div class="card-icon">📈</div>
+      <h2>Finance & Marchés</h2>
+      <div class="section-toggle-wrap" onclick="event.stopPropagation()">
+        <input type="checkbox" id="finance-active" class="toggle-input" onchange="updateSectionState('card-finance','finance-active')">
+        <label for="finance-active" class="toggle-track"></label>
+      </div>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="field">
+        <label>Indices (tickers Yahoo Finance)</label>
+        <div class="tag-input" id="finance-indices-wrap" onclick="focusTagInput(this)"></div>
+        <p class="hint">Ex : ^FCHI (CAC40), ^GSPC (S&P500), ^NDX (Nasdaq)</p>
+      </div>
+      <div class="field">
+        <label>Crypto</label>
+        <div class="tag-input" id="finance-crypto-wrap" onclick="focusTagInput(this)"></div>
+        <p class="hint">Ex : BTC-USD, ETH-USD</p>
+      </div>
+      <div class="divider"></div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-row-label">Fear & Greed Index</div>
+          <div class="toggle-row-desc">Score sentiment marché CNN (0–100)</div>
+        </div>
+        <input type="checkbox" id="finance-fear" class="toggle-input" onchange="markDirty()">
+        <label for="finance-fear" class="toggle-track"></label>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-row-label">Calendrier macro</div>
+          <div class="toggle-row-desc">Fed, CPI, NFP, décisions BCE…</div>
+        </div>
+        <input type="checkbox" id="finance-macro" class="toggle-input" onchange="markDirty()">
+        <label for="finance-macro" class="toggle-track"></label>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-row-label">Cours live</div>
+          <div class="toggle-row-desc">Widget TradingView au chargement du brief</div>
+        </div>
+        <input type="checkbox" id="finance-live" class="toggle-input" onchange="markDirty()">
+        <label for="finance-live" class="toggle-track"></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3d. YouTube ── -->
+  <div class="card section-card" id="card-youtube">
+    <div class="card-header" onclick="toggleCard('card-youtube')">
+      <div class="card-icon">▶️</div>
+      <h2>Suggestion vidéo</h2>
+      <div class="section-toggle-wrap" onclick="event.stopPropagation()">
+        <input type="checkbox" id="yt-active" class="toggle-input" onchange="updateSectionState('card-youtube','yt-active')">
+        <label for="yt-active" class="toggle-track"></label>
+      </div>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="field">
+        <label>Chaînes prioritaires</label>
+        <div class="channels-list" id="channels-list"></div>
+        <button class="add-channel-btn" onclick="addChannel()">+ Ajouter une chaîne</button>
+      </div>
+      <div class="row" style="margin-top:14px;">
+        <div class="field">
+          <label>Vidéos récentes (h)</label>
+          <input type="number" id="yt-max-age" value="24" min="1" onchange="markDirty()">
+          <p class="hint">Fenêtre principale</p>
+        </div>
+        <div class="field">
+          <label>Fallback (h)</label>
+          <input type="number" id="yt-fallback-age" value="168" min="1" onchange="markDirty()">
+          <p class="hint">Si pas de récente</p>
+        </div>
+        <div class="field">
+          <label>Suggestions</label>
+          <input type="number" id="yt-nb" value="2" min="1" max="5" onchange="markDirty()">
+          <p class="hint">Nombre affiché</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3e. Culture ── -->
+  <div class="card section-card" id="card-culture">
+    <div class="card-header" onclick="toggleCard('card-culture')">
+      <div class="card-icon">🧠</div>
+      <h2>Culture générale</h2>
+      <div class="section-toggle-wrap" onclick="event.stopPropagation()">
+        <input type="checkbox" id="culture-active" class="toggle-input" onchange="updateSectionState('card-culture','culture-active')">
+        <label for="culture-active" class="toggle-track"></label>
+      </div>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-row-label">Mot du jour</div>
+          <div class="toggle-row-desc">Terme rare + définition + étymologie</div>
+        </div>
+        <input type="checkbox" id="culture-mot" class="toggle-input" onchange="markDirty()">
+        <label for="culture-mot" class="toggle-track"></label>
+      </div>
+      <div class="field" style="margin-top:14px;">
+        <label>Nombre de QCM</label>
+        <input type="number" id="culture-qcm-count" value="3" min="1" max="10" onchange="markDirty()">
+      </div>
+      <div class="field">
+        <label>Thèmes QCM</label>
+        <div class="tag-input" id="culture-themes-wrap" onclick="focusTagInput(this)"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. Modèles Claude ── -->
+  <div class="card" id="card-models">
+    <div class="card-header" onclick="toggleCard('card-models')">
+      <div class="card-icon">✦</div>
+      <h2>Modèles Claude</h2>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="model-row">
+        <div class="model-label">
+          Résumés & tri
+          <small>Haiku recommandé — rapide, économique</small>
+        </div>
+        <select id="model-summaries" onchange="markDirty()">
+          <option value="claude-haiku-4-5-20251001">Haiku 4.5</option>
+          <option value="claude-sonnet-4-6">Sonnet 4.6</option>
+          <option value="claude-opus-4-6">Opus 4.6</option>
+        </select>
+      </div>
+      <div class="model-row">
+        <div class="model-label">
+          Sélection / filtrage
+          <small>Tri des articles par pertinence</small>
+        </div>
+        <select id="model-selection" onchange="markDirty()">
+          <option value="claude-haiku-4-5-20251001">Haiku 4.5</option>
+          <option value="claude-sonnet-4-6">Sonnet 4.6</option>
+          <option value="claude-opus-4-6">Opus 4.6</option>
+        </select>
+      </div>
+      <div class="model-row">
+        <div class="model-label">
+          QCM + mot du jour
+          <small>Sonnet recommandé — créativité pédagogique</small>
+        </div>
+        <select id="model-creative" onchange="markDirty()">
+          <option value="claude-haiku-4-5-20251001">Haiku 4.5</option>
+          <option value="claude-sonnet-4-6" selected>Sonnet 4.6</option>
+          <option value="claude-opus-4-6">Opus 4.6</option>
+        </select>
+      </div>
+      <div class="cost-hint" id="cost-hint">~ $0.005 / jour estimé avec la config actuelle</div>
+    </div>
+  </div>
+
+  <!-- ── 5. Options UX ── -->
+  <div class="card" id="card-ux">
+    <div class="card-header" onclick="toggleCard('card-ux')">
+      <div class="card-icon">🎨</div>
+      <h2>Options UX</h2>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="ux-grid">
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-row-label">Barre de progression</div>
+            <div class="toggle-row-desc">Progression de lecture dans chaque section</div>
+          </div>
+          <input type="checkbox" id="ux-progress" class="toggle-input" onchange="markDirty()">
+          <label for="ux-progress" class="toggle-track"></label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-row-label">Temps de lecture</div>
+            <div class="toggle-row-desc">Estimation en minutes par article</div>
+          </div>
+          <input type="checkbox" id="ux-temps" class="toggle-input" onchange="markDirty()">
+          <label for="ux-temps" class="toggle-track"></label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-row-label">Archive</div>
+            <div class="toggle-row-desc">Accès aux briefs précédents</div>
+          </div>
+          <input type="checkbox" id="ux-archive" class="toggle-input" onchange="markDirty()">
+          <label for="ux-archive" class="toggle-track"></label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-row-label">Audio TTS <span style="font-size:10px;background:var(--border-hi);padding:1px 6px;border-radius:4px;color:var(--text-3);font-family:var(--mono)">v2</span></div>
+            <div class="toggle-row-desc">Lecture audio via Edge TTS</div>
+          </div>
+          <input type="checkbox" id="ux-audio" class="toggle-input" onchange="markDirty()">
+          <label for="ux-audio" class="toggle-track"></label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-row-label">Feedback loop <span style="font-size:10px;background:var(--border-hi);padding:1px 6px;border-radius:4px;color:var(--text-3);font-family:var(--mono)">v2</span></div>
+            <div class="toggle-row-desc">Bouton utile/inutile → adaptation</div>
+          </div>
+          <input type="checkbox" id="ux-feedback" class="toggle-input" onchange="markDirty()">
+          <label for="ux-feedback" class="toggle-track"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. Clés API ── -->
+  <div class="card" id="card-keys">
+    <div class="card-header" onclick="toggleCard('card-keys')">
+      <div class="card-icon">🔐</div>
+      <h2>Clés API</h2>
+      <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="warning-banner">
+        ⚠️ Ces clés ne sont <strong>pas stockées dans ce fichier</strong>. Elles doivent être configurées comme <strong>secrets GitHub Actions</strong>.<br>
+        <a href="https://github.com/FelixMining/FLMorningBrief/settings/secrets/actions" target="_blank">→ Ouvrir les secrets GitHub Actions</a>
+      </div>
+      <div class="field" style="margin-top:16px;">
+        <label>NewsAPI — <span style="font-family:var(--mono);font-size:10px;">NEWSAPI_KEY</span></label>
+        <input type="password" id="key-newsapi" placeholder="Informations uniquement — configurer dans GitHub Secrets" readonly style="opacity:0.5;cursor:not-allowed;">
+      </div>
+      <div class="field">
+        <label>The Guardian — <span style="font-family:var(--mono);font-size:10px;">GUARDIAN_KEY</span></label>
+        <input type="password" id="key-guardian" placeholder="Informations uniquement — configurer dans GitHub Secrets" readonly style="opacity:0.5;cursor:not-allowed;">
+      </div>
+      <div class="field">
+        <label>YouTube Data API v3 — <span style="font-family:var(--mono);font-size:10px;">YOUTUBE_KEY</span></label>
+        <input type="password" id="key-youtube" placeholder="Informations uniquement — configurer dans GitHub Secrets" readonly style="opacity:0.5;cursor:not-allowed;">
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- STICKY SAVE BAR -->
+<div class="save-bar">
+  <div class="save-bar-inner">
+    <div class="save-info">
+      <span class="dirty-badge" id="dirty-badge"></span>
+      <span id="save-info-text">Chargement…</span>
+    </div>
+    <button class="btn-save" id="btn-save" onclick="handleSave()" disabled>Sauvegarder</button>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toasts"></div>
+
+<script>
+// ════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════
+const OWNER = 'FelixMining';
+const REPO  = 'FLMorningBrief';
+const API   = `https://api.github.com/repos/${OWNER}/${REPO}/contents/config.json`;
+
+const state = {
+  pat:            localStorage.getItem('flmb_pat') || '',
+  sha:            null,
+  originalConfig: null,
+  isDirty:        false,
+  lastSaved:      null,
+  connected:      false
+};
+
+// Tag input instances map: id → { getTags, setTags }
+const tagInputs = {};
+
+// ════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  const patInput = document.getElementById('pat-input');
+  patInput.value = state.pat;
+  patInput.addEventListener('input', () => {
+    state.pat = patInput.value.trim();
+    localStorage.setItem('flmb_pat', state.pat);
+  });
+
+  // Init tag inputs
+  tagInputs['tech-sujets']     = createTagInput('tech-sujets-wrap',     []);
+  tagInputs['finance-indices'] = createTagInput('finance-indices-wrap',  []);
+  tagInputs['finance-crypto']  = createTagInput('finance-crypto-wrap',   []);
+  tagInputs['culture-themes']  = createTagInput('culture-themes-wrap',   []);
+
+  updateSchedPreview();
+
+  if (state.pat) {
+    setStatus('spin', 'Connexion…');
+    loadConfig();
+  } else {
+    setStatus('off', 'Non connecté');
+    setSaveInfo('Entrez votre PAT pour commencer');
+    document.getElementById('btn-save').disabled = true;
+  }
+});
+
+// ════════════════════════════════════════════════
+//  GITHUB API
+// ════════════════════════════════════════════════
+async function loadConfig() {
+  try {
+    setStatus('spin', 'Chargement…');
+    const res = await fetch(API, {
+      headers: { 'Authorization': `Bearer ${state.pat}`, 'Accept': 'application/vnd.github+json' }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    state.sha = data.sha;
+    const raw = data.content.replace(/\n/g, '');
+    const json = JSON.parse(decodeURIComponent(escape(atob(raw))));
+    state.originalConfig = json;
+    populateForm(json);
+    setStatus('ok', 'Connecté');
+    state.connected = true;
+    setSaveInfo('Config chargée');
+    document.getElementById('btn-save').disabled = false;
+    state.isDirty = false;
+    updateDirtyBadge();
+  } catch (e) {
+    setStatus('err', 'Erreur connexion');
+    setSaveInfo('Impossible de charger la config');
+    showToast('Erreur : ' + e.message, 'err');
+    document.getElementById('btn-save').disabled = true;
+  }
+}
+
+async function testConnection() {
+  const pat = document.getElementById('pat-input').value.trim();
+  if (!pat) { showToast('Entrez un PAT', 'err'); return; }
+  state.pat = pat;
+  localStorage.setItem('flmb_pat', pat);
+  setStatus('spin', 'Test…');
+  try {
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}`, {
+      headers: { 'Authorization': `Bearer ${pat}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    showToast('✓ Connexion réussie', 'ok');
+    loadConfig();
+  } catch (e) {
+    setStatus('err', 'Échec');
+    showToast('Échec : ' + e.message, 'err');
+  }
+}
+
+async function handleSave() {
+  const btn = document.getElementById('btn-save');
+  btn.disabled = true;
+  btn.textContent = 'Sauvegarde…';
+  try {
+    const config = serializeForm();
+    const jsonStr = JSON.stringify(config, null, 2);
+    const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
+    const res = await fetch(API, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${state.pat}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github+json'
+      },
+      body: JSON.stringify({
+        message: 'Update config [dashboard]',
+        content: b64,
+        sha: state.sha
+      })
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || `HTTP ${res.status}`);
+    }
+    const data = await res.json();
+    state.sha = data.content.sha;
+    state.originalConfig = config;
+    state.isDirty = false;
+    state.lastSaved = new Date();
+    updateDirtyBadge();
+    setSaveInfo('Sauvegardé à ' + state.lastSaved.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'}));
+    showToast('✓ Config sauvegardée', 'ok');
+  } catch (e) {
+    showToast('Erreur sauvegarde : ' + e.message, 'err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Sauvegarder';
+  }
+}
+
+// ════════════════════════════════════════════════
+//  FORM POPULATE
+// ════════════════════════════════════════════════
+function populateForm(cfg) {
+  // Schedule
+  if (cfg.schedule?.cron_utc) {
+    const parts = cfg.schedule.cron_utc.split(' ');
+    const min = parseInt(parts[0]) || 0;
+    const h   = parseInt(parts[1]) || 5;
+    const hourSel = document.getElementById('sched-hour');
+    const minSel  = document.getElementById('sched-min');
+    // set closest hour option
+    for (const opt of hourSel.options) { if (parseInt(opt.value) === h) { opt.selected = true; break; } }
+    for (const opt of minSel.options)  { if (parseInt(opt.value) === min) { opt.selected = true; break; } }
+    updateSchedPreview();
+  }
+
+  const s = cfg.sections || {};
+
+  // News
+  setToggle('news-active', s.news?.active ?? true);
+  setNum('news-nb', s.news?.nb_articles ?? 3);
+  setCheck('news-lang-fr', (s.news?.langue || []).includes('fr'));
+  setCheck('news-lang-en', (s.news?.langue || []).includes('en'));
+  updateSectionState('card-news', 'news-active');
+
+  // Tech
+  setToggle('tech-active', s.tech?.active ?? true);
+  setNum('tech-nb', s.tech?.nb_articles ?? 5);
+  tagInputs['tech-sujets'].setTags(s.tech?.sujets || []);
+  updateSectionState('card-tech', 'tech-active');
+
+  // Finance
+  setToggle('finance-active', s.finance?.active ?? true);
+  tagInputs['finance-indices'].setTags(s.finance?.indices || []);
+  tagInputs['finance-crypto'].setTags(s.finance?.crypto || []);
+  setToggle('finance-fear', s.finance?.fear_greed ?? true);
+  setToggle('finance-macro', s.finance?.macro_calendar ?? true);
+  setToggle('finance-live', s.finance?.cours_live ?? true);
+  updateSectionState('card-finance', 'finance-active');
+
+  // YouTube
+  setToggle('yt-active', s.youtube?.active ?? true);
+  renderChannels(s.youtube?.chaines || []);
+  setNum('yt-max-age', s.youtube?.max_age_hours ?? 24);
+  setNum('yt-fallback-age', s.youtube?.fallback_max_age_hours ?? 168);
+  setNum('yt-nb', s.youtube?.nb_suggestions ?? 2);
+  updateSectionState('card-youtube', 'yt-active');
+
+  // Culture
+  setToggle('culture-active', s.culture?.active ?? true);
+  setToggle('culture-mot', s.culture?.mot_du_jour ?? true);
+  setNum('culture-qcm-count', s.culture?.qcm_count ?? 3);
+  tagInputs['culture-themes'].setTags(s.culture?.qcm_themes || []);
+  updateSectionState('card-culture', 'culture-active');
+
+  // Models
+  setSelectVal('model-summaries', cfg.models?.summaries || 'claude-haiku-4-5-20251001');
+  setSelectVal('model-selection', cfg.models?.selection || 'claude-haiku-4-5-20251001');
+  setSelectVal('model-creative',  cfg.models?.creative  || 'claude-sonnet-4-6');
+
+  // UX
+  setToggle('ux-progress', cfg.ux?.progress_bar ?? true);
+  setToggle('ux-temps',    cfg.ux?.temps_lecture ?? true);
+  setToggle('ux-archive',  cfg.ux?.archive ?? true);
+  setToggle('ux-audio',    cfg.ux?.audio_tts ?? false);
+  setToggle('ux-feedback', cfg.ux?.feedback_loop ?? false);
+}
+
+// ════════════════════════════════════════════════
+//  FORM SERIALIZE
+// ════════════════════════════════════════════════
+function serializeForm() {
+  // Deep clone original to preserve unlisted fields (notes, etc.)
+  const cfg = JSON.parse(JSON.stringify(state.originalConfig || {}));
+
+  // Schedule
+  const h   = document.getElementById('sched-hour').value;
+  const min = document.getElementById('sched-min').value;
+  cfg.schedule = { ...(cfg.schedule || {}), cron_utc: `${min} ${h} * * *`, timezone: 'Europe/Paris' };
+
+  // Sections
+  cfg.sections = cfg.sections || {};
+
+  cfg.sections.news = {
+    ...(cfg.sections.news || {}),
+    active:      getToggle('news-active'),
+    nb_articles: getNum('news-nb'),
+    langue:      getLangues()
+  };
+
+  cfg.sections.tech = {
+    ...(cfg.sections.tech || {}),
+    active:      getToggle('tech-active'),
+    nb_articles: getNum('tech-nb'),
+    sujets:      tagInputs['tech-sujets'].getTags()
+  };
+
+  cfg.sections.finance = {
+    ...(cfg.sections.finance || {}),
+    active:         getToggle('finance-active'),
+    indices:        tagInputs['finance-indices'].getTags(),
+    crypto:         tagInputs['finance-crypto'].getTags(),
+    fear_greed:     getToggle('finance-fear'),
+    macro_calendar: getToggle('finance-macro'),
+    cours_live:     getToggle('finance-live')
+  };
+
+  cfg.sections.youtube = {
+    ...(cfg.sections.youtube || {}),
+    active:                getToggle('yt-active'),
+    chaines:               getChannels(),
+    max_age_hours:         getNum('yt-max-age'),
+    fallback_max_age_hours:getNum('yt-fallback-age'),
+    nb_suggestions:        getNum('yt-nb')
+  };
+
+  cfg.sections.culture = {
+    ...(cfg.sections.culture || {}),
+    active:      getToggle('culture-active'),
+    mot_du_jour: getToggle('culture-mot'),
+    qcm_count:   getNum('culture-qcm-count'),
+    qcm_themes:  tagInputs['culture-themes'].getTags()
+  };
+
+  cfg.models = {
+    ...(cfg.models || {}),
+    summaries: document.getElementById('model-summaries').value,
+    selection: document.getElementById('model-selection').value,
+    creative:  document.getElementById('model-creative').value
+  };
+
+  cfg.ux = {
+    ...(cfg.ux || {}),
+    progress_bar:  getToggle('ux-progress'),
+    temps_lecture: getToggle('ux-temps'),
+    archive:       getToggle('ux-archive'),
+    audio_tts:     getToggle('ux-audio'),
+    feedback_loop: getToggle('ux-feedback'),
+    dark_mode:     true
+  };
+
+  return cfg;
+}
+
+// ════════════════════════════════════════════════
+//  TAG INPUT COMPONENT
+// ════════════════════════════════════════════════
+function createTagInput(containerId, initialTags) {
+  let tags = [...initialTags];
+  const container = document.getElementById(containerId);
+
+  function render() {
+    container.innerHTML = '';
+    tags.forEach((tag, i) => {
+      const pill = document.createElement('span');
+      pill.className = 'tag-pill';
+      const text = document.createTextNode(tag);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = '×';
+      btn.onclick = (e) => { e.stopPropagation(); tags.splice(i, 1); render(); markDirty(); };
+      pill.appendChild(text);
+      pill.appendChild(btn);
+      container.appendChild(pill);
+    });
+    const input = document.createElement('input');
+    input.placeholder = tags.length === 0 ? 'Ajouter…' : '';
+    input.addEventListener('keydown', (e) => {
+      const val = input.value.trim().replace(/,$/,'');
+      if ((e.key === 'Enter' || e.key === ',') && val) {
+        e.preventDefault();
+        if (!tags.includes(val)) { tags.push(val); render(); markDirty(); }
+        else { input.value = ''; }
+      }
+      if (e.key === 'Backspace' && !input.value && tags.length) {
+        tags.pop(); render(); markDirty();
+      }
+    });
+    input.addEventListener('blur', () => {
+      const val = input.value.trim().replace(/,$/,'');
+      if (val && !tags.includes(val)) { tags.push(val); render(); markDirty(); }
+    });
+    container.appendChild(input);
+  }
+
+  render();
+  return {
+    getTags: () => [...tags],
+    setTags: (newTags) => { tags = [...newTags]; render(); }
+  };
+}
+
+function focusTagInput(wrap) {
+  const input = wrap.querySelector('input');
+  if (input) input.focus();
+}
+
+// ════════════════════════════════════════════════
+//  YOUTUBE CHANNELS
+// ════════════════════════════════════════════════
+function renderChannels(chaines) {
+  const list = document.getElementById('channels-list');
+  list.innerHTML = '';
+  chaines.forEach((ch, i) => {
+    const row = document.createElement('div');
+    row.className = 'channel-row';
+    row.innerHTML = `
+      <input class="ch-nom" type="text" value="${escHtml(ch.nom)}" placeholder="Nom" onchange="markDirty()">
+      <input class="ch-id" type="text" value="${escHtml(ch.id)}" placeholder="Channel ID" onchange="markDirty()">
+      <button onclick="removeChannel(${i})" title="Supprimer">×</button>
+    `;
+    list.appendChild(row);
+  });
+}
+
+function addChannel() {
+  const rows = document.querySelectorAll('.channel-row');
+  const list = document.getElementById('channels-list');
+  const row = document.createElement('div');
+  row.className = 'channel-row';
+  const idx = rows.length;
+  row.innerHTML = `
+    <input class="ch-nom" type="text" value="" placeholder="Nom" onchange="markDirty()">
+    <input class="ch-id" type="text" value="" placeholder="Channel ID" onchange="markDirty()">
+    <button onclick="removeChannel(${idx})" title="Supprimer">×</button>
+  `;
+  list.appendChild(row);
+  row.querySelector('.ch-nom').focus();
+  markDirty();
+}
+
+function removeChannel(idx) {
+  const rows = document.querySelectorAll('.channel-row');
+  rows[idx].remove();
+  markDirty();
+}
+
+function getChannels() {
+  const rows = document.querySelectorAll('.channel-row');
+  return Array.from(rows).map(row => ({
+    nom: row.querySelector('.ch-nom').value.trim(),
+    id:  row.querySelector('.ch-id').value.trim()
+  })).filter(ch => ch.nom || ch.id);
+}
+
+// ════════════════════════════════════════════════
+//  SCHEDULE PREVIEW
+// ════════════════════════════════════════════════
+function updateSchedPreview() {
+  const h   = parseInt(document.getElementById('sched-hour').value);
+  const min = parseInt(document.getElementById('sched-min').value);
+  const cron = `${min} ${h} * * *`;
+  document.getElementById('sched-cron-val').textContent = cron;
+  document.getElementById('sched-badge').textContent = `${String(h).padStart(2,'0')}:${String(min).padStart(2,'0')} UTC`;
+  const hiver = h + 1, ete = h + 2;
+  const fmtMin = String(min).padStart(2,'0');
+  document.getElementById('sched-paris-time').textContent =
+    `= ${hiver}h${fmtMin} Paris (hiver) / ${ete}h${fmtMin} (été)`;
+  markDirty();
+}
+
+// ════════════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════════════
+function setToggle(id, val) { document.getElementById(id).checked = !!val; }
+function getToggle(id)      { return document.getElementById(id).checked; }
+function setNum(id, val)    { document.getElementById(id).value = val; }
+function getNum(id)         { return parseInt(document.getElementById(id).value) || 0; }
+function setCheck(id, val)  { document.getElementById(id).checked = !!val; }
+function setSelectVal(id, val) {
+  const sel = document.getElementById(id);
+  for (const opt of sel.options) { if (opt.value === val) { opt.selected = true; return; } }
+}
+function getLangues() {
+  const out = [];
+  if (document.getElementById('news-lang-fr').checked) out.push('fr');
+  if (document.getElementById('news-lang-en').checked) out.push('en');
+  return out;
+}
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function toggleCard(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function updateSectionState(cardId, toggleId) {
+  const card   = document.getElementById(cardId);
+  const active = document.getElementById(toggleId).checked;
+  card.classList.toggle('disabled', !active);
+  markDirty();
+}
+
+function markDirty() {
+  if (!state.connected) return;
+  state.isDirty = true;
+  updateDirtyBadge();
+}
+
+function updateDirtyBadge() {
+  const badge = document.getElementById('dirty-badge');
+  badge.classList.toggle('visible', state.isDirty);
+  if (state.isDirty) {
+    setSaveInfo('Modifications non sauvegardées');
+  } else if (state.lastSaved) {
+    setSaveInfo('Sauvegardé à ' + state.lastSaved.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'}));
+  }
+}
+
+function setStatus(type, text) {
+  const dot  = document.getElementById('status-dot');
+  const span = document.getElementById('status-text');
+  dot.className  = 'status-dot ' + (type === 'off' ? '' : type);
+  span.textContent = text;
+}
+
+function setSaveInfo(text) {
+  document.getElementById('save-info-text').textContent = text;
+}
+
+// ════════════════════════════════════════════════
+//  TOAST
+// ════════════════════════════════════════════════
+function showToast(msg, type = '') {
+  const container = document.getElementById('toasts');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('fade');
+    setTimeout(() => toast.remove(), 250);
+  }, 3000);
+}
+</script>
+</body>
+</html>

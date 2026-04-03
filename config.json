@@ -1,6 +1,6 @@
 {
   "schedule": {
-    "cron_utc": "50 19 * * *",
+    "cron_utc": "45 4 * * *",
     "timezone": "Europe/Paris",
     "note": "0 5 * * * = 6h00 Paris hiver | changer en 0 4 * * * en ete"
   },

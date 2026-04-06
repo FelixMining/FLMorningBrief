@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Morning Brief — Lundi 6 avril 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+
+  <style>
+    :root {
+      --bg:      #0d0d10;
+      --surface: #161619;
+      --card:    #1e1e23;
+      --border:  #2a2a32;
+      --text:    #e8e4dc;
+      --text-2:  #7a7a8c;
+      --text-3:  #3a3a45;
+      --accent:  #6366f1;
+      --amber:   #f59e0b;
+      --green:   #22c55e;
+      --red:     #ef4444;
+      --serif:   'Instrument Serif', Georgia, serif;
+      --sans:    'DM Sans', system-ui, sans-serif;
+      --mono:    'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      /* subtle noise texture */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    }
+
+    /* ── Progress bar ─────────────────────────── */
+    
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--amber);
+      z-index: 100;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(245,158,11,0.5);
+    }
+    
+
+    /* ── Layout ───────────────────────────────── */
+    .wrap {
+      max-width: 430px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+
+    /* ── Header ───────────────────────────────── */
+    .header {
+      padding: 52px 0 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .header-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-family: var(--sans);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .header-date {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(38px, 9vw, 52px);
+      color: var(--text);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .header-year {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--text-2);
+      margin-bottom: 20px;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-3);
+    }
+    .header-meta .sep { color: var(--border); }
+    .header-meta .time-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--amber);
+    }
+    .header-meta .time-badge svg {
+      width: 12px; height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── Nav pills ────────────────────────────── */
+    .nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 36px;
+      scrollbar-width: none;
+    }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 13px;
+      font-size: 12px;
+      color: var(--text-2);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .nav a:hover { border-color: var(--accent); color: var(--text); }
+
+    /* ── Section ──────────────────────────────── */
+    .section { margin-bottom: 48px; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon { font-size: 16px; }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      flex: 1;
+    }
+    .section-count {
+      font-size: 11px;
+      color: var(--text-3);
+      font-family: var(--sans);
+    }
+
+    /* ── Article cards ────────────────────────── */
+    .article-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .article-card:hover { border-color: #3a3a50; }
+    .article-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .source-badge {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      color: #818cf8;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .source-badge.hn {
+      background: rgba(245,158,11,0.1);
+      border-color: rgba(245,158,11,0.3);
+      color: #fbbf24;
+    }
+    .read-time {
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .article-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .article-summary {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: 14px;
+    }
+    .article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      transition: gap 0.15s;
+    }
+    .article-link:hover { gap: 7px; }
+
+    /* ── Finance ──────────────────────────────── */
+    .finance-group-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+      margin-top: 18px;
+    }
+    .finance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .asset-tile {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 14px 12px;
+    }
+    .asset-tile.up   { border-color: rgba(34,197,94,0.2); }
+    .asset-tile.down { border-color: rgba(239,68,68,0.2); }
+    .asset-name {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+    .asset-price {
+      font-family: var(--mono);
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .asset-change {
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+    .up   .asset-change { color: var(--green); }
+    .down .asset-change { color: var(--red); }
+    .flat .asset-change { color: var(--text-3); }
+
+    /* Fear & Greed */
+    .fear-greed {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .fg-label-top {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .fg-bar-wrap {
+      position: relative;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right,
+        #ef4444 0%, #ef4444 25%,
+        #f97316 25%, #f97316 45%,
+        #eab308 45%, #eab308 55%,
+        #84cc16 55%, #84cc16 75%,
+        #22c55e 75%, #22c55e 100%
+      );
+      margin-bottom: 10px;
+    }
+    .fg-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      background: var(--bg);
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+    .fg-bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .fg-value {
+      font-family: var(--mono);
+      font-size: 22px;
+      color: var(--text);
+    }
+    .fg-sentiment {
+      font-size: 13px;
+      color: var(--text-2);
+    }
+
+    /* ── YouTube ──────────────────────────────── */
+    .video-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .video-card:hover { border-color: #3a3a50; }
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .video-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: background 0.15s;
+    }
+    .video-card:hover .video-play { background: rgba(0,0,0,0.2); }
+    .video-play-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-play-icon svg {
+      width: 16px; height: 16px;
+      margin-left: 3px;
+      fill: #0d0d10;
+    }
+    .video-info {
+      padding: 14px 16px;
+    }
+    .video-channel {
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .video-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    /* ── Mot du jour ──────────────────────────── */
+    .mot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mot-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px; right: 12px;
+      font-family: var(--serif);
+      font-size: 120px;
+      color: var(--border);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .mot-classe {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .mot-word {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 36px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .mot-def {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-2);
+      margin-bottom: 10px;
+    }
+    .mot-etym {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-bottom: 12px;
+      border-left: 2px solid var(--border);
+      padding-left: 10px;
+    }
+    .mot-exemple {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* ── QCM ──────────────────────────────────── */
+    .qcm-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+    .qcm-theme {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .qcm-question {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .qcm-options {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .qcm-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+      font-family: var(--sans);
+    }
+    .qcm-option:hover:not(:disabled) {
+      background: rgba(99,102,241,0.07);
+      border-color: rgba(99,102,241,0.3);
+      color: var(--text);
+    }
+    .qcm-option:disabled { cursor: default; }
+    .qcm-option.correct {
+      background: rgba(34,197,94,0.12);
+      border-color: #22c55e;
+      color: #86efac;
+    }
+    .qcm-option.wrong {
+      background: rgba(239,68,68,0.1);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+    .qcm-explanation {
+      display: none;
+      margin-top: 12px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-3);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    /* ── Footer ───────────────────────────────── */
+    .footer {
+      padding: 24px 0 8px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-gen {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .footer-archive {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-archive:hover { color: var(--text-2); }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="wrap">
+
+  <!-- ── Header ─────────────────────────────── -->
+  <header class="header">
+    <div class="header-eyebrow">FL Morning Brief</div>
+    
+    <div class="header-date">Lundi 6 avril</div>
+    <div class="header-year">2026</div>
+    <div class="header-meta">
+      <span>06:26 UTC</span>
+      <span class="sep">·</span>
+      
+      <span class="time-badge">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="6" cy="6" r="5"/><path d="M6 3v3l2 1.5"/>
+        </svg>
+        ~24 min
+      </span>
+      
+    </div>
+  </header>
+
+  <!-- ── Navigation ─────────────────────────── -->
+  <nav class="nav">
+    
+      <a href="#news">🌍 Actu</a>
+    
+    
+      <a href="#tech">🤖 Tech</a>
+    
+    
+      <a href="#finance">📈 Finance</a>
+    
+    
+      <a href="#youtube">▶️ Vidéo</a>
+    
+    
+      <a href="#culture">🧠 Culture</a>
+    
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Actualités
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="news">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <h2 class="section-title">Actualités</h2>
+      <span class="section-count">3 articles</span>
+    </div>
+
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">The Guardian</span>
+        
+          <span class="read-time">5 min</span>
+        
+      </div>
+      <h3 class="article-title">‘It started with a tip-off’: how a Guardian investigation exposed child sex trafficking on Facebook and Instagram</h3>
+      
+        <p class="article-summary">Une enquête du Guardian a révélé comment des enfants étaient vendus sur Facebook et Instagram, contribuant à une condamnation judiciaire coûteuse contre Meta pour son incapacité à prévenir la traite d&#39;enfants sur ses plateformes.</p>
+      
+      
+        <a class="article-link" href="https://www.theguardian.com/global-development/2026/apr/06/investigation-exposed-child-sex-trafficking-on-facebook-and-instagram-meta" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">The Guardian</span>
+        
+          <span class="read-time">4 min</span>
+        
+      </div>
+      <h3 class="article-title">Jan Morris by Sara Wheeler review – masterly account of a flawed figure</h3>
+      
+        <p class="article-summary">Une biographie de Jan Morris explore la vie du journaliste aventurier et pionnier trans, révélant un personnage brillant et prolifique mais profondément égoïste.</p>
+      
+      
+        <a class="article-link" href="https://www.theguardian.com/books/2026/apr/06/jan-morris-by-sara-wheeler-review-masterly-account-of-a-flawed-figure" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">The Guardian</span>
+        
+          <span class="read-time">3 min</span>
+        
+      </div>
+      <h3 class="article-title">Valid Euro Car Parks ticket holders chased by debt collectors</h3>
+      
+        <p class="article-summary">Des automobilistes ayant payé leurs frais de stationnement auprès de Valid Euro Car Parks sont poursuivis par des huissiers malgré la preuve de paiement, soulevant des questions sur les pratiques abusives de recouvrement de dettes.</p>
+      
+      
+        <a class="article-link" href="https://www.theguardian.com/money/2026/apr/06/valid-euro-car-parks-ticket-holders-chased-by-debt-collectors" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Tech & IA
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="tech">
+    <div class="section-header">
+      <span class="section-icon">🤖</span>
+      <h2 class="section-title">Tech & IA</h2>
+      <span class="section-count">5 articles</span>
+    </div>
+
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          The Irish Times
+        </span>
+        
+          <span class="read-time">3 min</span>
+        
+      </div>
+      <h3 class="article-title">Mark O&#39;Connell: Sheer prevalence of AI prose is giving rise to a new and extreme kind of suspicion</h3>
+      
+        <p class="article-summary">La prévalence croissante du contenu généré par IA crée une méfiance culturelle extrême : il devient impossible de distinguer avec certitude si un texte a été écrit par un humain ou par un LLM.</p>
+      
+      
+        <a class="article-link" href="https://www.irishtimes.com/opinion/2026/04/05/mark-oconnell-sheer-prevalence-of-ai-prose-is-giving-rise-to-a-new-and-extreme-kind-of-suspicion/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Idp-software.com
+        </span>
+        
+          <span class="read-time">3 min</span>
+        
+      </div>
+      <h3 class="article-title">Unverified: What Practitioners Post About OCR, Agents, and Tables</h3>
+      
+        <p class="article-summary">Des praticiens anonymes partagent des retours non vérifiés sur les défaillances des systèmes IA (OCR, agents, extraction de tableaux), révélant des patterns cohérents de problèmes.</p>
+      
+      
+        <a class="article-link" href="https://idp-software.com/news/idp-accuracy-reckoning-2026/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Alltoc.com
+        </span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">Why did Anthropic block Claude OpenClaw use? #tech</h3>
+      
+        <p class="article-summary">Anthropic restreint l&#39;accès à Claude via des outils tiers comme OpenClaw à partir d&#39;avril, limitant les usages des abonnés Claude Pro et Max.</p>
+      
+      
+        <a class="article-link" href="https://alltoc.com/tech/why-did-anthropic-block-claude-openclaw-use" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Antoniosantos.io
+        </span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">Gemma 4:e4b as a Local Coding Assistant — First Look</h3>
+      
+        <p class="article-summary">Google DeepMind a lancé Gemma 4, et le modèle e4b fonctionne efficacement comme assistant de codage local sur MacBook M5, une fois sa verbosité maîtrisée.</p>
+      
+      
+        <a class="article-link" href="https://antoniosantos.io/posts/gemma-4-e4b-local-coding-assistant/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Pypi.org
+        </span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">noscroll 0.1.10</h3>
+      
+        <p class="article-summary">noscroll est un agrégateur RSS qui utilise les LLM pour automatiser la résumé des contenus, offrant une alternative aux interfaces de défilement traditionnel.</p>
+      
+      
+        <a class="article-link" href="https://pypi.org/project/noscroll/0.1.10/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Finance
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="finance">
+    <div class="section-header">
+      <span class="section-icon">📈</span>
+      <h2 class="section-title">Finance</h2>
+    </div>
+
+    
+    <div class="finance-group-label">Indices</div>
+    <div class="finance-grid">
+      
+      
+        
+        
+      
+      <div class="asset-tile down">
+        <div class="asset-name">CAC 40</div>
+        <div class="asset-price">
+          
+            7,962
+          
+        </div>
+        <div class="asset-change">
+          
+            ↓ -0.16%
+            
+          
+        </div>
+      </div>
+      
+      
+        
+        
+      
+      <div class="asset-tile up">
+        <div class="asset-name">S&amp;P 500</div>
+        <div class="asset-price">
+          
+            6,583
+          
+        </div>
+        <div class="asset-change">
+          
+            ↑ +0.11%
+            
+          
+        </div>
+      </div>
+      
+      
+        
+        
+      
+      <div class="asset-tile up">
+        <div class="asset-name">Nasdaq 100</div>
+        <div class="asset-price">
+          
+            24,046
+          
+        </div>
+        <div class="asset-change">
+          
+            ↑ +0.11%
+            
+          
+        </div>
+      </div>
+      
+    </div>
+    
+
+    
+    <div class="finance-group-label">Crypto</div>
+    <div class="finance-grid">
+      
+      
+        
+        
+      
+      <div class="asset-tile up">
+        <div class="asset-name">Bitcoin</div>
+        <div class="asset-price">
+          
+            $69,006
+          
+        </div>
+        <div class="asset-change">
+          
+            ↑ +3.38%
+            
+          
+        </div>
+      </div>
+      
+      
+        
+        
+      
+      <div class="asset-tile up">
+        <div class="asset-name">Ethereum</div>
+        <div class="asset-price">
+          
+            $2,126
+          
+        </div>
+        <div class="asset-change">
+          
+            ↑ +4.48%
+            
+          
+        </div>
+      </div>
+      
+    </div>
+    
+
+    
+    
+    <div class="fear-greed">
+      <div class="fg-label-top">Fear & Greed Index</div>
+      <div class="fg-bar-wrap">
+        <div class="fg-marker" style="left: 13%"></div>
+      </div>
+      <div class="fg-bottom">
+        <span class="fg-value">13</span>
+        <span class="fg-sentiment">Extreme Fear</span>
+      </div>
+    </div>
+    
+
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : YouTube
+  ══════════════════════════════════════════ -->
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Culture
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="culture">
+    <div class="section-header">
+      <span class="section-icon">🧠</span>
+      <h2 class="section-title">Culture</h2>
+    </div>
+
+    
+    
+    <div class="mot-card">
+      <div class="mot-classe">nom féminin</div>
+      <div class="mot-word">frondaison</div>
+      <p class="mot-def">Ensemble des feuilles et du feuillage d&#39;un arbre ou d&#39;une végétation luxuriante. Désigne aussi la saison où les feuilles apparaissent sur les arbres.</p>
+      
+        <p class="mot-etym">Du latin &#39;frons, frondis&#39; signifiant &#39;feuillage&#39;, apparu en français au XVIe siècle.</p>
+      
+      
+        <p class="mot-exemple">« Au petit matin d&#39;avril, la lumière filtrait avec douceur à travers les frondaisons encore tendres des vieux chênes du parc. »</p>
+      
+    </div>
+    
+
+    
+    <div class="qcm-item" data-idx="0">
+      <div class="qcm-theme">histoire</div>
+      <div class="qcm-question">Quel traité, signé en 1713, mit fin à la guerre de Succession d&#39;Espagne et redessina la carte de l&#39;Europe occidentale ?</div>
+      <div class="qcm-options">
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(0, 0, 1, 'Le traité d&#39;Utrecht (1713) conclut la guerre de Succession d&#39;Espagne, confirmant Philippe V sur le trône espagnol tout en cédant Gibraltar à la Grande-Bretagne.', 0)">
+          A. Le traité de Westphalie
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(1, 1, 1, 'Le traité d&#39;Utrecht (1713) conclut la guerre de Succession d&#39;Espagne, confirmant Philippe V sur le trône espagnol tout en cédant Gibraltar à la Grande-Bretagne.', 1)">
+          B. Le traité d&#39;Utrecht
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(2, 2, 1, 'Le traité d&#39;Utrecht (1713) conclut la guerre de Succession d&#39;Espagne, confirmant Philippe V sur le trône espagnol tout en cédant Gibraltar à la Grande-Bretagne.', 2)">
+          C. Le traité de Vienne
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(3, 3, 1, 'Le traité d&#39;Utrecht (1713) conclut la guerre de Succession d&#39;Espagne, confirmant Philippe V sur le trône espagnol tout en cédant Gibraltar à la Grande-Bretagne.', 3)">
+          D. Le traité de Paris
+        </button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="1">
+      <div class="qcm-theme">sciences</div>
+      <div class="qcm-question">Quelle est la principale fonction de la mitochondrie dans une cellule eucaryote ?</div>
+      <div class="qcm-options">
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(0, 0, 2, 'La mitochondrie est le siège de la respiration cellulaire : elle produit l&#39;ATP, molécule énergétique indispensable au fonctionnement de la cellule, d&#39;où son surnom de &#39;centrale énergétique&#39;.', 0)">
+          A. Synthétiser les protéines
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(1, 1, 2, 'La mitochondrie est le siège de la respiration cellulaire : elle produit l&#39;ATP, molécule énergétique indispensable au fonctionnement de la cellule, d&#39;où son surnom de &#39;centrale énergétique&#39;.', 1)">
+          B. Stocker l&#39;ADN nucléaire
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(2, 2, 2, 'La mitochondrie est le siège de la respiration cellulaire : elle produit l&#39;ATP, molécule énergétique indispensable au fonctionnement de la cellule, d&#39;où son surnom de &#39;centrale énergétique&#39;.', 2)">
+          C. Produire de l&#39;énergie sous forme d&#39;ATP
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(3, 3, 2, 'La mitochondrie est le siège de la respiration cellulaire : elle produit l&#39;ATP, molécule énergétique indispensable au fonctionnement de la cellule, d&#39;où son surnom de &#39;centrale énergétique&#39;.', 3)">
+          D. Assurer la division cellulaire
+        </button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="2">
+      <div class="qcm-theme">geographie</div>
+      <div class="qcm-question">Quel fleuve traverse les capitales de quatre pays différents, dont Bratislava et Budapest ?</div>
+      <div class="qcm-options">
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(0, 0, 2, 'Le Danube est le seul fleuve au monde à traverser quatre capitales : Vienne (Autriche), Bratislava (Slovaquie), Budapest (Hongrie) et Belgrade (Serbie).', 0)">
+          A. Le Rhin
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(1, 1, 2, 'Le Danube est le seul fleuve au monde à traverser quatre capitales : Vienne (Autriche), Bratislava (Slovaquie), Budapest (Hongrie) et Belgrade (Serbie).', 1)">
+          B. La Vistule
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(2, 2, 2, 'Le Danube est le seul fleuve au monde à traverser quatre capitales : Vienne (Autriche), Bratislava (Slovaquie), Budapest (Hongrie) et Belgrade (Serbie).', 2)">
+          C. Le Danube
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(3, 3, 2, 'Le Danube est le seul fleuve au monde à traverser quatre capitales : Vienne (Autriche), Bratislava (Slovaquie), Budapest (Hongrie) et Belgrade (Serbie).', 3)">
+          D. L&#39;Elbe
+        </button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+
+  </section>
+  
+
+  <!-- ── Footer ─────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer-gen">
+      Généré le Lundi 6 avril 2026 à 06:26 UTC
+    </p>
+    
+    <a class="footer-archive" href="https://felixmining.github.io/FLMorningBrief/briefs/index.html">
+      ← Toutes les éditions
+    </a>
+    
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  // ── Progress bar ──────────────────────────
+  
+  const progressEl = document.getElementById('progress');
+  function updateProgress() {
+    const scrolled = window.scrollY;
+    const total    = document.documentElement.scrollHeight - window.innerHeight;
+    const pct      = total > 0 ? (scrolled / total) * 100 : 0;
+    progressEl.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  
+
+  // ── QCM ───────────────────────────────────
+  // selectAnswer(qcmContainerIdx, optionIdx, correctIdx, explanation, _unused)
+  // Note: les index Jinja2 loop.index0 pour qcm et options sont calculés différemment
+  // On utilise l'attribut data-idx du .qcm-item pour identifier le bon bloc
+
+  function selectAnswer(qcmIdx, optionIdx, correctIdx, explanation, _) {
+    // Retrouver le .qcm-item via data-idx
+    const container = document.querySelector(`.qcm-item[data-idx="${qcmIdx}"]`);
+    if (!container) return;
+    const btns = container.querySelectorAll('.qcm-option');
+    btns.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === correctIdx)  btn.classList.add('correct');
+      else if (i === optionIdx) btn.classList.add('wrong');
+    });
+    const expEl = container.querySelector('.qcm-explanation');
+    expEl.textContent = explanation;
+    expEl.style.display = 'block';
+  }
+
+  // Correction du binding des boutons QCM
+  // Le onclick inline Jinja2 ne peut pas passer l'index du bouton directement
+  // On re-bind au chargement pour avoir les bons index
+  document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {
+    const qcmIdx    = parseInt(qcmEl.dataset.idx);
+    const btns      = qcmEl.querySelectorAll('.qcm-option');
+    btns.forEach(function(btn, optIdx) {
+      btn.onclick = null; // retire le onclick inline
+      btn.addEventListener('click', function() {
+        if (btn.disabled) return;
+        // correctIdx et explanation sont encodés en data attributes
+        const correctIdx  = parseInt(qcmEl.dataset.correct  || '0');
+        const explanation = qcmEl.dataset.explanation || '';
+        selectAnswer(qcmIdx, optIdx, correctIdx, explanation);
+      });
+    });
+  });
+</script>
+
+
+
+<script>
+  // Injecte correctIdx et explanation sur chaque .qcm-item via un objet JS
+  const qcmData = [
+    
+    { correct: 1, explanation: "Le trait\u00e9 d\u0027Utrecht (1713) conclut la guerre de Succession d\u0027Espagne, confirmant Philippe V sur le tr\u00f4ne espagnol tout en c\u00e9dant Gibraltar \u00e0 la Grande-Bretagne." },
+    
+    { correct: 2, explanation: "La mitochondrie est le si\u00e8ge de la respiration cellulaire : elle produit l\u0027ATP, mol\u00e9cule \u00e9nerg\u00e9tique indispensable au fonctionnement de la cellule, d\u0027o\u00f9 son surnom de \u0027centrale \u00e9nerg\u00e9tique\u0027." },
+    
+    { correct: 2, explanation: "Le Danube est le seul fleuve au monde \u00e0 traverser quatre capitales : Vienne (Autriche), Bratislava (Slovaquie), Budapest (Hongrie) et Belgrade (Serbie)." }
+    
+  ];
+  document.querySelectorAll('.qcm-item').forEach(function(el, i) {
+    if (qcmData[i]) {
+      el.dataset.correct      = qcmData[i].correct;
+      el.dataset.explanation  = qcmData[i].explanation;
+    }
+  });
+</script>
+
+</body>
+</html>

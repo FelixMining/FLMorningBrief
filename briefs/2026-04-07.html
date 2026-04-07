@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Morning Brief — Mardi 7 avril 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+
+  <style>
+    :root {
+      --bg:      #0d0d10;
+      --surface: #161619;
+      --card:    #1e1e23;
+      --border:  #2a2a32;
+      --text:    #e8e4dc;
+      --text-2:  #7a7a8c;
+      --text-3:  #3a3a45;
+      --accent:  #6366f1;
+      --amber:   #f59e0b;
+      --green:   #22c55e;
+      --red:     #ef4444;
+      --serif:   'Instrument Serif', Georgia, serif;
+      --sans:    'DM Sans', system-ui, sans-serif;
+      --mono:    'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      /* subtle noise texture */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    }
+
+    /* ── Progress bar ─────────────────────────── */
+    
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--amber);
+      z-index: 100;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(245,158,11,0.5);
+    }
+    
+
+    /* ── Layout ───────────────────────────────── */
+    .wrap {
+      max-width: 430px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+
+    /* ── Header ───────────────────────────────── */
+    .header {
+      padding: 52px 0 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .header-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-family: var(--sans);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .header-date {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(38px, 9vw, 52px);
+      color: var(--text);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .header-year {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--text-2);
+      margin-bottom: 20px;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-3);
+    }
+    .header-meta .sep { color: var(--border); }
+    .header-meta .time-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--amber);
+    }
+    .header-meta .time-badge svg {
+      width: 12px; height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── Nav pills ────────────────────────────── */
+    .nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 36px;
+      scrollbar-width: none;
+    }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 13px;
+      font-size: 12px;
+      color: var(--text-2);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .nav a:hover { border-color: var(--accent); color: var(--text); }
+
+    /* ── Section ──────────────────────────────── */
+    .section { margin-bottom: 48px; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon { font-size: 16px; }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      flex: 1;
+    }
+    .section-count {
+      font-size: 11px;
+      color: var(--text-3);
+      font-family: var(--sans);
+    }
+
+    /* ── Article cards ────────────────────────── */
+    .article-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .article-card:hover { border-color: #3a3a50; }
+    .article-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .source-badge {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      color: #818cf8;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .source-badge.hn {
+      background: rgba(245,158,11,0.1);
+      border-color: rgba(245,158,11,0.3);
+      color: #fbbf24;
+    }
+    .read-time {
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .article-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .article-summary {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: 14px;
+    }
+    .article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      transition: gap 0.15s;
+    }
+    .article-link:hover { gap: 7px; }
+
+    /* ── Finance ──────────────────────────────── */
+    .finance-group-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+      margin-top: 18px;
+    }
+    .finance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .asset-tile {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 14px 12px;
+    }
+    .asset-tile.up   { border-color: rgba(34,197,94,0.2); }
+    .asset-tile.down { border-color: rgba(239,68,68,0.2); }
+    .asset-name {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+    .asset-price {
+      font-family: var(--mono);
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .asset-change {
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+    .up   .asset-change { color: var(--green); }
+    .down .asset-change { color: var(--red); }
+    .flat .asset-change { color: var(--text-3); }
+
+    /* Fear & Greed */
+    .fear-greed {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .fg-label-top {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .fg-bar-wrap {
+      position: relative;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right,
+        #ef4444 0%, #ef4444 25%,
+        #f97316 25%, #f97316 45%,
+        #eab308 45%, #eab308 55%,
+        #84cc16 55%, #84cc16 75%,
+        #22c55e 75%, #22c55e 100%
+      );
+      margin-bottom: 10px;
+    }
+    .fg-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      background: var(--bg);
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+    .fg-bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .fg-value {
+      font-family: var(--mono);
+      font-size: 22px;
+      color: var(--text);
+    }
+    .fg-sentiment {
+      font-size: 13px;
+      color: var(--text-2);
+    }
+
+    /* ── YouTube ──────────────────────────────── */
+    .video-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .video-card:hover { border-color: #3a3a50; }
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .video-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: background 0.15s;
+    }
+    .video-card:hover .video-play { background: rgba(0,0,0,0.2); }
+    .video-play-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-play-icon svg {
+      width: 16px; height: 16px;
+      margin-left: 3px;
+      fill: #0d0d10;
+    }
+    .video-info {
+      padding: 14px 16px;
+    }
+    .video-channel {
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .video-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    /* ── Mot du jour ──────────────────────────── */
+    .mot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mot-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px; right: 12px;
+      font-family: var(--serif);
+      font-size: 120px;
+      color: var(--border);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .mot-classe {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .mot-word {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 36px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .mot-def {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-2);
+      margin-bottom: 10px;
+    }
+    .mot-etym {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-bottom: 12px;
+      border-left: 2px solid var(--border);
+      padding-left: 10px;
+    }
+    .mot-exemple {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* ── QCM ──────────────────────────────────── */
+    .qcm-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+    .qcm-theme {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .qcm-question {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .qcm-options {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .qcm-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+      font-family: var(--sans);
+    }
+    .qcm-option:hover:not(:disabled) {
+      background: rgba(99,102,241,0.07);
+      border-color: rgba(99,102,241,0.3);
+      color: var(--text);
+    }
+    .qcm-option:disabled { cursor: default; }
+    .qcm-option.correct {
+      background: rgba(34,197,94,0.12);
+      border-color: #22c55e;
+      color: #86efac;
+    }
+    .qcm-option.wrong {
+      background: rgba(239,68,68,0.1);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+    .qcm-explanation {
+      display: none;
+      margin-top: 12px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-3);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    /* ── Footer ───────────────────────────────── */
+    .footer {
+      padding: 24px 0 8px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-gen {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .footer-archive {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-archive:hover { color: var(--text-2); }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="wrap">
+
+  <!-- ── Header ─────────────────────────────── -->
+  <header class="header">
+    <div class="header-eyebrow">FL Morning Brief</div>
+    
+    <div class="header-date">Mardi 7 avril</div>
+    <div class="header-year">2026</div>
+    <div class="header-meta">
+      <span>06:15 UTC</span>
+      <span class="sep">·</span>
+      
+      <span class="time-badge">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="6" cy="6" r="5"/><path d="M6 3v3l2 1.5"/>
+        </svg>
+        ~26 min
+      </span>
+      
+    </div>
+  </header>
+
+  <!-- ── Navigation ─────────────────────────── -->
+  <nav class="nav">
+    
+      <a href="#news">🌍 Actu</a>
+    
+    
+      <a href="#tech">🤖 Tech</a>
+    
+    
+      <a href="#finance">📈 Finance</a>
+    
+    
+      <a href="#youtube">▶️ Vidéo</a>
+    
+    
+      <a href="#culture">🧠 Culture</a>
+    
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Actualités
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="news">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <h2 class="section-title">Actualités</h2>
+      <span class="section-count">3 articles</span>
+    </div>
+
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">The Guardian</span>
+        
+          <span class="read-time">3 min</span>
+        
+      </div>
+      <h3 class="article-title">Middle East crisis live: Israel threatens entire Iran train network; Trump says he is ‘not at all’ worried about possible war crimes</h3>
+      
+        <p class="article-summary">Israël menace d&#39;attaquer l&#39;ensemble du réseau ferroviaire iranien et avertit les citoyens iraniens de cesser immédiatement d&#39;utiliser les trains. Trump déclare ne pas être préoccupé par les accusations potentielles de crimes de guerre.</p>
+      
+      
+        <a class="article-link" href="https://www.theguardian.com/world/live/2026/apr/07/iran-war-live-updates-trump-hormuz-threats-deadline-strikes-middle-east-conflict" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">The Guardian</span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">Bangladesh launches measles vaccination drive as child death toll passes 100</h3>
+      
+        <p class="article-summary">Le Bangladesh lance une campagne de vaccination d&#39;urgence contre la rougeole avec l&#39;assistance des Nations unies, alors que le nombre de décès d&#39;enfants dépasse 100 cas dans la pire épidémie en plusieurs années.</p>
+      
+      
+        <a class="article-link" href="https://www.theguardian.com/world/2026/apr/07/bangladesh-measles-vaccination-drive-child-death-toll" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">The Guardian</span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">News live: Albanese to visit Singapore to shore up fuel supply; Australians buy record number of new EVs in March</h3>
+      
+        <p class="article-summary">Le Premier ministre australien Albanese se rend à Singapour pour renforcer l&#39;approvisionnement en carburant tandis que les Australiens achètent un nombre record de nouveaux véhicules électriques en mars.</p>
+      
+      
+        <a class="article-link" href="https://www.theguardian.com/australia-news/live/2026/apr/07/australia-news-live-cyclone-maila-threat-queensland-road-toll-trump-iran-ntwnfb" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Tech & IA
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="tech">
+    <div class="section-header">
+      <span class="section-icon">🤖</span>
+      <h2 class="section-title">Tech & IA</h2>
+      <span class="section-count">5 articles</span>
+    </div>
+
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Aiaiai.guide
+        </span>
+        
+          <span class="read-time">5 min</span>
+        
+      </div>
+      <h3 class="article-title">Show HN: Aiaiai.guide: Plain-English mental model for LLM apps, tools and agents</h3>
+      
+        <p class="article-summary">Un guide pratique expliquant en langage simple les concepts fondamentaux des applications LLM : comment un LLM sans état devient un chatbot, le fonctionnement des outils et des agents, et leur mécanique interne.</p>
+      
+      
+        <a class="article-link" href="https://aiaiai.guide/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Cointelegraph
+        </span>
+        
+          <span class="read-time">3 min</span>
+        
+      </div>
+      <h3 class="article-title">Circle unveils quantum-resistant roadmap for its layer-1 blockchain Arc</h3>
+      
+        <p class="article-summary">Circle déploie une feuille de route de sécurité quantique pour son blockchain Arc, intégrant des solutions résistantes aux attaques quantiques au niveau du portefeuille, des signatures et des validateurs.</p>
+      
+      
+        <a class="article-link" href="https://cointelegraph.com/news/circle-quantum-proof-roadmap-layer-1-arc" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          TweakTown
+        </span>
+        
+          <span class="read-time">3 min</span>
+        
+      </div>
+      <h3 class="article-title">Intel&#39;s Texture Set Neural Compression will also save big on VRAM usage when gaming</h3>
+      
+        <p class="article-summary">Intel développe une compression neuronale des textures utilisant l&#39;IA pour réduire l&#39;empreinte mémoire des textures de jeux, optimisant ainsi l&#39;utilisation VRAM en temps réel ou à l&#39;installation.</p>
+      
+      
+        <a class="article-link" href="https://www.tweaktown.com/news/110888/intels-texture-set-neural-compression-will-also-save-big-on-vram-usage-when-gaming/index.html" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Thenewstack.io
+        </span>
+        
+          <span class="read-time">4 min</span>
+        
+      </div>
+      <h3 class="article-title">Cursor&#39;s $2 billion bet: The IDE is now a fallback, not the default - The New Stack</h3>
+      
+        <p class="article-summary">Cursor 3 transforme l&#39;IDE traditionnel en console de gestion d&#39;agents IA, marquant un tournant majeur dans les outils de développement assistés par IA et les workflows des développeurs.</p>
+      
+      
+        <a class="article-link" href="https://thenewstack.io/cursor-3-demotes-ide/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Transformer-circuits.pub
+        </span>
+        
+          <span class="read-time">4 min</span>
+        
+      </div>
+      <h3 class="article-title">Emotion Concepts and their Function in a Large Language Model</h3>
+      
+        <p class="article-summary">Une étude révèle que Claude Sonnet 4.5 possède des représentations internes de concepts émotionnels, soulevant des questions importantes sur l&#39;alignement et le comportement des grands modèles de langage.</p>
+      
+      
+        <a class="article-link" href="https://transformer-circuits.pub/2026/emotions/index.html" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Finance
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="finance">
+    <div class="section-header">
+      <span class="section-icon">📈</span>
+      <h2 class="section-title">Finance</h2>
+    </div>
+
+    
+    <div class="finance-group-label">Indices</div>
+    <div class="finance-grid">
+      
+      
+        
+        
+      
+      <div class="asset-tile down">
+        <div class="asset-name">CAC 40</div>
+        <div class="asset-price">
+          
+            7,962
+          
+        </div>
+        <div class="asset-change">
+          
+            ↓ -0.16%
+            
+          
+        </div>
+      </div>
+      
+      
+        
+        
+      
+      <div class="asset-tile up">
+        <div class="asset-name">S&amp;P 500</div>
+        <div class="asset-price">
+          
+            6,612
+          
+        </div>
+        <div class="asset-change">
+          
+            ↑ +0.44%
+            
+          
+        </div>
+      </div>
+      
+      
+        
+        
+      
+      <div class="asset-tile up">
+        <div class="asset-name">Nasdaq 100</div>
+        <div class="asset-price">
+          
+            24,192
+          
+        </div>
+        <div class="asset-change">
+          
+            ↑ +0.61%
+            
+          
+        </div>
+      </div>
+      
+    </div>
+    
+
+    
+    <div class="finance-group-label">Crypto</div>
+    <div class="finance-grid">
+      
+      
+        
+        
+      
+      <div class="asset-tile down">
+        <div class="asset-name">Bitcoin</div>
+        <div class="asset-price">
+          
+            $68,512
+          
+        </div>
+        <div class="asset-change">
+          
+            ↓ -1.14%
+            
+          
+        </div>
+      </div>
+      
+      
+        
+        
+      
+      <div class="asset-tile down">
+        <div class="asset-name">Ethereum</div>
+        <div class="asset-price">
+          
+            $2,100
+          
+        </div>
+        <div class="asset-change">
+          
+            ↓ -1.69%
+            
+          
+        </div>
+      </div>
+      
+    </div>
+    
+
+    
+    
+    <div class="fear-greed">
+      <div class="fg-label-top">Fear & Greed Index</div>
+      <div class="fg-bar-wrap">
+        <div class="fg-marker" style="left: 11%"></div>
+      </div>
+      <div class="fg-bottom">
+        <span class="fg-value">11</span>
+        <span class="fg-sentiment">Extreme Fear</span>
+      </div>
+    </div>
+    
+
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : YouTube
+  ══════════════════════════════════════════ -->
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Culture
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="culture">
+    <div class="section-header">
+      <span class="section-icon">🧠</span>
+      <h2 class="section-title">Culture</h2>
+    </div>
+
+    
+
+    
+
+  </section>
+  
+
+  <!-- ── Footer ─────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer-gen">
+      Généré le Mardi 7 avril 2026 à 06:15 UTC
+    </p>
+    
+    <a class="footer-archive" href="https://felixmining.github.io/FLMorningBrief/briefs/index.html">
+      ← Toutes les éditions
+    </a>
+    
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  // ── Progress bar ──────────────────────────
+  
+  const progressEl = document.getElementById('progress');
+  function updateProgress() {
+    const scrolled = window.scrollY;
+    const total    = document.documentElement.scrollHeight - window.innerHeight;
+    const pct      = total > 0 ? (scrolled / total) * 100 : 0;
+    progressEl.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  
+
+  // ── QCM ───────────────────────────────────
+  // selectAnswer(qcmContainerIdx, optionIdx, correctIdx, explanation, _unused)
+  // Note: les index Jinja2 loop.index0 pour qcm et options sont calculés différemment
+  // On utilise l'attribut data-idx du .qcm-item pour identifier le bon bloc
+
+  function selectAnswer(qcmIdx, optionIdx, correctIdx, explanation, _) {
+    // Retrouver le .qcm-item via data-idx
+    const container = document.querySelector(`.qcm-item[data-idx="${qcmIdx}"]`);
+    if (!container) return;
+    const btns = container.querySelectorAll('.qcm-option');
+    btns.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === correctIdx)  btn.classList.add('correct');
+      else if (i === optionIdx) btn.classList.add('wrong');
+    });
+    const expEl = container.querySelector('.qcm-explanation');
+    expEl.textContent = explanation;
+    expEl.style.display = 'block';
+  }
+
+  // Correction du binding des boutons QCM
+  // Le onclick inline Jinja2 ne peut pas passer l'index du bouton directement
+  // On re-bind au chargement pour avoir les bons index
+  document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {
+    const qcmIdx    = parseInt(qcmEl.dataset.idx);
+    const btns      = qcmEl.querySelectorAll('.qcm-option');
+    btns.forEach(function(btn, optIdx) {
+      btn.onclick = null; // retire le onclick inline
+      btn.addEventListener('click', function() {
+        if (btn.disabled) return;
+        // correctIdx et explanation sont encodés en data attributes
+        const correctIdx  = parseInt(qcmEl.dataset.correct  || '0');
+        const explanation = qcmEl.dataset.explanation || '';
+        selectAnswer(qcmIdx, optIdx, correctIdx, explanation);
+      });
+    });
+  });
+</script>
+
+
+
+<script>
+  // Injecte correctIdx et explanation sur chaque .qcm-item via un objet JS
+  const qcmData = [
+    
+  ];
+  document.querySelectorAll('.qcm-item').forEach(function(el, i) {
+    if (qcmData[i]) {
+      el.dataset.correct      = qcmData[i].correct;
+      el.dataset.explanation  = qcmData[i].explanation;
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FL Morning Brief — {{ brief.date_fr }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   {# ── Calcul du temps de lecture total ── #}
   {% set ns = namespace(total=0) %}
@@ -21,329 +21,396 @@
   {% set total_time = ns.total %}
 
   <style>
+    /* ── Design tokens ─────────────────────────────────────── */
     :root {
-      --bg:      #0d0d10;
-      --surface: #161619;
-      --card:    #1e1e23;
-      --border:  #2a2a32;
-      --text:    #e8e4dc;
-      --text-2:  #7a7a8c;
-      --text-3:  #3a3a45;
-      --accent:  #6366f1;
-      --amber:   #f59e0b;
-      --green:   #22c55e;
-      --red:     #ef4444;
-      --serif:   'Instrument Serif', Georgia, serif;
-      --sans:    'DM Sans', system-ui, sans-serif;
-      --mono:    'JetBrains Mono', 'Courier New', monospace;
+      --bg:         #080A0F;
+      --surface:    #0D1117;
+      --card:       #0F1724;
+      --border:     #1C2333;
+      --text:       #EDF2FF;
+      --text-2:     #8B9CC8;
+      --text-3:     #3D4A60;
+      --accent:     #00D4FF;
+      --accent-dim: rgba(0,212,255,.08);
+      --accent-mid: rgba(0,212,255,.2);
+      --purple:     #8B5CF6;
+      --green:      #10B981;
+      --red:        #F43F5E;
+      --amber:      #F59E0B;
+      --h: 'Montserrat', system-ui, sans-serif;
+      --s: 'Inter', system-ui, sans-serif;
+      --m: 'JetBrains Mono', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--sans);
+      font-family: var(--s);
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
-      /* subtle noise texture */
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
     }
 
-    /* ── Progress bar ─────────────────────────── */
+    /* Subtle grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,.018) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Progress bar ────────────────────────────────────────── */
     {% if config.ux.progress_bar %}
     #progress {
-      position: fixed;
-      top: 0; left: 0;
-      height: 2px;
-      width: 0%;
-      background: var(--amber);
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(0,212,255,.4);
       z-index: 100;
-      transition: width 0.1s linear;
-      box-shadow: 0 0 8px rgba(245,158,11,0.5);
+      transition: width .1s linear;
     }
     {% endif %}
 
-    /* ── Layout ───────────────────────────────── */
+    /* ── Layout ─────────────────────────────────────────────── */
     .wrap {
-      max-width: 430px;
+      max-width: 480px;
       margin: 0 auto;
       padding: 0 20px 64px;
+      position: relative;
     }
 
-    /* ── Header ───────────────────────────────── */
+    /* ── Header ─────────────────────────────────────────────── */
     .header {
-      padding: 52px 0 32px;
+      padding: 48px 0 28px;
+      margin-bottom: 36px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 24px;
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 56px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(0,212,255,.3);
     }
     .header-eyebrow {
+      font-family: var(--m);
       font-size: 10px;
-      letter-spacing: 0.16em;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--text-3);
-      font-family: var(--sans);
-      font-weight: 500;
-      margin-bottom: 10px;
+      color: var(--accent);
+      margin-bottom: 18px;
+      opacity: .65;
     }
-    .header-date {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: clamp(38px, 9vw, 52px);
+    .header-day {
+      font-family: var(--h);
+      font-size: clamp(50px, 13vw, 72px);
+      font-weight: 900;
+      line-height: .9;
       color: var(--text);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
+      letter-spacing: -.035em;
       margin-bottom: 4px;
     }
-    .header-year {
-      font-family: var(--serif);
-      font-size: 16px;
+    .header-month {
+      font-family: var(--h);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
       color: var(--text-2);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
     .header-meta {
       display: flex;
       align-items: center;
-      gap: 16px;
-      font-size: 12px;
+      gap: 14px;
+      font-size: 11px;
+      font-family: var(--m);
       color: var(--text-3);
     }
     .header-meta .sep { color: var(--border); }
     .header-meta .time-badge {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: var(--amber);
+      display: flex; align-items: center; gap: 5px;
+      color: var(--accent);
+      opacity: .75;
     }
-    .header-meta .time-badge svg {
-      width: 12px; height: 12px;
-      flex-shrink: 0;
-    }
+    .header-meta .time-badge svg { width: 11px; height: 11px; flex-shrink: 0; }
 
-    /* ── Nav pills ────────────────────────────── */
-    .nav {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      margin-bottom: 36px;
-      scrollbar-width: none;
-    }
-    .nav::-webkit-scrollbar { display: none; }
-    .nav a {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 6px 13px;
-      font-size: 12px;
-      color: var(--text-2);
-      text-decoration: none;
-      white-space: nowrap;
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .nav a:hover { border-color: var(--accent); color: var(--text); }
-
-    /* ── Section ──────────────────────────────── */
-    .section { margin-bottom: 48px; }
+    /* ── Section ─────────────────────────────────────────────── */
+    .section { margin-bottom: 52px; }
     .section-header {
       display: flex;
-      align-items: baseline;
-      gap: 10px;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 20px;
-      padding-bottom: 12px;
+      padding-bottom: 14px;
       border-bottom: 1px solid var(--border);
+      position: relative;
     }
-    .section-icon { font-size: 16px; }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 44px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .section-icon {
+      width: 32px; height: 32px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-icon svg { width: 15px; height: 15px; stroke: var(--accent); fill: none; }
     .section-title {
-      font-family: var(--serif);
-      font-size: 22px;
-      letter-spacing: -0.01em;
+      font-family: var(--h);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
       color: var(--text);
       flex: 1;
     }
     .section-count {
       font-size: 11px;
+      font-family: var(--m);
       color: var(--text-3);
-      font-family: var(--sans);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 8px;
     }
 
-    /* ── Article cards ────────────────────────── */
+    /* ── Article card ────────────────────────────────────────── */
     .article-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 12px;
-      transition: border-color 0.15s;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
+      transition: border-color .15s, box-shadow .15s;
+      position: relative;
+      overflow: hidden;
     }
-    .article-card:hover { border-color: #3a3a50; }
-    .article-card-top {
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity .15s;
+    }
+    .article-card:hover {
+      border-color: var(--accent-mid);
+      box-shadow: 0 4px 24px rgba(0,212,255,.05);
+    }
+    .article-card:hover::before { opacity: 1; }
+
+    /* Card meta row */
+    .card-meta {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-bottom: 10px;
     }
     .source-badge {
       font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
+      font-weight: 600;
+      letter-spacing: .05em;
       text-transform: uppercase;
-      background: rgba(99,102,241,0.12);
-      border: 1px solid rgba(99,102,241,0.25);
-      color: #818cf8;
+      background: rgba(139,92,246,.1);
+      border: 1px solid rgba(139,92,246,.25);
+      color: #A78BFA;
       border-radius: 4px;
       padding: 2px 8px;
     }
     .source-badge.hn {
-      background: rgba(245,158,11,0.1);
-      border-color: rgba(245,158,11,0.3);
-      color: #fbbf24;
+      background: rgba(245,158,11,.1);
+      border-color: rgba(245,158,11,.28);
+      color: #FCD34D;
+    }
+    .domain-pill {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      border-radius: 4px;
+      padding: 2px 8px;
     }
     .read-time {
-      font-size: 11px;
+      font-size: 10px;
+      font-family: var(--m);
       color: var(--text-3);
+      margin-left: auto;
+      display: flex; align-items: center; gap: 3px;
     }
+    .read-time svg { width: 10px; height: 10px; }
+
+    /* Article content */
     .article-title {
-      font-family: var(--serif);
-      font-size: 18px;
-      line-height: 1.3;
+      font-family: var(--h);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
       color: var(--text);
       margin-bottom: 8px;
-      letter-spacing: -0.01em;
+      letter-spacing: -.01em;
     }
     .article-summary {
       font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.7;
       color: var(--text-2);
-      margin-bottom: 14px;
+      font-weight: 300;
     }
-    .article-link {
+
+    /* Expand panel */
+    .article-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, opacity .2s;
+      opacity: 0;
+    }
+    .article-expand.open { max-height: 600px; opacity: 1; }
+    .expand-body {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--text-2);
+      font-weight: 300;
+      padding: 14px 0 10px;
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+    }
+    .source-link {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      font-size: 12px;
-      color: var(--accent);
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
       text-decoration: none;
-      transition: gap 0.15s;
+      margin-top: 10px;
+      transition: color .15s;
     }
-    .article-link:hover { gap: 7px; }
+    .source-link:hover { color: var(--text-2); }
+    .source-link svg { width: 10px; height: 10px; fill: none; }
 
-    /* ── Finance ──────────────────────────────── */
-    .finance-group-label {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-3);
-      margin-bottom: 10px;
-      margin-top: 18px;
-    }
-    .finance-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    .asset-tile {
-      background: var(--card);
+    /* Lire button */
+    .btn-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 14px 12px;
-    }
-    .asset-tile.up   { border-color: rgba(34,197,94,0.2); }
-    .asset-tile.down { border-color: rgba(239,68,68,0.2); }
-    .asset-name {
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 11px;
+      font-family: var(--s);
+      font-weight: 500;
       color: var(--text-3);
-      margin-bottom: 6px;
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-top: 12px;
     }
-    .asset-price {
-      font-family: var(--mono);
-      font-size: 17px;
-      color: var(--text);
-      margin-bottom: 4px;
-      letter-spacing: -0.02em;
+    .btn-read:hover, .btn-read.open {
+      border-color: var(--accent);
+      color: var(--accent);
     }
-    .asset-change {
-      font-size: 12px;
-      font-family: var(--mono);
+    .btn-read .chevron {
+      width: 12px; height: 12px;
+      transition: transform .2s;
+      flex-shrink: 0;
+      fill: none;
     }
-    .up   .asset-change { color: var(--green); }
-    .down .asset-change { color: var(--red); }
-    .flat .asset-change { color: var(--text-3); }
+    .btn-read.open .chevron { transform: rotate(180deg); }
+
+    /* ── Finance ─────────────────────────────────────────────── */
+    .tv-container {
+      background: #0F0F0F;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 420px;
+      margin-bottom: 20px;
+    }
+    .tv-container .tradingview-widget-container,
+    .tv-container .tradingview-widget-container__widget { height: 100%; }
+    .tv-container .tradingview-widget-copyright { display: none; }
 
     /* Fear & Greed */
     .fear-greed {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 20px;
+      border-radius: 8px;
+      padding: 16px 18px;
     }
-    .fg-label-top {
+    .fg-label {
       font-size: 10px;
-      letter-spacing: 0.1em;
+      font-family: var(--m);
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--text-3);
       margin-bottom: 12px;
     }
     .fg-bar-wrap {
       position: relative;
-      height: 8px;
-      border-radius: 4px;
+      height: 6px;
+      border-radius: 3px;
       background: linear-gradient(to right,
-        #ef4444 0%, #ef4444 25%,
-        #f97316 25%, #f97316 45%,
-        #eab308 45%, #eab308 55%,
-        #84cc16 55%, #84cc16 75%,
-        #22c55e 75%, #22c55e 100%
+        #F43F5E 0%, #F43F5E 25%,
+        #F97316 25%, #F97316 45%,
+        #EAB308 45%, #EAB308 55%,
+        #84CC16 55%, #84CC16 75%,
+        #10B981 75%, #10B981 100%
       );
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .fg-marker {
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 14px;
-      height: 14px;
+      width: 14px; height: 14px;
       background: var(--bg);
       border: 2px solid var(--text);
       border-radius: 50%;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      box-shadow: 0 0 8px rgba(255,255,255,.25);
     }
-    .fg-bottom {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .fg-bottom { display: flex; align-items: baseline; gap: 8px; }
     .fg-value {
-      font-family: var(--mono);
-      font-size: 22px;
+      font-family: var(--m);
+      font-size: 26px;
+      font-weight: 500;
       color: var(--text);
     }
-    .fg-sentiment {
-      font-size: 13px;
-      color: var(--text-2);
-    }
+    .fg-sentiment { font-size: 13px; color: var(--text-2); font-weight: 300; }
 
-    /* ── YouTube ──────────────────────────────── */
+    /* ── YouTube ─────────────────────────────────────────────── */
     .video-card {
       display: block;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
       text-decoration: none;
-      margin-bottom: 12px;
-      transition: border-color 0.15s;
+      margin-bottom: 10px;
+      transition: border-color .15s;
     }
-    .video-card:hover { border-color: #3a3a50; }
+    .video-card:hover { border-color: var(--accent-mid); }
     .video-thumb {
       position: relative;
       width: 100%;
@@ -351,168 +418,156 @@
       background: var(--surface);
       overflow: hidden;
     }
-    .video-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .video-play {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.35);
-      transition: background 0.15s;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.4);
+      transition: background .15s;
     }
-    .video-card:hover .video-play { background: rgba(0,0,0,0.2); }
+    .video-card:hover .video-play { background: rgba(0,0,0,.25); }
     .video-play-icon {
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.92);
+      width: 46px; height: 46px;
+      background: var(--accent);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 20px rgba(0,212,255,.5);
     }
-    .video-play-icon svg {
-      width: 16px; height: 16px;
-      margin-left: 3px;
-      fill: #0d0d10;
-    }
-    .video-info {
-      padding: 14px 16px;
-    }
+    .video-play-icon svg { width: 16px; height: 16px; margin-left: 2px; fill: #080A0F; }
+    .video-info { padding: 14px 16px; }
     .video-channel {
-      font-size: 11px;
+      font-size: 10px;
+      font-family: var(--m);
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: .08em;
       margin-bottom: 5px;
+      opacity: .75;
     }
     .video-title {
-      font-family: var(--serif);
-      font-size: 16px;
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
       line-height: 1.35;
       color: var(--text);
     }
 
-    /* ── Mot du jour ──────────────────────────── */
+    /* ── Mot du jour ─────────────────────────────────────────── */
     .mot-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 20px;
-      margin-bottom: 24px;
+      border-radius: 8px;
+      padding: 22px 20px;
+      margin-bottom: 10px;
       position: relative;
       overflow: hidden;
     }
-    .mot-card::before {
+    .mot-card::after {
       content: '"';
       position: absolute;
-      top: -10px; right: 12px;
-      font-family: var(--serif);
-      font-size: 120px;
+      top: -18px; right: 14px;
+      font-family: Georgia, serif;
+      font-size: 130px;
       color: var(--border);
       line-height: 1;
       pointer-events: none;
     }
     .mot-classe {
       font-size: 10px;
-      letter-spacing: 0.14em;
+      font-family: var(--m);
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      opacity: .7;
     }
     .mot-word {
-      font-family: var(--serif);
-      font-style: italic;
+      font-family: var(--h);
       font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -.025em;
       color: var(--text);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 16px;
+      line-height: 1;
+      margin-bottom: 14px;
     }
     .mot-def {
       font-size: 14px;
       line-height: 1.7;
       color: var(--text-2);
       margin-bottom: 10px;
+      font-weight: 300;
     }
     .mot-etym {
       font-size: 12px;
       color: var(--text-3);
-      margin-bottom: 12px;
-      border-left: 2px solid var(--border);
+      margin-bottom: 10px;
+      border-left: 2px solid var(--accent);
       padding-left: 10px;
+      opacity: .65;
     }
     .mot-exemple {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-2);
       line-height: 1.6;
+      font-style: italic;
     }
 
-    /* ── QCM ──────────────────────────────────── */
+    /* ── QCM ─────────────────────────────────────────────────── */
     .qcm-item {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 12px;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
     }
     .qcm-theme {
       font-size: 10px;
-      letter-spacing: 0.1em;
+      font-family: var(--m);
+      letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--text-3);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .qcm-question {
-      font-size: 15px;
-      line-height: 1.5;
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
       color: var(--text);
-      margin-bottom: 14px;
-      font-weight: 500;
+      margin-bottom: 12px;
     }
-    .qcm-options {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
+    .qcm-options { display: flex; flex-direction: column; gap: 6px; }
     .qcm-option {
-      display: block;
-      width: 100%;
-      text-align: left;
+      display: block; width: 100%; text-align: left;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 6px;
       padding: 10px 14px;
       font-size: 13px;
       color: var(--text-2);
       cursor: pointer;
-      transition: background 0.12s, border-color 0.12s, color 0.12s;
-      font-family: var(--sans);
+      transition: background .12s, border-color .12s, color .12s;
+      font-family: var(--s);
     }
     .qcm-option:hover:not(:disabled) {
-      background: rgba(99,102,241,0.07);
-      border-color: rgba(99,102,241,0.3);
+      background: var(--accent-dim);
+      border-color: var(--accent-mid);
       color: var(--text);
     }
     .qcm-option:disabled { cursor: default; }
     .qcm-option.correct {
-      background: rgba(34,197,94,0.12);
-      border-color: #22c55e;
-      color: #86efac;
+      background: rgba(16,185,129,.12);
+      border-color: #10B981;
+      color: #6EE7B7;
     }
     .qcm-option.wrong {
-      background: rgba(239,68,68,0.1);
-      border-color: #ef4444;
-      color: #fca5a5;
+      background: rgba(244,63,94,.08);
+      border-color: #F43F5E;
+      color: #FDA4AF;
     }
     .qcm-explanation {
       display: none;
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 12px;
       line-height: 1.6;
       color: var(--text-3);
@@ -520,7 +575,7 @@
       padding-top: 10px;
     }
 
-    /* ── Footer ───────────────────────────────── */
+    /* ── Footer ─────────────────────────────────────────────── */
     .footer {
       padding: 24px 0 8px;
       border-top: 1px solid var(--border);
@@ -528,6 +583,7 @@
     }
     .footer-gen {
       font-size: 11px;
+      font-family: var(--m);
       color: var(--text-3);
       margin-bottom: 10px;
     }
@@ -535,12 +591,14 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      font-size: 12px;
+      font-size: 11px;
+      font-family: var(--m);
       color: var(--text-3);
       text-decoration: none;
-      transition: color 0.15s;
+      transition: color .15s;
     }
-    .footer-archive:hover { color: var(--text-2); }
+    .footer-archive:hover { color: var(--accent); }
+    .footer-archive svg { width: 12px; height: 12px; fill: none; }
   </style>
 </head>
 <body>
@@ -549,19 +607,19 @@
 
 <div class="wrap">
 
-  <!-- ── Header ─────────────────────────────── -->
+  <!-- ── Header ──────────────────────────────────────── -->
   <header class="header">
     <div class="header-eyebrow">FL Morning Brief</div>
-    {% set date_parts = brief.date_fr.split(' ') %}
-    <div class="header-date">{{ date_parts[0] }} {{ date_parts[1] }} {{ date_parts[2] }}</div>
-    <div class="header-year">{{ date_parts[3] if date_parts|length > 3 else '' }}</div>
+    {% set parts = brief.date_fr.split(' ') %}
+    <div class="header-day">{{ parts[0] }} {{ parts[1] }}</div>
+    <div class="header-month">{{ parts[2] }}{% if parts|length > 3 %} {{ parts[3] }}{% endif %}</div>
     <div class="header-meta">
       <span>{{ brief.generated_at }}</span>
-      <span class="sep">·</span>
       {% if total_time > 0 %}
+      <span class="sep">·</span>
       <span class="time-badge">
-        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="6" cy="6" r="5"/><path d="M6 3v3l2 1.5"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
         </svg>
         ~{{ total_time }} min
       </span>
@@ -569,52 +627,59 @@
     </div>
   </header>
 
-  <!-- ── Navigation ─────────────────────────── -->
-  <nav class="nav">
-    {% if brief.sections.news.active %}
-      <a href="#news">🌍 Actu</a>
-    {% endif %}
-    {% if brief.sections.tech.active %}
-      <a href="#tech">🤖 Tech</a>
-    {% endif %}
-    {% if brief.sections.finance.active %}
-      <a href="#finance">📈 Finance</a>
-    {% endif %}
-    {% if brief.sections.youtube.active %}
-      <a href="#youtube">▶️ Vidéo</a>
-    {% endif %}
-    {% if brief.sections.culture.active %}
-      <a href="#culture">🧠 Culture</a>
-    {% endif %}
-  </nav>
-
   <!-- ══════════════════════════════════════════
        SECTION : Actualités
   ══════════════════════════════════════════ -->
   {% if brief.sections.news.active and brief.sections.news.articles %}
   <section class="section" id="news">
     <div class="section-header">
-      <span class="section-icon">🌍</span>
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
       <h2 class="section-title">Actualités</h2>
-      <span class="section-count">{{ brief.sections.news.articles|length }} articles</span>
+      <span class="section-count">{{ brief.sections.news.articles|length }}</span>
     </div>
 
     {% for article in brief.sections.news.articles %}
+    {% set eid = "exp-news-" ~ loop.index0 %}
     <div class="article-card">
-      <div class="article-card-top">
+      <div class="card-meta">
         <span class="source-badge">{{ article.source }}</span>
+        {% if article.domain %}<span class="domain-pill">{{ article.domain }}</span>{% endif %}
         {% if config.ux.temps_lecture and article.reading_time %}
-          <span class="read-time">{{ article.reading_time }} min</span>
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          {{ article.reading_time }} min
+        </span>
         {% endif %}
       </div>
-      <h3 class="article-title">{{ article.title }}</h3>
-      {% if article.summary %}
-        <p class="article-summary">{{ article.summary }}</p>
-      {% endif %}
-      {% if article.url %}
-        <a class="article-link" href="{{ article.url | e }}" target="_blank" rel="noopener">
-          Lire <span>→</span>
+      <h3 class="article-title">{{ article.title_fr if article.title_fr else article.title }}</h3>
+      {% if article.summary %}<p class="article-summary">{{ article.summary }}</p>{% endif %}
+
+      {% set expand_text = article.extended_content if article.extended_content else article.content %}
+      {% if expand_text %}
+      <div class="article-expand" id="{{ eid }}">
+        <div class="expand-body">{{ expand_text }}</div>
+        {% if article.url %}
+        <a class="source-link" href="{{ article.url | e }}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
         </a>
+        {% endif %}
+      </div>
+      <button class="btn-read" onclick="toggleExpand('{{ eid }}', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       {% endif %}
     </div>
     {% endfor %}
@@ -627,29 +692,54 @@
   {% if brief.sections.tech.active and brief.sections.tech.articles %}
   <section class="section" id="tech">
     <div class="section-header">
-      <span class="section-icon">🤖</span>
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="2"/>
+          <rect x="9" y="9" width="6" height="6"/>
+          <path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>
+        </svg>
+      </div>
       <h2 class="section-title">Tech & IA</h2>
-      <span class="section-count">{{ brief.sections.tech.articles|length }} articles</span>
+      <span class="section-count">{{ brief.sections.tech.articles|length }}</span>
     </div>
 
     {% for article in brief.sections.tech.articles %}
+    {% set eid = "exp-tech-" ~ loop.index0 %}
     <div class="article-card">
-      <div class="article-card-top">
-        <span class="source-badge {% if article.source == 'Hacker News' %}hn{% endif %}">
-          {{ article.source }}
-        </span>
+      <div class="card-meta">
+        <span class="source-badge {% if article.source == 'Hacker News' %}hn{% endif %}">{{ article.source }}</span>
+        {% if article.domain %}<span class="domain-pill">{{ article.domain }}</span>{% endif %}
         {% if config.ux.temps_lecture and article.reading_time %}
-          <span class="read-time">{{ article.reading_time }} min</span>
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          {{ article.reading_time }} min
+        </span>
         {% endif %}
       </div>
-      <h3 class="article-title">{{ article.title }}</h3>
-      {% if article.summary %}
-        <p class="article-summary">{{ article.summary }}</p>
-      {% endif %}
-      {% if article.url %}
-        <a class="article-link" href="{{ article.url | e }}" target="_blank" rel="noopener">
-          Lire <span>→</span>
+      <h3 class="article-title">{{ article.title_fr if article.title_fr else article.title }}</h3>
+      {% if article.summary %}<p class="article-summary">{{ article.summary }}</p>{% endif %}
+
+      {% set expand_text = article.extended_content if article.extended_content else article.content %}
+      {% if expand_text %}
+      <div class="article-expand" id="{{ eid }}">
+        <div class="expand-body">{{ expand_text }}</div>
+        {% if article.url %}
+        <a class="source-link" href="{{ article.url | e }}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
         </a>
+        {% endif %}
+      </div>
+      <button class="btn-read" onclick="toggleExpand('{{ eid }}', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       {% endif %}
     </div>
     {% endfor %}
@@ -662,70 +752,77 @@
   {% if brief.sections.finance.active %}
   <section class="section" id="finance">
     <div class="section-header">
-      <span class="section-icon">📈</span>
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+          <polyline points="17 6 23 6 23 12"/>
+        </svg>
+      </div>
       <h2 class="section-title">Finance</h2>
     </div>
 
-    {% if brief.sections.finance.indices %}
-    <div class="finance-group-label">Indices</div>
-    <div class="finance-grid">
-      {% for asset in brief.sections.finance.indices %}
-      {% if asset.change_pct is not none %}
-        {% if asset.change_pct > 0 %}{% set cls = 'up' %}
-        {% elif asset.change_pct < 0 %}{% set cls = 'down' %}
-        {% else %}{% set cls = 'flat' %}{% endif %}
-      {% else %}{% set cls = 'flat' %}{% endif %}
-      <div class="asset-tile {{ cls }}">
-        <div class="asset-name">{{ asset.name }}</div>
-        <div class="asset-price">
-          {% if asset.price is not none %}
-            {{ "{:,.0f}".format(asset.price) }}
-          {% else %}—{% endif %}
-        </div>
-        <div class="asset-change">
-          {% if asset.change_pct is not none %}
-            {% if asset.change_pct > 0 %}↑ +{{ "%.2f"|format(asset.change_pct) }}%
-            {% elif asset.change_pct < 0 %}↓ {{ "%.2f"|format(asset.change_pct) }}%
-            {% else %}— 0.00%{% endif %}
-          {% else %}—{% endif %}
-        </div>
+    <!-- TradingView Widget -->
+    <div class="tv-container">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        {% raw %}
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {
+          "lineWidth": 2,
+          "lineType": 0,
+          "chartType": "area",
+          "fontColor": "rgb(106, 109, 120)",
+          "gridLineColor": "rgba(242, 242, 242, 0.06)",
+          "volumeUpColor": "rgba(34, 171, 148, 0.5)",
+          "volumeDownColor": "rgba(247, 82, 95, 0.5)",
+          "backgroundColor": "#0F0F0F",
+          "widgetFontColor": "#DBDBDB",
+          "upColor": "#22ab94",
+          "downColor": "#f7525f",
+          "borderUpColor": "#22ab94",
+          "borderDownColor": "#f7525f",
+          "wickUpColor": "#22ab94",
+          "wickDownColor": "#f7525f",
+          "colorTheme": "dark",
+          "isTransparent": false,
+          "locale": "fr",
+          "chartOnly": false,
+          "scalePosition": "right",
+          "scaleMode": "Normal",
+          "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+          "valuesTracking": "1",
+          "changeMode": "price-and-percent",
+          "symbols": [
+            ["INDEX:CAC40|1D|EUR"],
+            ["TVC:SPX|1D|EUR"],
+            ["IG:NASDAQ|1D|EUR"],
+            ["OANDA:XAUEUR|1D|EUR"],
+            ["FX_IDC:XAGEUR|1D|EUR"],
+            ["CRYPTO:BTCUSD|1D|EUR"],
+            ["EASYMARKETS:OILUSD|1D|EUR"]
+          ],
+          "dateRanges": ["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"],
+          "fontSize": "10",
+          "headerFontSize": "medium",
+          "autosize": true,
+          "dateFormat": "dd/MM/yyyy",
+          "width": "100%",
+          "height": "100%",
+          "noTimeScale": false,
+          "hideDateRanges": false,
+          "hideMarketStatus": false,
+          "hideSymbolLogo": false
+        }
+        </script>
+        {% endraw %}
       </div>
-      {% endfor %}
     </div>
-    {% endif %}
 
-    {% if brief.sections.finance.crypto %}
-    <div class="finance-group-label">Crypto</div>
-    <div class="finance-grid">
-      {% for asset in brief.sections.finance.crypto %}
-      {% if asset.change_pct is not none %}
-        {% if asset.change_pct > 0 %}{% set cls = 'up' %}
-        {% elif asset.change_pct < 0 %}{% set cls = 'down' %}
-        {% else %}{% set cls = 'flat' %}{% endif %}
-      {% else %}{% set cls = 'flat' %}{% endif %}
-      <div class="asset-tile {{ cls }}">
-        <div class="asset-name">{{ asset.name }}</div>
-        <div class="asset-price">
-          {% if asset.price is not none %}
-            ${{ "{:,.0f}".format(asset.price) if asset.price >= 1000 else "{:.2f}".format(asset.price) }}
-          {% else %}—{% endif %}
-        </div>
-        <div class="asset-change">
-          {% if asset.change_pct is not none %}
-            {% if asset.change_pct > 0 %}↑ +{{ "%.2f"|format(asset.change_pct) }}%
-            {% elif asset.change_pct < 0 %}↓ {{ "%.2f"|format(asset.change_pct) }}%
-            {% else %}— 0.00%{% endif %}
-          {% else %}—{% endif %}
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    {% endif %}
-
+    <!-- Fear & Greed Index -->
     {% if brief.sections.finance.fear_greed %}
     {% set fg = brief.sections.finance.fear_greed %}
     <div class="fear-greed">
-      <div class="fg-label-top">Fear & Greed Index</div>
+      <div class="fg-label">Fear &amp; Greed Index</div>
       <div class="fg-bar-wrap">
         <div class="fg-marker" style="left: {{ fg.value }}%"></div>
       </div>
@@ -745,16 +842,19 @@
   {% if brief.sections.youtube.active and brief.sections.youtube.videos %}
   <section class="section" id="youtube">
     <div class="section-header">
-      <span class="section-icon">▶️</span>
-      <h2 class="section-title">Vidéo du jour</h2>
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Vidéo</h2>
     </div>
 
     {% for video in brief.sections.youtube.videos %}
     <a class="video-card" href="{{ video.url | e }}" target="_blank" rel="noopener">
       <div class="video-thumb">
-        {% if video.thumbnail %}
-          <img src="{{ video.thumbnail | e }}" alt="" loading="lazy">
-        {% endif %}
+        {% if video.thumbnail %}<img src="{{ video.thumbnail | e }}" alt="" loading="lazy">{% endif %}
         <div class="video-play">
           <div class="video-play-icon">
             <svg viewBox="0 0 16 16"><polygon points="5,3 13,8 5,13"/></svg>
@@ -776,7 +876,12 @@
   {% if brief.sections.culture.active %}
   <section class="section" id="culture">
     <div class="section-header">
-      <span class="section-icon">🧠</span>
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
       <h2 class="section-title">Culture</h2>
     </div>
 
@@ -786,12 +891,8 @@
       <div class="mot-classe">{{ m.classe }}</div>
       <div class="mot-word">{{ m.mot }}</div>
       <p class="mot-def">{{ m.definition }}</p>
-      {% if m.etymologie %}
-        <p class="mot-etym">{{ m.etymologie }}</p>
-      {% endif %}
-      {% if m.exemple %}
-        <p class="mot-exemple">« {{ m.exemple }} »</p>
-      {% endif %}
+      {% if m.etymologie %}<p class="mot-etym">{{ m.etymologie }}</p>{% endif %}
+      {% if m.exemple %}<p class="mot-exemple">« {{ m.exemple }} »</p>{% endif %}
     </div>
     {% endif %}
 
@@ -801,11 +902,7 @@
       <div class="qcm-question">{{ q.question }}</div>
       <div class="qcm-options">
         {% for opt in q.options %}
-        <button
-          class="qcm-option"
-          onclick="selectAnswer({{ loop.index0 }}, {{ loop.index0 }}, {{ q.answer_index }}, '{{ q.explanation | e }}', {{ loop.index0 }})">
-          {{ opt }}
-        </button>
+        <button class="qcm-option">{{ opt }}</button>
         {% endfor %}
       </div>
       <div class="qcm-explanation"></div>
@@ -815,14 +912,15 @@
   </section>
   {% endif %}
 
-  <!-- ── Footer ─────────────────────────────── -->
+  <!-- ── Footer ──────────────────────────────────────── -->
   <footer class="footer">
-    <p class="footer-gen">
-      Généré le {{ brief.date_fr }} à {{ brief.generated_at }}
-    </p>
+    <p class="footer-gen">{{ brief.date_fr }} · {{ brief.generated_at }}</p>
     {% if config.ux.archive %}
     <a class="footer-archive" href="{{ config.archive.base_url | e }}/briefs/index.html">
-      ← Toutes les éditions
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Archive
     </a>
     {% endif %}
   </footer>
@@ -830,71 +928,52 @@
 </div><!-- /wrap -->
 
 <script>
-  // ── Progress bar ──────────────────────────
+  // ── Progress bar ──────────────────────────────────
   {% if config.ux.progress_bar %}
   const progressEl = document.getElementById('progress');
   function updateProgress() {
-    const scrolled = window.scrollY;
-    const total    = document.documentElement.scrollHeight - window.innerHeight;
-    const pct      = total > 0 ? (scrolled / total) * 100 : 0;
-    progressEl.style.width = pct + '%';
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressEl.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
   }
   window.addEventListener('scroll', updateProgress, { passive: true });
   {% endif %}
 
-  // ── QCM ───────────────────────────────────
-  // selectAnswer(qcmContainerIdx, optionIdx, correctIdx, explanation, _unused)
-  // Note: les index Jinja2 loop.index0 pour qcm et options sont calculés différemment
-  // On utilise l'attribut data-idx du .qcm-item pour identifier le bon bloc
+  // ── Expand / Collapse ─────────────────────────────
+  function toggleExpand(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const open = el.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.querySelector('span').textContent = open ? 'Fermer' : 'Lire';
+  }
 
-  function selectAnswer(qcmIdx, optionIdx, correctIdx, explanation, _) {
-    // Retrouver le .qcm-item via data-idx
-    const container = document.querySelector(`.qcm-item[data-idx="${qcmIdx}"]`);
-    if (!container) return;
-    const btns = container.querySelectorAll('.qcm-option');
-    btns.forEach((btn, i) => {
-      btn.disabled = true;
-      if (i === correctIdx)  btn.classList.add('correct');
-      else if (i === optionIdx) btn.classList.add('wrong');
+  // ── QCM ───────────────────────────────────────────
+  const qcmData = [];
+  {% for q in brief.sections.culture.qcm | default([]) %}
+  qcmData.push({ correct: {{ q.answer_index }}, explanation: {{ q.explanation | tojson }} });
+  {% endfor %}
+
+  function selectAnswer(qcmEl, optIdx) {
+    const idx  = parseInt(qcmEl.dataset.idx);
+    const data = qcmData[idx];
+    if (!data) return;
+    const btns = qcmEl.querySelectorAll('.qcm-option');
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === data.correct)     b.classList.add('correct');
+      else if (i === optIdx)      b.classList.add('wrong');
     });
-    const expEl = container.querySelector('.qcm-explanation');
-    expEl.textContent = explanation;
+    const expEl = qcmEl.querySelector('.qcm-explanation');
+    expEl.textContent = data.explanation;
     expEl.style.display = 'block';
   }
 
-  // Correction du binding des boutons QCM
-  // Le onclick inline Jinja2 ne peut pas passer l'index du bouton directement
-  // On re-bind au chargement pour avoir les bons index
   document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {
-    const qcmIdx    = parseInt(qcmEl.dataset.idx);
-    const btns      = qcmEl.querySelectorAll('.qcm-option');
-    btns.forEach(function(btn, optIdx) {
-      btn.onclick = null; // retire le onclick inline
+    qcmEl.querySelectorAll('.qcm-option').forEach(function(btn, optIdx) {
       btn.addEventListener('click', function() {
-        if (btn.disabled) return;
-        // correctIdx et explanation sont encodés en data attributes
-        const correctIdx  = parseInt(qcmEl.dataset.correct  || '0');
-        const explanation = qcmEl.dataset.explanation || '';
-        selectAnswer(qcmIdx, optIdx, correctIdx, explanation);
+        if (!btn.disabled) selectAnswer(qcmEl, optIdx);
       });
     });
-  });
-</script>
-
-{# Note : pour que le JS QCM fonctionne, on injecte les data-* sur le .qcm-item #}
-{# C'est fait via une seconde passe de script inline dans la boucle — voir ci-dessous #}
-<script>
-  // Injecte correctIdx et explanation sur chaque .qcm-item via un objet JS
-  const qcmData = [
-    {% for q in brief.sections.culture.qcm %}
-    { correct: {{ q.answer_index }}, explanation: {{ q.explanation | tojson }} }{% if not loop.last %},{% endif %}
-    {% endfor %}
-  ];
-  document.querySelectorAll('.qcm-item').forEach(function(el, i) {
-    if (qcmData[i]) {
-      el.dataset.correct      = qcmData[i].correct;
-      el.dataset.explanation  = qcmData[i].explanation;
-    }
   });
 </script>
 

@@ -335,12 +335,13 @@ def collect_youtube(cfg: dict) -> list:
 #  CLAUDE — Résumés & sélection (Haiku)
 # ─────────────────────────────────────────────────────────────────
 def summarize_articles(articles: list, section_label: str, model: str, nb_keep: int) -> list:
-    """Haiku sélectionne les nb_keep meilleurs articles et les résume en français."""
+    """Haiku sélectionne les nb_keep meilleurs articles, traduit les titres, résume et catégorise."""
     if not articles:
         return []
     if not claude:
         log.warning('ANTHROPIC_API_KEY absent — résumés désactivés')
-        return [dict(a, summary=a.get('content', '')[:200], reading_time=2) for a in articles[:nb_keep]]
+        return [dict(a, summary=a.get('content', '')[:200], reading_time=2,
+                     title_fr=a.get('title', ''), domain='', extended_content='') for a in articles[:nb_keep]]
 
     articles_text = '\n'.join(
         f'{i+1}. [{a.get("source","")}] {a["title"]}\n   {a.get("content","")[:400]}'
@@ -355,14 +356,21 @@ Articles :
 Réponds UNIQUEMENT avec ce JSON (pas de markdown, pas d'explication) :
 {{
   "selected": [
-    {{"index": 1, "summary": "Résumé 1-2 phrases en français.", "reading_time": 2}}
+    {{
+      "index": 1,
+      "title_fr": "Titre en français (traduire si nécessaire, conserver si déjà en français)",
+      "summary": "Résumé court en 1-2 phrases en français.",
+      "extended_content": "Résumé étendu en 4-5 phrases en français avec contexte et détails supplémentaires.",
+      "domain": "Catégorie courte en 2-3 mots max (ex: Conflit Iran, IA & LLM, Politique US, Économie, Faits divers, Open Source, Cybersécurité, Géopolitique)",
+      "reading_time": 2
+    }}
   ]
 }}"""
 
     try:
         resp = claude.messages.create(
             model=model,
-            max_tokens=1000,
+            max_tokens=2000,
             messages=[{'role': 'user', 'content': prompt}],
         )
         text = resp.content[0].text.strip()
@@ -377,13 +385,17 @@ Réponds UNIQUEMENT avec ce JSON (pas de markdown, pas d'explication) :
             idx = sel['index'] - 1
             if 0 <= idx < len(articles):
                 a = dict(articles[idx])
-                a['summary']      = sel.get('summary', '')
-                a['reading_time'] = sel.get('reading_time', 2)
+                a['summary']          = sel.get('summary', '')
+                a['title_fr']         = sel.get('title_fr', a.get('title', ''))
+                a['domain']           = sel.get('domain', '')
+                a['extended_content'] = sel.get('extended_content', '')
+                a['reading_time']     = sel.get('reading_time', 2)
                 result.append(a)
         return result
     except Exception as e:
         log.warning(f'Claude summarize ({section_label}): {e}')
-        return [dict(a, summary=a.get('content', '')[:200], reading_time=2) for a in articles[:nb_keep]]
+        return [dict(a, summary=a.get('content', '')[:200], reading_time=2,
+                     title_fr=a.get('title', ''), domain='', extended_content='') for a in articles[:nb_keep]]
 
 
 # ─────────────────────────────────────────────────────────────────

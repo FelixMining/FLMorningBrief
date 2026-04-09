@@ -2,9 +2,9 @@ name: Generate Morning Brief
 
 on:
   schedule:
-    # 5h00 UTC = 6h00 Paris (hiver) / 7h00 Paris (été)
-    # Pour passer à 4h00 UTC en été : changer en "0 4 * * *"
-    - cron: '0 5 * * *'
+    # 4h00 UTC = 6h00 Paris heure d'été (CEST, UTC+2)
+    # Repasser en "0 5 * * *" en hiver (CET, UTC+1)
+    - cron: '0 4 * * *'
 
   # Déclenchement manuel depuis l'onglet Actions → utile pour tester
   workflow_dispatch:

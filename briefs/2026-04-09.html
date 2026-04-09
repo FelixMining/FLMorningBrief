@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Morning Brief — Jeudi 9 avril 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+
+  <style>
+    :root {
+      --bg:      #0d0d10;
+      --surface: #161619;
+      --card:    #1e1e23;
+      --border:  #2a2a32;
+      --text:    #e8e4dc;
+      --text-2:  #7a7a8c;
+      --text-3:  #3a3a45;
+      --accent:  #6366f1;
+      --amber:   #f59e0b;
+      --green:   #22c55e;
+      --red:     #ef4444;
+      --serif:   'Instrument Serif', Georgia, serif;
+      --sans:    'DM Sans', system-ui, sans-serif;
+      --mono:    'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      /* subtle noise texture */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    }
+
+    /* ── Progress bar ─────────────────────────── */
+    
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--amber);
+      z-index: 100;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(245,158,11,0.5);
+    }
+    
+
+    /* ── Layout ───────────────────────────────── */
+    .wrap {
+      max-width: 430px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+
+    /* ── Header ───────────────────────────────── */
+    .header {
+      padding: 52px 0 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .header-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      font-family: var(--sans);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .header-date {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(38px, 9vw, 52px);
+      color: var(--text);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .header-year {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--text-2);
+      margin-bottom: 20px;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-3);
+    }
+    .header-meta .sep { color: var(--border); }
+    .header-meta .time-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--amber);
+    }
+    .header-meta .time-badge svg {
+      width: 12px; height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── Nav pills ────────────────────────────── */
+    .nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 36px;
+      scrollbar-width: none;
+    }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 13px;
+      font-size: 12px;
+      color: var(--text-2);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .nav a:hover { border-color: var(--accent); color: var(--text); }
+
+    /* ── Section ──────────────────────────────── */
+    .section { margin-bottom: 48px; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon { font-size: 16px; }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      flex: 1;
+    }
+    .section-count {
+      font-size: 11px;
+      color: var(--text-3);
+      font-family: var(--sans);
+    }
+
+    /* ── Article cards ────────────────────────── */
+    .article-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .article-card:hover { border-color: #3a3a50; }
+    .article-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .source-badge {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.25);
+      color: #818cf8;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .source-badge.hn {
+      background: rgba(245,158,11,0.1);
+      border-color: rgba(245,158,11,0.3);
+      color: #fbbf24;
+    }
+    .read-time {
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .article-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .article-summary {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: 14px;
+    }
+    .article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      transition: gap 0.15s;
+    }
+    .article-link:hover { gap: 7px; }
+
+    /* ── Finance ──────────────────────────────── */
+    .finance-group-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+      margin-top: 18px;
+    }
+    .finance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .asset-tile {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 14px 12px;
+    }
+    .asset-tile.up   { border-color: rgba(34,197,94,0.2); }
+    .asset-tile.down { border-color: rgba(239,68,68,0.2); }
+    .asset-name {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+    .asset-price {
+      font-family: var(--mono);
+      font-size: 17px;
+      color: var(--text);
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .asset-change {
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+    .up   .asset-change { color: var(--green); }
+    .down .asset-change { color: var(--red); }
+    .flat .asset-change { color: var(--text-3); }
+
+    /* Fear & Greed */
+    .fear-greed {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .fg-label-top {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .fg-bar-wrap {
+      position: relative;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right,
+        #ef4444 0%, #ef4444 25%,
+        #f97316 25%, #f97316 45%,
+        #eab308 45%, #eab308 55%,
+        #84cc16 55%, #84cc16 75%,
+        #22c55e 75%, #22c55e 100%
+      );
+      margin-bottom: 10px;
+    }
+    .fg-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      background: var(--bg);
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+    .fg-bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .fg-value {
+      font-family: var(--mono);
+      font-size: 22px;
+      color: var(--text);
+    }
+    .fg-sentiment {
+      font-size: 13px;
+      color: var(--text-2);
+    }
+
+    /* ── YouTube ──────────────────────────────── */
+    .video-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .video-card:hover { border-color: #3a3a50; }
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .video-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.35);
+      transition: background 0.15s;
+    }
+    .video-card:hover .video-play { background: rgba(0,0,0,0.2); }
+    .video-play-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-play-icon svg {
+      width: 16px; height: 16px;
+      margin-left: 3px;
+      fill: #0d0d10;
+    }
+    .video-info {
+      padding: 14px 16px;
+    }
+    .video-channel {
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .video-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    /* ── Mot du jour ──────────────────────────── */
+    .mot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mot-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px; right: 12px;
+      font-family: var(--serif);
+      font-size: 120px;
+      color: var(--border);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .mot-classe {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .mot-word {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 36px;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .mot-def {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-2);
+      margin-bottom: 10px;
+    }
+    .mot-etym {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-bottom: 12px;
+      border-left: 2px solid var(--border);
+      padding-left: 10px;
+    }
+    .mot-exemple {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* ── QCM ──────────────────────────────────── */
+    .qcm-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+    .qcm-theme {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .qcm-question {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .qcm-options {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .qcm-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s, color 0.12s;
+      font-family: var(--sans);
+    }
+    .qcm-option:hover:not(:disabled) {
+      background: rgba(99,102,241,0.07);
+      border-color: rgba(99,102,241,0.3);
+      color: var(--text);
+    }
+    .qcm-option:disabled { cursor: default; }
+    .qcm-option.correct {
+      background: rgba(34,197,94,0.12);
+      border-color: #22c55e;
+      color: #86efac;
+    }
+    .qcm-option.wrong {
+      background: rgba(239,68,68,0.1);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+    .qcm-explanation {
+      display: none;
+      margin-top: 12px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-3);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    /* ── Footer ───────────────────────────────── */
+    .footer {
+      padding: 24px 0 8px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-gen {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .footer-archive {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-archive:hover { color: var(--text-2); }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="wrap">
+
+  <!-- ── Header ─────────────────────────────── -->
+  <header class="header">
+    <div class="header-eyebrow">FL Morning Brief</div>
+    
+    <div class="header-date">Jeudi 9 avril</div>
+    <div class="header-year">2026</div>
+    <div class="header-meta">
+      <span>06:16 UTC</span>
+      <span class="sep">·</span>
+      
+      <span class="time-badge">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="6" cy="6" r="5"/><path d="M6 3v3l2 1.5"/>
+        </svg>
+        ~19 min
+      </span>
+      
+    </div>
+  </header>
+
+  <!-- ── Navigation ─────────────────────────── -->
+  <nav class="nav">
+    
+      <a href="#news">🌍 Actu</a>
+    
+    
+      <a href="#tech">🤖 Tech</a>
+    
+    
+      <a href="#finance">📈 Finance</a>
+    
+    
+      <a href="#youtube">▶️ Vidéo</a>
+    
+    
+      <a href="#culture">🧠 Culture</a>
+    
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Actualités
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="news">
+    <div class="section-header">
+      <span class="section-icon">🌍</span>
+      <h2 class="section-title">Actualités</h2>
+      <span class="section-count">3 articles</span>
+    </div>
+
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">The Guardian</span>
+        
+          <span class="read-time">3 min</span>
+        
+      </div>
+      <h3 class="article-title">Middle East crisis live: Red Cross ‘outraged’ as Israeli strikes on Lebanon kill 254; Trump says US military to remain in region</h3>
+      
+        <p class="article-summary">Les frappes israéliennes au Liban ont tué 254 personnes, provoquant l&#39;indignation de la Croix-Rouge. Divergence entre l&#39;Iran et les États-Unis sur l&#39;inclusion du Liban dans les accords de cessez-le-feu.</p>
+      
+      
+        <a class="article-link" href="https://www.theguardian.com/world/live/2026/apr/09/iran-war-ceasefire-live-strait-of-hormuz-israel-strikes-middle-east-crisis-latest-news" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">The Guardian</span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">Thursday briefing: ​What difference will the ceasefire in the Middle East make, and will it hold? </h3>
+      
+        <p class="article-summary">Un cessez-le-feu au Moyen-Orient offre un répit après plusieurs semaines de tensions, mais des interprétations contradictoires de l&#39;accord menacent la stabilité de la région.</p>
+      
+      
+        <a class="article-link" href="https://www.theguardian.com/world/2026/apr/09/thursday-briefing-what-difference-will-the-ceasefire-in-the-middle-east-make-and-will-it-hold" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge">The Guardian</span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">Australia news live: diesel surges 20 cents a litre in two days to record high; toll traffic falls as fuel price bites</h3>
+      
+        <p class="article-summary">Le prix du diesel en Australie a bondi de 20 cents par litre en deux jours, atteignant un record historique et impactant le trafic routier à péage.</p>
+      
+      
+        <a class="article-link" href="https://www.theguardian.com/australia-news/live/2026/apr/09/anthony-albanese-singapore-visit-fuel-crisis-middle-east-ceasefire-lebanon-strikes-politics-labor-coalition-reactions-ntwnfb" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Tech & IA
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="tech">
+    <div class="section-header">
+      <span class="section-icon">🤖</span>
+      <h2 class="section-title">Tech & IA</h2>
+      <span class="section-count">5 articles</span>
+    </div>
+
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Pypi.org
+        </span>
+        
+          <span class="read-time">3 min</span>
+        
+      </div>
+      <h3 class="article-title">agi-pragma added to PyPI</h3>
+      
+        <p class="article-summary">agi-pragma est un pare-feu d&#39;action IA avec un cœur de décision intelligente à sept étapes pour sécuriser les systèmes d&#39;IA autonomes.</p>
+      
+      
+        <a class="article-link" href="https://pypi.org/project/agi-pragma/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Pypi.org
+        </span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">mycellm 0.2.4</h3>
+      
+        <p class="article-summary">mycellm 0.2.4 permet l&#39;inférence distribuée de modèles de langage sur du matériel hétérogène, optimisant l&#39;utilisation des ressources.</p>
+      
+      
+        <a class="article-link" href="https://pypi.org/project/mycellm/0.2.4/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Pypi.org
+        </span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">aiproxyguard-python-sdk 0.2.0</h3>
+      
+        <p class="article-summary">aiproxyguard-python-sdk 0.2.0 offre un SDK officiel pour protéger les LLM contre les attaques par injection de prompts.</p>
+      
+      
+        <a class="article-link" href="https://pypi.org/project/aiproxyguard-python-sdk/0.2.0/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Pypi.org
+        </span>
+        
+          <span class="read-time">2 min</span>
+        
+      </div>
+      <h3 class="article-title">cureview 0.3.0</h3>
+      
+        <p class="article-summary">cureview 0.3.0 propose des bacs à sable de révision de PR powered par ChunkHound avec des présets LLM configurables.</p>
+      
+      
+        <a class="article-link" href="https://pypi.org/project/cureview/0.3.0/" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+    <div class="article-card">
+      <div class="article-card-top">
+        <span class="source-badge ">
+          Github.com
+        </span>
+        
+          <span class="read-time">3 min</span>
+        
+      </div>
+      <h3 class="article-title">milla-jovovich/mempalace: The highest-scoring AI memory system ever benchmarked. And it&#39;s free.</h3>
+      
+        <p class="article-summary">mempalace est un système de mémoire pour IA gratuit et à haut score, conçu pour améliorer la rétention et la récupération d&#39;informations.</p>
+      
+      
+        <a class="article-link" href="https://github.com/milla-jovovich/mempalace" target="_blank" rel="noopener">
+          Lire <span>→</span>
+        </a>
+      
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Finance
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="finance">
+    <div class="section-header">
+      <span class="section-icon">📈</span>
+      <h2 class="section-title">Finance</h2>
+    </div>
+
+    
+    <div class="finance-group-label">Indices</div>
+    <div class="finance-grid">
+      
+      
+        
+        
+      
+      <div class="asset-tile up">
+        <div class="asset-name">CAC 40</div>
+        <div class="asset-price">
+          
+            8,264
+          
+        </div>
+        <div class="asset-change">
+          
+            ↑ +4.58%
+            
+          
+        </div>
+      </div>
+      
+      
+        
+        
+      
+      <div class="asset-tile up">
+        <div class="asset-name">S&amp;P 500</div>
+        <div class="asset-price">
+          
+            6,783
+          
+        </div>
+        <div class="asset-change">
+          
+            ↑ +2.51%
+            
+          
+        </div>
+      </div>
+      
+      
+        
+        
+      
+      <div class="asset-tile up">
+        <div class="asset-name">Nasdaq 100</div>
+        <div class="asset-price">
+          
+            24,903
+          
+        </div>
+        <div class="asset-change">
+          
+            ↑ +2.90%
+            
+          
+        </div>
+      </div>
+      
+    </div>
+    
+
+    
+    <div class="finance-group-label">Crypto</div>
+    <div class="finance-grid">
+      
+      
+        
+        
+      
+      <div class="asset-tile down">
+        <div class="asset-name">Bitcoin</div>
+        <div class="asset-price">
+          
+            $71,005
+          
+        </div>
+        <div class="asset-change">
+          
+            ↓ -1.10%
+            
+          
+        </div>
+      </div>
+      
+      
+        
+        
+      
+      <div class="asset-tile down">
+        <div class="asset-name">Ethereum</div>
+        <div class="asset-price">
+          
+            $2,183
+          
+        </div>
+        <div class="asset-change">
+          
+            ↓ -2.68%
+            
+          
+        </div>
+      </div>
+      
+    </div>
+    
+
+    
+    
+    <div class="fear-greed">
+      <div class="fg-label-top">Fear & Greed Index</div>
+      <div class="fg-bar-wrap">
+        <div class="fg-marker" style="left: 14%"></div>
+      </div>
+      <div class="fg-bottom">
+        <span class="fg-value">14</span>
+        <span class="fg-sentiment">Extreme Fear</span>
+      </div>
+    </div>
+    
+
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : YouTube
+  ══════════════════════════════════════════ -->
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Culture
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="culture">
+    <div class="section-header">
+      <span class="section-icon">🧠</span>
+      <h2 class="section-title">Culture</h2>
+    </div>
+
+    
+    
+    <div class="mot-card">
+      <div class="mot-classe">nom féminin</div>
+      <div class="mot-word">frondaison</div>
+      <p class="mot-def">Ensemble des feuilles et du feuillage d&#39;un arbre ou d&#39;une forêt, formant une masse végétale dense. Désigne aussi la saison où les arbres se couvrent de feuilles.</p>
+      
+        <p class="mot-etym">Du latin &#39;frons, frondis&#39; signifiant feuillage, branche feuillue, attesté en français au XVIe siècle.</p>
+      
+      
+        <p class="mot-exemple">« Le promeneur s&#39;attarda sous les frondaisons du parc, bercé par le murmure du vent dans les jeunes feuilles d&#39;avril. »</p>
+      
+    </div>
+    
+
+    
+    <div class="qcm-item" data-idx="0">
+      <div class="qcm-theme">histoire</div>
+      <div class="qcm-question">Quel traité, signé en 1648, mit fin à la guerre de Trente Ans et redressa la carte politique de l&#39;Europe ?</div>
+      <div class="qcm-options">
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(0, 0, 0, 'Le traité de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du système des États-nations souverains en Europe.', 0)">
+          A. Le traité de Westphalie
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(1, 1, 0, 'Le traité de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du système des États-nations souverains en Europe.', 1)">
+          B. Le traité d&#39;Utrecht
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(2, 2, 0, 'Le traité de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du système des États-nations souverains en Europe.', 2)">
+          C. Le traité de Vienne
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(3, 3, 0, 'Le traité de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du système des États-nations souverains en Europe.', 3)">
+          D. Le traité de Nimègue
+        </button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="1">
+      <div class="qcm-theme">sciences</div>
+      <div class="qcm-question">Quelle est la particularité de l&#39;eau lourde (D₂O) par rapport à l&#39;eau ordinaire ?</div>
+      <div class="qcm-options">
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(0, 0, 1, 'L&#39;eau lourde contient du deutérium, un isotope de l&#39;hydrogène possédant un neutron supplémentaire, ce qui la rend plus dense que l&#39;eau ordinaire.', 0)">
+          A. Elle contient plus d&#39;oxygène
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(1, 1, 1, 'L&#39;eau lourde contient du deutérium, un isotope de l&#39;hydrogène possédant un neutron supplémentaire, ce qui la rend plus dense que l&#39;eau ordinaire.', 1)">
+          B. Ses molécules comportent du deutérium à la place de l&#39;hydrogène ordinaire
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(2, 2, 1, 'L&#39;eau lourde contient du deutérium, un isotope de l&#39;hydrogène possédant un neutron supplémentaire, ce qui la rend plus dense que l&#39;eau ordinaire.', 2)">
+          C. Elle est radioactive naturellement
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(3, 3, 1, 'L&#39;eau lourde contient du deutérium, un isotope de l&#39;hydrogène possédant un neutron supplémentaire, ce qui la rend plus dense que l&#39;eau ordinaire.', 3)">
+          D. Elle bout à 80°C au lieu de 100°C
+        </button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="2">
+      <div class="qcm-theme">geographie</div>
+      <div class="qcm-question">Lequel de ces pays est traversé à la fois par l&#39;équateur et par le tropique du Capricorne ?</div>
+      <div class="qcm-options">
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(0, 0, 2, 'Le Brésil est le seul pays au monde traversé à la fois par l&#39;équateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie.', 0)">
+          A. La Colombie
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(1, 1, 2, 'Le Brésil est le seul pays au monde traversé à la fois par l&#39;équateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie.', 1)">
+          B. Le Kenya
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(2, 2, 2, 'Le Brésil est le seul pays au monde traversé à la fois par l&#39;équateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie.', 2)">
+          C. Le Brésil
+        </button>
+        
+        <button
+          class="qcm-option"
+          onclick="selectAnswer(3, 3, 2, 'Le Brésil est le seul pays au monde traversé à la fois par l&#39;équateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie.', 3)">
+          D. L&#39;Indonésie
+        </button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+
+  </section>
+  
+
+  <!-- ── Footer ─────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer-gen">
+      Généré le Jeudi 9 avril 2026 à 06:16 UTC
+    </p>
+    
+    <a class="footer-archive" href="https://felixmining.github.io/FLMorningBrief/briefs/index.html">
+      ← Toutes les éditions
+    </a>
+    
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  // ── Progress bar ──────────────────────────
+  
+  const progressEl = document.getElementById('progress');
+  function updateProgress() {
+    const scrolled = window.scrollY;
+    const total    = document.documentElement.scrollHeight - window.innerHeight;
+    const pct      = total > 0 ? (scrolled / total) * 100 : 0;
+    progressEl.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  
+
+  // ── QCM ───────────────────────────────────
+  // selectAnswer(qcmContainerIdx, optionIdx, correctIdx, explanation, _unused)
+  // Note: les index Jinja2 loop.index0 pour qcm et options sont calculés différemment
+  // On utilise l'attribut data-idx du .qcm-item pour identifier le bon bloc
+
+  function selectAnswer(qcmIdx, optionIdx, correctIdx, explanation, _) {
+    // Retrouver le .qcm-item via data-idx
+    const container = document.querySelector(`.qcm-item[data-idx="${qcmIdx}"]`);
+    if (!container) return;
+    const btns = container.querySelectorAll('.qcm-option');
+    btns.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === correctIdx)  btn.classList.add('correct');
+      else if (i === optionIdx) btn.classList.add('wrong');
+    });
+    const expEl = container.querySelector('.qcm-explanation');
+    expEl.textContent = explanation;
+    expEl.style.display = 'block';
+  }
+
+  // Correction du binding des boutons QCM
+  // Le onclick inline Jinja2 ne peut pas passer l'index du bouton directement
+  // On re-bind au chargement pour avoir les bons index
+  document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {
+    const qcmIdx    = parseInt(qcmEl.dataset.idx);
+    const btns      = qcmEl.querySelectorAll('.qcm-option');
+    btns.forEach(function(btn, optIdx) {
+      btn.onclick = null; // retire le onclick inline
+      btn.addEventListener('click', function() {
+        if (btn.disabled) return;
+        // correctIdx et explanation sont encodés en data attributes
+        const correctIdx  = parseInt(qcmEl.dataset.correct  || '0');
+        const explanation = qcmEl.dataset.explanation || '';
+        selectAnswer(qcmIdx, optIdx, correctIdx, explanation);
+      });
+    });
+  });
+</script>
+
+
+
+<script>
+  // Injecte correctIdx et explanation sur chaque .qcm-item via un objet JS
+  const qcmData = [
+    
+    { correct: 0, explanation: "Le trait\u00e9 de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du syst\u00e8me des \u00c9tats-nations souverains en Europe." },
+    
+    { correct: 1, explanation: "L\u0027eau lourde contient du deut\u00e9rium, un isotope de l\u0027hydrog\u00e8ne poss\u00e9dant un neutron suppl\u00e9mentaire, ce qui la rend plus dense que l\u0027eau ordinaire." },
+    
+    { correct: 2, explanation: "Le Br\u00e9sil est le seul pays au monde travers\u00e9 \u00e0 la fois par l\u0027\u00e9quateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie." }
+    
+  ];
+  document.querySelectorAll('.qcm-item').forEach(function(el, i) {
+    if (qcmData[i]) {
+      el.dataset.correct      = qcmData[i].correct;
+      el.dataset.explanation  = qcmData[i].explanation;
+    }
+  });
+</script>
+
+</body>
+</html>

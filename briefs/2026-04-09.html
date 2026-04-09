@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FL Morning Brief — Jeudi 9 avril 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   
   
@@ -19,329 +19,396 @@
   
 
   <style>
+    /* ── Design tokens ─────────────────────────────────────── */
     :root {
-      --bg:      #0d0d10;
-      --surface: #161619;
-      --card:    #1e1e23;
-      --border:  #2a2a32;
-      --text:    #e8e4dc;
-      --text-2:  #7a7a8c;
-      --text-3:  #3a3a45;
-      --accent:  #6366f1;
-      --amber:   #f59e0b;
-      --green:   #22c55e;
-      --red:     #ef4444;
-      --serif:   'Instrument Serif', Georgia, serif;
-      --sans:    'DM Sans', system-ui, sans-serif;
-      --mono:    'JetBrains Mono', 'Courier New', monospace;
+      --bg:         #080A0F;
+      --surface:    #0D1117;
+      --card:       #0F1724;
+      --border:     #1C2333;
+      --text:       #EDF2FF;
+      --text-2:     #8B9CC8;
+      --text-3:     #3D4A60;
+      --accent:     #00D4FF;
+      --accent-dim: rgba(0,212,255,.08);
+      --accent-mid: rgba(0,212,255,.2);
+      --purple:     #8B5CF6;
+      --green:      #10B981;
+      --red:        #F43F5E;
+      --amber:      #F59E0B;
+      --h: 'Montserrat', system-ui, sans-serif;
+      --s: 'Inter', system-ui, sans-serif;
+      --m: 'JetBrains Mono', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--sans);
+      font-family: var(--s);
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
-      /* subtle noise texture */
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
     }
 
-    /* ── Progress bar ─────────────────────────── */
+    /* Subtle grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,.018) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Progress bar ────────────────────────────────────────── */
     
     #progress {
-      position: fixed;
-      top: 0; left: 0;
-      height: 2px;
-      width: 0%;
-      background: var(--amber);
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(0,212,255,.4);
       z-index: 100;
-      transition: width 0.1s linear;
-      box-shadow: 0 0 8px rgba(245,158,11,0.5);
+      transition: width .1s linear;
     }
     
 
-    /* ── Layout ───────────────────────────────── */
+    /* ── Layout ─────────────────────────────────────────────── */
     .wrap {
-      max-width: 430px;
+      max-width: 480px;
       margin: 0 auto;
       padding: 0 20px 64px;
+      position: relative;
     }
 
-    /* ── Header ───────────────────────────────── */
+    /* ── Header ─────────────────────────────────────────────── */
     .header {
-      padding: 52px 0 32px;
+      padding: 48px 0 28px;
+      margin-bottom: 36px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 24px;
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 56px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(0,212,255,.3);
     }
     .header-eyebrow {
+      font-family: var(--m);
       font-size: 10px;
-      letter-spacing: 0.16em;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--text-3);
-      font-family: var(--sans);
-      font-weight: 500;
-      margin-bottom: 10px;
+      color: var(--accent);
+      margin-bottom: 18px;
+      opacity: .65;
     }
-    .header-date {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: clamp(38px, 9vw, 52px);
+    .header-day {
+      font-family: var(--h);
+      font-size: clamp(50px, 13vw, 72px);
+      font-weight: 900;
+      line-height: .9;
       color: var(--text);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
+      letter-spacing: -.035em;
       margin-bottom: 4px;
     }
-    .header-year {
-      font-family: var(--serif);
-      font-size: 16px;
+    .header-month {
+      font-family: var(--h);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
       color: var(--text-2);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
     .header-meta {
       display: flex;
       align-items: center;
-      gap: 16px;
-      font-size: 12px;
+      gap: 14px;
+      font-size: 11px;
+      font-family: var(--m);
       color: var(--text-3);
     }
     .header-meta .sep { color: var(--border); }
     .header-meta .time-badge {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: var(--amber);
+      display: flex; align-items: center; gap: 5px;
+      color: var(--accent);
+      opacity: .75;
     }
-    .header-meta .time-badge svg {
-      width: 12px; height: 12px;
-      flex-shrink: 0;
-    }
+    .header-meta .time-badge svg { width: 11px; height: 11px; flex-shrink: 0; }
 
-    /* ── Nav pills ────────────────────────────── */
-    .nav {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      margin-bottom: 36px;
-      scrollbar-width: none;
-    }
-    .nav::-webkit-scrollbar { display: none; }
-    .nav a {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 6px 13px;
-      font-size: 12px;
-      color: var(--text-2);
-      text-decoration: none;
-      white-space: nowrap;
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .nav a:hover { border-color: var(--accent); color: var(--text); }
-
-    /* ── Section ──────────────────────────────── */
-    .section { margin-bottom: 48px; }
+    /* ── Section ─────────────────────────────────────────────── */
+    .section { margin-bottom: 52px; }
     .section-header {
       display: flex;
-      align-items: baseline;
-      gap: 10px;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 20px;
-      padding-bottom: 12px;
+      padding-bottom: 14px;
       border-bottom: 1px solid var(--border);
+      position: relative;
     }
-    .section-icon { font-size: 16px; }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 44px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .section-icon {
+      width: 32px; height: 32px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-icon svg { width: 15px; height: 15px; stroke: var(--accent); fill: none; }
     .section-title {
-      font-family: var(--serif);
-      font-size: 22px;
-      letter-spacing: -0.01em;
+      font-family: var(--h);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
       color: var(--text);
       flex: 1;
     }
     .section-count {
       font-size: 11px;
+      font-family: var(--m);
       color: var(--text-3);
-      font-family: var(--sans);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 8px;
     }
 
-    /* ── Article cards ────────────────────────── */
+    /* ── Article card ────────────────────────────────────────── */
     .article-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 12px;
-      transition: border-color 0.15s;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
+      transition: border-color .15s, box-shadow .15s;
+      position: relative;
+      overflow: hidden;
     }
-    .article-card:hover { border-color: #3a3a50; }
-    .article-card-top {
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity .15s;
+    }
+    .article-card:hover {
+      border-color: var(--accent-mid);
+      box-shadow: 0 4px 24px rgba(0,212,255,.05);
+    }
+    .article-card:hover::before { opacity: 1; }
+
+    /* Card meta row */
+    .card-meta {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-bottom: 10px;
     }
     .source-badge {
       font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
+      font-weight: 600;
+      letter-spacing: .05em;
       text-transform: uppercase;
-      background: rgba(99,102,241,0.12);
-      border: 1px solid rgba(99,102,241,0.25);
-      color: #818cf8;
+      background: rgba(139,92,246,.1);
+      border: 1px solid rgba(139,92,246,.25);
+      color: #A78BFA;
       border-radius: 4px;
       padding: 2px 8px;
     }
     .source-badge.hn {
-      background: rgba(245,158,11,0.1);
-      border-color: rgba(245,158,11,0.3);
-      color: #fbbf24;
+      background: rgba(245,158,11,.1);
+      border-color: rgba(245,158,11,.28);
+      color: #FCD34D;
+    }
+    .domain-pill {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      border-radius: 4px;
+      padding: 2px 8px;
     }
     .read-time {
-      font-size: 11px;
+      font-size: 10px;
+      font-family: var(--m);
       color: var(--text-3);
+      margin-left: auto;
+      display: flex; align-items: center; gap: 3px;
     }
+    .read-time svg { width: 10px; height: 10px; }
+
+    /* Article content */
     .article-title {
-      font-family: var(--serif);
-      font-size: 18px;
-      line-height: 1.3;
+      font-family: var(--h);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
       color: var(--text);
       margin-bottom: 8px;
-      letter-spacing: -0.01em;
+      letter-spacing: -.01em;
     }
     .article-summary {
       font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.7;
       color: var(--text-2);
-      margin-bottom: 14px;
+      font-weight: 300;
     }
-    .article-link {
+
+    /* Expand panel */
+    .article-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, opacity .2s;
+      opacity: 0;
+    }
+    .article-expand.open { max-height: 600px; opacity: 1; }
+    .expand-body {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--text-2);
+      font-weight: 300;
+      padding: 14px 0 10px;
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+    }
+    .source-link {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      font-size: 12px;
-      color: var(--accent);
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
       text-decoration: none;
-      transition: gap 0.15s;
+      margin-top: 10px;
+      transition: color .15s;
     }
-    .article-link:hover { gap: 7px; }
+    .source-link:hover { color: var(--text-2); }
+    .source-link svg { width: 10px; height: 10px; fill: none; }
 
-    /* ── Finance ──────────────────────────────── */
-    .finance-group-label {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-3);
-      margin-bottom: 10px;
-      margin-top: 18px;
-    }
-    .finance-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    .asset-tile {
-      background: var(--card);
+    /* Lire button */
+    .btn-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 14px 12px;
-    }
-    .asset-tile.up   { border-color: rgba(34,197,94,0.2); }
-    .asset-tile.down { border-color: rgba(239,68,68,0.2); }
-    .asset-name {
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 11px;
+      font-family: var(--s);
+      font-weight: 500;
       color: var(--text-3);
-      margin-bottom: 6px;
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-top: 12px;
     }
-    .asset-price {
-      font-family: var(--mono);
-      font-size: 17px;
-      color: var(--text);
-      margin-bottom: 4px;
-      letter-spacing: -0.02em;
+    .btn-read:hover, .btn-read.open {
+      border-color: var(--accent);
+      color: var(--accent);
     }
-    .asset-change {
-      font-size: 12px;
-      font-family: var(--mono);
+    .btn-read .chevron {
+      width: 12px; height: 12px;
+      transition: transform .2s;
+      flex-shrink: 0;
+      fill: none;
     }
-    .up   .asset-change { color: var(--green); }
-    .down .asset-change { color: var(--red); }
-    .flat .asset-change { color: var(--text-3); }
+    .btn-read.open .chevron { transform: rotate(180deg); }
+
+    /* ── Finance ─────────────────────────────────────────────── */
+    .tv-container {
+      background: #0F0F0F;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 420px;
+      margin-bottom: 20px;
+    }
+    .tv-container .tradingview-widget-container,
+    .tv-container .tradingview-widget-container__widget { height: 100%; }
+    .tv-container .tradingview-widget-copyright { display: none; }
 
     /* Fear & Greed */
     .fear-greed {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 20px;
+      border-radius: 8px;
+      padding: 16px 18px;
     }
-    .fg-label-top {
+    .fg-label {
       font-size: 10px;
-      letter-spacing: 0.1em;
+      font-family: var(--m);
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--text-3);
       margin-bottom: 12px;
     }
     .fg-bar-wrap {
       position: relative;
-      height: 8px;
-      border-radius: 4px;
+      height: 6px;
+      border-radius: 3px;
       background: linear-gradient(to right,
-        #ef4444 0%, #ef4444 25%,
-        #f97316 25%, #f97316 45%,
-        #eab308 45%, #eab308 55%,
-        #84cc16 55%, #84cc16 75%,
-        #22c55e 75%, #22c55e 100%
+        #F43F5E 0%, #F43F5E 25%,
+        #F97316 25%, #F97316 45%,
+        #EAB308 45%, #EAB308 55%,
+        #84CC16 55%, #84CC16 75%,
+        #10B981 75%, #10B981 100%
       );
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .fg-marker {
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 14px;
-      height: 14px;
+      width: 14px; height: 14px;
       background: var(--bg);
       border: 2px solid var(--text);
       border-radius: 50%;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      box-shadow: 0 0 8px rgba(255,255,255,.25);
     }
-    .fg-bottom {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .fg-bottom { display: flex; align-items: baseline; gap: 8px; }
     .fg-value {
-      font-family: var(--mono);
-      font-size: 22px;
+      font-family: var(--m);
+      font-size: 26px;
+      font-weight: 500;
       color: var(--text);
     }
-    .fg-sentiment {
-      font-size: 13px;
-      color: var(--text-2);
-    }
+    .fg-sentiment { font-size: 13px; color: var(--text-2); font-weight: 300; }
 
-    /* ── YouTube ──────────────────────────────── */
+    /* ── YouTube ─────────────────────────────────────────────── */
     .video-card {
       display: block;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
       text-decoration: none;
-      margin-bottom: 12px;
-      transition: border-color 0.15s;
+      margin-bottom: 10px;
+      transition: border-color .15s;
     }
-    .video-card:hover { border-color: #3a3a50; }
+    .video-card:hover { border-color: var(--accent-mid); }
     .video-thumb {
       position: relative;
       width: 100%;
@@ -349,168 +416,156 @@
       background: var(--surface);
       overflow: hidden;
     }
-    .video-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .video-play {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.35);
-      transition: background 0.15s;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.4);
+      transition: background .15s;
     }
-    .video-card:hover .video-play { background: rgba(0,0,0,0.2); }
+    .video-card:hover .video-play { background: rgba(0,0,0,.25); }
     .video-play-icon {
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.92);
+      width: 46px; height: 46px;
+      background: var(--accent);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 20px rgba(0,212,255,.5);
     }
-    .video-play-icon svg {
-      width: 16px; height: 16px;
-      margin-left: 3px;
-      fill: #0d0d10;
-    }
-    .video-info {
-      padding: 14px 16px;
-    }
+    .video-play-icon svg { width: 16px; height: 16px; margin-left: 2px; fill: #080A0F; }
+    .video-info { padding: 14px 16px; }
     .video-channel {
-      font-size: 11px;
+      font-size: 10px;
+      font-family: var(--m);
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: .08em;
       margin-bottom: 5px;
+      opacity: .75;
     }
     .video-title {
-      font-family: var(--serif);
-      font-size: 16px;
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
       line-height: 1.35;
       color: var(--text);
     }
 
-    /* ── Mot du jour ──────────────────────────── */
+    /* ── Mot du jour ─────────────────────────────────────────── */
     .mot-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 20px;
-      margin-bottom: 24px;
+      border-radius: 8px;
+      padding: 22px 20px;
+      margin-bottom: 10px;
       position: relative;
       overflow: hidden;
     }
-    .mot-card::before {
+    .mot-card::after {
       content: '"';
       position: absolute;
-      top: -10px; right: 12px;
-      font-family: var(--serif);
-      font-size: 120px;
+      top: -18px; right: 14px;
+      font-family: Georgia, serif;
+      font-size: 130px;
       color: var(--border);
       line-height: 1;
       pointer-events: none;
     }
     .mot-classe {
       font-size: 10px;
-      letter-spacing: 0.14em;
+      font-family: var(--m);
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      opacity: .7;
     }
     .mot-word {
-      font-family: var(--serif);
-      font-style: italic;
+      font-family: var(--h);
       font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -.025em;
       color: var(--text);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 16px;
+      line-height: 1;
+      margin-bottom: 14px;
     }
     .mot-def {
       font-size: 14px;
       line-height: 1.7;
       color: var(--text-2);
       margin-bottom: 10px;
+      font-weight: 300;
     }
     .mot-etym {
       font-size: 12px;
       color: var(--text-3);
-      margin-bottom: 12px;
-      border-left: 2px solid var(--border);
+      margin-bottom: 10px;
+      border-left: 2px solid var(--accent);
       padding-left: 10px;
+      opacity: .65;
     }
     .mot-exemple {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-2);
       line-height: 1.6;
+      font-style: italic;
     }
 
-    /* ── QCM ──────────────────────────────────── */
+    /* ── QCM ─────────────────────────────────────────────────── */
     .qcm-item {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 12px;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
     }
     .qcm-theme {
       font-size: 10px;
-      letter-spacing: 0.1em;
+      font-family: var(--m);
+      letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--text-3);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .qcm-question {
-      font-size: 15px;
-      line-height: 1.5;
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
       color: var(--text);
-      margin-bottom: 14px;
-      font-weight: 500;
+      margin-bottom: 12px;
     }
-    .qcm-options {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
+    .qcm-options { display: flex; flex-direction: column; gap: 6px; }
     .qcm-option {
-      display: block;
-      width: 100%;
-      text-align: left;
+      display: block; width: 100%; text-align: left;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 6px;
       padding: 10px 14px;
       font-size: 13px;
       color: var(--text-2);
       cursor: pointer;
-      transition: background 0.12s, border-color 0.12s, color 0.12s;
-      font-family: var(--sans);
+      transition: background .12s, border-color .12s, color .12s;
+      font-family: var(--s);
     }
     .qcm-option:hover:not(:disabled) {
-      background: rgba(99,102,241,0.07);
-      border-color: rgba(99,102,241,0.3);
+      background: var(--accent-dim);
+      border-color: var(--accent-mid);
       color: var(--text);
     }
     .qcm-option:disabled { cursor: default; }
     .qcm-option.correct {
-      background: rgba(34,197,94,0.12);
-      border-color: #22c55e;
-      color: #86efac;
+      background: rgba(16,185,129,.12);
+      border-color: #10B981;
+      color: #6EE7B7;
     }
     .qcm-option.wrong {
-      background: rgba(239,68,68,0.1);
-      border-color: #ef4444;
-      color: #fca5a5;
+      background: rgba(244,63,94,.08);
+      border-color: #F43F5E;
+      color: #FDA4AF;
     }
     .qcm-explanation {
       display: none;
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 12px;
       line-height: 1.6;
       color: var(--text-3);
@@ -518,7 +573,7 @@
       padding-top: 10px;
     }
 
-    /* ── Footer ───────────────────────────────── */
+    /* ── Footer ─────────────────────────────────────────────── */
     .footer {
       padding: 24px 0 8px;
       border-top: 1px solid var(--border);
@@ -526,6 +581,7 @@
     }
     .footer-gen {
       font-size: 11px;
+      font-family: var(--m);
       color: var(--text-3);
       margin-bottom: 10px;
     }
@@ -533,12 +589,14 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      font-size: 12px;
+      font-size: 11px;
+      font-family: var(--m);
       color: var(--text-3);
       text-decoration: none;
-      transition: color 0.15s;
+      transition: color .15s;
     }
-    .footer-archive:hover { color: var(--text-2); }
+    .footer-archive:hover { color: var(--accent); }
+    .footer-archive svg { width: 12px; height: 12px; fill: none; }
   </style>
 </head>
 <body>
@@ -547,44 +605,25 @@
 
 <div class="wrap">
 
-  <!-- ── Header ─────────────────────────────── -->
+  <!-- ── Header ──────────────────────────────────────── -->
   <header class="header">
     <div class="header-eyebrow">FL Morning Brief</div>
     
-    <div class="header-date">Jeudi 9 avril</div>
-    <div class="header-year">2026</div>
+    <div class="header-day">Jeudi 9</div>
+    <div class="header-month">avril 2026</div>
     <div class="header-meta">
-      <span>06:16 UTC</span>
-      <span class="sep">·</span>
+      <span>07:10 UTC</span>
       
+      <span class="sep">·</span>
       <span class="time-badge">
-        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="6" cy="6" r="5"/><path d="M6 3v3l2 1.5"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
         </svg>
-        ~19 min
+        ~20 min
       </span>
       
     </div>
   </header>
-
-  <!-- ── Navigation ─────────────────────────── -->
-  <nav class="nav">
-    
-      <a href="#news">🌍 Actu</a>
-    
-    
-      <a href="#tech">🤖 Tech</a>
-    
-    
-      <a href="#finance">📈 Finance</a>
-    
-    
-      <a href="#youtube">▶️ Vidéo</a>
-    
-    
-      <a href="#culture">🧠 Culture</a>
-    
-  </nav>
 
   <!-- ══════════════════════════════════════════
        SECTION : Actualités
@@ -592,63 +631,131 @@
   
   <section class="section" id="news">
     <div class="section-header">
-      <span class="section-icon">🌍</span>
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
       <h2 class="section-title">Actualités</h2>
-      <span class="section-count">3 articles</span>
+      <span class="section-count">3</span>
     </div>
 
     
+    
     <div class="article-card">
-      <div class="article-card-top">
+      <div class="card-meta">
         <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Géopolitique, Économie</span>
         
-          <span class="read-time">3 min</span>
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          3 min
+        </span>
         
       </div>
-      <h3 class="article-title">Middle East crisis live: Red Cross ‘outraged’ as Israeli strikes on Lebanon kill 254; Trump says US military to remain in region</h3>
+      <h3 class="article-title">Le pétrole monte et les actions asiatiques chutent au milieu des craintes sur l&#39;accord de cessez-le-feu fragile au Moyen-Orient</h3>
+      <p class="article-summary">Les marchés financiers réagissent avec volatilité aux tensions géopolitiques au Moyen-Orient. Les prix du pétrole augmentent tandis que les indices boursiers asiatiques fléchissent face aux incertitudes liées à la fragilité des négociations de cessez-le-feu.</p>
+
       
-        <p class="article-summary">Les frappes israéliennes au Liban ont tué 254 personnes, provoquant l&#39;indignation de la Croix-Rouge. Divergence entre l&#39;Iran et les États-Unis sur l&#39;inclusion du Liban dans les accords de cessez-le-feu.</p>
       
-      
-        <a class="article-link" href="https://www.theguardian.com/world/live/2026/apr/09/iran-war-ceasefire-live-strait-of-hormuz-israel-strikes-middle-east-crisis-latest-news" target="_blank" rel="noopener">
-          Lire <span>→</span>
+      <div class="article-expand" id="exp-news-0">
+        <div class="expand-body">La situation au Moyen-Orient continue de peser sur les marchés mondiaux, avec un accord de cessez-le-feu décrit comme fragile qui alimente l&#39;incertitude des investisseurs. Cette instabilité géopolitique provoque une hausse des cours du pétrole, généralement considérée comme un refuge lors des crises. Simultanément, les bourses asiatiques enregistrent des pertes significatives reflétant les craintes des marchés quant à la pérennité de l&#39;accord. Ces mouvements démontrent l&#39;interconnexion entre la stabilité géopolitique et les performances économiques mondiales.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/business/live/2026/apr/09/oil-stocks-fall-fragile-ceasefire-middle-east-business-news" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
         </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-0', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       
     </div>
     
+    
     <div class="article-card">
-      <div class="article-card-top">
+      <div class="card-meta">
         <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Politique UK, Énergie</span>
         
-          <span class="read-time">2 min</span>
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          3 min
+        </span>
         
       </div>
-      <h3 class="article-title">Thursday briefing: ​What difference will the ceasefire in the Middle East make, and will it hold? </h3>
+      <h3 class="article-title">Ed Miliband tient bon : le forage pétrolier et gazier en mer du Nord n&#39;aidera que Nigel Farage</h3>
+      <p class="article-summary">La chroniqueuse Zoe Williams critique la position du Parti travailliste qui envisage le forage en mer du Nord, arguant que seules les énergies renouvelables peuvent réduire les factures et renforcer la sécurité énergétique.</p>
+
       
-        <p class="article-summary">Un cessez-le-feu au Moyen-Orient offre un répit après plusieurs semaines de tensions, mais des interprétations contradictoires de l&#39;accord menacent la stabilité de la région.</p>
       
-      
-        <a class="article-link" href="https://www.theguardian.com/world/2026/apr/09/thursday-briefing-what-difference-will-the-ceasefire-in-the-middle-east-make-and-will-it-hold" target="_blank" rel="noopener">
-          Lire <span>→</span>
+      <div class="article-expand" id="exp-news-1">
+        <div class="expand-body">Le débat sur la politique énergétique britannique s&#39;intensifie alors que le Parti travailliste examine les propositions du Reform Party concernant le forage pétrolier et gazier en mer du Nord. Zoe Williams rejette cette approche, soutenant que les énergies fossiles ne bénéficieraient qu&#39;aux politiciens populistes comme Nigel Farage. L&#39;article met l&#39;accent sur l&#39;importance de privilégier les énergies renouvelables pour atteindre les objectifs de réduction des coûts énergétiques et de sécurité énergétique à long terme. Cette controverse reflète les tensions actuelles entre les politiques traditionnelles et les impératifs de transition écologique.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/commentisfree/2026/apr/09/ed-miliband-north-sea-oil-drilling-nigel-farage-labour-reform-fossil-fuels-renewables" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
         </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-1', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       
     </div>
     
+    
     <div class="article-card">
-      <div class="article-card-top">
+      <div class="card-meta">
         <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Médias, Justice</span>
         
-          <span class="read-time">2 min</span>
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          3 min
+        </span>
         
       </div>
-      <h3 class="article-title">Australia news live: diesel surges 20 cents a litre in two days to record high; toll traffic falls as fuel price bites</h3>
+      <h3 class="article-title">Il m&#39;a envoyé quelqu&#39;un pour m&#39;intimider : Christopher Anderson, le photographe qui a photographié Jeffrey Epstein</h3>
+      <p class="article-summary">Le photojournaliste acclamé Christopher Anderson raconte dans un nouveau livre ses rencontres troublantes avec des figures influentes, y compris un incident d&#39;intimidation lié au financier en disgrâce Jeffrey Epstein.</p>
+
       
-        <p class="article-summary">Le prix du diesel en Australie a bondi de 20 cents par litre en deux jours, atteignant un record historique et impactant le trafic routier à péage.</p>
       
-      
-        <a class="article-link" href="https://www.theguardian.com/australia-news/live/2026/apr/09/anthony-albanese-singapore-visit-fuel-crisis-middle-east-ceasefire-lebanon-strikes-politics-labor-coalition-reactions-ntwnfb" target="_blank" rel="noopener">
-          Lire <span>→</span>
+      <div class="article-expand" id="exp-news-2">
+        <div class="expand-body">Christopher Anderson, photojournaliste réputé, publie une collection d&#39;images couvrant des décennies de reportage, des zones de conflit aux cercles intimes de personnalités politiques comme Donald Trump. Son travail illustre les risques auxquels font face les journalistes poursuivant la vérité sans compromis. Un épisode particulièrement troublant révèle comment sa couverture photographique de Jeffrey Epstein a entraîné une tentative d&#39;intimidation directe. Ces expériences mettent en lumière les défis éthiques et personnels affrontés par les professionnels des médias enquêtant sur des figures puissantes.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/artanddesign/2026/apr/09/christopher-anderson-photographer-interview-index-jeffrey-epstein-trump-cabinet" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
         </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-2', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       
     </div>
     
@@ -661,109 +768,210 @@
   
   <section class="section" id="tech">
     <div class="section-header">
-      <span class="section-icon">🤖</span>
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="2"/>
+          <rect x="9" y="9" width="6" height="6"/>
+          <path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>
+        </svg>
+      </div>
       <h2 class="section-title">Tech & IA</h2>
-      <span class="section-count">5 articles</span>
+      <span class="section-count">5</span>
     </div>
 
     
+    
     <div class="article-card">
-      <div class="article-card-top">
-        <span class="source-badge ">
-          Pypi.org
+      <div class="card-meta">
+        <span class="source-badge ">Mashable</span>
+        <span class="domain-pill">Électronique &amp; Mobiles</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
         </span>
         
-          <span class="read-time">3 min</span>
+      </div>
+      <h3 class="article-title">Apple prépare son premier iPhone pliable pour septembre 2026</h3>
+      <p class="article-summary">Apple lancerait son premier iPhone avec écran pliable en septembre 2026, en même temps que l&#39;iPhone 18 Pro.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-0">
+        <div class="expand-body">Selon les rumeurs, Apple s&#39;apprêterait à entrer sur le marché des téléphones pliables avec un modèle dédié prévu pour septembre 2026. Ce lancement coïnciderait avec la présentation de la série iPhone 18 Pro. Cette démarche marquerait l&#39;entrée tardive mais attendue d&#39;Apple dans une catégorie de produits déjà explorée par Samsung, Google et d&#39;autres fabricants. L&#39;iPhone pliable représenterait une évolution majeure de la gamme premium d&#39;Apple.</div>
+        
+        <a class="source-link" href="https://in.mashable.com/tech/108146/apples-first-ever-iphone-fold-launch-tipped-2026-alongside-iphone-18-pro" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
         
       </div>
-      <h3 class="article-title">agi-pragma added to PyPI</h3>
-      
-        <p class="article-summary">agi-pragma est un pare-feu d&#39;action IA avec un cœur de décision intelligente à sept étapes pour sécuriser les systèmes d&#39;IA autonomes.</p>
-      
-      
-        <a class="article-link" href="https://pypi.org/project/agi-pragma/" target="_blank" rel="noopener">
-          Lire <span>→</span>
-        </a>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-0', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       
     </div>
     
+    
     <div class="article-card">
-      <div class="article-card-top">
-        <span class="source-badge ">
-          Pypi.org
+      <div class="card-meta">
+        <span class="source-badge ">Yugatech.com</span>
+        <span class="domain-pill">IA &amp; Plateformes</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
         </span>
         
-          <span class="read-time">2 min</span>
+      </div>
+      <h3 class="article-title">Grab déploie 13 features alimentées par l&#39;IA à GrabX 2026</h3>
+      <p class="article-summary">Grab a présenté 13 nouvelles fonctionnalités basées sur l&#39;IA lors de son événement GrabX 2026 à Jakarta pour améliorer son écosystème.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-1">
+        <div class="expand-body">La plateforme de mobilité et de services asiatique Grab a annoncé un ensemble complet de 13 fonctionnalités innovantes propulsées par l&#39;intelligence artificielle lors de son salon annuel GrabX 2026. Ces nouveaux outils visent à améliorer l&#39;expérience utilisateur de sa superapp en intégrant l&#39;IA à différents services. Cette initiative reflète la tendance croissante des grandes plateformes technologiques à incorporer l&#39;IA pour personnaliser et optimiser les services aux utilisateurs.</div>
+        
+        <a class="source-link" href="https://www.yugatech.com/news/grab-rolls-out-13-ai-powered-features-at-grabx-2026-enhancing-superapp-experience/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
         
       </div>
-      <h3 class="article-title">mycellm 0.2.4</h3>
-      
-        <p class="article-summary">mycellm 0.2.4 permet l&#39;inférence distribuée de modèles de langage sur du matériel hétérogène, optimisant l&#39;utilisation des ressources.</p>
-      
-      
-        <a class="article-link" href="https://pypi.org/project/mycellm/0.2.4/" target="_blank" rel="noopener">
-          Lire <span>→</span>
-        </a>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-1', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       
     </div>
     
+    
     <div class="article-card">
-      <div class="article-card-top">
-        <span class="source-badge ">
-          Pypi.org
+      <div class="card-meta">
+        <span class="source-badge ">The Next Web</span>
+        <span class="domain-pill">IA &amp; Santé</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          3 min
         </span>
         
-          <span class="read-time">2 min</span>
+      </div>
+      <h3 class="article-title">L&#39;Utah autorise l&#39;IA à prescrire des médicaments : les risques et opportunités</h3>
+      <p class="article-summary">Un État américain teste l&#39;utilisation de l&#39;IA pour renouveler les prescriptions médicales, soulevant des questions de sécurité et de régulation.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-2">
+        <div class="expand-body">L&#39;Utah a permis une expérimentation autorisant l&#39;IA à renouveler les prescriptions médicales, marquant une avancée majeure dans l&#39;adoption de l&#39;IA en santé. Cependant, cette initiative soulève des préoccupations sérieuses concernant la sécurité et la capacité des mécanismes de contrôle à détecter les risques potentiels. Selon une étude d&#39;une firme de recherche en sécurité, les systèmes d&#39;IA existants pourraient présenter des vulnérabilités critiques dans ce contexte sensible.</div>
+        
+        <a class="source-link" href="https://thenextweb.com/news/utah-let-ai-prescribe-medicine/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
         
       </div>
-      <h3 class="article-title">aiproxyguard-python-sdk 0.2.0</h3>
-      
-        <p class="article-summary">aiproxyguard-python-sdk 0.2.0 offre un SDK officiel pour protéger les LLM contre les attaques par injection de prompts.</p>
-      
-      
-        <a class="article-link" href="https://pypi.org/project/aiproxyguard-python-sdk/0.2.0/" target="_blank" rel="noopener">
-          Lire <span>→</span>
-        </a>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-2', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       
     </div>
     
+    
     <div class="article-card">
-      <div class="article-card-top">
-        <span class="source-badge ">
-          Pypi.org
+      <div class="card-meta">
+        <span class="source-badge ">GlobeNewswire</span>
+        <span class="domain-pill">Infrastructure &amp; Datacenters</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
         </span>
         
-          <span class="read-time">2 min</span>
+      </div>
+      <h3 class="article-title">Nokia reconnu Leader en commutation datacenter pour la 5e année consécutive</h3>
+      <p class="article-summary">Nokia a reçu le titre de Leader et Outperformer dans le rapport GigaOm 2026 pour la commutation en datacenter.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-3">
+        <div class="expand-body">Dans son rapport Radar 2026, GigaOm a désigné Nokia comme Leader et Outperformer dans la catégorie de la commutation pour datacenters, confirmant cette reconnaissance pour la cinquième année consécutive. Cette distinction souligne la position dominante de Nokia dans les solutions d&#39;infrastructure réseau critiques pour les centres de données. Elle reflète l&#39;importance croissante des infrastructures cloud et des datacenters dans l&#39;écosystème technologique mondial.</div>
+        
+        <a class="source-link" href="https://www.globenewswire.com/news-release/2026/04/08/3269825/0/en/GigaOm-names-Nokia-Leader-and-Outperformer-in-Data-Center-Switching-for-fifth-straight-year.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
         
       </div>
-      <h3 class="article-title">cureview 0.3.0</h3>
-      
-        <p class="article-summary">cureview 0.3.0 propose des bacs à sable de révision de PR powered par ChunkHound avec des présets LLM configurables.</p>
-      
-      
-        <a class="article-link" href="https://pypi.org/project/cureview/0.3.0/" target="_blank" rel="noopener">
-          Lire <span>→</span>
-        </a>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-3', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       
     </div>
     
+    
     <div class="article-card">
-      <div class="article-card-top">
-        <span class="source-badge ">
-          Github.com
+      <div class="card-meta">
+        <span class="source-badge ">Financial Post</span>
+        <span class="domain-pill">Énergie &amp; Infrastructure</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
         </span>
         
-          <span class="read-time">3 min</span>
+      </div>
+      <h3 class="article-title">Global Power Solutions développe une infrastructure d&#39;énergie décentralisée de 100 MW</h3>
+      <p class="article-summary">Global Power Solutions a signé un accord pour évaluer le développement d&#39;infrastructure énergétique décentralisée pouvant supporter jusqu&#39;à 100 MW en Amérique du Nord.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-4">
+        <div class="expand-body">Global Power Solutions Corp. a annoncé la signature d&#39;une lettre d&#39;intention non-contraignante avec North American Data Centers pour développer une infrastructure de puissance décentralisée capable de supporter jusqu&#39;à 100 MW. Ce projet vise à répondre à la demande croissante d&#39;énergie des datacenters en Amérique du Nord. L&#39;initiative s&#39;inscrit dans la tendance d&#39;utilisation d&#39;énergies décentralisées et renouvelables pour alimenter les infrastructures numériques critiques.</div>
+        
+        <a class="source-link" href="https://financialpost.com/globe-newswire/global-power-solutions-signs-loi-to-evaluate-data-centre-power-development-that-could-support-up-to-100-mw-of-decentralized-energy-infrastructure-in-north-america" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
         
       </div>
-      <h3 class="article-title">milla-jovovich/mempalace: The highest-scoring AI memory system ever benchmarked. And it&#39;s free.</h3>
-      
-        <p class="article-summary">mempalace est un système de mémoire pour IA gratuit et à haut score, conçu pour améliorer la rétention et la récupération d&#39;informations.</p>
-      
-      
-        <a class="article-link" href="https://github.com/milla-jovovich/mempalace" target="_blank" rel="noopener">
-          Lire <span>→</span>
-        </a>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-4', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
       
     </div>
     
@@ -776,123 +984,77 @@
   
   <section class="section" id="finance">
     <div class="section-header">
-      <span class="section-icon">📈</span>
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+          <polyline points="17 6 23 6 23 12"/>
+        </svg>
+      </div>
       <h2 class="section-title">Finance</h2>
     </div>
 
-    
-    <div class="finance-group-label">Indices</div>
-    <div class="finance-grid">
-      
-      
+    <!-- TradingView Widget -->
+    <div class="tv-container">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
         
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {
+          "lineWidth": 2,
+          "lineType": 0,
+          "chartType": "area",
+          "fontColor": "rgb(106, 109, 120)",
+          "gridLineColor": "rgba(242, 242, 242, 0.06)",
+          "volumeUpColor": "rgba(34, 171, 148, 0.5)",
+          "volumeDownColor": "rgba(247, 82, 95, 0.5)",
+          "backgroundColor": "#0F0F0F",
+          "widgetFontColor": "#DBDBDB",
+          "upColor": "#22ab94",
+          "downColor": "#f7525f",
+          "borderUpColor": "#22ab94",
+          "borderDownColor": "#f7525f",
+          "wickUpColor": "#22ab94",
+          "wickDownColor": "#f7525f",
+          "colorTheme": "dark",
+          "isTransparent": false,
+          "locale": "fr",
+          "chartOnly": false,
+          "scalePosition": "right",
+          "scaleMode": "Normal",
+          "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+          "valuesTracking": "1",
+          "changeMode": "price-and-percent",
+          "symbols": [
+            ["INDEX:CAC40|1D|EUR"],
+            ["TVC:SPX|1D|EUR"],
+            ["IG:NASDAQ|1D|EUR"],
+            ["OANDA:XAUEUR|1D|EUR"],
+            ["FX_IDC:XAGEUR|1D|EUR"],
+            ["CRYPTO:BTCUSD|1D|EUR"],
+            ["EASYMARKETS:OILUSD|1D|EUR"]
+          ],
+          "dateRanges": ["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"],
+          "fontSize": "10",
+          "headerFontSize": "medium",
+          "autosize": true,
+          "dateFormat": "dd/MM/yyyy",
+          "width": "100%",
+          "height": "100%",
+          "noTimeScale": false,
+          "hideDateRanges": false,
+          "hideMarketStatus": false,
+          "hideSymbolLogo": false
+        }
+        </script>
         
-      
-      <div class="asset-tile up">
-        <div class="asset-name">CAC 40</div>
-        <div class="asset-price">
-          
-            8,264
-          
-        </div>
-        <div class="asset-change">
-          
-            ↑ +4.58%
-            
-          
-        </div>
       </div>
-      
-      
-        
-        
-      
-      <div class="asset-tile up">
-        <div class="asset-name">S&amp;P 500</div>
-        <div class="asset-price">
-          
-            6,783
-          
-        </div>
-        <div class="asset-change">
-          
-            ↑ +2.51%
-            
-          
-        </div>
-      </div>
-      
-      
-        
-        
-      
-      <div class="asset-tile up">
-        <div class="asset-name">Nasdaq 100</div>
-        <div class="asset-price">
-          
-            24,903
-          
-        </div>
-        <div class="asset-change">
-          
-            ↑ +2.90%
-            
-          
-        </div>
-      </div>
-      
     </div>
-    
 
-    
-    <div class="finance-group-label">Crypto</div>
-    <div class="finance-grid">
-      
-      
-        
-        
-      
-      <div class="asset-tile down">
-        <div class="asset-name">Bitcoin</div>
-        <div class="asset-price">
-          
-            $71,005
-          
-        </div>
-        <div class="asset-change">
-          
-            ↓ -1.10%
-            
-          
-        </div>
-      </div>
-      
-      
-        
-        
-      
-      <div class="asset-tile down">
-        <div class="asset-name">Ethereum</div>
-        <div class="asset-price">
-          
-            $2,183
-          
-        </div>
-        <div class="asset-change">
-          
-            ↓ -2.68%
-            
-          
-        </div>
-      </div>
-      
-    </div>
-    
-
+    <!-- Fear & Greed Index -->
     
     
     <div class="fear-greed">
-      <div class="fg-label-top">Fear & Greed Index</div>
+      <div class="fg-label">Fear &amp; Greed Index</div>
       <div class="fg-bar-wrap">
         <div class="fg-marker" style="left: 14%"></div>
       </div>
@@ -917,137 +1079,31 @@
   
   <section class="section" id="culture">
     <div class="section-header">
-      <span class="section-icon">🧠</span>
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
       <h2 class="section-title">Culture</h2>
     </div>
 
     
-    
-    <div class="mot-card">
-      <div class="mot-classe">nom féminin</div>
-      <div class="mot-word">frondaison</div>
-      <p class="mot-def">Ensemble des feuilles et du feuillage d&#39;un arbre ou d&#39;une forêt, formant une masse végétale dense. Désigne aussi la saison où les arbres se couvrent de feuilles.</p>
-      
-        <p class="mot-etym">Du latin &#39;frons, frondis&#39; signifiant feuillage, branche feuillue, attesté en français au XVIe siècle.</p>
-      
-      
-        <p class="mot-exemple">« Le promeneur s&#39;attarda sous les frondaisons du parc, bercé par le murmure du vent dans les jeunes feuilles d&#39;avril. »</p>
-      
-    </div>
-    
 
-    
-    <div class="qcm-item" data-idx="0">
-      <div class="qcm-theme">histoire</div>
-      <div class="qcm-question">Quel traité, signé en 1648, mit fin à la guerre de Trente Ans et redressa la carte politique de l&#39;Europe ?</div>
-      <div class="qcm-options">
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(0, 0, 0, 'Le traité de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du système des États-nations souverains en Europe.', 0)">
-          A. Le traité de Westphalie
-        </button>
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(1, 1, 0, 'Le traité de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du système des États-nations souverains en Europe.', 1)">
-          B. Le traité d&#39;Utrecht
-        </button>
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(2, 2, 0, 'Le traité de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du système des États-nations souverains en Europe.', 2)">
-          C. Le traité de Vienne
-        </button>
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(3, 3, 0, 'Le traité de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du système des États-nations souverains en Europe.', 3)">
-          D. Le traité de Nimègue
-        </button>
-        
-      </div>
-      <div class="qcm-explanation"></div>
-    </div>
-    
-    <div class="qcm-item" data-idx="1">
-      <div class="qcm-theme">sciences</div>
-      <div class="qcm-question">Quelle est la particularité de l&#39;eau lourde (D₂O) par rapport à l&#39;eau ordinaire ?</div>
-      <div class="qcm-options">
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(0, 0, 1, 'L&#39;eau lourde contient du deutérium, un isotope de l&#39;hydrogène possédant un neutron supplémentaire, ce qui la rend plus dense que l&#39;eau ordinaire.', 0)">
-          A. Elle contient plus d&#39;oxygène
-        </button>
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(1, 1, 1, 'L&#39;eau lourde contient du deutérium, un isotope de l&#39;hydrogène possédant un neutron supplémentaire, ce qui la rend plus dense que l&#39;eau ordinaire.', 1)">
-          B. Ses molécules comportent du deutérium à la place de l&#39;hydrogène ordinaire
-        </button>
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(2, 2, 1, 'L&#39;eau lourde contient du deutérium, un isotope de l&#39;hydrogène possédant un neutron supplémentaire, ce qui la rend plus dense que l&#39;eau ordinaire.', 2)">
-          C. Elle est radioactive naturellement
-        </button>
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(3, 3, 1, 'L&#39;eau lourde contient du deutérium, un isotope de l&#39;hydrogène possédant un neutron supplémentaire, ce qui la rend plus dense que l&#39;eau ordinaire.', 3)">
-          D. Elle bout à 80°C au lieu de 100°C
-        </button>
-        
-      </div>
-      <div class="qcm-explanation"></div>
-    </div>
-    
-    <div class="qcm-item" data-idx="2">
-      <div class="qcm-theme">geographie</div>
-      <div class="qcm-question">Lequel de ces pays est traversé à la fois par l&#39;équateur et par le tropique du Capricorne ?</div>
-      <div class="qcm-options">
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(0, 0, 2, 'Le Brésil est le seul pays au monde traversé à la fois par l&#39;équateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie.', 0)">
-          A. La Colombie
-        </button>
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(1, 1, 2, 'Le Brésil est le seul pays au monde traversé à la fois par l&#39;équateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie.', 1)">
-          B. Le Kenya
-        </button>
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(2, 2, 2, 'Le Brésil est le seul pays au monde traversé à la fois par l&#39;équateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie.', 2)">
-          C. Le Brésil
-        </button>
-        
-        <button
-          class="qcm-option"
-          onclick="selectAnswer(3, 3, 2, 'Le Brésil est le seul pays au monde traversé à la fois par l&#39;équateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie.', 3)">
-          D. L&#39;Indonésie
-        </button>
-        
-      </div>
-      <div class="qcm-explanation"></div>
-    </div>
     
 
   </section>
   
 
-  <!-- ── Footer ─────────────────────────────── -->
+  <!-- ── Footer ──────────────────────────────────────── -->
   <footer class="footer">
-    <p class="footer-gen">
-      Généré le Jeudi 9 avril 2026 à 06:16 UTC
-    </p>
+    <p class="footer-gen">Jeudi 9 avril 2026 · 07:10 UTC</p>
     
     <a class="footer-archive" href="https://felixmining.github.io/FLMorningBrief/briefs/index.html">
-      ← Toutes les éditions
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Archive
     </a>
     
   </footer>
@@ -1055,75 +1111,50 @@
 </div><!-- /wrap -->
 
 <script>
-  // ── Progress bar ──────────────────────────
+  // ── Progress bar ──────────────────────────────────
   
   const progressEl = document.getElementById('progress');
   function updateProgress() {
-    const scrolled = window.scrollY;
-    const total    = document.documentElement.scrollHeight - window.innerHeight;
-    const pct      = total > 0 ? (scrolled / total) * 100 : 0;
-    progressEl.style.width = pct + '%';
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressEl.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
   }
   window.addEventListener('scroll', updateProgress, { passive: true });
   
 
-  // ── QCM ───────────────────────────────────
-  // selectAnswer(qcmContainerIdx, optionIdx, correctIdx, explanation, _unused)
-  // Note: les index Jinja2 loop.index0 pour qcm et options sont calculés différemment
-  // On utilise l'attribut data-idx du .qcm-item pour identifier le bon bloc
+  // ── Expand / Collapse ─────────────────────────────
+  function toggleExpand(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const open = el.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.querySelector('span').textContent = open ? 'Fermer' : 'Lire';
+  }
 
-  function selectAnswer(qcmIdx, optionIdx, correctIdx, explanation, _) {
-    // Retrouver le .qcm-item via data-idx
-    const container = document.querySelector(`.qcm-item[data-idx="${qcmIdx}"]`);
-    if (!container) return;
-    const btns = container.querySelectorAll('.qcm-option');
-    btns.forEach((btn, i) => {
-      btn.disabled = true;
-      if (i === correctIdx)  btn.classList.add('correct');
-      else if (i === optionIdx) btn.classList.add('wrong');
+  // ── QCM ───────────────────────────────────────────
+  const qcmData = [];
+  
+
+  function selectAnswer(qcmEl, optIdx) {
+    const idx  = parseInt(qcmEl.dataset.idx);
+    const data = qcmData[idx];
+    if (!data) return;
+    const btns = qcmEl.querySelectorAll('.qcm-option');
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === data.correct)     b.classList.add('correct');
+      else if (i === optIdx)      b.classList.add('wrong');
     });
-    const expEl = container.querySelector('.qcm-explanation');
-    expEl.textContent = explanation;
+    const expEl = qcmEl.querySelector('.qcm-explanation');
+    expEl.textContent = data.explanation;
     expEl.style.display = 'block';
   }
 
-  // Correction du binding des boutons QCM
-  // Le onclick inline Jinja2 ne peut pas passer l'index du bouton directement
-  // On re-bind au chargement pour avoir les bons index
   document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {
-    const qcmIdx    = parseInt(qcmEl.dataset.idx);
-    const btns      = qcmEl.querySelectorAll('.qcm-option');
-    btns.forEach(function(btn, optIdx) {
-      btn.onclick = null; // retire le onclick inline
+    qcmEl.querySelectorAll('.qcm-option').forEach(function(btn, optIdx) {
       btn.addEventListener('click', function() {
-        if (btn.disabled) return;
-        // correctIdx et explanation sont encodés en data attributes
-        const correctIdx  = parseInt(qcmEl.dataset.correct  || '0');
-        const explanation = qcmEl.dataset.explanation || '';
-        selectAnswer(qcmIdx, optIdx, correctIdx, explanation);
+        if (!btn.disabled) selectAnswer(qcmEl, optIdx);
       });
     });
-  });
-</script>
-
-
-
-<script>
-  // Injecte correctIdx et explanation sur chaque .qcm-item via un objet JS
-  const qcmData = [
-    
-    { correct: 0, explanation: "Le trait\u00e9 de Westphalie (1648) conclut la guerre de Trente Ans et posa les bases du syst\u00e8me des \u00c9tats-nations souverains en Europe." },
-    
-    { correct: 1, explanation: "L\u0027eau lourde contient du deut\u00e9rium, un isotope de l\u0027hydrog\u00e8ne poss\u00e9dant un neutron suppl\u00e9mentaire, ce qui la rend plus dense que l\u0027eau ordinaire." },
-    
-    { correct: 2, explanation: "Le Br\u00e9sil est le seul pays au monde travers\u00e9 \u00e0 la fois par l\u0027\u00e9quateur (au nord) et par le tropique du Capricorne (au sud), en raison de son immense superficie." }
-    
-  ];
-  document.querySelectorAll('.qcm-item').forEach(function(el, i) {
-    if (qcmData[i]) {
-      el.dataset.correct      = qcmData[i].correct;
-      el.dataset.explanation  = qcmData[i].explanation;
-    }
   });
 </script>
 

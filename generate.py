@@ -78,6 +78,7 @@ def collect_news(cfg: dict) -> list:
                             'url':          a['url'],
                             'content':      a.get('description') or a.get('content') or '',
                             'published_at': a.get('publishedAt', ''),
+                            'image_url':    a.get('urlToImage') or '',
                         })
             except Exception as e:
                 log.warning(f'NewsAPI [{lang}]: {e}')
@@ -90,7 +91,7 @@ def collect_news(cfg: dict) -> list:
                 params={
                     'api-key':    GUARDIAN_KEY,
                     'page-size':  nb * 2,
-                    'show-fields': 'trailText,headline',
+                    'show-fields': 'trailText,headline,thumbnail',
                     'order-by':   'newest',
                 },
                 timeout=10,
@@ -105,6 +106,7 @@ def collect_news(cfg: dict) -> list:
                         'url':          a.get('webUrl', ''),
                         'content':      a.get('fields', {}).get('trailText', ''),
                         'published_at': a.get('webPublicationDate', ''),
+                        'image_url':    a.get('fields', {}).get('thumbnail') or '',
                     })
         except Exception as e:
             log.warning(f'Guardian API: {e}')
@@ -152,6 +154,7 @@ def collect_tech(cfg: dict) -> list:
                         'url':          a['url'],
                         'content':      a.get('description') or '',
                         'published_at': a.get('publishedAt', ''),
+                        'image_url':    a.get('urlToImage') or '',
                     })
         except Exception as e:
             log.warning(f'NewsAPI tech: {e}')
@@ -177,6 +180,7 @@ def collect_tech(cfg: dict) -> list:
                         'url':          item['url'],
                         'content':      '',
                         'published_at': '',
+                        'image_url':    '',
                     })
             except Exception:
                 pass
@@ -457,6 +461,65 @@ Règles :
 
 
 # ─────────────────────────────────────────────────────────────────
+#  CLAUDE — Quiz Actu (Sonnet) — 5 QCM sur les articles du jour
+# ─────────────────────────────────────────────────────────────────
+def generate_actu_qcm(news_articles: list, tech_articles: list, model: str) -> list:
+    """Sonnet génère 5 QCM basés sur les articles d'actualité sélectionnés du jour."""
+    if not claude:
+        return []
+    all_articles = news_articles + tech_articles
+    if not all_articles:
+        return []
+
+    articles_text = '\n'.join(
+        f'{i+1}. [{a.get("source","")}] {a.get("title_fr", a.get("title",""))}\n'
+        f'   {a.get("extended_content", a.get("summary",""))[:350]}'
+        for i, a in enumerate(all_articles[:10])
+    )
+
+    prompt = f"""Date : {date.today().isoformat()} — Génère 5 questions QCM basées sur les articles d'actualité ci-dessous.
+
+Articles :
+{articles_text}
+
+Réponds UNIQUEMENT avec ce JSON (tableau, pas de markdown) :
+[
+  {{
+    "theme": "Mot-clé court de l'article source (2-3 mots max)",
+    "question": "Question précise sur un fait concret mentionné dans l'article ?",
+    "options": ["A. ...", "B. ...", "C. ...", "D. ..."],
+    "answer_index": 0,
+    "explanation": "Explication courte de la bonne réponse avec contexte."
+  }}
+]
+
+Règles :
+- Exactement 5 questions, une par article si possible.
+- Tester des faits précis (chiffre, nom propre, événement, pays, date).
+- Les 4 options doivent être plausibles, une seule est correcte.
+- Varier les bons indices (pas toujours 0).
+- Tout en français."""
+
+    try:
+        resp = claude.messages.create(
+            model=model,
+            max_tokens=2000,
+            messages=[{'role': 'user', 'content': prompt}],
+        )
+        text = resp.content[0].text.strip()
+        if text.startswith('```'):
+            text = text.split('```', 2)[1]
+            if text.startswith('json'):
+                text = text[4:]
+            text = text.strip()
+        data = json.loads(text)
+        return data if isinstance(data, list) else []
+    except Exception as e:
+        log.warning(f'Claude actu QCM: {e}')
+        return []
+
+
+# ─────────────────────────────────────────────────────────────────
 #  Utilitaires
 # ─────────────────────────────────────────────────────────────────
 _JOURS = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
@@ -509,7 +572,7 @@ def main() -> None:
     m_haiku  = models.get('summaries', 'claude-haiku-4-5-20251001')
     m_sonnet = models.get('creative',  'claude-sonnet-4-6')
 
-    today = date.today()
+    today = datetime.now(ZoneInfo('Europe/Paris')).date()
     brief = {
         'date':         today.isoformat(),
         'date_fr':      format_date_fr(today),
@@ -571,6 +634,17 @@ def main() -> None:
         log.info(f'      Mot du jour + {qcm_n} QCM générés')
     else:
         brief['sections']['culture'] = {'active': False}
+
+    # ── Quiz Actu ─────────────────────────────────────────
+    news_arts = brief['sections']['news'].get('articles', [])
+    tech_arts = brief['sections']['tech'].get('articles', [])
+    if news_arts or tech_arts:
+        log.info('[+] Quiz Actu (Sonnet)…')
+        actu_qcm = generate_actu_qcm(news_arts, tech_arts, m_sonnet)
+        log.info(f'    {len(actu_qcm)} questions actu générées')
+    else:
+        actu_qcm = []
+    brief['actu_qcm'] = actu_qcm
 
     # ── Rendu HTML ────────────────────────────────────────
     log.info('Rendu Jinja2…')

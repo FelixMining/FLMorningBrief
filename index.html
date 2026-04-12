@@ -344,6 +344,51 @@
     .footer-gear:hover { color: var(--accent); }
     .footer-gear svg { width: 12px; height: 12px; }
 
+    /* ── Stats ───────────────────────────────── */
+    .stats-section { margin-top: 40px; animation: fadeUp .45s .38s ease both; }
+    .stats-legend {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 0 4px;
+      font-family: var(--m);
+      font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .stats-leg { padding: 1px 8px; border-radius: 4px; }
+    .stats-leg.date { flex: 1; color: var(--text-3); }
+    .stats-leg.culture {
+      background: rgba(139,92,246,.1); border: 1px solid rgba(139,92,246,.25); color: #A78BFA;
+    }
+    .stats-leg.actu {
+      background: rgba(0,212,255,.08); border: 1px solid rgba(0,212,255,.2); color: var(--accent);
+    }
+    .stats-leg.time { color: var(--text-3); min-width: 42px; text-align: right; }
+
+    .stats-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-row:first-child { border-top: 1px solid var(--border); }
+    .stats-row-date { flex: 1; font-family: var(--m); font-size: 12px; color: var(--text-2); }
+    .stats-score {
+      font-family: var(--m); font-size: 11px;
+      padding: 2px 8px; border-radius: 4px;
+      min-width: 42px; text-align: center;
+    }
+    .stats-score.culture {
+      background: rgba(139,92,246,.1); border: 1px solid rgba(139,92,246,.25); color: #A78BFA;
+    }
+    .stats-score.actu {
+      background: rgba(0,212,255,.08); border: 1px solid rgba(0,212,255,.2); color: var(--accent);
+    }
+    .stats-time-val {
+      font-family: var(--m); font-size: 11px; color: var(--text-3);
+      min-width: 42px; text-align: right;
+    }
+    .stats-empty {
+      padding: 16px 0; font-family: var(--m); font-size: 11px;
+      color: var(--text-3); text-align: center;
+    }
+
     /* ── Animations ───────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
@@ -406,6 +451,21 @@
     <a href="briefs/index.html" class="archive-more" id="archive-more" style="display:none">
       Voir toutes les éditions →
     </a>
+  </section>
+
+  <!-- ── Stats QCM & Temps ─────────────────────── -->
+  <section class="stats-section" id="stats-section" style="display:none">
+    <div class="archive-header">
+      <h2 class="archive-title">Performance</h2>
+      <div class="archive-divider"></div>
+    </div>
+    <div class="stats-legend">
+      <span class="stats-leg date">Édition</span>
+      <span class="stats-leg culture">Culture</span>
+      <span class="stats-leg actu">Actu</span>
+      <span class="stats-leg time">Durée</span>
+    </div>
+    <div id="stats-content"></div>
   </section>
 
   <!-- ── Footer ───────────────────────────────── -->
@@ -509,6 +569,39 @@
       moreEl.style.display = 'block';
     }
   }
+
+  // ── Stats ──────────────────────────────────────
+  function fmtTime(s) {
+    const m = Math.floor(s / 60);
+    const sc = s % 60;
+    return m + ':' + (sc < 10 ? '0' : '') + sc;
+  }
+
+  function renderStats() {
+    const raw = localStorage.getItem('flmb_stats');
+    if (!raw) return;
+    let stats;
+    try { stats = JSON.parse(raw); } catch(e) { return; }
+    const dates = Object.keys(stats).sort().reverse().slice(0, 7);
+    if (dates.length === 0) return;
+
+    document.getElementById('stats-section').style.display = 'block';
+    const content = document.getElementById('stats-content');
+    content.innerHTML = dates.map(function(d) {
+      const entry = stats[d];
+      const cult  = entry.culture ? entry.culture.correct + '/' + entry.culture.total : '—';
+      const actu  = entry.actu    ? entry.actu.correct    + '/' + entry.actu.total    : '—';
+      const time  = entry.reading ? fmtTime(entry.reading.total_seconds)              : '—';
+      return '<div class="stats-row">'
+        + '<span class="stats-row-date">' + formatDateShort(d) + '</span>'
+        + '<span class="stats-score culture">' + cult + '</span>'
+        + '<span class="stats-score actu">'    + actu + '</span>'
+        + '<span class="stats-time-val">'      + time + '</span>'
+        + '</div>';
+    }).join('');
+  }
+
+  renderStats();
 
   // ── Main ───────────────────────────────────────
   renderDateline();

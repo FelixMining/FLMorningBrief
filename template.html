@@ -575,6 +575,76 @@
       padding-top: 10px;
     }
 
+    /* ── Reading timer chip ─────────────────────────────────── */
+    #reading-chip {
+      position: fixed;
+      top: 8px; right: 12px;
+      z-index: 101;
+      display: flex; align-items: center; gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px 4px 8px;
+      font-family: var(--m);
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .04em;
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+    #reading-chip.visible { opacity: 1; }
+    #reading-chip svg { width: 11px; height: 11px; flex-shrink: 0; opacity: .7; }
+
+    /* ── Article image ───────────────────────────────────────── */
+    .article-img {
+      margin: -16px -16px 12px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 7px 7px 0 0;
+      background: var(--surface);
+    }
+    .article-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+    .article-card:hover .article-img img { opacity: 1; }
+
+    /* ── Actu QCM ────────────────────────────────────────────── */
+    .actu-qcm-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .actu-qcm-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+    }
+    .actu-qcm-label {
+      font-family: var(--h);
+      font-size: 11px; font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--amber); flex: 1;
+    }
+    .actu-qcm-count {
+      font-size: 11px; font-family: var(--m);
+      color: var(--text-3);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 1px 8px;
+    }
+    .qcm-item.actu { border-color: rgba(245,158,11,.2); }
+    .qcm-item.actu .qcm-theme { color: var(--amber); opacity: .8; }
+
     /* ── Footer ─────────────────────────────────────────────── */
     .footer {
       padding: 24px 0 8px;
@@ -604,6 +674,14 @@
 <body>
 
 {% if config.ux.progress_bar %}<div id="progress"></div>{% endif %}
+
+<!-- ── Reading Timer ─────────────────────────────── -->
+<div id="reading-chip">
+  <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  <span id="reading-time">0:00</span>
+</div>
 
 <div class="wrap">
 
@@ -646,6 +724,7 @@
     {% for article in brief.sections.news.articles %}
     {% set eid = "exp-news-" ~ loop.index0 %}
     <div class="article-card">
+      {% if article.image_url %}<div class="article-img"><img src="{{ article.image_url | e }}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>{% endif %}
       <div class="card-meta">
         <span class="source-badge">{{ article.source }}</span>
         {% if article.domain %}<span class="domain-pill">{{ article.domain }}</span>{% endif %}
@@ -706,6 +785,7 @@
     {% for article in brief.sections.tech.articles %}
     {% set eid = "exp-tech-" ~ loop.index0 %}
     <div class="article-card">
+      {% if article.image_url %}<div class="article-img"><img src="{{ article.image_url | e }}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>{% endif %}
       <div class="card-meta">
         <span class="source-badge {% if article.source == 'Hacker News' %}hn{% endif %}">{{ article.source }}</span>
         {% if article.domain %}<span class="domain-pill">{{ article.domain }}</span>{% endif %}
@@ -897,7 +977,7 @@
     {% endif %}
 
     {% for q in brief.sections.culture.qcm %}
-    <div class="qcm-item" data-idx="{{ loop.index0 }}">
+    <div class="qcm-item" data-idx="{{ loop.index0 }}" data-type="culture">
       <div class="qcm-theme">{{ q.theme }}</div>
       <div class="qcm-question">{{ q.question }}</div>
       <div class="qcm-options">
@@ -908,6 +988,25 @@
       <div class="qcm-explanation"></div>
     </div>
     {% endfor %}
+
+    {% if brief.actu_qcm %}
+    <div class="actu-qcm-header">
+      <span class="actu-qcm-label">Quiz de l'actu</span>
+      <span class="actu-qcm-count">{{ brief.actu_qcm|length }}</span>
+    </div>
+    {% for q in brief.actu_qcm %}
+    <div class="qcm-item actu" data-idx="{{ loop.index0 }}" data-type="actu">
+      <div class="qcm-theme">{{ q.theme }}</div>
+      <div class="qcm-question">{{ q.question }}</div>
+      <div class="qcm-options">
+        {% for opt in q.options %}
+        <button class="qcm-option">{{ opt }}</button>
+        {% endfor %}
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    {% endfor %}
+    {% endif %}
 
   </section>
   {% endif %}
@@ -938,6 +1037,77 @@
   window.addEventListener('scroll', updateProgress, { passive: true });
   {% endif %}
 
+  // ── Reading Timer ─────────────────────────────────
+  const BRIEF_DATE = '{{ brief.date }}';
+  const startTime  = Date.now();
+  const chipEl     = document.getElementById('reading-chip');
+  const timerEl    = document.getElementById('reading-time');
+
+  function fmtTime(s) {
+    const m = Math.floor(s / 60);
+    const sc = s % 60;
+    return m + ':' + (sc < 10 ? '0' : '') + sc;
+  }
+
+  setInterval(function() {
+    timerEl.textContent = fmtTime(Math.floor((Date.now() - startTime) / 1000));
+  }, 1000);
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 80) chipEl.classList.add('visible');
+  }, { passive: true });
+
+  // ── Section Time Tracking ─────────────────────────
+  const SECTION_IDS = ['news', 'tech', 'finance', 'youtube', 'culture'];
+  const sectionTimes  = {};
+  const sectionActive = {};
+  SECTION_IDS.forEach(function(id) { sectionTimes[id] = 0; });
+
+  const sectionObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      const id = e.target.id;
+      if (e.isIntersecting) {
+        sectionActive[id] = Date.now();
+      } else if (sectionActive[id]) {
+        sectionTimes[id] += Math.floor((Date.now() - sectionActive[id]) / 1000);
+        delete sectionActive[id];
+      }
+    });
+  }, { threshold: 0.1 });
+
+  SECTION_IDS.forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) sectionObs.observe(el);
+  });
+
+  function flushSections() {
+    Object.keys(sectionActive).forEach(function(id) {
+      sectionTimes[id] += Math.floor((Date.now() - sectionActive[id]) / 1000);
+      sectionActive[id] = Date.now();
+    });
+  }
+
+  // ── Stats persistence ─────────────────────────────
+  const qcmScores = { culture: { correct: 0, total: 0 }, actu: { correct: 0, total: 0 } };
+
+  function saveStats() {
+    flushSections();
+    const elapsed  = Math.floor((Date.now() - startTime) / 1000);
+    const existing = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
+    if (!existing[BRIEF_DATE]) existing[BRIEF_DATE] = {};
+    existing[BRIEF_DATE].culture = { correct: qcmScores.culture.correct, total: qcmScores.culture.total };
+    existing[BRIEF_DATE].actu    = { correct: qcmScores.actu.correct,    total: qcmScores.actu.total    };
+    existing[BRIEF_DATE].reading = {
+      total_seconds: elapsed,
+      sections: Object.assign({}, sectionTimes),
+      saved_at: new Date().toISOString()
+    };
+    localStorage.setItem('flmb_stats', JSON.stringify(existing));
+  }
+
+  document.addEventListener('visibilitychange', function() { if (document.hidden) saveStats(); });
+  window.addEventListener('pagehide', saveStats);
+
   // ── Expand / Collapse ─────────────────────────────
   function toggleExpand(id, btn) {
     const el = document.getElementById(id);
@@ -947,25 +1117,36 @@
     btn.querySelector('span').textContent = open ? 'Fermer' : 'Lire';
   }
 
-  // ── QCM ───────────────────────────────────────────
-  const qcmData = [];
+  // ── QCM Data ──────────────────────────────────────
+  const qcmCultureData = [];
   {% for q in brief.sections.culture.qcm | default([]) %}
-  qcmData.push({ correct: {{ q.answer_index }}, explanation: {{ q.explanation | tojson }} });
+  qcmCultureData.push({ correct: {{ q.answer_index }}, explanation: {{ q.explanation | tojson }} });
+  {% endfor %}
+
+  const qcmActuData = [];
+  {% for q in brief.actu_qcm | default([]) %}
+  qcmActuData.push({ correct: {{ q.answer_index }}, explanation: {{ q.explanation | tojson }} });
   {% endfor %}
 
   function selectAnswer(qcmEl, optIdx) {
     const idx  = parseInt(qcmEl.dataset.idx);
-    const data = qcmData[idx];
+    const type = qcmEl.dataset.type || 'culture';
+    const data = type === 'actu' ? qcmActuData[idx] : qcmCultureData[idx];
     if (!data) return;
+
     const btns = qcmEl.querySelectorAll('.qcm-option');
     btns.forEach(function(b, i) {
       b.disabled = true;
-      if (i === data.correct)     b.classList.add('correct');
-      else if (i === optIdx)      b.classList.add('wrong');
+      if (i === data.correct)  b.classList.add('correct');
+      else if (i === optIdx)   b.classList.add('wrong');
     });
     const expEl = qcmEl.querySelector('.qcm-explanation');
     expEl.textContent = data.explanation;
     expEl.style.display = 'block';
+
+    qcmScores[type].total   += 1;
+    if (optIdx === data.correct) qcmScores[type].correct += 1;
+    saveStats();
   }
 
   document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FL Morning Brief — Dashboard</title>
+  <link rel="icon" href="logo-sans-fond.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -61,8 +62,16 @@
     }
     .header-title {
       display: flex;
-      align-items: baseline;
-      gap: 8px;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-logo {
+      width: 28px; height: 28px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(129,140,248,.3));
+    }
+    .header-title-text {
+      display: flex; align-items: baseline; gap: 8px;
     }
     .header-title h1 {
       font-size: 15px;
@@ -630,8 +639,11 @@
 <header class="header">
   <div class="header-inner">
     <div class="header-title">
-      <h1>FL Morning Brief</h1>
-      <span>dashboard</span>
+      <img src="logo-sans-fond.svg" alt="" class="header-logo">
+      <div class="header-title-text">
+        <h1>FL Morning Brief</h1>
+        <span>dashboard</span>
+      </div>
     </div>
     <div class="status-pill">
       <div class="status-dot" id="status-dot"></div>

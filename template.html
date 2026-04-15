@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FL Morning Brief — {{ brief.date_fr }}</title>
+  <link rel="icon" href="../logo-sans-fond.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
@@ -109,6 +110,13 @@
       color: var(--accent);
       margin-bottom: 18px;
       opacity: .65;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .header-logo {
+      width: 22px; height: 22px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(0,212,255,.25));
+      opacity: 1;
     }
     .header-day {
       font-family: var(--h);
@@ -777,7 +785,10 @@
 
   <!-- ── Header ──────────────────────────────────────── -->
   <header class="header">
-    <div class="header-eyebrow">FL Morning Brief</div>
+    <div class="header-eyebrow">
+      <img src="../logo-sans-fond.svg" alt="" class="header-logo">
+      FL Morning Brief
+    </div>
     {% set parts = brief.date_fr.split(' ') %}
     <div class="header-day">{{ parts[0] }} {{ parts[1] }}</div>
     <div class="header-month">{{ parts[2] }}{% if parts|length > 3 %} {{ parts[3] }}{% endif %}</div>

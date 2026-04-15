@@ -669,6 +669,96 @@
     }
     .footer-archive:hover { color: var(--accent); }
     .footer-archive svg { width: 12px; height: 12px; fill: none; }
+
+    /* ── Feedback article ──────────────────────────────────── */
+    .article-feedback {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 12px; padding-top: 10px;
+      border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .btn-like, .btn-dislike, .btn-comment-toggle {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: none; border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 10px;
+      font-size: 11px; font-family: var(--m);
+      color: var(--text-3); cursor: pointer; transition: all .15s;
+    }
+    .btn-like svg, .btn-dislike svg, .btn-comment-toggle svg {
+      width: 12px; height: 12px; fill: none;
+      stroke: currentColor; stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .btn-like:hover   { border-color: var(--green); color: var(--green); }
+    .btn-dislike:hover { border-color: var(--red);   color: var(--red);   }
+    .btn-comment-toggle:hover { border-color: var(--accent-mid); color: var(--accent); }
+    .btn-like.active   { background: rgba(16,185,129,.12); border-color: var(--green); color: var(--green); }
+    .btn-dislike.active { background: rgba(244,63,94,.08);  border-color: var(--red);   color: var(--red);   }
+    .btn-comment-toggle.active { border-color: var(--accent-mid); color: var(--accent); }
+    .comment-area { width: 100%; margin-top: 6px; }
+    .comment-area textarea {
+      width: 100%; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 8px 12px; font-size: 12px; font-family: var(--s);
+      color: var(--text-2); resize: vertical; margin-bottom: 6px;
+    }
+    .comment-area textarea::placeholder { color: var(--text-3); }
+    .comment-area textarea:focus { outline: none; border-color: var(--accent-mid); }
+    .btn-save-comment {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 5px; padding: 5px 14px; font-size: 11px;
+      font-family: var(--m); color: var(--text-3); cursor: pointer; transition: all .12s;
+    }
+    .btn-save-comment:hover { border-color: var(--accent-mid); color: var(--accent); }
+
+    /* ── Révision & Mots du jour ────────────────────────────── */
+    .revision-header, .mot-review-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 16px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border); position: relative;
+    }
+    .revision-header::after {
+      content: ''; position: absolute; bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--purple); box-shadow: 0 0 8px var(--purple);
+    }
+    .mot-review-header::after {
+      content: ''; position: absolute; bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--green); box-shadow: 0 0 8px var(--green);
+    }
+    .revision-label {
+      font-family: var(--h); font-size: 11px; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--purple); flex: 1;
+    }
+    .mot-review-label {
+      font-family: var(--h); font-size: 11px; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--green); flex: 1;
+    }
+    .revision-count, .mot-review-count {
+      font-size: 11px; font-family: var(--m); color: var(--text-3);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1px 8px;
+    }
+    .qcm-item.revision  { border-color: rgba(139,92,246,.2); }
+    .qcm-item.revision .qcm-theme  { color: var(--purple); opacity: .8; }
+    .qcm-item.mot-review { border-color: rgba(16,185,129,.2); }
+    .qcm-item.mot-review .qcm-theme { color: var(--green); opacity: .8; }
+
+    /* ── Bouton retour accueil & méta footer ────────────────── */
+    .footer-home {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-family: var(--m); color: var(--text-3);
+      text-decoration: none; transition: color .15s; letter-spacing: .04em;
+    }
+    .footer-home:hover { color: var(--accent); }
+    .footer-home svg { width: 12px; height: 12px; fill: none; }
+    .footer-meta {
+      font-size: 10px; font-family: var(--m); color: var(--text-3);
+      margin-top: 10px; line-height: 2; text-align: center;
+    }
+    .footer-meta .cost { color: var(--green); opacity: .75; }
   </style>
 </head>
 <body>
@@ -723,7 +813,7 @@
 
     {% for article in brief.sections.news.articles %}
     {% set eid = "exp-news-" ~ loop.index0 %}
-    <div class="article-card">
+    <div class="article-card" id="article-news-{{ loop.index0 }}" data-art-id="news-{{ loop.index0 }}" data-domain="{{ article.domain | default('') | e }}">
       {% if article.image_url %}<div class="article-img"><img src="{{ article.image_url | e }}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>{% endif %}
       <div class="card-meta">
         <span class="source-badge">{{ article.source }}</span>
@@ -760,6 +850,21 @@
         <span>Lire</span>
       </button>
       {% endif %}
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
     </div>
     {% endfor %}
   </section>
@@ -784,7 +889,7 @@
 
     {% for article in brief.sections.tech.articles %}
     {% set eid = "exp-tech-" ~ loop.index0 %}
-    <div class="article-card">
+    <div class="article-card" id="article-tech-{{ loop.index0 }}" data-art-id="tech-{{ loop.index0 }}" data-domain="{{ article.domain | default('') | e }}">
       {% if article.image_url %}<div class="article-img"><img src="{{ article.image_url | e }}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>{% endif %}
       <div class="card-meta">
         <span class="source-badge {% if article.source == 'Hacker News' %}hn{% endif %}">{{ article.source }}</span>
@@ -821,6 +926,21 @@
         <span>Lire</span>
       </button>
       {% endif %}
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
     </div>
     {% endfor %}
   </section>
@@ -1011,16 +1131,82 @@
   </section>
   {% endif %}
 
+  <!-- ══════════════════════════════════════════
+       SECTION : Révision (anciens briefs — 30 jours)
+  ══════════════════════════════════════════ -->
+  {% if brief.revision_qcm %}
+  <section class="section" id="revision">
+    <div class="revision-header">
+      <span class="revision-label">Révision</span>
+      <span class="revision-count">{{ brief.revision_qcm|length }}</span>
+    </div>
+    {% for q in brief.revision_qcm %}
+    <div class="qcm-item revision" data-idx="{{ loop.index0 }}" data-type="revision">
+      <div class="qcm-theme">{{ q.source_date if q.source_date else q.theme }}</div>
+      <div class="qcm-question">{{ q.question }}</div>
+      <div class="qcm-options">
+        {% for opt in q.options %}
+        <button class="qcm-option">{{ opt }}</button>
+        {% endfor %}
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <!-- ══════════════════════════════════════════
+       SECTION : QCM Mots du jour
+  ══════════════════════════════════════════ -->
+  {% if brief.mot_review_qcm %}
+  <section class="section" id="mot-review">
+    <div class="mot-review-header">
+      <span class="mot-review-label">Mots du jour — Révision</span>
+      <span class="mot-review-count">{{ brief.mot_review_qcm|length }}</span>
+    </div>
+    {% for q in brief.mot_review_qcm %}
+    <div class="qcm-item mot-review" data-idx="{{ loop.index0 }}" data-type="mot_review">
+      <div class="qcm-theme">{{ q.mot if q.mot else ('Mot ' ~ loop.index) }}</div>
+      <div class="qcm-question">{{ q.question }}</div>
+      <div class="qcm-options">
+        {% for opt in q.options %}
+        <button class="qcm-option">{{ opt }}</button>
+        {% endfor %}
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
   <!-- ── Footer ──────────────────────────────────────── -->
   <footer class="footer">
     <p class="footer-gen">{{ brief.date_fr }} · {{ brief.generated_at }}</p>
-    {% if config.ux.archive %}
-    <a class="footer-archive" href="{{ config.archive.base_url | e }}/briefs/index.html">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="15 18 9 12 15 6"/>
-      </svg>
-      Archive
-    </a>
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;flex-wrap:wrap">
+      <a class="footer-home" href="../index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Accueil
+      </a>
+      {% if config.ux.archive %}
+      <a class="footer-archive" href="{{ config.archive.base_url | e }}/briefs/index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Archive
+      </a>
+      {% endif %}
+    </div>
+    {% if brief.gen_tokens_in %}
+    <div class="footer-meta">
+      <span>Généré {{ brief.generated_at_start }} → {{ brief.generated_at_end }}</span>
+      &nbsp;·&nbsp;
+      <span>{{ brief.gen_tokens_in }} → {{ brief.gen_tokens_out }} tokens</span>
+      &nbsp;·&nbsp;
+      <span class="cost">${{ "%.4f"|format(brief.gen_cost) }}</span>
+    </div>
     {% endif %}
   </footer>
 
@@ -1037,11 +1223,14 @@
   window.addEventListener('scroll', updateProgress, { passive: true });
   {% endif %}
 
-  // ── Reading Timer ─────────────────────────────────
-  const BRIEF_DATE = '{{ brief.date }}';
-  const startTime  = Date.now();
-  const chipEl     = document.getElementById('reading-chip');
-  const timerEl    = document.getElementById('reading-time');
+  // ── Reading Timer — accumulé entre visites ─────────
+  const BRIEF_DATE   = '{{ brief.date }}';
+  const _statsInit   = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
+  const prevSeconds  = (_statsInit[BRIEF_DATE] && _statsInit[BRIEF_DATE].reading)
+                        ? (_statsInit[BRIEF_DATE].reading.total_seconds || 0) : 0;
+  const sessionStart = Date.now();
+  const chipEl       = document.getElementById('reading-chip');
+  const timerEl      = document.getElementById('reading-time');
 
   function fmtTime(s) {
     const m = Math.floor(s / 60);
@@ -1050,7 +1239,8 @@
   }
 
   setInterval(function() {
-    timerEl.textContent = fmtTime(Math.floor((Date.now() - startTime) / 1000));
+    const sessionSecs = Math.floor((Date.now() - sessionStart) / 1000);
+    timerEl.textContent = fmtTime(prevSeconds + sessionSecs);
   }, 1000);
 
   window.addEventListener('scroll', function() {
@@ -1058,10 +1248,15 @@
   }, { passive: true });
 
   // ── Section Time Tracking ─────────────────────────
-  const SECTION_IDS = ['news', 'tech', 'finance', 'youtube', 'culture'];
+  const SECTION_IDS = ['news', 'tech', 'finance', 'youtube', 'culture', 'revision', 'mot-review'];
   const sectionTimes  = {};
   const sectionActive = {};
-  SECTION_IDS.forEach(function(id) { sectionTimes[id] = 0; });
+  SECTION_IDS.forEach(function(id) {
+    const prev = (_statsInit[BRIEF_DATE] && _statsInit[BRIEF_DATE].reading &&
+                  _statsInit[BRIEF_DATE].reading.sections)
+                 ? (_statsInit[BRIEF_DATE].reading.sections[id] || 0) : 0;
+    sectionTimes[id] = prev;
+  });
 
   const sectionObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
@@ -1080,27 +1275,73 @@
     if (el) sectionObs.observe(el);
   });
 
-  function flushSections() {
+  // ── Article Time Tracking ─────────────────────────
+  const articleTimes  = {};
+  const articleActive = {};
+
+  const articleObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      const id = e.target.id;
+      if (e.isIntersecting) {
+        articleActive[id] = Date.now();
+      } else if (articleActive[id]) {
+        if (!articleTimes[id]) articleTimes[id] = 0;
+        articleTimes[id] += Math.floor((Date.now() - articleActive[id]) / 1000);
+        delete articleActive[id];
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.article-card[id]').forEach(function(el) {
+    if (!articleTimes[el.id]) articleTimes[el.id] = 0;
+    articleObs.observe(el);
+  });
+
+  function flushAll() {
+    const now = Date.now();
     Object.keys(sectionActive).forEach(function(id) {
-      sectionTimes[id] += Math.floor((Date.now() - sectionActive[id]) / 1000);
-      sectionActive[id] = Date.now();
+      sectionTimes[id] += Math.floor((now - sectionActive[id]) / 1000);
+      sectionActive[id] = now;
+    });
+    Object.keys(articleActive).forEach(function(id) {
+      if (!articleTimes[id]) articleTimes[id] = 0;
+      articleTimes[id] += Math.floor((now - articleActive[id]) / 1000);
+      articleActive[id] = now;
     });
   }
 
   // ── Stats persistence ─────────────────────────────
-  const qcmScores = { culture: { correct: 0, total: 0 }, actu: { correct: 0, total: 0 } };
+  const qcmScores = {
+    culture:    { correct: 0, total: 0 },
+    actu:       { correct: 0, total: 0 },
+    revision:   { correct: 0, total: 0 },
+    mot_review: { correct: 0, total: 0 },
+  };
+  // Recharger les scores existants
+  if (_statsInit[BRIEF_DATE]) {
+    ['culture', 'actu', 'revision', 'mot_review'].forEach(function(t) {
+      if (_statsInit[BRIEF_DATE][t]) {
+        qcmScores[t].correct = _statsInit[BRIEF_DATE][t].correct || 0;
+        qcmScores[t].total   = _statsInit[BRIEF_DATE][t].total   || 0;
+      }
+    });
+  }
 
   function saveStats() {
-    flushSections();
-    const elapsed  = Math.floor((Date.now() - startTime) / 1000);
-    const existing = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
+    flushAll();
+    const sessionSecs = Math.floor((Date.now() - sessionStart) / 1000);
+    const totalSecs   = prevSeconds + sessionSecs;
+    const existing    = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
     if (!existing[BRIEF_DATE]) existing[BRIEF_DATE] = {};
-    existing[BRIEF_DATE].culture = { correct: qcmScores.culture.correct, total: qcmScores.culture.total };
-    existing[BRIEF_DATE].actu    = { correct: qcmScores.actu.correct,    total: qcmScores.actu.total    };
+    existing[BRIEF_DATE].culture    = { correct: qcmScores.culture.correct,    total: qcmScores.culture.total    };
+    existing[BRIEF_DATE].actu       = { correct: qcmScores.actu.correct,       total: qcmScores.actu.total       };
+    existing[BRIEF_DATE].revision   = { correct: qcmScores.revision.correct,   total: qcmScores.revision.total   };
+    existing[BRIEF_DATE].mot_review = { correct: qcmScores.mot_review.correct, total: qcmScores.mot_review.total };
     existing[BRIEF_DATE].reading = {
-      total_seconds: elapsed,
-      sections: Object.assign({}, sectionTimes),
-      saved_at: new Date().toISOString()
+      total_seconds: totalSecs,
+      sections:      Object.assign({}, sectionTimes),
+      articles:      Object.assign({}, articleTimes),
+      saved_at:      new Date().toISOString(),
     };
     localStorage.setItem('flmb_stats', JSON.stringify(existing));
   }
@@ -1117,6 +1358,86 @@
     btn.querySelector('span').textContent = open ? 'Fermer' : 'Lire';
   }
 
+  // ── Feedback articles ─────────────────────────────
+  function loadFeedback() {
+    try { return JSON.parse(localStorage.getItem('flmb_feedback') || '{}'); }
+    catch(e) { return {}; }
+  }
+  function saveFeedback(fb) {
+    localStorage.setItem('flmb_feedback', JSON.stringify(fb));
+  }
+
+  function setFeedback(feedbackDiv, val) {
+    const card  = feedbackDiv.closest('.article-card');
+    const artId = card ? card.dataset.artId : null;
+    if (!artId) return;
+    const domain = card.dataset.domain || '';
+
+    const likeBtn    = feedbackDiv.querySelector('.btn-like');
+    const dislikeBtn = feedbackDiv.querySelector('.btn-dislike');
+
+    const fb     = loadFeedback();
+    if (!fb[BRIEF_DATE]) fb[BRIEF_DATE] = {};
+    const prev   = fb[BRIEF_DATE][artId] || {};
+    const newVal = (prev.like === val) ? 0 : val; // toggle si recliqué
+
+    fb[BRIEF_DATE][artId] = Object.assign({}, prev, { like: newVal, domain: domain });
+    saveFeedback(fb);
+
+    likeBtn.classList.toggle('active', newVal === 1);
+    dislikeBtn.classList.toggle('active', newVal === -1);
+  }
+
+  function toggleComment(btn) {
+    const area = btn.nextElementSibling;
+    const open = area.style.display === 'none';
+    area.style.display = open ? 'block' : 'none';
+    btn.classList.toggle('active', open);
+    if (open) {
+      const ta  = area.querySelector('textarea');
+      const card = btn.closest('.article-card');
+      const artId = card ? card.dataset.artId : null;
+      if (artId) {
+        const fb = loadFeedback();
+        ta.value = (fb[BRIEF_DATE] && fb[BRIEF_DATE][artId] && fb[BRIEF_DATE][artId].comment) || '';
+      }
+    }
+  }
+
+  function saveComment(btn) {
+    const area  = btn.closest('.comment-area');
+    const fb_div = area.closest('.article-feedback');
+    const card  = fb_div.closest('.article-card');
+    const artId = card ? card.dataset.artId : null;
+    if (!artId) return;
+    const domain = card.dataset.domain || '';
+    const text   = area.querySelector('textarea').value.trim();
+
+    const fb = loadFeedback();
+    if (!fb[BRIEF_DATE]) fb[BRIEF_DATE] = {};
+    fb[BRIEF_DATE][artId] = Object.assign(fb[BRIEF_DATE][artId] || {}, { comment: text, domain: domain });
+    saveFeedback(fb);
+
+    area.style.display = 'none';
+    const toggleBtn = area.previousElementSibling;
+    if (toggleBtn) toggleBtn.classList.remove('active');
+  }
+
+  // Restaurer l'état des feedbacks au chargement
+  (function restoreFeedback() {
+    const fb = loadFeedback();
+    if (!fb[BRIEF_DATE]) return;
+    document.querySelectorAll('.article-card[data-art-id]').forEach(function(card) {
+      const artId  = card.dataset.artId;
+      const entry  = fb[BRIEF_DATE][artId];
+      if (!entry) return;
+      const fdiv   = card.querySelector('.article-feedback');
+      if (!fdiv) return;
+      if (entry.like === 1)  fdiv.querySelector('.btn-like').classList.add('active');
+      if (entry.like === -1) fdiv.querySelector('.btn-dislike').classList.add('active');
+    });
+  })();
+
   // ── QCM Data ──────────────────────────────────────
   const qcmCultureData = [];
   {% for q in brief.sections.culture.qcm | default([]) %}
@@ -1128,24 +1449,41 @@
   qcmActuData.push({ correct: {{ q.answer_index }}, explanation: {{ q.explanation | tojson }} });
   {% endfor %}
 
+  const qcmRevisionData = [];
+  {% for q in brief.revision_qcm | default([]) %}
+  qcmRevisionData.push({ correct: {{ q.answer_index }}, explanation: {{ q.explanation | tojson }} });
+  {% endfor %}
+
+  const qcmMotReviewData = [];
+  {% for q in brief.mot_review_qcm | default([]) %}
+  qcmMotReviewData.push({ correct: {{ q.answer_index }}, explanation: {{ q.explanation | tojson }} });
+  {% endfor %}
+
   function selectAnswer(qcmEl, optIdx) {
     const idx  = parseInt(qcmEl.dataset.idx);
     const type = qcmEl.dataset.type || 'culture';
-    const data = type === 'actu' ? qcmActuData[idx] : qcmCultureData[idx];
+    let data;
+    if (type === 'actu')       data = qcmActuData[idx];
+    else if (type === 'revision')   data = qcmRevisionData[idx];
+    else if (type === 'mot_review') data = qcmMotReviewData[idx];
+    else                             data = qcmCultureData[idx];
     if (!data) return;
 
     const btns = qcmEl.querySelectorAll('.qcm-option');
     btns.forEach(function(b, i) {
       b.disabled = true;
-      if (i === data.correct)  b.classList.add('correct');
-      else if (i === optIdx)   b.classList.add('wrong');
+      if (i === data.correct) b.classList.add('correct');
+      else if (i === optIdx)  b.classList.add('wrong');
     });
     const expEl = qcmEl.querySelector('.qcm-explanation');
     expEl.textContent = data.explanation;
     expEl.style.display = 'block';
 
-    qcmScores[type].total   += 1;
-    if (optIdx === data.correct) qcmScores[type].correct += 1;
+    const scoreKey = (type === 'mot_review') ? 'mot_review' : type;
+    if (qcmScores[scoreKey]) {
+      qcmScores[scoreKey].total += 1;
+      if (optIdx === data.correct) qcmScores[scoreKey].correct += 1;
+    }
     saveStats();
   }
 

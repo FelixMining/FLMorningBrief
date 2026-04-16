@@ -831,16 +831,17 @@ def main() -> None:
     feedback    = load_feedback(briefs_dir)
     feedback_ctx = build_feedback_context(feedback)
 
-    # Extraire mots et questions déjà utilisés
+    # Extraire mots et questions déjà utilisés (ignorer les clés non-brief comme seen_video_ids)
+    brief_entries = [v for v in history.values() if isinstance(v, dict)]
     past_words = [
         v.get('mot_du_jour', {}).get('mot', '')
-        for v in history.values()
+        for v in brief_entries
         if v.get('mot_du_jour')
     ]
     past_words = [w for w in past_words if w]
 
     past_questions = []
-    for v in history.values():
+    for v in brief_entries:
         for q in v.get('culture_qcm', []):
             if q.get('question'):
                 past_questions.append(q['question'])
@@ -848,7 +849,7 @@ def main() -> None:
             if q.get('question'):
                 past_questions.append(q['question'])
 
-    log.info(f'  Historique : {len(history)} briefs, {len(past_words)} mots, {len(past_questions)} questions')
+    log.info(f'  Historique : {len(brief_entries)} briefs, {len(past_words)} mots, {len(past_questions)} questions')
 
     gen_start = datetime.now(tz_paris)
 

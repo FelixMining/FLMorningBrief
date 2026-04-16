@@ -340,54 +340,63 @@ def collect_finance(cfg: dict) -> dict:
 # ─────────────────────────────────────────────────────────────────
 #  COLLECTEUR — YouTube
 # ─────────────────────────────────────────────────────────────────
-def collect_youtube(cfg: dict) -> list:
+def collect_youtube(cfg: dict, seen_ids: set = None) -> list:
     if not YOUTUBE_KEY:
         log.warning('YOUTUBE_KEY absent — section YouTube ignorée')
         return []
 
     chaines      = cfg.get('chaines', [])
-    max_age      = cfg.get('max_age_hours', 24)
+    max_age      = cfg.get('max_age_hours', 48)
     fallback_age = cfg.get('fallback_max_age_hours', 168)
     nb           = cfg.get('nb_suggestions', 2)
     now          = datetime.now(ZoneInfo('UTC'))
+    seen_ids     = seen_ids or set()
 
-    def search_channel(channel_id: str, hours: int) -> list:
-        after = (now - timedelta(hours=hours)).strftime('%Y-%m-%dT%H:%M:%SZ')
+    def get_recent_videos(channel_id: str, hours: int) -> list:
+        # uploads playlist = channel ID avec UC → UU (pas d'appel API supplémentaire)
+        playlist_id = 'UU' + channel_id[2:]
+        cutoff = now - timedelta(hours=hours)
         try:
             r = requests.get(
-                'https://www.googleapis.com/youtube/v3/search',
+                'https://www.googleapis.com/youtube/v3/playlistItems',
                 params={
-                    'key': YOUTUBE_KEY, 'channelId': channel_id,
-                    'part': 'snippet', 'order': 'date',
-                    'publishedAfter': after, 'maxResults': 3, 'type': 'video',
+                    'key': YOUTUBE_KEY,
+                    'playlistId': playlist_id,
+                    'part': 'snippet',
+                    'maxResults': 5,
                 },
                 timeout=10,
             )
             r.raise_for_status()
-            return [
-                {
-                    'title':      item['snippet']['title'],
-                    'channel':    item['snippet']['channelTitle'],
-                    'video_id':   item['id']['videoId'],
-                    'url':        f"https://www.youtube.com/watch?v={item['id']['videoId']}",
-                    'thumbnail':  item['snippet']['thumbnails'].get('medium', {}).get('url', ''),
-                    'published_at': item['snippet']['publishedAt'],
-                }
-                for item in r.json().get('items', [])
-            ]
+            results = []
+            for item in r.json().get('items', []):
+                sn     = item['snippet']
+                vid_id = sn['resourceId']['videoId']
+                pub    = datetime.fromisoformat(sn['publishedAt'].replace('Z', '+00:00'))
+                if pub < cutoff or vid_id in seen_ids:
+                    continue
+                results.append({
+                    'title':        sn['title'],
+                    'channel':      sn['channelTitle'],
+                    'video_id':     vid_id,
+                    'url':          f'https://www.youtube.com/watch?v={vid_id}',
+                    'thumbnail':    sn['thumbnails'].get('medium', {}).get('url', ''),
+                    'published_at': sn['publishedAt'],
+                })
+            return results
         except Exception as e:
             log.warning(f'YouTube {channel_id}: {e}')
             return []
 
-    videos = []
+    pool = []
     for ch in chaines:
-        found = search_channel(ch['id'], max_age)
+        found = get_recent_videos(ch['id'], max_age)
         if not found:
-            found = search_channel(ch['id'], fallback_age)
-        videos.extend(found)
-        if len(videos) >= nb * 2:
-            break
-    return videos[:nb]
+            found = get_recent_videos(ch['id'], fallback_age)
+        pool.extend(found)
+
+    random.shuffle(pool)
+    return pool[:nb]
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -816,9 +825,13 @@ def main() -> None:
     s = sec_cfg.get('youtube', {})
     if s.get('active', True):
         log.info('[4/5] YouTube…')
-        videos = collect_youtube(s)
+        seen_ids = set(history.get('seen_video_ids', []))
+        videos   = collect_youtube(s, seen_ids)
         brief['sections']['youtube'] = {'active': True, 'videos': videos}
         log.info(f'      {len(videos)} vidéos')
+        # mémoriser les IDs suggérés pour ne pas les reproposer
+        new_seen = list(seen_ids | {v['video_id'] for v in videos})
+        history['seen_video_ids'] = new_seen[-500:]  # cap à 500 entrées
     else:
         brief['sections']['youtube'] = {'active': False, 'videos': []}
 

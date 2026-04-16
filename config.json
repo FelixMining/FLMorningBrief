@@ -52,7 +52,10 @@
         { "nom": "FutureRadar",         "id": "UCTfZb5p1amxvDZ7_m9_K1wQ" },
         { "nom": "The Flares",          "id": "UCP56Td-URBxm2y8cdXzdU1g" },
         { "nom": "Will Phillips",       "id": "UCefxh9MfWURhoW4g7zXiTCQ" },
-        { "nom": "UnderScore",          "id": "UCWedHS9qKebauVIK2J7383g" }
+        { "nom": "UnderScore",          "id": "UCWedHS9qKebauVIK2J7383g" },
+        { "nom": "Micode",              "id": "UCYnvxJ-PKiGXo_tYXpWAC-w" },
+        { "nom": "V2F",                 "id": "UCJ6_b8PDzKfBmSHtRMqPB7Q" },
+        { "nom": "Overflow",            "id": "UCKpOpDFWOZQ2QXjDkVU3WTQ" }
       ],
       "max_age_hours": 24,
       "fallback_max_age_hours": 168,

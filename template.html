@@ -459,6 +459,11 @@
       line-height: 1.35;
       color: var(--text);
     }
+    .video-meta {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
 
     /* ── Mot du jour ─────────────────────────────────────────── */
     .mot-card {
@@ -1075,6 +1080,10 @@
       <div class="video-info">
         <div class="video-channel">{{ video.channel }}</div>
         <div class="video-title">{{ video.title }}</div>
+        <div class="video-meta">
+          {% if video.published_at_fmt %}{{ video.published_at_fmt }}{% endif %}
+          {% if video.duration %} · {{ video.duration }}{% endif %}
+        </div>
       </div>
     </a>
     {% endfor %}

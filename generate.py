@@ -7,6 +7,8 @@ import json
 import os
 import logging
 import random
+import re
+import xml.etree.ElementTree as ET
 from collections import Counter
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -237,11 +239,17 @@ def collect_tech(cfg: dict) -> list:
         except Exception as e:
             log.warning(f'NewsAPI tech: {e}')
 
-    keywords = [s.lower() for s in sujets] + ['ai', 'llm', 'gpt', 'claude', 'mistral', 'model', 'openai', 'anthropic']
+    keywords = [
+        s.lower() for s in sujets
+    ] + [
+        'ai', 'llm', 'gpt', 'claude', 'mistral', 'gemini', 'model', 'openai',
+        'anthropic', 'deepseek', 'agent', 'rag', 'fine-tun', 'benchmark',
+        'inference', 'multimodal', 'neural', 'transformer', 'startup', 'funding',
+    ]
     try:
         top_ids = requests.get(
             'https://hacker-news.firebaseio.com/v0/topstories.json', timeout=8
-        ).json()[:30]
+        ).json()[:50]
         for item_id in top_ids:
             try:
                 item = requests.get(
@@ -263,6 +271,28 @@ def collect_tech(cfg: dict) -> list:
                 pass
     except Exception as e:
         log.warning(f'Hacker News: {e}')
+
+    # Indie Hackers
+    try:
+        r = requests.get('https://www.indiehackers.com/stories.rss', timeout=10)
+        r.raise_for_status()
+        root = ET.fromstring(r.content)
+        for item in root.findall('./channel/item')[:20]:
+            title = (item.findtext('title') or '').strip()
+            url   = (item.findtext('link') or '').strip()
+            desc  = (item.findtext('description') or '').strip()
+            pub   = (item.findtext('pubDate') or '').strip()
+            if title and url:
+                articles.append({
+                    'title':        title,
+                    'source':       'Indie Hackers',
+                    'url':          url,
+                    'content':      desc,
+                    'published_at': pub,
+                    'image_url':    '',
+                })
+    except Exception as e:
+        log.warning(f'Indie Hackers: {e}')
 
     seen, unique = set(), []
     for a in articles:
@@ -340,6 +370,24 @@ def collect_finance(cfg: dict) -> dict:
 # ─────────────────────────────────────────────────────────────────
 #  COLLECTEUR — YouTube
 # ─────────────────────────────────────────────────────────────────
+_MONTHS_FR = ['jan.', 'fév.', 'mars', 'avr.', 'mai', 'juin',
+               'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']
+
+def _parse_iso_duration(iso: str) -> str:
+    m = re.match(r'PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?', iso)
+    if not m:
+        return ''
+    h, mn, s = (int(x or 0) for x in m.groups())
+    return f'{h}:{mn:02d}:{s:02d}' if h else f'{mn}:{s:02d}'
+
+def _fmt_published_at(iso: str) -> str:
+    try:
+        dt = datetime.fromisoformat(iso.replace('Z', '+00:00'))
+        dt = dt.astimezone(ZoneInfo('Europe/Paris'))
+        return f"{dt.day} {_MONTHS_FR[dt.month - 1]} {dt.strftime('%H:%M')}"
+    except Exception:
+        return ''
+
 def collect_youtube(cfg: dict, seen_ids: set = None) -> list:
     if not YOUTUBE_KEY:
         log.warning('YOUTUBE_KEY absent — section YouTube ignorée')
@@ -396,7 +444,29 @@ def collect_youtube(cfg: dict, seen_ids: set = None) -> list:
         pool.extend(found)
 
     random.shuffle(pool)
-    return pool[:nb]
+    selected = pool[:nb]
+
+    # Durées en un seul appel batch
+    if selected:
+        try:
+            ids = ','.join(v['video_id'] for v in selected)
+            r = requests.get(
+                'https://www.googleapis.com/youtube/v3/videos',
+                params={'key': YOUTUBE_KEY, 'id': ids, 'part': 'contentDetails'},
+                timeout=10,
+            )
+            r.raise_for_status()
+            dur_map = {
+                item['id']: _parse_iso_duration(item['contentDetails']['duration'])
+                for item in r.json().get('items', [])
+            }
+            for v in selected:
+                v['duration']        = dur_map.get(v['video_id'], '')
+                v['published_at_fmt'] = _fmt_published_at(v['published_at'])
+        except Exception as e:
+            log.warning(f'YouTube durations: {e}')
+
+    return selected
 
 
 # ─────────────────────────────────────────────────────────────────

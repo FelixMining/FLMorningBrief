@@ -9,7 +9,7 @@
     "news": {
       "active": true,
       "label": "Actualites mondiales",
-      "nb_articles": 3,
+      "nb_articles": 6,
       "langue": ["fr"],
       "sources": ["newsapi", "guardian", "gnews"],
       "fallback": "contenu_partiel"
@@ -17,10 +17,10 @@
     "tech": {
       "active": true,
       "label": "Tech & IA",
-      "nb_articles": 5,
-      "langue": ["fr"],
-      "sujets": ["IA generative", "LLM", "hardware", "startups"],
-      "sources": ["newsapi_tech", "hackernews", "arxiv"],
+      "nb_articles": 10,
+      "langue": ["en"],
+      "sujets": ["AI", "LLM", "new AI model", "AI startup", "AI agent", "AI funding", "OpenAI", "Anthropic", "Gemini", "DeepSeek"],
+      "sources": ["newsapi_tech", "hackernews", "indiehackers"],
       "fallback": "contenu_partiel"
     },
     "finance": {

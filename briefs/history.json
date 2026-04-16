@@ -1,114 +1,116 @@
 {
   "seen_video_ids": [
-    "5ekLY3eDWQE",
-    "gCLQqJew78A"
+    "JYUGfNoyDKs",
+    "gCLQqJew78A",
+    "DQVV1ARVDOU",
+    "5ekLY3eDWQE"
   ],
   "2026-04-16": {
     "mot_du_jour": {
-      "mot": "ineffable",
-      "classe": "adjectif",
-      "definition": "Qui ne peut être exprimé par des paroles, tant la sensation ou l'émotion est intense ou sublime. Se dit de ce qui dépasse les capacités du langage.",
-      "etymologie": "Du latin ineffabilis, composé de in- (négatif) et fari (parler), littéralement « ce qu'on ne peut dire ».",
-      "exemple": "Au sommet de la montagne, il fut saisi d'une joie ineffable face à l'étendue silencieuse des glaciers."
+      "mot": "sérendipité",
+      "classe": "nom féminin",
+      "definition": "Faculté de faire par hasard des découvertes heureuses et inattendues, souvent alors que l'on cherchait autre chose. Désigne aussi la découverte elle-même résultant de ce heureux concours de circonstances.",
+      "etymologie": "Emprunté de l'anglais serendipity, forgé en 1754 par Horace Walpole à partir du conte persan Les Trois Princes de Serendip (ancien nom de Ceylan).",
+      "exemple": "La découverte de la pénicilline par Fleming est l'un des plus célèbres exemples de sérendipité dans l'histoire des sciences."
     },
     "culture_qcm": [
       {
         "theme": "sciences",
-        "question": "Quelle est la principale molécule responsable du transport de l'oxygène dans le sang des vertébrés ?",
+        "question": "Quelle est la structure chimique de l'ADN, telle que proposée par Watson et Crick en 1953 ?",
         "options": [
-          "A. La myosine",
-          "B. L'hémoglobine",
-          "C. La kératine",
-          "D. L'albumine"
+          "A. Une simple hélice de nucléotides liés par des liaisons covalentes",
+          "B. Une double hélice antiparallèle stabilisée par des liaisons hydrogène entre bases azotées",
+          "C. Une triple hélice de chaînes phosphatées enroulées autour d'un axe protéique",
+          "D. Une structure planaire en feuillets bêta composée de paires de bases"
         ],
         "answer_index": 1,
-        "explanation": "L'hémoglobine est une protéine contenue dans les globules rouges dont le groupement hème, associé au fer, se lie à l'oxygène pour le transporter des poumons aux tissus."
+        "explanation": "L'ADN est une double hélice antiparallèle : les deux brins sont orientés en sens opposés et maintenus ensemble par des liaisons hydrogène entre bases complémentaires (A-T et G-C), comme démontré par Watson et Crick grâce notamment aux clichés de diffraction X de Rosalind Franklin."
       },
       {
         "theme": "sciences",
-        "question": "En physique quantique, quelle relation exprime le principe d'incertitude d'Heisenberg ?",
+        "question": "En chimie, qu'est-ce que le numéro atomique d'un élément représente ?",
         "options": [
-          "A. L'énergie d'un photon est proportionnelle à sa fréquence",
-          "B. La masse et l'énergie sont équivalentes",
-          "C. Il est impossible de connaître simultanément et avec précision la position et la quantité de mouvement d'une particule",
-          "D. La vitesse de la lumière est constante dans le vide"
+          "A. Le nombre de neutrons dans le noyau",
+          "B. La masse moyenne des isotopes de l'élément",
+          "C. Le nombre de protons dans le noyau",
+          "D. Le nombre total de nucléons dans l'atome le plus stable"
         ],
         "answer_index": 2,
-        "explanation": "Le principe d'incertitude d'Heisenberg (1927) stipule que Δx·Δp ≥ ℏ/2, ce qui signifie que mieux on connaît la position d'une particule, moins on peut connaître sa quantité de mouvement, et vice versa."
+        "explanation": "Le numéro atomique Z correspond au nombre de protons présents dans le noyau de l'atome. Il est propre à chaque élément chimique et détermine sa place dans le tableau périodique : par exemple, Z=6 pour le carbone, Z=79 pour l'or."
       },
       {
         "theme": "histoire",
-        "question": "Quel traité, signé en 1648, mit fin à la guerre de Trente Ans et posa les bases du système moderne des États souverains ?",
+        "question": "Quel événement de 1789 marque symboliquement le début de la Révolution française, souvent considéré comme le premier acte de rébellion populaire contre le pouvoir royal ?",
         "options": [
-          "A. Le traité de Westphalie",
-          "B. Le traité de Vienne",
-          "C. Le traité d'Utrecht",
-          "D. Le traité de Versailles"
+          "A. La fuite à Varennes du roi Louis XVI",
+          "B. La proclamation de la République par la Convention nationale",
+          "C. La prise de la Bastille par les Parisiens le 14 juillet",
+          "D. La convocation des États généraux à Versailles"
         ],
-        "answer_index": 0,
-        "explanation": "Les traités de Westphalie (Osnabrück et Münster) en 1648 mirent fin à la guerre de Trente Ans et établirent le principe de souveraineté nationale, fondement du droit international moderne."
+        "answer_index": 2,
+        "explanation": "La prise de la Bastille le 14 juillet 1789 symbolise le soulèvement du peuple contre l'absolutisme royal. Bien que la forteresse ne contînt que sept prisonniers, cet acte représente la rupture avec l'Ancien Régime et est depuis célébré comme fête nationale française."
       }
     ],
     "actu_qcm": [
       {
-        "theme": "Cessez-le-feu Liban",
-        "question": "Quel est le nom du Premier ministre libanais qui a accueilli positivement le cessez-le-feu de 10 jours annoncé par Israël ?",
+        "theme": "Fraude Medicare RFK",
+        "question": "Devant quelle commission parlementaire Robert F. Kennedy Jr a-t-il été auditionné concernant les accusations de fraude Medicare et ses positions anti-vaccination ?",
         "options": [
-          "A. Hassan Nasrallah",
-          "B. Nawaf Salam",
-          "C. Fouad Siniora",
-          "D. Najib Mikati"
+          "A. House Judiciary Committee",
+          "B. House Ways and Means Committee",
+          "C. Senate Finance Committee",
+          "D. House Energy and Commerce Committee"
         ],
         "answer_index": 1,
-        "explanation": "C'est Nawaf Salam, Premier ministre libanais, qui a réagi positivement à l'annonce du cessez-le-feu de 10 jours proposé par Israël, dans un contexte de médiation impliquant Donald Trump."
+        "explanation": "L'article précise que l'audition de RFK Jr s'est tenue devant la commission House Ways and Means, où les législateurs l'ont questionné sur son bilan en santé publique."
       },
       {
-        "theme": "Terrorisme Londres",
-        "question": "Quel bureau situé à proximité des cibles des incendies criminels investigués par la police antiterroriste à Londres est mentionné dans l'article ?",
+        "theme": "Antitrust Amazon",
+        "question": "Qui a présenté les documents révélant les tactiques de fixation de prix d'Amazon comme une preuve de pratiques monopolistiques systématiques ?",
         "options": [
-          "A. Le bureau de la BBC Persian",
-          "B. Le bureau d'Al Jazeera",
-          "C. Le bureau d'Iran International",
-          "D. Le bureau de Press TV"
+          "A. Le Department of Justice américain",
+          "B. La Federal Trade Commission",
+          "C. La California Attorney General",
+          "D. Le Senate Antitrust Subcommittee"
         ],
         "answer_index": 2,
-        "explanation": "Les incendies criminels ont été découverts près du bureau d'Iran International, une chaîne d'information iranienne en exil, ce qui souligne la dimension géopolitique de ces actes violents à Londres."
+        "explanation": "Selon l'article, c'est la California Attorney General qui a présenté ces documents précédemment rédactés comme preuve de pratiques monopolistiques systématiques d'Amazon."
       },
       {
-        "theme": "Marché smartphones",
-        "question": "Quels modèles de smartphones sont cités dans l'article comme ayant bénéficié de fonctionnalités attractives au Q1 2026 pour Apple et Samsung ?",
+        "theme": "Protection Haïtiens",
+        "question": "Pour combien d'années le projet de loi approuvé par la Chambre américaine protège-t-il les ressortissants haïtiens des expulsions ?",
         "options": [
-          "A. iPhone 16 et Galaxy S25",
-          "B. iPhone 17 et Galaxy S26",
-          "C. iPhone 15 Pro et Galaxy S24 Ultra",
-          "D. iPhone 17 Pro et Galaxy Z Fold 7"
+          "A. Un an",
+          "B. Deux ans",
+          "C. Cinq ans",
+          "D. Trois ans"
+        ],
+        "answer_index": 3,
+        "explanation": "L'article indique que la mesure offre une protection contre les reconduites à la frontière pour une période de trois ans, apportant une stabilité temporaire à la communauté haïtienne."
+      },
+      {
+        "theme": "Défense britannique",
+        "question": "Quelle ministre britannique a averti que d'autres budgets pourraient être réduits afin de financer une augmentation des dépenses de défense ?",
+        "options": [
+          "A. Yvette Cooper",
+          "B. Rachel Reeves",
+          "C. Wes Streeting",
+          "D. Bridget Phillipson"
         ],
         "answer_index": 1,
-        "explanation": "L'article mentionne explicitement le Galaxy S26 de Samsung et l'iPhone 17 d'Apple comme les modèles ayant contribué à la croissance des deux seules marques en hausse sur le marché au premier trimestre 2026."
+        "explanation": "L'article mentionne explicitement Rachel Reeves comme étant la ministre qui a évoqué des réallocations budgétaires pour financer les dépenses militaires sans augmenter les impôts."
       },
       {
-        "theme": "Rivalité spatiale",
-        "question": "Selon l'article sur la rivalité Bezos-Musk, à quoi s'étend désormais la course spatiale entre les deux milliardaires, au-delà de la conquête lunaire ?",
+        "theme": "Framework Claude MCP",
+        "question": "Quel protocole le framework Claude-mpm intègre-t-il pour permettre une communication standardisée entre agents et systèmes externes ?",
         "options": [
-          "A. Au contrôle des stations spatiales habitées",
-          "B. À l'exploitation minière des astéroïdes",
-          "C. Au contrôle de l'infrastructure orbitale avec des satellites IA",
-          "D. Au développement de fusées réutilisables supersoniques"
+          "A. Le protocole REST API",
+          "B. Le protocole WebSocket",
+          "C. Le protocole MCP (Model Context Protocol)",
+          "D. Le protocole gRPC"
         ],
         "answer_index": 2,
-        "explanation": "L'article précise que la rivalité dépasse la conquête lunaire et s'étend au contrôle stratégique de l'infrastructure orbitale, avec des plans déposés pour intégrer des satellites d'IA en orbite."
-      },
-      {
-        "theme": "Allbirds pivot IA",
-        "question": "De combien a progressé le cours de l'action Allbirds après l'annonce de son pivot vers l'IA compute ?",
-        "options": [
-          "A. +200%",
-          "B. +450%",
-          "C. +700%",
-          "D. +1000%"
-        ],
-        "answer_index": 2,
-        "explanation": "L'article indique que l'action Allbirds a bondi de +700% après que la société a annoncé abandonner le marché des sneakers durables pour se repositionner dans le secteur de l'IA compute."
+        "explanation": "L'article sur Claude-mpm 6.2.32 précise que l'intégration du protocole MCP (Model Context Protocol) permet une communication standardisée entre agents et systèmes externes."
       }
     ]
   }

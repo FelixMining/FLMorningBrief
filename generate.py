@@ -621,6 +621,8 @@ def generate_revision_qcm(history: dict, today_str: str) -> list:
     cutoff = (datetime.now() - timedelta(days=30)).date().isoformat()
     pool = []
     for date_key, data in history.items():
+        if not isinstance(data, dict):
+            continue
         if date_key >= cutoff and date_key != today_str:
             for q in data.get('culture_qcm', []):
                 if q.get('question'):
@@ -638,7 +640,7 @@ def generate_revision_qcm(history: dict, today_str: str) -> list:
 # ─────────────────────────────────────────────────────────────────
 def generate_mot_review_qcm(history: dict, today_str: str, model: str) -> list:
     """Génère des QCM pour tester la mémorisation des 3 derniers mots du jour."""
-    dates = sorted([d for d in history.keys() if d != today_str], reverse=True)[:3]
+    dates = sorted([d for d in history.keys() if d != today_str and isinstance(history[d], dict)], reverse=True)[:3]
     mots = []
     for d in dates:
         m = history[d].get('mot_du_jour')

@@ -1,9 +1,11 @@
 {
   "seen_video_ids": [
-    "JYUGfNoyDKs",
-    "gCLQqJew78A",
+    "0mwL5BWLaWM",
     "DQVV1ARVDOU",
-    "5ekLY3eDWQE"
+    "5ekLY3eDWQE",
+    "gCLQqJew78A",
+    "JYUGfNoyDKs",
+    "Ldm6pUWi9Lc"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -111,6 +113,115 @@
         ],
         "answer_index": 2,
         "explanation": "L'article sur Claude-mpm 6.2.32 précise que l'intégration du protocole MCP (Model Context Protocol) permet une communication standardisée entre agents et systèmes externes."
+      }
+    ]
+  },
+  "2026-04-17": {
+    "mot_du_jour": {
+      "mot": "noctiluque",
+      "classe": "adjectif / nom féminin",
+      "definition": "Qui émet de la lumière dans l'obscurité ; se dit aussi d'un micro-organisme marin bioluminescent capable d'illuminer les vagues la nuit.",
+      "etymologie": "Du latin noctiluca, formé de nox (nuit) et lucere (briller).",
+      "exemple": "Au large de la côte bretonne, les vagues brisées révélaient une traîne noctiluque d'un bleu électrique, comme si la mer elle-même respirait de la lumière."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "Quel phénomène physique explique qu'un objet plongé dans un fluide subisse une poussée verticale vers le haut égale au poids du fluide déplacé ?",
+        "options": [
+          "A. L'effet Venturi",
+          "B. Le principe d'Archimède",
+          "C. La loi de Pascal",
+          "D. L'effet Bernoulli"
+        ],
+        "answer_index": 1,
+        "explanation": "Le principe d'Archimède, énoncé au IIIe siècle av. J.-C., stipule que tout corps immergé dans un fluide subit une poussée verticale ascendante égale au poids du volume de fluide déplacé."
+      },
+      {
+        "theme": "sciences",
+        "question": "En astronomie, qu'appelle-t-on la « magnitude absolue » d'une étoile ?",
+        "options": [
+          "A. Sa luminosité apparente observée depuis la Terre",
+          "B. Sa luminosité intrinsèque mesurée à une distance standard de 10 parsecs",
+          "C. Son indice de couleur comparé au Soleil",
+          "D. Son diamètre angulaire mesuré par interférométrie"
+        ],
+        "answer_index": 1,
+        "explanation": "La magnitude absolue est la magnitude qu'aurait un astre s'il était placé à exactement 10 parsecs (environ 32,6 années-lumière) de l'observateur, permettant ainsi de comparer la luminosité intrinsèque des étoiles."
+      },
+      {
+        "theme": "culture pop",
+        "question": "Dans l'univers de la saga « Dune » de Frank Herbert, quelle substance est au cœur de tous les enjeux politiques et économiques de l'Empire galactique ?",
+        "options": [
+          "A. Le melange (épice)",
+          "B. Le cristal de feu",
+          "C. L'huile de stellaire",
+          "D. Le nébulithe"
+        ],
+        "answer_index": 0,
+        "explanation": "L'épice mélange, produite uniquement sur la planète Arrakis, est la ressource la plus précieuse de l'univers de Dune : elle prolonge la vie, décuple les capacités cognitives et permet la navigation spatiale interstellaire."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Cessez-le-feu Liban",
+        "question": "Quel groupe armé a exprimé sa méfiance à l'égard du cessez-le-feu entre Israël et le Liban, en évoquant des engagements antérieurement rompus par Israël ?",
+        "options": [
+          "A. Le Hamas",
+          "B. Le Hezbollah",
+          "C. Le Jihad islamique",
+          "D. Les Houthis"
+        ],
+        "answer_index": 1,
+        "explanation": "C'est le Hezbollah qui a exprimé sa méfiance envers le cessez-le-feu, soulignant qu'Israël avait déjà rompu des engagements similaires par le passé."
+      },
+      {
+        "theme": "Justin Fairfax",
+        "question": "Quel poste politique Justin Fairfax occupait-il avant le drame familial qui lui a coûté la vie ?",
+        "options": [
+          "A. Sénateur fédéral de Virginie",
+          "B. Gouverneur de Virginie",
+          "C. Ancien gouverneur adjoint de Virginie",
+          "D. Maire de Richmond"
+        ],
+        "answer_index": 2,
+        "explanation": "Justin Fairfax avait occupé le poste de gouverneur adjoint (Lieutenant Governor) de l'État de Virginie avant ce tragique événement."
+      },
+      {
+        "theme": "Nomination CDC",
+        "question": "Pour quelle raison le précédent directeur des CDC a-t-il été licencié avant la nomination de la nouvelle candidate choisie par Trump ?",
+        "options": [
+          "A. Des désaccords budgétaires avec le Congrès",
+          "B. Des désaccords majeurs avec Robert F. Kennedy Jr. notamment sur l'agenda vaccinal",
+          "C. Une affaire de corruption financière",
+          "D. Une opposition publique à la politique étrangère de Trump"
+        ],
+        "answer_index": 1,
+        "explanation": "Le précédent directeur des CDC a été licencié en moins d'un mois en raison de désaccords majeurs avec Robert F. Kennedy Jr., secrétaire à la Santé, notamment sur l'agenda vaccinal."
+      },
+      {
+        "theme": "Eric Swalwell",
+        "question": "Quelle décision Eric Swalwell a-t-il prise en parallèle de l'enquête du ministère de la Justice le visant pour agressions sexuelles ?",
+        "options": [
+          "A. Il a demandé un non-lieu auprès de la Cour suprême",
+          "B. Il a annoncé sa candidature à la présidence",
+          "C. Il a annoncé sa démission du Congrès",
+          "D. Il a demandé l'immunité parlementaire"
+        ],
+        "answer_index": 2,
+        "explanation": "Swalwell a annoncé sa démission du Congrès, marquant une chute rapide pour cette figure politique démocrate de premier plan."
+      },
+      {
+        "theme": "Antibiotiques bactéries",
+        "question": "Selon l'article de ScienceAlert, quel effet inattendu les antibiotiques peuvent-ils provoquer sur les bactéries ?",
+        "options": [
+          "A. Ils peuvent rendre les bactéries invisibles au système immunitaire",
+          "B. Ils peuvent 'enflammer' les bactéries, rendant les infections plus difficiles à traiter",
+          "C. Ils peuvent accélérer la reproduction des bactéries résistantes",
+          "D. Ils peuvent fusionner plusieurs souches bactériennes entre elles"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article de ScienceAlert révèle que les antibiotiques peuvent 'enflammer' les bactéries, un effet contre-intuitif qui complique le traitement des infections."
       }
     ]
   }

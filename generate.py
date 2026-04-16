@@ -898,7 +898,7 @@ def main() -> None:
     (briefs_dir / 'latest_meta.json').write_text(
         json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf-8'
     )
-    log.info(f'Méta : {token_data["tokens_in"]}→{token_data["tokens_out"]} tokens, ${token_data["cost_usd"]:.4f}')
+    log.info(f'Méta : {_tok_data["tokens_in"]}→{_tok_data["tokens_out"]} tokens, ${_tok_data["cost_usd"]:.4f}')
 
     update_index(briefs_dir, cfg)
     log.info('Index mis à jour.')

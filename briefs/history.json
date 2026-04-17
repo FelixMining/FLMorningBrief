@@ -1,11 +1,13 @@
 {
   "seen_video_ids": [
+    "iFRXQolDzMU",
+    "5ekLY3eDWQE",
     "0mwL5BWLaWM",
     "DQVV1ARVDOU",
-    "5ekLY3eDWQE",
+    "PviXGJM5wfM",
     "gCLQqJew78A",
-    "JYUGfNoyDKs",
-    "Ldm6pUWi9Lc"
+    "Ldm6pUWi9Lc",
+    "JYUGfNoyDKs"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -222,6 +224,115 @@
         ],
         "answer_index": 1,
         "explanation": "L'article de ScienceAlert révèle que les antibiotiques peuvent 'enflammer' les bactéries, un effet contre-intuitif qui complique le traitement des infections."
+      }
+    ]
+  },
+  "2026-04-18": {
+    "mot_du_jour": {
+      "mot": "synesthésie",
+      "classe": "nom féminin",
+      "definition": "Phénomène neurologique par lequel la stimulation d'un sens entraîne automatiquement une perception dans un autre sens, comme « voir » des couleurs en entendant de la musique. Il s'agit d'une forme d'association sensorielle involontaire et constante.",
+      "etymologie": "Du grec ancien « syn » (ensemble) et « aisthesis » (sensation), littéralement « sensation simultanée ».",
+      "exemple": "Pour cette pianiste, chaque accord de ré mineur évoquait irrésistiblement une teinte indigo profonde : sa synesthésie faisait de chaque concert une expérience doublement sensorielle."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En biologie cellulaire, quel organite est principalement responsable de la production d'énergie sous forme d'ATP dans les cellules eucaryotes ?",
+        "options": [
+          "A. Le noyau",
+          "B. Le ribosome",
+          "C. La mitochondrie",
+          "D. L'appareil de Golgi"
+        ],
+        "answer_index": 2,
+        "explanation": "La mitochondrie est le siège de la respiration cellulaire aérobie, notamment du cycle de Krebs et de la chaîne respiratoire, qui produisent la majorité de l'ATP utilisée par la cellule."
+      },
+      {
+        "theme": "sciences",
+        "question": "En physique des ondes, que représente la longueur d'onde d'un signal lumineux ?",
+        "options": [
+          "A. Le nombre d'oscillations par seconde",
+          "B. La distance entre deux points consécutifs en phase sur la même onde",
+          "C. La vitesse de propagation de la lumière dans le vide",
+          "D. L'amplitude maximale du champ électrique"
+        ],
+        "answer_index": 1,
+        "explanation": "La longueur d'onde est la distance séparant deux points consécutifs de même phase (par exemple, deux crêtes successives). Elle est liée à la fréquence par la relation λ = v/f, où v est la vitesse de propagation."
+      },
+      {
+        "theme": "histoire",
+        "question": "Quel traité de 1648 mit fin à la guerre de Trente Ans et posa les bases du système moderne d'États souverains en Europe ?",
+        "options": [
+          "A. Le traité de Westphalie",
+          "B. Le traité d'Utrecht",
+          "C. Le traité de Vienne",
+          "D. Le traité de Tordesillas"
+        ],
+        "answer_index": 0,
+        "explanation": "Le traité de Westphalie (1648) conclut la guerre de Trente Ans et reconnut officiellement la souveraineté des États sur leur propre territoire, inaugurant le principe fondateur du droit international moderne."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Détroit d'Ormuz",
+        "question": "Pourquoi le détroit d'Ormuz est-il considéré comme l'une des voies maritimes les plus stratégiques au monde ?",
+        "options": [
+          "A. Il relie l'Europe à l'Asie via le canal de Suez",
+          "B. Une part significative du pétrole mondial y transite",
+          "C. Il constitue la principale route du commerce de céréales mondial",
+          "D. Il est le passage obligé pour les exportations chinoises vers l'Occident"
+        ],
+        "answer_index": 1,
+        "explanation": "Selon l'article, le détroit d'Ormuz est stratégique car une part significative du pétrole mondial y transite, ce qui en fait un point névralgique des tensions géopolitiques entre l'Iran et les États-Unis."
+      },
+      {
+        "theme": "Surveillance américaine",
+        "question": "Quelles durées de prolongation de la loi sur la surveillance la Chambre des représentants a-t-elle rejetées avant l'approbation d'une extension brève par le Sénat ?",
+        "options": [
+          "A. Deux ans et six mois",
+          "B. Dix ans et trois ans",
+          "C. Cinq ans et 18 mois",
+          "D. Quatre ans et deux ans"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que la Chambre des représentants a rejeté des propositions d'extension de cinq ans et de 18 mois, révélant des désaccords profonds sur les enjeux de surveillance et de libertés civiles."
+      },
+      {
+        "theme": "Îles Salomon",
+        "question": "Quelle réalité socio-économique explique principalement l'explosion du jeu de cartes illégal dans les bidonvilles des îles Salomon ?",
+        "options": [
+          "A. L'afflux de touristes étrangers pratiquant le jeu",
+          "B. L'absence d'emplois stables poussant les habitants à chercher des revenus rapides",
+          "C. La légalisation récente des casinos dans le pays",
+          "D. L'influence de cartels étrangers finançant ces activités"
+        ],
+        "answer_index": 1,
+        "explanation": "Selon l'article, c'est l'absence d'emplois stables qui pousse les habitants des bidonvilles des îles Salomon à se tourner vers le jeu illégal comme solution de revenus rapides."
+      },
+      {
+        "theme": "Netflix Reed Hastings",
+        "question": "Selon Ted Sarandos, quelle est la raison avancée pour expliquer le départ de Reed Hastings de Netflix, valorisé à 455 milliards de dollars ?",
+        "options": [
+          "A. Des désaccords stratégiques sur l'expansion en Asie",
+          "B. Une retraite anticipée pour raisons de santé",
+          "C. Son départ n'avait rien à voir avec l'échec du deal Warner Bros.",
+          "D. Une prise de contrôle hostile par des actionnaires majoritaires"
+        ],
+        "answer_index": 2,
+        "explanation": "Ted Sarandos a déclaré que le départ de Reed Hastings de Netflix n'avait rien à voir avec l'échec du deal Warner Bros., dissipant ainsi les spéculations liant ces deux événements."
+      },
+      {
+        "theme": "Café drapeaux Pride",
+        "question": "Quelle action collective les employés d'une chaîne de café californienne ont-ils menée pour faire revenir la direction sur sa décision de supprimer les symboles Pride ?",
+        "options": [
+          "A. Une grève générale de plusieurs semaines",
+          "B. Une pétition interne signée par les salariés",
+          "C. Un recours judiciaire devant un tribunal fédéral",
+          "D. Un boycott organisé avec des associations LGBTQ+ externes"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article indique que les employés ont lancé une pétition interne qui a démontré la force de l'action collective des travailleurs, contraignant la direction à rétablir sa politique sur les drapeaux Pride."
       }
     ]
   }

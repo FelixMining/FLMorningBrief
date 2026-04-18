@@ -1,13 +1,15 @@
 {
   "seen_video_ids": [
+    "PviXGJM5wfM",
     "iFRXQolDzMU",
+    "DQVV1ARVDOU",
     "5ekLY3eDWQE",
     "0mwL5BWLaWM",
-    "DQVV1ARVDOU",
-    "PviXGJM5wfM",
-    "gCLQqJew78A",
+    "Np0Sknk5F5U",
     "Ldm6pUWi9Lc",
-    "JYUGfNoyDKs"
+    "gCLQqJew78A",
+    "JYUGfNoyDKs",
+    "P-wAr687qxg"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -333,6 +335,115 @@
         ],
         "answer_index": 1,
         "explanation": "L'article indique que les employés ont lancé une pétition interne qui a démontré la force de l'action collective des travailleurs, contraignant la direction à rétablir sa politique sur les drapeaux Pride."
+      }
+    ]
+  },
+  "2026-04-19": {
+    "mot_du_jour": {
+      "mot": "palimpseste",
+      "classe": "nom masculin",
+      "definition": "Manuscrit ancien dont la surface a été grattée ou lavée pour être réutilisée, laissant néanmoins apparaître des traces de l'écriture originelle. Par extension, désigne toute œuvre ou réalité portant les strates visibles de ce qui l'a précédée.",
+      "etymologie": "Du grec ancien « palimpsêstos », formé de « palin » (de nouveau) et « psân » (gratter), attesté en français au XVIIe siècle.",
+      "exemple": "La vieille ville, avec ses ruelles médiévales pavées par-dessus des voies romaines, était un véritable palimpseste où chaque époque avait gravé son empreinte sans effacer entièrement la précédente."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En chimie organique, qu'est-ce qu'une liaison peptidique ?",
+        "options": [
+          "A. Une liaison entre deux atomes de carbone formant un cycle benzénique",
+          "B. Une liaison covalente entre le groupement amine d'un acide aminé et le groupement carboxyle d'un autre, avec perte d'une molécule d'eau",
+          "C. Une liaison ionique entre un acide aminé chargé positivement et un ion métallique",
+          "D. Une liaison hydrogène stabilisant la structure secondaire des protéines"
+        ],
+        "answer_index": 1,
+        "explanation": "La liaison peptidique est une liaison covalente de type amide (–CO–NH–) résultant de la condensation entre le groupement –COOH d'un acide aminé et le groupement –NH₂ d'un autre, avec élimination d'une molécule d'eau. Elle constitue le lien fondamental de la chaîne polypeptidique."
+      },
+      {
+        "theme": "sciences",
+        "question": "En informatique théorique, que désigne la notation « O(n log n) » dans l'analyse de la complexité d'un algorithme ?",
+        "options": [
+          "A. L'espace mémoire maximal utilisé par l'algorithme pour un tableau de n éléments",
+          "B. Le nombre exact d'opérations effectuées par l'algorithme dans le meilleur cas",
+          "C. La croissance asymptotique du temps d'exécution, typique des algorithmes de tri efficaces comme le tri fusion",
+          "D. Le nombre de nœuds parcourus dans un arbre binaire de recherche équilibré"
+        ],
+        "answer_index": 2,
+        "explanation": "La notation O(n log n) décrit la complexité temporelle dans le pire cas de nombreux algorithmes de tri efficaces (tri fusion, tri rapide en moyenne, tri par tas). Elle signifie que le temps d'exécution croît proportionnellement à n multiplié par le logarithme de n, ce qui est bien plus performant que O(n²) pour de grandes valeurs de n."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne la ligne imaginaire qui délimite, dans les océans, la frontière entre deux masses d'eau de températures et de salinités très différentes ?",
+        "options": [
+          "A. L'isobare",
+          "B. La thermocline",
+          "C. La ligne de convergence intertropicale",
+          "D. Le talweg"
+        ],
+        "answer_index": 1,
+        "explanation": "La thermocline est la couche de transition océanique dans laquelle la température de l'eau chute rapidement avec la profondeur, séparant les eaux de surface chaudes et oxygénées des eaux profondes froides et denses. Elle joue un rôle crucial dans la circulation océanique et la vie marine."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Crise Moyen-Orient",
+        "question": "Quelle organisation humanitaire a dû cesser ses opérations dans le nord de Gaza en raison de l'escalade militaire au Moyen-Orient mentionnée dans l'article ?",
+        "options": [
+          "A. Médecins Sans Frontières",
+          "B. La Croix-Rouge",
+          "C. L'Unicef",
+          "D. Oxfam"
+        ],
+        "answer_index": 2,
+        "explanation": "Selon l'article, c'est l'Unicef qui a dû cesser ses opérations dans le nord de Gaza, conséquence directe de l'escalade militaire dans la région."
+      },
+      {
+        "theme": "Copa del Rey",
+        "question": "Quel était le score à l'issue du temps réglementaire et des prolongations lors de la finale de la Copa del Rey entre la Real Sociedad et l'Atlético Madrid ?",
+        "options": [
+          "A. 1-1",
+          "B. 3-3",
+          "C. 0-0",
+          "D. 2-2"
+        ],
+        "answer_index": 3,
+        "explanation": "La finale s'est terminée sur un score de 2-2 après le temps réglementaire et les prolongations, forçant une séance de tirs au but remportée par la Real Sociedad."
+      },
+      {
+        "theme": "Jon Ossoff",
+        "question": "De quel État américain Jon Ossoff, le sénateur démocrate qui dénonce la 'mafia de Mar-a-Lago', est-il l'élu ?",
+        "options": [
+          "A. Floride",
+          "B. Géorgie",
+          "C. Pennsylvanie",
+          "D. Arizona"
+        ],
+        "answer_index": 1,
+        "explanation": "Jon Ossoff est sénateur démocrate de l'État de Géorgie. Il intensifie son discours critique envers Trump dans un contexte de rumeurs sur une possible candidature présidentielle."
+      },
+      {
+        "theme": "Boxe Baumgardner",
+        "question": "Quel surnom péjoratif Alycia Baumgardner a-t-elle utilisé pour qualifier Caroline Dubois après sa victoire, signifiant qu'elle devait encore faire ses preuves ?",
+        "options": [
+          "A. 'Minnow' (vairon)",
+          "B. 'Sardine' (sardine)",
+          "C. 'Guppy' (petit poisson)",
+          "D. 'Plankton' (plancton)"
+        ],
+        "answer_index": 2,
+        "explanation": "Baumgardner a qualifié Dubois de 'guppy', un petit poisson, pour signifier que la boxeuse britannique n'était pas encore au niveau pour mériter un combat majeur contre elle."
+      },
+      {
+        "theme": "Cerebras IPO",
+        "question": "Selon l'article de SiliconANGLE News, dans quel contexte Cerebras Systems a-t-il déposé ses documents pour une introduction en bourse ?",
+        "options": [
+          "A. Lors d'une période de baisse significative de ses revenus",
+          "B. Dans un contexte de croissance rapide de ses revenus",
+          "C. Suite à une fusion avec un concurrent majeur",
+          "D. Après avoir obtenu un contrat exclusif avec le gouvernement américain"
+        ],
+        "answer_index": 1,
+        "explanation": "Cerebras Systems, développeur de puces pour l'IA, a déposé ses documents pour entrer en bourse dans un contexte de croissance rapide de ses revenus, selon SiliconANGLE News."
       }
     ]
   }

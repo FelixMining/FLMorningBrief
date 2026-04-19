@@ -1,15 +1,17 @@
 {
   "seen_video_ids": [
-    "PviXGJM5wfM",
-    "iFRXQolDzMU",
     "DQVV1ARVDOU",
-    "5ekLY3eDWQE",
-    "0mwL5BWLaWM",
+    "PviXGJM5wfM",
+    "gCLQqJew78A",
+    "vd973v3rhiA",
     "Np0Sknk5F5U",
     "Ldm6pUWi9Lc",
-    "gCLQqJew78A",
     "JYUGfNoyDKs",
-    "P-wAr687qxg"
+    "P-wAr687qxg",
+    "0mwL5BWLaWM",
+    "5ekLY3eDWQE",
+    "iFRXQolDzMU",
+    "N6481-FfSxU"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -444,6 +446,115 @@
         ],
         "answer_index": 1,
         "explanation": "Cerebras Systems, développeur de puces pour l'IA, a déposé ses documents pour entrer en bourse dans un contexte de croissance rapide de ses revenus, selon SiliconANGLE News."
+      }
+    ]
+  },
+  "2026-04-20": {
+    "mot_du_jour": {
+      "mot": "ineffable",
+      "classe": "adjectif",
+      "definition": "Se dit de ce qui ne peut être exprimé par des mots, de ce qui dépasse toute description possible. Désigne une expérience ou une beauté si intense qu'aucun langage ne saurait en rendre compte.",
+      "etymologie": "Du latin ineffabilis, composé de in- (privatif) et fari (parler), littéralement « ce dont on ne peut parler ».",
+      "exemple": "Face à l'immensité du canyon baigné de lumière dorée, elle ressentit une joie ineffable, comme si les mots eux-mêmes avaient abdiqué."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En chimie, qu'appelle-t-on l'électronégativité d'un atome ?",
+        "options": [
+          "A. La capacité d'un atome à attirer vers lui les électrons d'une liaison chimique partagée.",
+          "B. Le nombre d'électrons libérés lors d'une réaction d'oxydation.",
+          "C. L'énergie nécessaire pour arracher un électron à un atome à l'état gazeux.",
+          "D. La charge portée par le noyau d'un atome exprimée en coulombs."
+        ],
+        "answer_index": 0,
+        "explanation": "L'électronégativité mesure la tendance d'un atome à attirer les électrons d'une liaison covalente vers lui. Le fluor est l'élément le plus électronégatif de la classification périodique, selon l'échelle de Pauling."
+      },
+      {
+        "theme": "sciences",
+        "question": "En mathématiques, qu'énonce le théorème de Pythagore dans un triangle rectangle ?",
+        "options": [
+          "A. La somme des angles d'un triangle est toujours égale à 180 degrés.",
+          "B. Le carré de l'hypoténuse est égal à la somme des carrés des deux autres côtés.",
+          "C. L'aire d'un triangle rectangle est égale au produit de ses deux cathètes.",
+          "D. Dans tout triangle, le côté le plus long est opposé à l'angle le plus grand."
+        ],
+        "answer_index": 1,
+        "explanation": "Le théorème de Pythagore stipule que dans un triangle rectangle, c² = a² + b², où c est l'hypoténuse (le côté opposé à l'angle droit) et a, b sont les deux cathètes. C'est l'un des résultats fondamentaux de la géométrie euclidienne."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne la grande faille tectonique africaine qui s'étend sur près de 6 000 km, du nord de l'Éthiopie jusqu'au Mozambique, et qui témoigne de la lente fragmentation du continent ?",
+        "options": [
+          "A. La dorsale médio-atlantique",
+          "B. La fosse des Mariannes",
+          "C. Le Grand Rift africain",
+          "D. La faille de San Andreas"
+        ],
+        "answer_index": 2,
+        "explanation": "Le Grand Rift africain (ou Rift Valley) est une zone de divergence tectonique où les plaques nubiennes et somaliennes s'écartent lentement. Ce phénomène a façonné les grands lacs d'Afrique de l'Est et laisse penser qu'un nouveau continent pourrait se former dans plusieurs millions d'années."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Blocus détroit Ormuz",
+        "question": "Selon l'article du Guardian, quelle est la condition posée par l'Iran pour rouvrir le détroit d'Ormuz ?",
+        "options": [
+          "A. La fin du soutien américain à Israël",
+          "B. La levée du blocus américain",
+          "C. Le retrait des troupes américaines d'Irak",
+          "D. La signature d'un accord nucléaire"
+        ],
+        "answer_index": 1,
+        "explanation": "L'Iran maintient la fermeture du détroit d'Ormuz en riposte aux actions militaires américaines et refuse de le rouvrir tant que le blocus américain persiste."
+      },
+      {
+        "theme": "Navire iranien saisi",
+        "question": "Selon Trump, pourquoi l'armée américaine a-t-elle saisi le navire porte-conteneurs aux couleurs iraniennes ?",
+        "options": [
+          "A. Il transportait des armes vers le Yémen",
+          "B. Il avait pénétré dans les eaux territoriales américaines",
+          "C. Il tentait de contourner le blocus militaire américain près du détroit d'Ormuz",
+          "D. Il refusait d'être inspecté par la marine américaine"
+        ],
+        "answer_index": 2,
+        "explanation": "Trump a affirmé que le navire avait tenté de contourner le blocus militaire américain établi près du détroit d'Ormuz, ce que l'administration qualifie de violation des restrictions en vigueur."
+      },
+      {
+        "theme": "Fusillade Louisiane",
+        "question": "Dans quelle ville de Louisiane Shamar Elkins a-t-il commis la fusillade meurtrière visant notamment ses propres enfants ?",
+        "options": [
+          "A. Baton Rouge",
+          "B. New Orleans",
+          "C. Lafayette",
+          "D. Shreveport"
+        ],
+        "answer_index": 3,
+        "explanation": "La fusillade s'est produite à Shreveport, en Louisiane, où Shamar Elkins a tué huit enfants dont sept de ses propres enfants, avant d'être abattu par la police."
+      },
+      {
+        "theme": "Trafic armes Iran",
+        "question": "Selon le procureur fédéral, vers quel continent la suspecte américano-iranienne arrêtée à Los Angeles aurait-elle acheminé des armes pour le compte du gouvernement iranien ?",
+        "options": [
+          "A. L'Asie",
+          "B. L'Amérique latine",
+          "C. L'Afrique",
+          "D. L'Europe de l'Est"
+        ],
+        "answer_index": 2,
+        "explanation": "Le procureur fédéral indique que la suspecte aurait entretenu des relations de trafic d'armes visant le continent africain en représentation du gouvernement iranien."
+      },
+      {
+        "theme": "ABF scission Primark",
+        "question": "Quelle est la principale raison avancée par les analystes pour justifier la scission envisagée entre Primark et le secteur alimentaire au sein du groupe ABF ?",
+        "options": [
+          "A. Réduire la dette colossale du groupe",
+          "B. Renforcer la compétitivité et la flexibilité opérationnelle",
+          "C. Répondre aux exigences des régulateurs européens",
+          "D. Faciliter une introduction en bourse de Primark"
+        ],
+        "answer_index": 1,
+        "explanation": "Les analystes estiment qu'une séparation des deux activités pourrait renforcer la compétitivité et la flexibilité opérationnelle du groupe, permettant à Primark de bénéficier d'une autonomie accrue."
       }
     ]
   }

@@ -1,17 +1,19 @@
 {
   "seen_video_ids": [
-    "DQVV1ARVDOU",
-    "PviXGJM5wfM",
-    "gCLQqJew78A",
-    "vd973v3rhiA",
-    "Np0Sknk5F5U",
     "Ldm6pUWi9Lc",
-    "JYUGfNoyDKs",
-    "P-wAr687qxg",
-    "0mwL5BWLaWM",
     "5ekLY3eDWQE",
+    "vd973v3rhiA",
+    "N6481-FfSxU",
+    "P-wAr687qxg",
+    "JYUGfNoyDKs",
+    "M22BEuoGvOY",
+    "Np0Sknk5F5U",
+    "PviXGJM5wfM",
     "iFRXQolDzMU",
-    "N6481-FfSxU"
+    "bboOnKktKsw",
+    "0mwL5BWLaWM",
+    "DQVV1ARVDOU",
+    "gCLQqJew78A"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -555,6 +557,115 @@
         ],
         "answer_index": 1,
         "explanation": "Les analystes estiment qu'une séparation des deux activités pourrait renforcer la compétitivité et la flexibilité opérationnelle du groupe, permettant à Primark de bénéficier d'une autonomie accrue."
+      }
+    ]
+  },
+  "2026-04-21": {
+    "mot_du_jour": {
+      "mot": "pétrichor",
+      "classe": "nom masculin",
+      "definition": "Odeur caractéristique et agréable que dégage la terre sèche lorsqu'elle est mouillée par la pluie, produite par des huiles végétales et une molécule bactérienne appelée géosmine.",
+      "etymologie": "Du grec ancien petra (pierre) et ichor (fluide divin coulant dans les veines des dieux), terme forgé en 1964 par les géologues australiens Bear et Thomas.",
+      "exemple": "Après des semaines de canicule, le pétrichor qui s'éleva du jardin à la première averse fut accueilli comme une promesse de renouveau."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En thermodynamique, qu'énonce le second principe, aussi appelé loi de l'entropie ?",
+        "options": [
+          "A. L'énergie totale d'un système isolé reste constante.",
+          "B. Dans un système isolé, l'entropie ne peut qu'augmenter ou rester constante, jamais diminuer.",
+          "C. Toute réaction chimique libère obligatoirement de la chaleur vers le milieu extérieur.",
+          "D. La pression d'un gaz parfait est inversement proportionnelle à sa température."
+        ],
+        "answer_index": 1,
+        "explanation": "Le second principe de la thermodynamique stipule que l'entropie — mesure du désordre d'un système — évolue toujours dans le sens croissant pour un système isolé, traduisant l'irréversibilité naturelle des processus physiques."
+      },
+      {
+        "theme": "sciences",
+        "question": "En génétique, qu'est-ce que le phénomène d'épissage alternatif (alternative splicing) permet d'accomplir ?",
+        "options": [
+          "A. De réparer les cassures double brin de l'ADN grâce à des enzymes de recombinaison.",
+          "B. De produire plusieurs protéines différentes à partir d'un seul et même gène en combinant différemment ses exons.",
+          "C. De dupliquer l'intégralité du génome avant la division cellulaire.",
+          "D. De transférer horizontalement des gènes entre deux organismes d'espèces différentes."
+        ],
+        "answer_index": 1,
+        "explanation": "L'épissage alternatif est un mécanisme post-transcriptionnel par lequel les exons d'un ARN pré-messager peuvent être assemblés de différentes façons, générant plusieurs ARNm matures — et donc plusieurs protéines distinctes — à partir d'un unique gène."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne le courant océanique chaud de l'Atlantique Nord qui longe la côte est de l'Amérique du Nord avant de traverser vers l'Europe, jouant un rôle majeur dans la régulation du climat européen ?",
+        "options": [
+          "A. Le courant de Humboldt",
+          "B. Le courant circumpolaire antarctique",
+          "C. Le Gulf Stream",
+          "D. Le courant de Benguela"
+        ],
+        "answer_index": 2,
+        "explanation": "Le Gulf Stream est un puissant courant marin chaud qui transporte des eaux tropicales vers l'Europe du Nord-Ouest, contribuant à y maintenir des températures bien plus douces que celles attendues à ces latitudes."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Saisie navire iranien",
+        "question": "Quel événement diplomatique a provoqué les signaux contradictoires de l'Iran concernant une reprise des négociations avec Washington, selon l'article du Guardian ?",
+        "options": [
+          "A. Le bombardement d'une base militaire américaine au Moyen-Orient",
+          "B. La saisie par les États-Unis d'un cargo iranien",
+          "C. L'imposition de nouvelles sanctions économiques par l'Union européenne",
+          "D. Le retrait des troupes américaines du détroit d'Ormuz"
+        ],
+        "answer_index": 1,
+        "explanation": "Selon l'article, la volte-face diplomatique iranienne intervient directement après la saisie par les États-Unis d'un cargo iranien, illustrant les tensions persistantes dans la région."
+      },
+      {
+        "theme": "Démissions Trump",
+        "question": "Quelle situation judiciaire ou professionnelle est évoquée concernant Chavez-DeRemer, l'un des ministres ayant quitté l'administration Trump ?",
+        "options": [
+          "A. Elle a été arrêtée pour corruption financière",
+          "B. Elle fait face à une enquête pour faute professionnelle et aurait opté pour le secteur privé",
+          "C. Elle a démissionné pour rejoindre un poste diplomatique à l'étranger",
+          "D. Elle a été écartée à la suite d'un vote de défiance au Congrès"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article mentionne que Chavez-DeRemer fait face à une enquête pour faute professionnelle et aurait choisi de rejoindre le secteur privé, contribuant à l'instabilité de l'exécutif américain."
+      },
+      {
+        "theme": "Énergie propre 2025",
+        "question": "Quel événement historique inédit concernant les énergies renouvelables est signalé pour l'année 2025 selon l'article du Guardian ?",
+        "options": [
+          "A. Les énergies renouvelables couvrent 100 % de la consommation électrique mondiale",
+          "B. La croissance des énergies renouvelables surpasse pour la première fois l'augmentation de la consommation électrique mondiale",
+          "C. Le charbon est officiellement banni dans l'ensemble des pays du G20",
+          "D. L'énergie solaire devient la première source d'électricité devant le nucléaire"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article indique que, pour la première fois, la croissance des énergies renouvelables surpasse l'augmentation de la consommation électrique mondiale, marquant un tournant structurel dans le mix énergétique."
+      },
+      {
+        "theme": "Décrets fossiles Trump",
+        "question": "Quel argument principal l'administration Trump avance-t-elle pour justifier les décrets visant à relancer la production d'énergies fossiles ?",
+        "options": [
+          "A. La réduction du prix de l'essence pour les ménages américains",
+          "B. La lutte contre le chômage dans les États du Midwest",
+          "C. La sécurité nationale et la préparation à la défense",
+          "D. La volonté de concurrencer économiquement la Chine sur les marchés pétroliers"
+        ],
+        "answer_index": 2,
+        "explanation": "Selon l'article, l'administration Trump formule un argument de sécurité nationale, présentant l'autonomie énergétique fossile comme impérative pour la défense du pays."
+      },
+      {
+        "theme": "Succession Apple",
+        "question": "Quel rôle Tim Cook conservera-t-il au sein d'Apple après avoir cédé la direction générale à John Ternus ?",
+        "options": [
+          "A. Il quitte définitivement l'entreprise sans aucune fonction",
+          "B. Il devient conseiller extérieur sans titre officiel",
+          "C. Il prend la tête de la division services d'Apple",
+          "D. Il reste président exécutif de la société"
+        ],
+        "answer_index": 3,
+        "explanation": "L'article précise que Tim Cook, après 14 ans à la tête d'Apple, conservera une influence majeure en tant que président exécutif, tandis que John Ternus prendra ses fonctions de directeur général le 1er septembre."
       }
     ]
   }

@@ -1,19 +1,21 @@
 {
   "seen_video_ids": [
     "Ldm6pUWi9Lc",
-    "5ekLY3eDWQE",
-    "vd973v3rhiA",
-    "N6481-FfSxU",
-    "P-wAr687qxg",
-    "JYUGfNoyDKs",
-    "M22BEuoGvOY",
-    "Np0Sknk5F5U",
     "PviXGJM5wfM",
-    "iFRXQolDzMU",
-    "bboOnKktKsw",
-    "0mwL5BWLaWM",
     "DQVV1ARVDOU",
-    "gCLQqJew78A"
+    "P-wAr687qxg",
+    "M22BEuoGvOY",
+    "iFRXQolDzMU",
+    "0mwL5BWLaWM",
+    "oOsl-Cgu34g",
+    "N6481-FfSxU",
+    "DpO3CpInUas",
+    "JYUGfNoyDKs",
+    "gCLQqJew78A",
+    "5ekLY3eDWQE",
+    "Np0Sknk5F5U",
+    "vd973v3rhiA",
+    "bboOnKktKsw"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -666,6 +668,115 @@
         ],
         "answer_index": 3,
         "explanation": "L'article précise que Tim Cook, après 14 ans à la tête d'Apple, conservera une influence majeure en tant que président exécutif, tandis que John Ternus prendra ses fonctions de directeur général le 1er septembre."
+      }
+    ]
+  },
+  "2026-04-22": {
+    "mot_du_jour": {
+      "mot": "velléité",
+      "classe": "nom féminin",
+      "definition": "Volonté faible et hésitante, désir vague qui ne se traduit jamais en acte concret. Une velléité reste à mi-chemin entre l'envie et la décision.",
+      "etymologie": "Du latin médiéval 'velleitas', dérivé de 'velle' (vouloir), introduit en français au XVIIe siècle par les philosophes scolastiques.",
+      "exemple": "Il avait la velléité d'écrire un roman depuis des années, mais chaque matin le carnet restait fermé sur le coin du bureau."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En physique quantique, que stipule le principe d'incertitude d'Heisenberg ?",
+        "options": [
+          "A. Il est impossible de connaître simultanément avec une précision arbitraire la position et la quantité de mouvement d'une particule.",
+          "B. L'énergie d'un photon est proportionnelle au carré de sa fréquence.",
+          "C. Toute particule en mouvement émet un rayonnement électromagnétique.",
+          "D. La masse d'une particule augmente lorsque sa vitesse se rapproche de celle de la lumière."
+        ],
+        "answer_index": 0,
+        "explanation": "Le principe d'Heisenberg (1927) établit que les paires de grandeurs conjuguées comme la position (x) et la quantité de mouvement (p) ne peuvent être connues simultanément avec une précision absolue : Δx·Δp ≥ ℏ/2. Ce n'est pas une limite technologique, mais une propriété fondamentale de la nature quantique."
+      },
+      {
+        "theme": "sciences",
+        "question": "En biologie, qu'est-ce que la méiose produit, par opposition à la mitose ?",
+        "options": [
+          "A. Des cellules somatiques identiques à la cellule mère avec le même nombre de chromosomes.",
+          "B. Des cellules germinales haploïdes contenant la moitié du nombre de chromosomes de la cellule mère.",
+          "C. Des cellules cancéreuses à multiplication incontrôlée.",
+          "D. Des protéines structurelles utilisées pour la réparation des tissus."
+        ],
+        "answer_index": 1,
+        "explanation": "La méiose est une division cellulaire spécialisée qui réduit de moitié le nombre de chromosomes (de diploïde 2n à haploïde n), produisant quatre cellules germinales génétiquement uniques. C'est ce processus qui permet, lors de la fécondation, de reconstituer le nombre diploïde caractéristique de l'espèce."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne la vaste plaine alluviale d'Asie du Sud formée par les fleuves Gange et Brahmapoutre, constituant l'une des régions les plus densément peuplées et les plus fertiles du monde ?",
+        "options": [
+          "A. Le plateau du Deccan",
+          "B. La plaine du Gange-Brahmapoutre",
+          "C. La vallée de l'Indus",
+          "D. Le bassin du Mékong"
+        ],
+        "answer_index": 1,
+        "explanation": "La plaine indo-gangétique, formée par les alluvions des fleuves Gange et Brahmapoutre, s'étend du Pakistan au Bangladesh en traversant le nord de l'Inde. Avec ses sols extrêmement fertiles et son accès à l'eau, elle abrite plus d'un milliard de personnes et constitue le grenier agricole du sous-continent indien."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Afghans au Congo",
+        "question": "Selon l'article du Guardian, combien d'Afghans les États-Unis envisagent-ils d'envoyer en République démocratique du Congo ?",
+        "options": [
+          "A. 800",
+          "B. 1 100",
+          "C. 1 500",
+          "D. 2 000"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article mentionne explicitement que les États-Unis envisagent d'envoyer 1 100 Afghans en République démocratique du Congo. Ces individus avaient collaboré avec l'armée américaine en Afghanistan."
+      },
+      {
+        "theme": "Fouilles raciales UK",
+        "question": "Selon le rapport évoqué dans l'article du Guardian, combien de fois plus les enfants noirs en Angleterre et au Pays de Galles sont-ils fouillés à corps nu par rapport à leurs pairs blancs ?",
+        "options": [
+          "A. 3 fois plus",
+          "B. 5 fois plus",
+          "C. 8 fois plus",
+          "D. 12 fois plus"
+        ],
+        "answer_index": 2,
+        "explanation": "Le rapport cité par le Guardian indique que les enfants noirs sont 8 fois plus fouillés à corps nu que leurs pairs blancs, révélant une disparité profonde dans les pratiques policières britanniques envers les mineurs."
+      },
+      {
+        "theme": "SPLC inculpé",
+        "question": "Dans quel État américain un grand jury a-t-il inculpé le Southern Poverty Law Center pour fraude fédérale ?",
+        "options": [
+          "A. Géorgie",
+          "B. Mississippi",
+          "C. Tennessee",
+          "D. Alabama"
+        ],
+        "answer_index": 3,
+        "explanation": "Selon l'article du Guardian, l'inculpation du SPLC par un grand jury pour fraude fédérale a eu lieu en Alabama, dans le cadre d'une enquête du département de la Justice sur ses pratiques d'utilisation d'informateurs payants."
+      },
+      {
+        "theme": "CIO catégorie féminine",
+        "question": "Selon l'article du Guardian sur la décision du CIO, quelles catégories d'athlètes sont concernées par la nouvelle politique visant à protéger la catégorie féminine ?",
+        "options": [
+          "A. Les athlètes trans et intersexes (DSD)",
+          "B. Les athlètes dopées et suspendues",
+          "C. Les athlètes handisport et para-olympiques",
+          "D. Les athlètes mineures et junior"
+        ],
+        "answer_index": 0,
+        "explanation": "L'article précise que la nouvelle politique du CIO concerne les athlètes trans et intersexes (DSD), cherchant à préserver l'intégrité de la catégorie féminine tout en demandant que ces athlètes soient traités avec respect."
+      },
+      {
+        "theme": "Cessez-le-feu Moyen-Orient",
+        "question": "Selon l'article du Guardian sur la prolongation du cessez-le-feu au Moyen-Orient, quel pays aurait demandé cette prolongation, ouvrant la voie à une nouvelle phase de négociations ?",
+        "options": [
+          "A. L'Arabie saoudite",
+          "B. Les Émirats arabes unis",
+          "C. Le Pakistan",
+          "D. La Turquie"
+        ],
+        "answer_index": 2,
+        "explanation": "D'après l'article du Guardian, c'est le Pakistan qui aurait demandé la prolongation du cessez-le-feu, permettant ainsi une nouvelle phase de négociations, tandis que le blocus naval américain des ports iraniens reste en place."
       }
     ]
   }

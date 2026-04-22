@@ -1,21 +1,23 @@
 {
   "seen_video_ids": [
-    "Ldm6pUWi9Lc",
-    "PviXGJM5wfM",
-    "DQVV1ARVDOU",
+    "vd973v3rhiA",
+    "Np0Sknk5F5U",
     "P-wAr687qxg",
     "M22BEuoGvOY",
+    "oOsl-Cgu34g",
+    "PviXGJM5wfM",
+    "N6481-FfSxU",
+    "eqRGwYn-fyw",
+    "5ekLY3eDWQE",
+    "Ldm6pUWi9Lc",
     "iFRXQolDzMU",
     "0mwL5BWLaWM",
-    "oOsl-Cgu34g",
-    "N6481-FfSxU",
-    "DpO3CpInUas",
-    "JYUGfNoyDKs",
     "gCLQqJew78A",
-    "5ekLY3eDWQE",
-    "Np0Sknk5F5U",
-    "vd973v3rhiA",
-    "bboOnKktKsw"
+    "JYUGfNoyDKs",
+    "EJM-qmy3Muw",
+    "bboOnKktKsw",
+    "DpO3CpInUas",
+    "DQVV1ARVDOU"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -777,6 +779,115 @@
         ],
         "answer_index": 2,
         "explanation": "D'après l'article du Guardian, c'est le Pakistan qui aurait demandé la prolongation du cessez-le-feu, permettant ainsi une nouvelle phase de négociations, tandis que le blocus naval américain des ports iraniens reste en place."
+      }
+    ]
+  },
+  "2026-04-23": {
+    "mot_du_jour": {
+      "mot": "apophtegme",
+      "classe": "nom masculin",
+      "definition": "Parole mémorable et concise attribuée à un personnage illustre, exprimant une vérité morale ou philosophique de façon frappante. Il se distingue de la simple maxime par le fait qu'il est toujours rattaché à un auteur ou un contexte précis.",
+      "etymologie": "Du grec ancien apophthegma, dérivé de apophthengesthai, signifiant « parler franchement, s'exprimer avec concision ».",
+      "exemple": "Le célèbre « Que chacun balaie devant sa porte » est un apophtegme dont la sobriété désarmante cache une exigence morale absolue."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En chimie, qu'est-ce que la chromatographie permet de réaliser ?",
+        "options": [
+          "A. Mesurer la masse molaire d'une molécule par spectrométrie",
+          "B. Séparer les composants d'un mélange en exploitant leurs différentes affinités pour une phase mobile et une phase stationnaire",
+          "C. Déterminer la structure tridimensionnelle d'une protéine par diffraction aux rayons X",
+          "D. Calculer l'énergie de liaison entre deux atomes d'une molécule"
+        ],
+        "answer_index": 1,
+        "explanation": "La chromatographie repose sur la migration différentielle des constituants d'un mélange : chaque composé se déplace à une vitesse propre selon son affinité relative pour la phase mobile (gaz, liquide) et la phase stationnaire (solide, gel), permettant ainsi leur séparation."
+      },
+      {
+        "theme": "sciences",
+        "question": "En mathématiques, que définit le nombre d'Euler « e » (≈ 2,718) et quelle est l'une de ses propriétés fondamentales ?",
+        "options": [
+          "A. C'est le rapport entre la circonférence et le diamètre d'un cercle ; il est irrationnel et transcendant",
+          "B. C'est la base du logarithme naturel ; la fonction exponentielle e^x est égale à sa propre dérivée",
+          "C. C'est la limite de la suite des inverses des factorielles ; il est rationnel mais non algébrique",
+          "D. C'est le nombre d'or ; il vérifie la relation e² = e + 1"
+        ],
+        "answer_index": 1,
+        "explanation": "Le nombre e est la base des logarithmes naturels. Sa propriété la plus remarquable est que la fonction f(x) = e^x est identique à sa propre dérivée, ce qui en fait un outil central en analyse mathématique et en modélisation des phénomènes de croissance ou de décroissance exponentielle."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne le vaste plateau semi-aride qui occupe le centre de l'Espagne, s'étendant à une altitude moyenne d'environ 600 à 700 mètres et constituant le cœur géographique et historique de la péninsule ibérique ?",
+        "options": [
+          "A. La Meseta centrale",
+          "B. La Sierra Nevada",
+          "C. Les Pyrénées aragonaises",
+          "D. La Cordillère cantabrique"
+        ],
+        "answer_index": 0,
+        "explanation": "La Meseta centrale est le grand plateau intérieur de la péninsule ibérique, partagé entre les deux Castilles. Il est bordé par plusieurs chaînes montagneuses et se caractérise par un climat continental marqué, avec des étés chauds et secs et des hivers rigoureux."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Blocus iranien",
+        "question": "Selon l'article du Guardian sur la crise au Moyen-Orient, comment l'administration Trump qualifie-t-elle le blocus iranien dans le détroit d'Ormuz ?",
+        "options": [
+          "A. Comme une menace directe à la sécurité nationale américaine",
+          "B. Comme un levier de pression efficace pour affaiblir l'économie iranienne",
+          "C. Comme une violation flagrante du droit international maritime",
+          "D. Comme un prétexte pour déclencher des frappes préventives"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article précise que l'administration Trump considère le blocus comme un levier de pression efficace pour affaiblir l'économie iranienne, dans un contexte de tensions croissantes au détroit d'Ormuz."
+      },
+      {
+        "theme": "Secrétaire Marine USA",
+        "question": "Quel est le nom du nouveau secrétaire par intérim de la Marine américaine nommé suite au remplacement soudain évoqué dans l'article du Guardian ?",
+        "options": [
+          "A. Mark Esper",
+          "B. Carlos Del Toro",
+          "C. Hung Cao",
+          "D. Richard Spencer"
+        ],
+        "answer_index": 2,
+        "explanation": "Selon l'article, Hung Cao est nommé nouveau secrétaire par intérim de la Marine américaine, héritant d'une situation tendue dans le contexte du blocus iranien."
+      },
+      {
+        "theme": "Tesla résultats",
+        "question": "Selon l'article du Guardian sur Tesla, vers quels domaines Elon Musk cherche-t-il à rediriger la stratégie de l'entreprise, au-delà de la fabrication de véhicules électriques ?",
+        "options": [
+          "A. L'exploration spatiale et les satellites",
+          "B. L'intelligence artificielle et la robotique",
+          "C. L'énergie solaire et le stockage d'énergie domestique",
+          "D. Les transports hyperloop et les véhicules volants"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article mentionne explicitement que Musk cherche à rediriger Tesla vers l'intelligence artificielle et la robotique, malgré des résultats financiers mitigés qui ne correspondent pas aux attentes des investisseurs."
+      },
+      {
+        "theme": "Cancer Royaume-Uni",
+        "question": "Selon Cancer Research UK, cité dans l'article du Guardian, à quelle fréquence une personne est-elle diagnostiquée du cancer au Royaume-Uni ?",
+        "options": [
+          "A. Toutes les 30 secondes",
+          "B. Toutes les 60 secondes",
+          "C. Toutes les 80 secondes",
+          "D. Toutes les 2 minutes"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article cite la statistique alarmante de Cancer Research UK indiquant qu'une personne est diagnostiquée du cancer toutes les 80 secondes au Royaume-Uni, soulignant la pression sur le NHS."
+      },
+      {
+        "theme": "Euthanasie Australie",
+        "question": "Quel était l'âge de James Valentine, présentateur emblématique d'ABC Sydney, au moment de son décès par euthanasie assistée ?",
+        "options": [
+          "A. 58 ans",
+          "B. 61 ans",
+          "C. 64 ans",
+          "D. 67 ans"
+        ],
+        "answer_index": 2,
+        "explanation": "Selon l'article du Guardian, James Valentine est décédé à l'âge de 64 ans après avoir eu recours à l'euthanasie assistée, légale en Australie, suite à un diagnostic de cancer annoncé publiquement en 2024."
       }
     ]
   }

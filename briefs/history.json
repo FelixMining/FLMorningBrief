@@ -1,27 +1,29 @@
 {
   "seen_video_ids": [
-    "EJM-qmy3Muw",
-    "JYUGfNoyDKs",
-    "Np0Sknk5F5U",
-    "0mwL5BWLaWM",
-    "vd973v3rhiA",
-    "F0PPE8-KHwM",
-    "PviXGJM5wfM",
-    "DpO3CpInUas",
-    "oOsl-Cgu34g",
-    "bboOnKktKsw",
-    "-MA67mAVRl8",
-    "gCLQqJew78A",
-    "iFRXQolDzMU",
-    "Ldm6pUWi9Lc",
-    "N6481-FfSxU",
     "M22BEuoGvOY",
-    "DQVV1ARVDOU",
-    "bTRDBbEaG-8",
+    "0mwL5BWLaWM",
+    "EJM-qmy3Muw",
+    "DpO3CpInUas",
+    "OlmHf6l2pa0",
+    "kEr1J4MtOGg",
+    "bboOnKktKsw",
+    "iFRXQolDzMU",
+    "P-wAr687qxg",
+    "N6481-FfSxU",
+    "PviXGJM5wfM",
+    "F0PPE8-KHwM",
+    "vd973v3rhiA",
+    "Ldm6pUWi9Lc",
+    "gCLQqJew78A",
     "eqRGwYn-fyw",
+    "oOsl-Cgu34g",
+    "JYUGfNoyDKs",
+    "DQVV1ARVDOU",
     "BvYzzJ20bbk",
     "5ekLY3eDWQE",
-    "P-wAr687qxg"
+    "-MA67mAVRl8",
+    "bTRDBbEaG-8",
+    "Np0Sknk5F5U"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -901,6 +903,11 @@
     "actu_qcm": []
   },
   "2026-04-25": {
+    "mot_du_jour": null,
+    "culture_qcm": [],
+    "actu_qcm": []
+  },
+  "2026-04-26": {
     "mot_du_jour": null,
     "culture_qcm": [],
     "actu_qcm": []

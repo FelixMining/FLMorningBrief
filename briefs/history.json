@@ -1,39 +1,41 @@
 {
   "seen_video_ids": [
-    "BvYzzJ20bbk",
-    "PxqgixX9fBQ",
+    "RxyIv_sXo3g",
     "bTRDBbEaG-8",
+    "DpO3CpInUas",
     "0mwL5BWLaWM",
-    "QK47x1J12RU",
-    "-MA67mAVRl8",
     "EJM-qmy3Muw",
+    "JYUGfNoyDKs",
+    "5ekLY3eDWQE",
+    "ULTV6T6jRTw",
+    "Np0Sknk5F5U",
+    "oOsl-Cgu34g",
+    "-MA67mAVRl8",
+    "yCWoUqQXFFU",
+    "PxqgixX9fBQ",
+    "OlmHf6l2pa0",
+    "BvYzzJ20bbk",
+    "vd973v3rhiA",
+    "bboOnKktKsw",
+    "kEr1J4MtOGg",
+    "QK47x1J12RU",
+    "2EhZcxHVuhA",
+    "FVWLdrb8HoQ",
+    "F0PPE8-KHwM",
     "M22BEuoGvOY",
+    "w_-8GfTIhrc",
+    "N6481-FfSxU",
+    "gCLQqJew78A",
     "goQd4dL6MNo",
     "DQVV1ARVDOU",
-    "nwjz-oOLmMY",
-    "Ldm6pUWi9Lc",
-    "N6481-FfSxU",
     "IRzaCS0QLno",
-    "2EhZcxHVuhA",
-    "DpO3CpInUas",
-    "kEr1J4MtOGg",
+    "nwjz-oOLmMY",
     "eqRGwYn-fyw",
-    "yCWoUqQXFFU",
-    "FVWLdrb8HoQ",
-    "JYUGfNoyDKs",
-    "Np0Sknk5F5U",
     "iFRXQolDzMU",
-    "vd973v3rhiA",
-    "F0PPE8-KHwM",
-    "RxyIv_sXo3g",
-    "bboOnKktKsw",
-    "OlmHf6l2pa0",
-    "gCLQqJew78A",
-    "P-wAr687qxg",
-    "w_-8GfTIhrc",
-    "5ekLY3eDWQE",
     "PviXGJM5wfM",
-    "oOsl-Cgu34g"
+    "n7SGKGaFkpM",
+    "Ldm6pUWi9Lc",
+    "P-wAr687qxg"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -946,5 +948,114 @@
     "mot_du_jour": null,
     "culture_qcm": [],
     "actu_qcm": []
+  },
+  "2026-05-02": {
+    "mot_du_jour": {
+      "mot": "anacoluthe",
+      "classe": "nom féminin",
+      "definition": "Figure de style consistant en une rupture de construction syntaxique au sein d'une phrase, créant une discontinuité grammaticale volontaire ou non. Elle peut exprimer l'émotion, la précipitation ou la pensée fragmentée.",
+      "etymologie": "Du grec anakolouthon, formé de an- (privatif) et akolouthos (qui suit), signifiant littéralement « ce qui ne suit pas ».",
+      "exemple": "« Moi, que la mer fascine depuis l'enfance, les vagues m'ont toujours semblé parler une langue secrète » — cette anacoluthe suspend la phrase et laisse l'émotion déborder la grammaire."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En chimie, qu'est-ce que le pH d'une solution mesure précisément ?",
+        "options": [
+          "A. La concentration en ions hydroxyde (OH⁻) exprimée en mol/L",
+          "B. Le logarithme décimal négatif de la concentration en ions hydronium (H₃O⁺)",
+          "C. La quantité totale de solutés dissous dans un litre de solution",
+          "D. La différence de potentiel électrique entre deux électrodes plongées dans la solution"
+        ],
+        "answer_index": 1,
+        "explanation": "Le pH est défini par la formule pH = -log[H₃O⁺]. Une solution acide a un pH inférieur à 7 (forte concentration en H₃O⁺), une solution basique un pH supérieur à 7, et une solution neutre un pH égal à 7 à 25 °C."
+      },
+      {
+        "theme": "sciences",
+        "question": "En astronomie, qu'est-ce que le décalage vers le rouge (redshift) d'une galaxie lointaine indique principalement ?",
+        "options": [
+          "A. Que la galaxie est plus froide que notre Soleil et émet donc moins d'énergie",
+          "B. Que la galaxie contient une forte proportion d'étoiles géantes rouges en fin de vie",
+          "C. Que la galaxie s'éloigne de l'observateur, allongeant la longueur d'onde de la lumière reçue",
+          "D. Que la lumière de la galaxie a traversé un nuage de poussière interstellaire absorbant les courtes longueurs d'onde"
+        ],
+        "answer_index": 2,
+        "explanation": "L'effet Doppler-Fizeau appliqué à la lumière explique le redshift : lorsqu'une source s'éloigne, les longueurs d'onde reçues sont étirées vers le rouge. C'est l'une des preuves fondamentales de l'expansion de l'Univers, mise en évidence par Edwin Hubble en 1929."
+      },
+      {
+        "theme": "histoire",
+        "question": "Quel événement majeur de 1789 marque symboliquement le début de la Révolution française, au-delà de la convocation des États généraux ?",
+        "options": [
+          "A. L'exécution de Louis XVI sur la place de la Révolution",
+          "B. La proclamation de la République par la Convention nationale",
+          "C. La prise de la Bastille le 14 juillet, perçue comme la chute du despotisme royal",
+          "D. La fuite du roi à Varennes et son arrestation par les gardes nationaux"
+        ],
+        "answer_index": 2,
+        "explanation": "La prise de la Bastille le 14 juillet 1789 est devenue le symbole de la Révolution française : cette forteresse royale représentait l'arbitraire du pouvoir absolu. Sa chute provoqua une onde de choc en France et en Europe, amorçant la fin de l'Ancien Régime."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Trump & Iran",
+        "question": "Selon l'article du Guardian, quelle posture Trump adopte-t-il concernant le pouvoir du Congrès d'autoriser les opérations de guerre contre l'Iran ?",
+        "options": [
+          "A. Il demande une autorisation formelle au Congrès avant toute action militaire.",
+          "B. Il refuse l'autorisation du Congrès et contourne le délai légal prévu.",
+          "C. Il délègue la décision au Sénat uniquement.",
+          "D. Il soumet la question à un référendum populaire."
+        ],
+        "answer_index": 1,
+        "explanation": "Selon l'article, Trump refuse l'autorisation du Congrès et tente de contourner le délai légal, soulevant des questions constitutionnelles fondamentales sur les pouvoirs de guerre du président."
+      },
+      {
+        "theme": "Bases US Allemagne",
+        "question": "Quel événement historique est à l'origine de la présence militaire américaine en Allemagne, selon l'article du Guardian ?",
+        "options": [
+          "A. La guerre de Corée",
+          "B. La crise des missiles de Cuba",
+          "C. La fin de la Seconde Guerre mondiale",
+          "D. La chute du mur de Berlin"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que la présence militaire américaine en Allemagne remonte à la fin de la Seconde Guerre mondiale et s'inscrit dans le cadre de l'architecture de sécurité transatlantique post-1945."
+      },
+      {
+        "theme": "Retrait troupes Allemagne",
+        "question": "Combien de troupes américaines les États-Unis retirent-ils d'Allemagne selon l'article du Guardian ?",
+        "options": [
+          "A. 2 000 troupes",
+          "B. 10 000 troupes",
+          "C. 5 000 troupes",
+          "D. 7 500 troupes"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article indique explicitement que les États-Unis retirent 5 000 troupes d'Allemagne, suite aux critiques du chancelier Merz."
+      },
+      {
+        "theme": "Bard & Epstein",
+        "question": "Quelle est la raison principale de la démission du président de Bard College selon l'article du Guardian ?",
+        "options": [
+          "A. Une enquête sur des malversations financières au sein de l'université.",
+          "B. Une enquête interne révélant des contacts réguliers avec Jeffrey Epstein, en contradiction avec ses déclarations publiques.",
+          "C. Des accusations de harcèlement moral envers des étudiants.",
+          "D. Un désaccord avec le conseil d'administration sur la stratégie académique."
+        ],
+        "answer_index": 1,
+        "explanation": "Selon l'article, une enquête interne a documenté des contacts réguliers entre Botstein et Jeffrey Epstein, malgré ses affirmations publiques niant toute amitié avec ce dernier."
+      },
+      {
+        "theme": "Peter Kay incident",
+        "question": "Quel était l'âge de la personne arrêtée lors de l'incident du colis suspect qui a interrompu le spectacle de Peter Kay, selon l'article du Guardian ?",
+        "options": [
+          "A. 25 ans",
+          "B. 32 ans",
+          "C. 19 ans",
+          "D. 17 ans"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise qu'une personne de 19 ans a été arrêtée suite à la découverte du colis suspect, et que cela ne semblait pas constituer une menace grave."
+      }
+    ]
   }
 }

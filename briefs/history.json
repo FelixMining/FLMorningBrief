@@ -1,41 +1,43 @@
 {
   "seen_video_ids": [
-    "RxyIv_sXo3g",
-    "bTRDBbEaG-8",
-    "DpO3CpInUas",
-    "0mwL5BWLaWM",
-    "EJM-qmy3Muw",
-    "JYUGfNoyDKs",
-    "5ekLY3eDWQE",
-    "ULTV6T6jRTw",
-    "Np0Sknk5F5U",
-    "oOsl-Cgu34g",
-    "-MA67mAVRl8",
-    "yCWoUqQXFFU",
-    "PxqgixX9fBQ",
-    "OlmHf6l2pa0",
-    "BvYzzJ20bbk",
-    "vd973v3rhiA",
-    "bboOnKktKsw",
-    "kEr1J4MtOGg",
-    "QK47x1J12RU",
-    "2EhZcxHVuhA",
     "FVWLdrb8HoQ",
-    "F0PPE8-KHwM",
-    "M22BEuoGvOY",
-    "w_-8GfTIhrc",
-    "N6481-FfSxU",
-    "gCLQqJew78A",
+    "QK47x1J12RU",
+    "bboOnKktKsw",
     "goQd4dL6MNo",
-    "DQVV1ARVDOU",
+    "F0PPE8-KHwM",
+    "eqRGwYn-fyw",
+    "P-wAr687qxg",
+    "RxyIv_sXo3g",
+    "kEr1J4MtOGg",
+    "0mwL5BWLaWM",
+    "IEwFcEs4hUw",
+    "n7SGKGaFkpM",
+    "vd973v3rhiA",
+    "Ldm6pUWi9Lc",
+    "PviXGJM5wfM",
+    "2EhZcxHVuhA",
     "IRzaCS0QLno",
     "nwjz-oOLmMY",
-    "eqRGwYn-fyw",
+    "Np0Sknk5F5U",
+    "yCWoUqQXFFU",
+    "gCLQqJew78A",
+    "JYUGfNoyDKs",
+    "5ekLY3eDWQE",
+    "EJM-qmy3Muw",
+    "oOsl-Cgu34g",
+    "bTRDBbEaG-8",
     "iFRXQolDzMU",
-    "PviXGJM5wfM",
-    "n7SGKGaFkpM",
-    "Ldm6pUWi9Lc",
-    "P-wAr687qxg"
+    "DpO3CpInUas",
+    "N6481-FfSxU",
+    "-MA67mAVRl8",
+    "OlmHf6l2pa0",
+    "BvYzzJ20bbk",
+    "ULTV6T6jRTw",
+    "M22BEuoGvOY",
+    "w_-8GfTIhrc",
+    "DQVV1ARVDOU",
+    "2ySyjm1clrA",
+    "PxqgixX9fBQ"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -1055,6 +1057,115 @@
         ],
         "answer_index": 2,
         "explanation": "L'article précise qu'une personne de 19 ans a été arrêtée suite à la découverte du colis suspect, et que cela ne semblait pas constituer une menace grave."
+      }
+    ]
+  },
+  "2026-05-03": {
+    "mot_du_jour": {
+      "mot": "obnubiler",
+      "classe": "verbe transitif",
+      "definition": "Obscurcir l'esprit au point d'empêcher tout autre pensée ; obséder ou fasciner de manière envahissante et exclusive.",
+      "etymologie": "Du latin 'obnubilare', composé de 'ob-' (devant) et 'nubes' (nuage), soit littéralement 'couvrir de nuages'.",
+      "exemple": "La quête de perfection l'obnubilait au point qu'il ne percevait plus la beauté simple des choses imparfaites."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En chimie, qu'est-ce que la loi de conservation de la masse, énoncée par Lavoisier, stipule lors d'une réaction chimique ?",
+        "options": [
+          "A. La masse totale des réactifs est toujours supérieure à celle des produits en raison de l'énergie libérée.",
+          "B. La masse totale des réactifs est égale à la masse totale des produits formés.",
+          "C. La masse des produits dépend uniquement de la température à laquelle la réaction se déroule.",
+          "D. La masse des réactifs diminue proportionnellement au nombre de liaisons chimiques rompues."
+        ],
+        "answer_index": 1,
+        "explanation": "Lavoisier a formulé ce principe fondamental : 'Rien ne se perd, rien ne se crée, tout se transforme.' Les atomes sont simplement réarrangés, donc la masse totale est conservée."
+      },
+      {
+        "theme": "sciences",
+        "question": "En informatique, qu'est-ce qu'un algorithme de tri dit 'stable' garantit, par définition ?",
+        "options": [
+          "A. Qu'il s'exécute toujours en temps constant O(1), quelle que soit la taille des données.",
+          "B. Qu'il ne modifie jamais les données originales et travaille sur une copie distincte.",
+          "C. Que deux éléments de valeurs égales conservent leur ordre relatif d'origine après le tri.",
+          "D. Qu'il produit un résultat identique quel que soit le système d'exploitation utilisé."
+        ],
+        "answer_index": 2,
+        "explanation": "La stabilité d'un tri signifie que si deux éléments sont équivalents selon le critère de comparaison, celui qui apparaissait en premier dans la liste initiale reste en premier après le tri. Le tri fusion est un exemple classique de tri stable."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne le vaste désert froid d'Asie centrale s'étendant principalement sur le sud de la Mongolie et le nord de la Chine, connu pour ses extrêmes thermiques et ses formations de roches sédimentaires riches en fossiles de dinosaures ?",
+        "options": [
+          "A. Le désert du Taklamakan",
+          "B. Le désert de Karakoum",
+          "C. Le désert de Gobi",
+          "D. Le désert du Thar"
+        ],
+        "answer_index": 2,
+        "explanation": "Le désert de Gobi, s'étendant sur environ 1,3 million de km², est l'un des plus grands déserts d'Asie. Contrairement aux déserts chauds, il connaît des températures hivernales pouvant descendre à -40 °C et a livré de nombreux gisements fossilifères majeurs."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Formule 1 Miami",
+        "question": "Selon l'article du Guardian sur les qualifications du Grand Prix de Miami 2025, quelle position occupe Kimi Antonelli au championnat du monde au moment de cet événement ?",
+        "options": [
+          "A. Deuxième position",
+          "B. Troisième position",
+          "C. Leader du championnat",
+          "D. Quatrième position"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise qu'Antonelli occupe actuellement la position de leader du championnat au moment des qualifications de Miami, ce qui rend sa pole position encore plus significative."
+      },
+      {
+        "theme": "Spirit Airlines faillite",
+        "question": "Comment l'article du Guardian décrit-il la faillite de Spirit Airlines dans le contexte du secteur aérien américain ?",
+        "options": [
+          "A. Une restructuration planifiée depuis plusieurs années",
+          "B. L'une des plus grandes perturbations du secteur aérien ces dernières années",
+          "C. Une fusion avec une compagnie concurrente",
+          "D. Un retrait volontaire du marché intérieur"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article qualifie la faillite de Spirit Airlines, compagnie à bas coût majeure, comme l'une des plus grandes perturbations du secteur aérien américain ces dernières années, affectant de nombreux passagers."
+      },
+      {
+        "theme": "Pilule abortive",
+        "question": "Selon l'article du Guardian sur la pilule abortive, quelle restriction spécifique fait l'objet du recours devant la Cour suprême américaine ?",
+        "options": [
+          "A. L'interdiction de vente en pharmacie physique",
+          "B. Le plafonnement du prix du médicament RU-486",
+          "C. L'interdiction des services de télémédecine pour accéder au médicament",
+          "D. L'obligation d'une ordonnance double signée par deux médecins"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que l'interdiction des services de télémédecine restreint considérablement l'accès des femmes au médicament RU-486, et c'est cette interdiction que le fabricant cherche à faire annuler devant la Cour suprême."
+      },
+      {
+        "theme": "Vélos électriques Sydney",
+        "question": "Selon l'article du Guardian sur les vélos électriques partagés à Sydney, quel problème majeur les opérateurs signalent-ils face à l'explosion de la popularité du service ?",
+        "options": [
+          "A. Un manque de pistes cyclables sécurisées",
+          "B. Une demande dépassant largement les capacités actuelles",
+          "C. Des pannes fréquentes liées à la chaleur australienne",
+          "D. Une concurrence déloyale des taxis traditionnels"
+        ],
+        "answer_index": 1,
+        "explanation": "Les opérateurs signalent un goulot d'étranglement où la demande dépasse largement les capacités actuelles, nécessitant un soutien gouvernemental substantiel pour poursuivre le développement du service."
+      },
+      {
+        "theme": "Nebius acquisition",
+        "question": "Selon l'article de SiliconANGLE News, pour quel montant Nebius a-t-il acquis la startup d'optimisation de modèles d'IA Eigen AI ?",
+        "options": [
+          "A. 243 millions de dollars",
+          "B. 430 millions de dollars",
+          "C. 643 millions de dollars",
+          "D. 864 millions de dollars"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article de SiliconANGLE News indique que Nebius a acquis la startup spécialisée dans l'optimisation de modèles d'IA Eigen AI pour un montant de 643 millions de dollars."
       }
     ]
   }

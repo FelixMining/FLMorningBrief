@@ -1,43 +1,45 @@
 {
   "seen_video_ids": [
-    "FVWLdrb8HoQ",
-    "QK47x1J12RU",
-    "bboOnKktKsw",
-    "goQd4dL6MNo",
     "F0PPE8-KHwM",
-    "eqRGwYn-fyw",
-    "P-wAr687qxg",
-    "RxyIv_sXo3g",
-    "kEr1J4MtOGg",
-    "0mwL5BWLaWM",
-    "IEwFcEs4hUw",
-    "n7SGKGaFkpM",
-    "vd973v3rhiA",
-    "Ldm6pUWi9Lc",
-    "PviXGJM5wfM",
-    "2EhZcxHVuhA",
+    "w_-8GfTIhrc",
     "IRzaCS0QLno",
     "nwjz-oOLmMY",
-    "Np0Sknk5F5U",
-    "yCWoUqQXFFU",
-    "gCLQqJew78A",
-    "JYUGfNoyDKs",
-    "5ekLY3eDWQE",
-    "EJM-qmy3Muw",
-    "oOsl-Cgu34g",
-    "bTRDBbEaG-8",
     "iFRXQolDzMU",
     "DpO3CpInUas",
-    "N6481-FfSxU",
-    "-MA67mAVRl8",
-    "OlmHf6l2pa0",
-    "BvYzzJ20bbk",
-    "ULTV6T6jRTw",
+    "IEwFcEs4hUw",
     "M22BEuoGvOY",
-    "w_-8GfTIhrc",
-    "DQVV1ARVDOU",
     "2ySyjm1clrA",
-    "PxqgixX9fBQ"
+    "FVWLdrb8HoQ",
+    "n7SGKGaFkpM",
+    "yCWoUqQXFFU",
+    "5ekLY3eDWQE",
+    "P-wAr687qxg",
+    "PxqgixX9fBQ",
+    "ULTV6T6jRTw",
+    "2EhZcxHVuhA",
+    "BvYzzJ20bbk",
+    "PviXGJM5wfM",
+    "EJM-qmy3Muw",
+    "Up5qdICHi6w",
+    "-MA67mAVRl8",
+    "vd973v3rhiA",
+    "eqRGwYn-fyw",
+    "bTRDBbEaG-8",
+    "Np0Sknk5F5U",
+    "bboOnKktKsw",
+    "Ldm6pUWi9Lc",
+    "kEr1J4MtOGg",
+    "N6481-FfSxU",
+    "gCLQqJew78A",
+    "DQVV1ARVDOU",
+    "Zl5JB9q7LUw",
+    "RxyIv_sXo3g",
+    "0mwL5BWLaWM",
+    "OlmHf6l2pa0",
+    "oOsl-Cgu34g",
+    "QK47x1J12RU",
+    "JYUGfNoyDKs",
+    "goQd4dL6MNo"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -1166,6 +1168,115 @@
         ],
         "answer_index": 2,
         "explanation": "L'article de SiliconANGLE News indique que Nebius a acquis la startup spécialisée dans l'optimisation de modèles d'IA Eigen AI pour un montant de 643 millions de dollars."
+      }
+    ]
+  },
+  "2026-05-04": {
+    "mot_du_jour": {
+      "mot": "hypalagе",
+      "classe": "nom masculin",
+      "definition": "Figure de style par laquelle un qualificatif ou un complément est rattaché grammaticalement à un mot alors qu'il se rapporte logiquement à un autre mot de la phrase. Elle crée un décalage poétique entre la structure syntaxique et le sens réel.",
+      "etymologie": "Du grec ancien 'hypallagê', signifiant 'échange, substitution', dérivé de 'hypo' (sous) et 'allassein' (changer).",
+      "exemple": "Dans l'expression 'il rentrait dans ses foyers désabusés', c'est le voyageur qui est désabusé et non ses foyers — tel est le charme de l'hypallage."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En biologie cellulaire, qu'est-ce que la respiration cellulaire aérobie produit à partir d'une molécule de glucose en présence d'oxygène ?",
+        "options": [
+          "A. Du dioxyde de carbone, de l'eau et de l'ATP",
+          "B. Du méthane, de l'azote et de l'ADP",
+          "C. Du lactate, de l'oxygène et de l'ATP",
+          "D. Du glucose-6-phosphate, de l'eau et du NADH"
+        ],
+        "answer_index": 0,
+        "explanation": "La respiration cellulaire aérobie oxyde le glucose (C₆H₁₂O₆) en présence d'O₂ pour produire du CO₂, de l'H₂O et de l'énergie sous forme d'ATP (environ 30 à 32 molécules d'ATP par glucose), via la glycolyse, le cycle de Krebs et la chaîne respiratoire."
+      },
+      {
+        "theme": "sciences",
+        "question": "En mathématiques, qu'est-ce que la transformée de Fourier d'un signal permet d'obtenir ?",
+        "options": [
+          "A. La dérivée seconde du signal dans le domaine temporel",
+          "B. La décomposition du signal en une somme de fonctions sinusoïdales de fréquences différentes",
+          "C. L'intégrale indéfinie du signal dans le domaine spatial",
+          "D. La valeur quadratique moyenne du signal dans le domaine complexe"
+        ],
+        "answer_index": 1,
+        "explanation": "La transformée de Fourier décompose tout signal (sonore, électrique, lumineux…) en un spectre de fréquences, révélant les composantes sinusoïdales qui le constituent. C'est un outil fondamental en traitement du signal, en physique et en ingénierie."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne le détroit qui sépare la Nouvelle-Zélande en deux îles principales, l'île du Nord et l'île du Sud, et qui constitue également une route maritime stratégique dans l'océan Pacifique Sud ?",
+        "options": [
+          "A. Le détroit de Bass",
+          "B. Le détroit de Tasman",
+          "C. Le détroit de Cook",
+          "D. Le détroit de Torres"
+        ],
+        "answer_index": 2,
+        "explanation": "Le détroit de Cook (Cook Strait en anglais) sépare les deux îles principales de la Nouvelle-Zélande. Large d'environ 22 km en son point le plus étroit, il est nommé en hommage à l'explorateur britannique James Cook qui l'a cartographié au XVIIIe siècle."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Hantavirus croisière",
+        "question": "Selon l'article du Guardian sur l'épidémie suspecte de hantavirus à bord d'un navire de croisière, combien de passagers présentaient encore des symptômes compatibles avec l'infection au moment du rapport ?",
+        "options": [
+          "A. Deux passagers",
+          "B. Quatre passagers",
+          "C. Trois passagers",
+          "D. Cinq passagers"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que trois autres passagers présentaient des symptômes compatibles avec le hantavirus, en plus des trois décès déjà survenus, soulevant de vives inquiétudes sanitaires à bord."
+      },
+      {
+        "theme": "Tennis prize money",
+        "question": "Selon l'article du Guardian sur les prize money de l'Open de France, quels sont les deux joueurs de tennis cités comme figures de proue du mécontentement exprimé par les meilleurs joueurs du circuit ?",
+        "options": [
+          "A. Nadal et Swiatek",
+          "B. Djokovic et Sabalenka",
+          "C. Alcaraz et Gauff",
+          "D. Medvedev et Rybakina"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article du Guardian mentionne explicitement Djokovic et Sabalenka comme les grandes stars donnant une visibilité majeure aux réclamations des joueurs concernant l'équité des prize money à Roland-Garros."
+      },
+      {
+        "theme": "Real Madrid Barça",
+        "question": "Selon l'article du Guardian sur la Liga espagnole, quel joueur du Real Madrid est directement crédité d'avoir retardé le titre de Barcelone lors de la victoire madrilène ?",
+        "options": [
+          "A. Jude Bellingham",
+          "B. Kylian Mbappé",
+          "C. Vinícius Júnior",
+          "D. Rodrygo Goes"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article titre explicitement sur Vinícius Júnior comme l'acteur clé de la victoire du Real Madrid qui a empêché Barcelone de remporter le titre de La Liga lors de cette rencontre."
+      },
+      {
+        "theme": "Snooker Crucible",
+        "question": "Selon l'article du Guardian sur le Championnat du monde de snooker, quel est l'écart en nombre de frames séparant Wu Yize de Shaun Murphy au moment du rapport ?",
+        "options": [
+          "A. Cinq frames",
+          "B. Deux frames",
+          "C. Quatre frames",
+          "D. Trois frames"
+        ],
+        "answer_index": 3,
+        "explanation": "L'article précise que Wu Yize dispose d'une avance de trois frames sur Shaun Murphy lors de cette finale au Crucible de Sheffield, avance jugée significative mais surmontable dans ce format au meilleur des 35 frames."
+      },
+      {
+        "theme": "Startups africaines Google",
+        "question": "Selon l'article de Vanguard sur le programme Google for Startups, combien de startups nigérianes ont été sélectionnées parmi les dix startups africaines retenues ?",
+        "options": [
+          "A. Trois startups",
+          "B. Cinq startups",
+          "C. Deux startups",
+          "D. Quatre startups"
+        ],
+        "answer_index": 3,
+        "explanation": "L'article de Vanguard indique que quatre startups nigérianes figurent parmi les dix startups africaines sélectionnées par Google for Startups, confirmant le rôle du Nigeria comme hub technologique majeur sur le continent."
       }
     ]
   }

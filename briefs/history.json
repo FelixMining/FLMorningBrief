@@ -1,45 +1,47 @@
 {
   "seen_video_ids": [
-    "F0PPE8-KHwM",
-    "w_-8GfTIhrc",
-    "IRzaCS0QLno",
-    "nwjz-oOLmMY",
-    "iFRXQolDzMU",
-    "DpO3CpInUas",
-    "IEwFcEs4hUw",
-    "M22BEuoGvOY",
-    "2ySyjm1clrA",
-    "FVWLdrb8HoQ",
-    "n7SGKGaFkpM",
-    "yCWoUqQXFFU",
-    "5ekLY3eDWQE",
-    "P-wAr687qxg",
-    "PxqgixX9fBQ",
-    "ULTV6T6jRTw",
-    "2EhZcxHVuhA",
-    "BvYzzJ20bbk",
-    "PviXGJM5wfM",
-    "EJM-qmy3Muw",
-    "Up5qdICHi6w",
-    "-MA67mAVRl8",
-    "vd973v3rhiA",
-    "eqRGwYn-fyw",
-    "bTRDBbEaG-8",
-    "Np0Sknk5F5U",
-    "bboOnKktKsw",
     "Ldm6pUWi9Lc",
+    "DpO3CpInUas",
+    "2x2RfHg6ddk",
+    "OlmHf6l2pa0",
+    "Zl5JB9q7LUw",
+    "IRzaCS0QLno",
+    "Up5qdICHi6w",
+    "JYUGfNoyDKs",
+    "M22BEuoGvOY",
+    "oOsl-Cgu34g",
+    "bboOnKktKsw",
+    "BvYzzJ20bbk",
+    "P-wAr687qxg",
+    "ULTV6T6jRTw",
+    "goQd4dL6MNo",
+    "iFRXQolDzMU",
+    "2EhZcxHVuhA",
+    "eqRGwYn-fyw",
+    "PxqgixX9fBQ",
+    "2ySyjm1clrA",
+    "0mwL5BWLaWM",
+    "F0PPE8-KHwM",
+    "IEwFcEs4hUw",
+    "-MA67mAVRl8",
+    "RxyIv_sXo3g",
+    "QK47x1J12RU",
+    "nwjz-oOLmMY",
+    "gCLQqJew78A",
+    "5ekLY3eDWQE",
     "kEr1J4MtOGg",
     "N6481-FfSxU",
-    "gCLQqJew78A",
+    "yCWoUqQXFFU",
+    "bTRDBbEaG-8",
+    "PviXGJM5wfM",
+    "FVWLdrb8HoQ",
+    "vd973v3rhiA",
+    "LPFzIRgGsOo",
+    "Np0Sknk5F5U",
     "DQVV1ARVDOU",
-    "Zl5JB9q7LUw",
-    "RxyIv_sXo3g",
-    "0mwL5BWLaWM",
-    "OlmHf6l2pa0",
-    "oOsl-Cgu34g",
-    "QK47x1J12RU",
-    "JYUGfNoyDKs",
-    "goQd4dL6MNo"
+    "n7SGKGaFkpM",
+    "w_-8GfTIhrc",
+    "EJM-qmy3Muw"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -1277,6 +1279,115 @@
         ],
         "answer_index": 3,
         "explanation": "L'article de Vanguard indique que quatre startups nigérianes figurent parmi les dix startups africaines sélectionnées par Google for Startups, confirmant le rôle du Nigeria comme hub technologique majeur sur le continent."
+      }
+    ]
+  },
+  "2026-05-05": {
+    "mot_du_jour": {
+      "mot": "sillage",
+      "classe": "nom masculin",
+      "definition": "Trace laissée à la surface de l'eau par le passage d'un navire ou d'un objet en mouvement ; par extension, l'empreinte ou l'influence durable qu'une personne ou un événement laisse derrière lui.",
+      "etymologie": "Du vieux français « siller », naviguer, lui-même issu du néerlandais « zijlen », couler, glisser sur l'eau.",
+      "exemple": "Dans le sillage des grandes découvertes scientifiques du XXe siècle, toute une génération de chercheurs a réorienté sa vision du cosmos."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En physique, que décrit la loi de Coulomb concernant deux charges électriques ponctuelles au repos ?",
+        "options": [
+          "A. La force d'attraction gravitationnelle entre deux masses est proportionnelle au produit des masses et inversement proportionnelle au carré de leur distance.",
+          "B. La force électrostatique entre deux charges est proportionnelle au produit des charges et inversement proportionnelle au carré de la distance qui les sépare.",
+          "C. La tension électrique aux bornes d'un conducteur est proportionnelle à l'intensité du courant qui le traverse.",
+          "D. L'énergie cinétique d'une particule chargée est proportionnelle au carré de sa vitesse et à sa charge."
+        ],
+        "answer_index": 1,
+        "explanation": "La loi de Coulomb stipule que F = k × |q₁ × q₂| / r², où F est la force électrostatique, q₁ et q₂ les charges, r la distance entre elles, et k la constante de Coulomb (≈ 8,99 × 10⁹ N·m²/C²). La force est attractive si les charges sont de signes opposés, répulsive si elles sont de même signe."
+      },
+      {
+        "theme": "sciences",
+        "question": "En biologie, quel est le rôle principal des mitochondries dans la cellule eucaryote ?",
+        "options": [
+          "A. Synthétiser les protéines à partir des ARN messagers grâce aux ribosomes qu'elles contiennent exclusivement.",
+          "B. Assurer la dégradation et le recyclage des organites et macromolécules usagés via leurs enzymes hydrolytiques.",
+          "C. Produire la majorité de l'ATP cellulaire par phosphorylation oxydative grâce à la chaîne respiratoire.",
+          "D. Contrôler l'expression génique en régulant l'accès à la chromatine dans le noyau."
+        ],
+        "answer_index": 2,
+        "explanation": "Les mitochondries sont le siège de la respiration cellulaire aérobie : elles oxydent les substrats (pyruvate, acides gras) via le cycle de Krebs et produisent l'essentiel de l'ATP cellulaire grâce à la chaîne de transport des électrons et l'ATP synthase, dans un processus appelé phosphorylation oxydative."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne la péninsule d'Asie du Sud-Est qui regroupe notamment la Thaïlande, le Myanmar, le Cambodge, le Laos et le Vietnam, et qui doit son nom au géographe britannique George Windsor Earl au XIXe siècle ?",
+        "options": [
+          "A. La péninsule Malaise",
+          "B. La péninsule Indochinoise",
+          "C. La péninsule de Corée",
+          "D. La péninsule du Deccan"
+        ],
+        "answer_index": 1,
+        "explanation": "La péninsule Indochinoise (ou péninsule d'Indochine) s'étend au sud de la Chine et englobe les pays continentaux de l'Asie du Sud-Est. Son nom forgé au XIXe siècle reflète sa position de carrefour entre les influences culturelles indiennes et chinoises. À ne pas confondre avec la péninsule Malaise, qui constitue sa partie méridionale prolongée."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Snooker mondial",
+        "question": "Quel exploit technique Wu Yize a-t-il réalisé dans la frame décisive pour remporter le Championnat du monde de snooker contre Shaun Murphy ?",
+        "options": [
+          "A. Un break de 147 points (maximum break)",
+          "B. Un break décisif mentionné comme exceptionnel dans le frame final",
+          "C. Une série de trois snookers consécutifs",
+          "D. Un clearance de toutes les boules rouges sans faute"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article mentionne que Wu Yize a réalisé une performance exceptionnelle grâce à un break décisif dans le frame final, lui permettant de décrocher le titre mondial à seulement 22 ans."
+      },
+      {
+        "theme": "Aquaculture norvégienne",
+        "question": "Selon l'enquête du Guardian sur les fermes piscicoles norvégiennes, quel phénomène environnemental est provoqué par l'accumulation de boues au fond des fjords ?",
+        "options": [
+          "A. L'acidification des eaux de surface",
+          "B. La thermohaline perturbée par les nutriments excédentaires",
+          "C. L'eutrophisation créant des zones mortes qui détruisent les écosystèmes marins",
+          "D. La prolifération de méduses envahissantes dans les fjords"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article indique que les boues accumulées au fond des fjords créent des zones mortes à cause de l'eutrophisation, phénomène causé par l'excès de nutriments (azote, phosphore) généré par l'aquaculture intensive."
+      },
+      {
+        "theme": "Esclavage moderne UK",
+        "question": "Quel concept spécifique le commissaire anti-esclavage britannique utilise-t-il pour décrire le mécanisme d'alimentation des réseaux de trafic moderne au Royaume-Uni ?",
+        "options": [
+          "A. Un 'réservoir d'exploitation'",
+          "B. Une 'pipeline de vulnérabilité'",
+          "C. Un 'corridor de servitude'",
+          "D. Un 'flux de dépendance structurelle'"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article du Guardian cite explicitement le terme 'pipeline de vulnérabilité' utilisé par le commissaire anti-esclavage pour décrire le processus qui alimente les réseaux de trafic et d'exploitation moderne au Royaume-Uni."
+      },
+      {
+        "theme": "Tensions Iran-USA",
+        "question": "Selon l'article du Guardian sur les menaces de Trump envers l'Iran, quel lieu géographique stratégique est au cœur des tensions entre les États-Unis et l'Iran ?",
+        "options": [
+          "A. Le détroit de Bab-el-Mandeb",
+          "B. Le canal de Suez",
+          "C. Le détroit de Malacca",
+          "D. Le détroit d'Ormuz"
+        ],
+        "answer_index": 3,
+        "explanation": "L'article identifie le détroit d'Ormuz comme le passage maritime stratégique crucial pour le commerce mondial du pétrole, constituant le principal point d'inflexion dans les tensions entre les États-Unis et l'Iran."
+      },
+      {
+        "theme": "Hantavirus Australie",
+        "question": "Outre le foyer de hantavirus sur un navire de croisière, quel autre problème sanitaire grave l'Australie connaît-elle simultanément selon l'article du Guardian ?",
+        "options": [
+          "A. Une résurgence de la poliomyélite à des niveaux records",
+          "B. Une épidémie de rougeole sans précédent depuis trente ans",
+          "C. Une résurgence de la diphtérie aux niveaux les plus élevés depuis des dizaines d'années",
+          "D. Une flambée de tuberculose multirésistante dans les grandes métropoles"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article du Guardian signale que parallèlement au foyer de hantavirus, l'Australie fait face à une résurgence de la diphtérie atteignant les niveaux les plus élevés enregistrés depuis des dizaines d'années."
       }
     ]
   }

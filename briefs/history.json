@@ -1,47 +1,49 @@
 {
   "seen_video_ids": [
-    "Ldm6pUWi9Lc",
-    "DpO3CpInUas",
-    "2x2RfHg6ddk",
-    "OlmHf6l2pa0",
     "Zl5JB9q7LUw",
-    "IRzaCS0QLno",
+    "0mwL5BWLaWM",
+    "FVWLdrb8HoQ",
+    "DpO3CpInUas",
+    "QK47x1J12RU",
+    "LPFzIRgGsOo",
+    "nwjz-oOLmMY",
+    "PviXGJM5wfM",
+    "N6481-FfSxU",
+    "w_-8GfTIhrc",
     "Up5qdICHi6w",
-    "JYUGfNoyDKs",
-    "M22BEuoGvOY",
+    "6kBAuqaJQfc",
     "oOsl-Cgu34g",
-    "bboOnKktKsw",
-    "BvYzzJ20bbk",
-    "P-wAr687qxg",
-    "ULTV6T6jRTw",
-    "goQd4dL6MNo",
-    "iFRXQolDzMU",
+    "kEr1J4MtOGg",
+    "wrsJ4iAfa2c",
+    "Np0Sknk5F5U",
+    "gCLQqJew78A",
     "2EhZcxHVuhA",
     "eqRGwYn-fyw",
+    "iFRXQolDzMU",
     "PxqgixX9fBQ",
-    "2ySyjm1clrA",
-    "0mwL5BWLaWM",
-    "F0PPE8-KHwM",
-    "IEwFcEs4hUw",
-    "-MA67mAVRl8",
-    "RxyIv_sXo3g",
-    "QK47x1J12RU",
-    "nwjz-oOLmMY",
-    "gCLQqJew78A",
-    "5ekLY3eDWQE",
-    "kEr1J4MtOGg",
-    "N6481-FfSxU",
-    "yCWoUqQXFFU",
+    "2x2RfHg6ddk",
     "bTRDBbEaG-8",
-    "PviXGJM5wfM",
-    "FVWLdrb8HoQ",
+    "EJM-qmy3Muw",
+    "5ekLY3eDWQE",
     "vd973v3rhiA",
-    "LPFzIRgGsOo",
-    "Np0Sknk5F5U",
-    "DQVV1ARVDOU",
+    "goQd4dL6MNo",
     "n7SGKGaFkpM",
-    "w_-8GfTIhrc",
-    "EJM-qmy3Muw"
+    "-MA67mAVRl8",
+    "BvYzzJ20bbk",
+    "IRzaCS0QLno",
+    "F0PPE8-KHwM",
+    "yCWoUqQXFFU",
+    "Ldm6pUWi9Lc",
+    "IEwFcEs4hUw",
+    "P-wAr687qxg",
+    "M22BEuoGvOY",
+    "bboOnKktKsw",
+    "DQVV1ARVDOU",
+    "JYUGfNoyDKs",
+    "OlmHf6l2pa0",
+    "2ySyjm1clrA",
+    "RxyIv_sXo3g",
+    "ULTV6T6jRTw"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -1388,6 +1390,115 @@
         ],
         "answer_index": 2,
         "explanation": "L'article du Guardian signale que parallèlement au foyer de hantavirus, l'Australie fait face à une résurgence de la diphtérie atteignant les niveaux les plus élevés enregistrés depuis des dizaines d'années."
+      }
+    ]
+  },
+  "2026-05-06": {
+    "mot_du_jour": {
+      "mot": "kaléidoscopique",
+      "classe": "adjectif",
+      "definition": "Qui présente une succession rapide et chatoyante de formes, de couleurs ou d'aspects variés, à la manière des images produites par un kaléidoscope. S'emploie au sens figuré pour évoquer une diversité foisonnante et en perpétuel mouvement.",
+      "etymologie": "Dérivé de kaléidoscope, forgé en 1817 par David Brewster à partir du grec kalos (beau), eidos (forme) et skopein (regarder).",
+      "exemple": "Le carnaval offrait un spectacle kaléidoscopique où se mêlaient costumes éclatants, musiques du monde et visages venus de tous les continents."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En chimie, qu'est-ce que la liaison hydrogène ?",
+        "options": [
+          "A. Une liaison covalente forte entre deux atomes d'hydrogène.",
+          "B. Une interaction électrostatique faible entre un atome d'hydrogène lié à un élément électronégatif et un autre atome électronégatif voisin.",
+          "C. Une liaison ionique entre un ion hydronium et un anion.",
+          "D. Une réaction d'oxydo-réduction impliquant le transfert d'un atome d'hydrogène."
+        ],
+        "answer_index": 1,
+        "explanation": "La liaison hydrogène est une interaction non covalente entre un H partiellement positif (lié à O, N ou F) et un atome électronégatif portant des doublets libres. Elle est responsable, entre autres, des propriétés remarquables de l'eau et de la structure en double hélice de l'ADN."
+      },
+      {
+        "theme": "sciences",
+        "question": "En informatique, qu'est-ce que la complexité temporelle O(n log n) signifie pour un algorithme de tri ?",
+        "options": [
+          "A. Le temps d'exécution est proportionnel au carré du nombre d'éléments.",
+          "B. Le temps d'exécution est constant quelle que soit la taille de l'entrée.",
+          "C. Le temps d'exécution croît proportionnellement à n multiplié par le logarithme de n, ce qui correspond à la complexité optimale pour les tris par comparaison.",
+          "D. Le temps d'exécution est proportionnel uniquement au logarithme de n, indépendamment de la taille totale."
+        ],
+        "answer_index": 2,
+        "explanation": "O(n log n) est la borne inférieure théorique pour tout algorithme de tri fondé sur des comparaisons, démontrée par la théorie de l'information. Des algorithmes comme le tri fusion (merge sort) ou le tri rapide (quicksort) en moyenne atteignent cette complexité optimale."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne l'archipel volcanique situé à environ 1 000 km des côtes de l'Équateur dans l'océan Pacifique, célèbre pour sa faune endémique unique qui inspira Charles Darwin lors de son voyage à bord du Beagle ?",
+        "options": [
+          "A. Les îles Féroé.",
+          "B. Les îles Galápagos.",
+          "C. Les îles Canaries.",
+          "D. Les îles Maldives."
+        ],
+        "answer_index": 1,
+        "explanation": "Les îles Galápagos, territoire équatorien classé au patrimoine mondial de l'UNESCO, abritent des espèces endémiques comme la tortue géante et le pinson de Darwin. L'observation de leur diversité adaptative lors du voyage du Beagle (1831-1836) contribua directement à l'élaboration de la théorie de l'évolution par sélection naturelle."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Primaires Ohio Indiana",
+        "question": "Selon l'article du Guardian sur les primaires en Ohio et Indiana, quel enjeu politique majeur est directement lié aux résultats de ces scrutins régionaux ?",
+        "options": [
+          "A. La composition future du Sénat",
+          "B. L'élection du président de la Chambre des représentants",
+          "C. La désignation du candidat républicain à la présidence",
+          "D. Le renouvellement des gouverneurs des deux États"
+        ],
+        "answer_index": 0,
+        "explanation": "L'article précise que la composition future du Sénat dépendra largement des résultats de ces primaires en Ohio et Indiana, ce qui leur confère une importance stratégique capitale."
+      },
+      {
+        "theme": "Opération navale Ormuz",
+        "question": "Selon l'article du Guardian sur le détroit d'Ormuz, combien de temps a duré l'opération navale américaine avant d'être suspendue par Trump ?",
+        "options": [
+          "A. Une semaine",
+          "B. Trois jours",
+          "C. Un jour",
+          "D. Cinq jours"
+        ],
+        "answer_index": 2,
+        "explanation": "Le titre de l'article indique explicitement que Trump a suspendu l'opération navale américaine dans le détroit d'Ormuz après seulement un jour d'opération."
+      },
+      {
+        "theme": "Arsenal Ligue des champions",
+        "question": "Selon l'article du Guardian sur la Ligue des champions, quelle équipe Arsenal a-t-il battu pour se qualifier en finale ?",
+        "options": [
+          "A. Real Madrid",
+          "B. Paris Saint-Germain",
+          "C. Bayern Munich",
+          "D. Atlético Madrid"
+        ],
+        "answer_index": 3,
+        "explanation": "L'article précise qu'Arsenal a atteint la finale de la Ligue des champions en battant l'Atlético Madrid, sous la direction de Mikel Arteta."
+      },
+      {
+        "theme": "Inégalités sanitaires AVC",
+        "question": "Selon l'article du Guardian sur les inégalités sanitaires en Angleterre, de combien est le surrisque d'accident vasculaire cérébral pour les populations noires par rapport à la population générale ?",
+        "options": [
+          "A. Trois fois plus élevé",
+          "B. Deux fois plus élevé",
+          "C. Quatre fois plus élevé",
+          "D. Une fois et demie plus élevé"
+        ],
+        "answer_index": 1,
+        "explanation": "Le titre de l'article indique clairement que les populations noires en Angleterre ont deux fois plus de risques de subir un accident vasculaire cérébral."
+      },
+      {
+        "theme": "Misogynie Australie",
+        "question": "Selon l'article du Guardian sur la lutte contre la misogynie en Australie, quel responsable gouvernemental est chargé de mener la tournée d'écoute auprès des communautés masculines ?",
+        "options": [
+          "A. Ged Kearney",
+          "B. Anthony Albanese",
+          "C. Dan Repacholi",
+          "D. Mark Butler"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que Dan Repacholi est le responsable chargé de cette tournée d'écoute, collaborant avec Ged Kearney pour dialoguer avec les communautés masculines."
       }
     ]
   }

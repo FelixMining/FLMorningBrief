@@ -1,49 +1,51 @@
 {
   "seen_video_ids": [
-    "Zl5JB9q7LUw",
-    "0mwL5BWLaWM",
-    "FVWLdrb8HoQ",
-    "DpO3CpInUas",
-    "QK47x1J12RU",
-    "LPFzIRgGsOo",
-    "nwjz-oOLmMY",
-    "PviXGJM5wfM",
-    "N6481-FfSxU",
-    "w_-8GfTIhrc",
-    "Up5qdICHi6w",
-    "6kBAuqaJQfc",
-    "oOsl-Cgu34g",
-    "kEr1J4MtOGg",
-    "wrsJ4iAfa2c",
-    "Np0Sknk5F5U",
-    "gCLQqJew78A",
-    "2EhZcxHVuhA",
-    "eqRGwYn-fyw",
-    "iFRXQolDzMU",
-    "PxqgixX9fBQ",
-    "2x2RfHg6ddk",
-    "bTRDBbEaG-8",
-    "EJM-qmy3Muw",
     "5ekLY3eDWQE",
-    "vd973v3rhiA",
-    "goQd4dL6MNo",
-    "n7SGKGaFkpM",
-    "-MA67mAVRl8",
-    "BvYzzJ20bbk",
-    "IRzaCS0QLno",
-    "F0PPE8-KHwM",
-    "yCWoUqQXFFU",
-    "Ldm6pUWi9Lc",
-    "IEwFcEs4hUw",
-    "P-wAr687qxg",
-    "M22BEuoGvOY",
-    "bboOnKktKsw",
-    "DQVV1ARVDOU",
     "JYUGfNoyDKs",
-    "OlmHf6l2pa0",
+    "IRzaCS0QLno",
+    "DpO3CpInUas",
+    "-MA67mAVRl8",
+    "LPFzIRgGsOo",
+    "EJM-qmy3Muw",
+    "M22BEuoGvOY",
+    "gCLQqJew78A",
+    "2x2RfHg6ddk",
+    "iFRXQolDzMU",
+    "bTRDBbEaG-8",
+    "F0PPE8-KHwM",
+    "PviXGJM5wfM",
+    "Ldm6pUWi9Lc",
+    "Up5qdICHi6w",
+    "IEwFcEs4hUw",
+    "yCWoUqQXFFU",
+    "goQd4dL6MNo",
     "2ySyjm1clrA",
+    "bboOnKktKsw",
     "RxyIv_sXo3g",
-    "ULTV6T6jRTw"
+    "Np0Sknk5F5U",
+    "kEr1J4MtOGg",
+    "DQVV1ARVDOU",
+    "nwjz-oOLmMY",
+    "OlmHf6l2pa0",
+    "w_-8GfTIhrc",
+    "2EhZcxHVuhA",
+    "QTLm7t_rBJg",
+    "P-wAr687qxg",
+    "0mwL5BWLaWM",
+    "PxqgixX9fBQ",
+    "wrsJ4iAfa2c",
+    "QK47x1J12RU",
+    "FVWLdrb8HoQ",
+    "N6481-FfSxU",
+    "eqRGwYn-fyw",
+    "6kBAuqaJQfc",
+    "n7SGKGaFkpM",
+    "vd973v3rhiA",
+    "xEA-qgdOGRc",
+    "oOsl-Cgu34g",
+    "Zl5JB9q7LUw",
+    "ULTV6T6jRTw",
+    "BvYzzJ20bbk"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -1499,6 +1501,115 @@
         ],
         "answer_index": 2,
         "explanation": "L'article précise que Dan Repacholi est le responsable chargé de cette tournée d'écoute, collaborant avec Ged Kearney pour dialoguer avec les communautés masculines."
+      }
+    ]
+  },
+  "2026-05-07": {
+    "mot_du_jour": {
+      "mot": "épiphanie",
+      "classe": "nom féminin",
+      "definition": "Apparition soudaine et lumineuse d'une réalité jusque-là obscure ; moment de compréhension fulgurante où une vérité profonde se révèle à l'esprit avec une clarté inattendue.",
+      "etymologie": "Du grec 'epiphaneia' (ἐπιφάνεια), « apparition, manifestation », dérivé de 'epiphainein', « se montrer, briller à la surface ».",
+      "exemple": "C'est au détour d'une phrase anodine, dans le silence blanc de la bibliothèque, qu'il eut l'épiphanie qui allait bouleverser dix années de recherches."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En physique, qu'est-ce que la loi de conservation de l'énergie mécanique stipule dans un système sans frottement ?",
+        "options": [
+          "A. L'énergie cinétique seule reste constante tout au long du mouvement.",
+          "B. La somme de l'énergie cinétique et de l'énergie potentielle reste constante.",
+          "C. L'énergie potentielle se transforme intégralement en chaleur.",
+          "D. L'énergie mécanique totale augmente proportionnellement à la vitesse."
+        ],
+        "answer_index": 1,
+        "explanation": "Dans un système conservatif sans frottement, l'énergie mécanique totale — somme de l'énergie cinétique (½mv²) et de l'énergie potentielle (mgh) — demeure constante : toute perte d'énergie potentielle se traduit par un gain équivalent d'énergie cinétique, et inversement."
+      },
+      {
+        "theme": "sciences",
+        "question": "En informatique, qu'est-ce qu'une table de hachage (hash table) permet de réaliser de manière optimale ?",
+        "options": [
+          "A. Trier un ensemble de données en ordre croissant en temps O(n log n).",
+          "B. Stocker et rechercher des données en temps moyen O(1) grâce à une fonction de hachage.",
+          "C. Compresser des fichiers volumineux en réduisant leur taille de 50 %.",
+          "D. Parcourir un graphe en profondeur sans utiliser de pile d'appels."
+        ],
+        "answer_index": 1,
+        "explanation": "Une table de hachage associe chaque clé à un indice via une fonction de hachage, permettant des opérations d'insertion, de suppression et de recherche en temps moyen constant O(1), à condition de gérer efficacement les collisions (par chaînage ou adressage ouvert)."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne le vaste ensemble montagneux qui s'étend sur environ 7 000 km à travers le centre et l'est de l'Asie, formant la frontière naturelle entre la Russie et le Kazakhstan d'un côté, et la Chine et la Mongolie de l'autre ?",
+        "options": [
+          "A. Le massif de l'Oural",
+          "B. Le Tian Shan",
+          "C. L'Altaï",
+          "D. Le Pamir"
+        ],
+        "answer_index": 2,
+        "explanation": "L'Altaï est un système montagneux d'Asie centrale et septentrionale qui s'étend sur la Russie, le Kazakhstan, la Mongolie et la Chine. Son point culminant est le Beluha (4 506 m). Il est distinct du Tian Shan (plus méridional) et du Pamir (au Tadjikistan), et ne doit pas être confondu avec l'Oural, frontière conventionnelle Europe-Asie."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Iran / Ormuz",
+        "question": "Dans le contexte de la crise au Moyen-Orient décrite par le Guardian, quelle menace spécifique l'IRGC a-t-il évoquée en réponse aux ultimatums américains ?",
+        "options": [
+          "A. Fermer l'espace aérien iranien aux vols commerciaux internationaux",
+          "B. Rouvrir le détroit d'Ormuz aux navires militaires russes",
+          "C. Évoquer la possibilité de bloquer ou fermer le détroit d'Ormuz",
+          "D. Déclencher des frappes de missiles balistiques sur des bases américaines au Golfe"
+        ],
+        "answer_index": 2,
+        "explanation": "Selon l'article du Guardian, l'IRGC (Révolution islamique iranienne) a évoqué la possibilité de rouvrir — entendre ici de bloquer — le détroit d'Ormuz, passage crucial pour le commerce mondial du pétrole, en réponse aux pressions américaines."
+      },
+      {
+        "theme": "Controverse Lutnick",
+        "question": "Quel représentant démocrate est cité dans l'article du Guardian comme ayant qualifié d''embarrassante' la prestation de Lutnick lors de l'audition à huis clos ?",
+        "options": [
+          "A. Adam Schiff",
+          "B. Alexandria Ocasio-Cortez",
+          "C. Ro Khanna",
+          "D. Bernie Sanders"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article du Guardian mentionne explicitement Ro Khanna parmi les démocrates ayant jugé 'embarrassante' la prestation de Lutnick, secrétaire au Commerce, lors de l'audition concernant ses liens présumés avec le financier pédophile Epstein."
+      },
+      {
+        "theme": "Australie / État islamique",
+        "question": "Selon l'article du Guardian sur la surveillance en Australie, quelle catégorie de personnes fait l'objet d'un renforcement accru des contrôles à leur retour ?",
+        "options": [
+          "A. Les réfugiés afghans arrivés après le retrait américain de 2021",
+          "B. Les familles liées aux combattants australiens ayant rejoint l'État islamique en Irak et en Syrie",
+          "C. Les ressortissants étrangers soupçonnés d'espionnage industriel",
+          "D. Les militants environnementaux revenus de campagnes à l'étranger"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article précise que l'Australie renforce la surveillance des retours de familles liées aux combattants de l'État islamique ayant opéré en Irak et en Syrie, en raison des risques de radicalisation ou d'exposition à l'idéologie djihadiste."
+      },
+      {
+        "theme": "Rivières tressées NZ",
+        "question": "Selon l'article du Guardian sur la Nouvelle-Zélande, qu'est-ce qui caractérise géomorphologiquement une rivière tressée (braided river) ?",
+        "options": [
+          "A. Un lit unique et très profond creusé dans la roche volcanique",
+          "B. Plusieurs canaux entrecroisés formant un réseau complexe",
+          "C. Une succession de rapides et de chutes d'eau régulières",
+          "D. Un estuaire élargi soumis aux marées océaniques"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article du Guardian décrit les rivières tressées comme des écosystèmes géomorphologiquement rares, caractérisés par plusieurs canaux entrecroisés, formant un réseau en tresse qui constitue un habitat naturel fragile et rare."
+      },
+      {
+        "theme": "Procès OpenAI",
+        "question": "Selon l'article du Guardian sur le procès OpenAI, pendant combien d'années Shivon Zilis a-t-elle siégé au conseil d'administration d'OpenAI ?",
+        "options": [
+          "A. Deux ans (2018 à 2020)",
+          "B. Cinq ans (2018 à 2023)",
+          "C. Trois ans (2020 à 2023)",
+          "D. Quatre ans (2019 à 2023)"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article indique que Shivon Zilis a siégé au conseil d'administration d'OpenAI de 2020 à 2023, soit une période de trois ans, tout en occupant simultanément des fonctions exécutives chez Neuralink, une entreprise d'Elon Musk."
       }
     ]
   }

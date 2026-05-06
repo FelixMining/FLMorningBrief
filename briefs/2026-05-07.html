@@ -1,0 +1,2523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Morning Brief — Jeudi 7 mai 2026</title>
+  <link rel="icon" href="../logo-sans-fond.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+
+  <style>
+    /* ── Design tokens ─────────────────────────────────────── */
+    :root {
+      --bg:         #080A0F;
+      --surface:    #0D1117;
+      --card:       #0F1724;
+      --border:     #1C2333;
+      --text:       #EDF2FF;
+      --text-2:     #8B9CC8;
+      --text-3:     #3D4A60;
+      --accent:     #00D4FF;
+      --accent-dim: rgba(0,212,255,.08);
+      --accent-mid: rgba(0,212,255,.2);
+      --purple:     #8B5CF6;
+      --green:      #10B981;
+      --red:        #F43F5E;
+      --amber:      #F59E0B;
+      --h: 'Montserrat', system-ui, sans-serif;
+      --s: 'Inter', system-ui, sans-serif;
+      --m: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--s);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,.018) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Progress bar ────────────────────────────────────────── */
+    
+    #progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(0,212,255,.4);
+      z-index: 100;
+      transition: width .1s linear;
+    }
+    
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+      position: relative;
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    .header {
+      padding: 48px 0 28px;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 56px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(0,212,255,.3);
+    }
+    .header-eyebrow {
+      font-family: var(--m);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      opacity: .65;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .header-logo {
+      width: 22px; height: 22px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(0,212,255,.25));
+      opacity: 1;
+    }
+    .header-day {
+      font-family: var(--h);
+      font-size: clamp(50px, 13vw, 72px);
+      font-weight: 900;
+      line-height: .9;
+      color: var(--text);
+      letter-spacing: -.035em;
+      margin-bottom: 4px;
+    }
+    .header-month {
+      font-family: var(--h);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 22px;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+    }
+    .header-meta .sep { color: var(--border); }
+    .header-meta .time-badge {
+      display: flex; align-items: center; gap: 5px;
+      color: var(--accent);
+      opacity: .75;
+    }
+    .header-meta .time-badge svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+    /* ── Section ─────────────────────────────────────────────── */
+    .section { margin-bottom: 52px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 44px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .section-icon {
+      width: 32px; height: 32px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-icon svg { width: 15px; height: 15px; stroke: var(--accent); fill: none; }
+    .section-title {
+      font-family: var(--h);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+      flex: 1;
+    }
+    .section-count {
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 8px;
+    }
+
+    /* ── Article card ────────────────────────────────────────── */
+    .article-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
+      transition: border-color .15s, box-shadow .15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity .15s;
+    }
+    .article-card:hover {
+      border-color: var(--accent-mid);
+      box-shadow: 0 4px 24px rgba(0,212,255,.05);
+    }
+    .article-card:hover::before { opacity: 1; }
+
+    /* Card meta row */
+    .card-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .source-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: rgba(139,92,246,.1);
+      border: 1px solid rgba(139,92,246,.25);
+      color: #A78BFA;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .source-badge.hn {
+      background: rgba(245,158,11,.1);
+      border-color: rgba(245,158,11,.28);
+      color: #FCD34D;
+    }
+    .domain-pill {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .read-time {
+      font-size: 10px;
+      font-family: var(--m);
+      color: var(--text-3);
+      margin-left: auto;
+      display: flex; align-items: center; gap: 3px;
+    }
+    .read-time svg { width: 10px; height: 10px; }
+
+    /* Article content */
+    .article-title {
+      font-family: var(--h);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
+    .article-summary {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-2);
+      font-weight: 300;
+    }
+
+    /* Expand panel */
+    .article-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, opacity .2s;
+      opacity: 0;
+    }
+    .article-expand.open { max-height: 600px; opacity: 1; }
+    .expand-body {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--text-2);
+      font-weight: 300;
+      padding: 14px 0 10px;
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+    }
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      text-decoration: none;
+      margin-top: 10px;
+      transition: color .15s;
+    }
+    .source-link:hover { color: var(--text-2); }
+    .source-link svg { width: 10px; height: 10px; fill: none; }
+
+    /* Lire button */
+    .btn-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 11px;
+      font-family: var(--s);
+      font-weight: 500;
+      color: var(--text-3);
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+    .btn-read:hover, .btn-read.open {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-read .chevron {
+      width: 12px; height: 12px;
+      transition: transform .2s;
+      flex-shrink: 0;
+      fill: none;
+    }
+    .btn-read.open .chevron { transform: rotate(180deg); }
+
+    /* ── Finance ─────────────────────────────────────────────── */
+    .tv-container {
+      background: #0F0F0F;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 420px;
+      margin-bottom: 20px;
+    }
+    .tv-container .tradingview-widget-container,
+    .tv-container .tradingview-widget-container__widget { height: 100%; }
+    .tv-container .tradingview-widget-copyright { display: none; }
+
+    /* Fear & Greed */
+    .fear-greed {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .fg-label {
+      font-size: 10px;
+      font-family: var(--m);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .fg-bar-wrap {
+      position: relative;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(to right,
+        #F43F5E 0%, #F43F5E 25%,
+        #F97316 25%, #F97316 45%,
+        #EAB308 45%, #EAB308 55%,
+        #84CC16 55%, #84CC16 75%,
+        #10B981 75%, #10B981 100%
+      );
+      margin-bottom: 12px;
+    }
+    .fg-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px; height: 14px;
+      background: var(--bg);
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(255,255,255,.25);
+    }
+    .fg-bottom { display: flex; align-items: baseline; gap: 8px; }
+    .fg-value {
+      font-family: var(--m);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .fg-sentiment { font-size: 13px; color: var(--text-2); font-weight: 300; }
+
+    /* ── YouTube ─────────────────────────────────────────────── */
+    .video-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: border-color .15s;
+    }
+    .video-card:hover { border-color: var(--accent-mid); }
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.4);
+      transition: background .15s;
+    }
+    .video-card:hover .video-play { background: rgba(0,0,0,.25); }
+    .video-play-icon {
+      width: 46px; height: 46px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 20px rgba(0,212,255,.5);
+    }
+    .video-play-icon svg { width: 16px; height: 16px; margin-left: 2px; fill: #080A0F; }
+    .video-info { padding: 14px 16px; }
+    .video-channel {
+      font-size: 10px;
+      font-family: var(--m);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 5px;
+      opacity: .75;
+    }
+    .video-title {
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .video-meta {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── Mot du jour ─────────────────────────────────────────── */
+    .mot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 20px;
+      margin-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mot-card::after {
+      content: '"';
+      position: absolute;
+      top: -18px; right: 14px;
+      font-family: Georgia, serif;
+      font-size: 130px;
+      color: var(--border);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .mot-classe {
+      font-size: 10px;
+      font-family: var(--m);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      opacity: .7;
+    }
+    .mot-word {
+      font-family: var(--h);
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .mot-def {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-2);
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+    .mot-etym {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-bottom: 10px;
+      border-left: 2px solid var(--accent);
+      padding-left: 10px;
+      opacity: .65;
+    }
+    .mot-exemple {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── QCM ─────────────────────────────────────────────────── */
+    .qcm-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
+    }
+    .qcm-theme {
+      font-size: 10px;
+      font-family: var(--m);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 8px;
+    }
+    .qcm-question {
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .qcm-options { display: flex; flex-direction: column; gap: 6px; }
+    .qcm-option {
+      display: block; width: 100%; text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: background .12s, border-color .12s, color .12s;
+      font-family: var(--s);
+    }
+    .qcm-option:hover:not(:disabled) {
+      background: var(--accent-dim);
+      border-color: var(--accent-mid);
+      color: var(--text);
+    }
+    .qcm-option:disabled { cursor: default; }
+    .qcm-option.correct {
+      background: rgba(16,185,129,.12);
+      border-color: #10B981;
+      color: #6EE7B7;
+    }
+    .qcm-option.wrong {
+      background: rgba(244,63,94,.08);
+      border-color: #F43F5E;
+      color: #FDA4AF;
+    }
+    .qcm-explanation {
+      display: none;
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-3);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    /* ── Reading timer chip ─────────────────────────────────── */
+    #reading-chip {
+      position: fixed;
+      top: 8px; right: 12px;
+      z-index: 101;
+      display: flex; align-items: center; gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px 4px 8px;
+      font-family: var(--m);
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .04em;
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+    #reading-chip.visible { opacity: 1; }
+    #reading-chip svg { width: 11px; height: 11px; flex-shrink: 0; opacity: .7; }
+
+    /* ── Article image ───────────────────────────────────────── */
+    .article-img {
+      margin: -16px -16px 12px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 7px 7px 0 0;
+      background: var(--surface);
+    }
+    .article-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+    .article-card:hover .article-img img { opacity: 1; }
+
+    /* ── Actu QCM ────────────────────────────────────────────── */
+    .actu-qcm-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .actu-qcm-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+    }
+    .actu-qcm-label {
+      font-family: var(--h);
+      font-size: 11px; font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--amber); flex: 1;
+    }
+    .actu-qcm-count {
+      font-size: 11px; font-family: var(--m);
+      color: var(--text-3);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 1px 8px;
+    }
+    .qcm-item.actu { border-color: rgba(245,158,11,.2); }
+    .qcm-item.actu .qcm-theme { color: var(--amber); opacity: .8; }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    .footer {
+      padding: 24px 0 8px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-gen {
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .footer-archive {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-archive:hover { color: var(--accent); }
+    .footer-archive svg { width: 12px; height: 12px; fill: none; }
+
+    /* ── Feedback article ──────────────────────────────────── */
+    .article-feedback {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 12px; padding-top: 10px;
+      border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .btn-like, .btn-dislike, .btn-comment-toggle {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: none; border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 10px;
+      font-size: 11px; font-family: var(--m);
+      color: var(--text-3); cursor: pointer; transition: all .15s;
+    }
+    .btn-like svg, .btn-dislike svg, .btn-comment-toggle svg {
+      width: 12px; height: 12px; fill: none;
+      stroke: currentColor; stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .btn-like:hover   { border-color: var(--green); color: var(--green); }
+    .btn-dislike:hover { border-color: var(--red);   color: var(--red);   }
+    .btn-comment-toggle:hover { border-color: var(--accent-mid); color: var(--accent); }
+    .btn-like.active   { background: rgba(16,185,129,.12); border-color: var(--green); color: var(--green); }
+    .btn-dislike.active { background: rgba(244,63,94,.08);  border-color: var(--red);   color: var(--red);   }
+    .btn-comment-toggle.active { border-color: var(--accent-mid); color: var(--accent); }
+    .comment-area { width: 100%; margin-top: 6px; }
+    .comment-area textarea {
+      width: 100%; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 8px 12px; font-size: 12px; font-family: var(--s);
+      color: var(--text-2); resize: vertical; margin-bottom: 6px;
+    }
+    .comment-area textarea::placeholder { color: var(--text-3); }
+    .comment-area textarea:focus { outline: none; border-color: var(--accent-mid); }
+    .btn-save-comment {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 5px; padding: 5px 14px; font-size: 11px;
+      font-family: var(--m); color: var(--text-3); cursor: pointer; transition: all .12s;
+    }
+    .btn-save-comment:hover { border-color: var(--accent-mid); color: var(--accent); }
+
+    /* ── Révision & Mots du jour ────────────────────────────── */
+    .revision-header, .mot-review-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 16px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border); position: relative;
+    }
+    .revision-header::after {
+      content: ''; position: absolute; bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--purple); box-shadow: 0 0 8px var(--purple);
+    }
+    .mot-review-header::after {
+      content: ''; position: absolute; bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--green); box-shadow: 0 0 8px var(--green);
+    }
+    .revision-label {
+      font-family: var(--h); font-size: 11px; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--purple); flex: 1;
+    }
+    .mot-review-label {
+      font-family: var(--h); font-size: 11px; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--green); flex: 1;
+    }
+    .revision-count, .mot-review-count {
+      font-size: 11px; font-family: var(--m); color: var(--text-3);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1px 8px;
+    }
+    .qcm-item.revision  { border-color: rgba(139,92,246,.2); }
+    .qcm-item.revision .qcm-theme  { color: var(--purple); opacity: .8; }
+    .qcm-item.mot-review { border-color: rgba(16,185,129,.2); }
+    .qcm-item.mot-review .qcm-theme { color: var(--green); opacity: .8; }
+
+    /* ── Bouton retour accueil & méta footer ────────────────── */
+    .footer-home {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-family: var(--m); color: var(--text-3);
+      text-decoration: none; transition: color .15s; letter-spacing: .04em;
+    }
+    .footer-home:hover { color: var(--accent); }
+    .footer-home svg { width: 12px; height: 12px; fill: none; }
+    .footer-meta {
+      font-size: 10px; font-family: var(--m); color: var(--text-3);
+      margin-top: 10px; line-height: 2; text-align: center;
+    }
+    .footer-meta .cost { color: var(--green); opacity: .75; }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ── Reading Timer ─────────────────────────────── -->
+<div id="reading-chip">
+  <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  <span id="reading-time">0:00</span>
+</div>
+
+<div class="wrap">
+
+  <!-- ── Header ──────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-eyebrow">
+      <img src="../logo-sans-fond.svg" alt="" class="header-logo">
+      FL Morning Brief
+    </div>
+    
+    <div class="header-day">Jeudi 7</div>
+    <div class="header-month">mai 2026</div>
+    <div class="header-meta">
+      <span>01:43</span>
+      
+      <span class="sep">·</span>
+      <span class="time-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        ~53 min
+      </span>
+      
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Actualités
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="news">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Actualités</h2>
+      <span class="section-count">6</span>
+    </div>
+
+    
+    
+    <div class="article-card" id="article-news-0" data-art-id="news-0" data-domain="Géopolitique moyen-orientale">
+      <div class="article-img"><img src="https://media.guim.co.uk/0af0c4121e41b97380ffc2c978ccf7e948a1cf78/554_0_4392_3513/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Géopolitique moyen-orientale</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          3 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Crise au Moyen-Orient : l&#39;Iran rejette les ultimatums américains tandis qu&#39;Israël frappe Beyrouth</h3>
+      <p class="article-summary">Le négociateur iranien dénonce les tentatives américaines de forcer la capitulation de Téhéran, tandis que Trump menace d&#39;intensifier les bombardements. Israël a frappé Beyrouth pour la première fois depuis le début du cessez-le-feu.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-0">
+        <div class="expand-body">Les tensions s&#39;intensifient après les menaces explicites de Donald Trump d&#39;escalader les frappes aériennes si l&#39;Iran n&#39;accepte pas les conditions américaines. La Révolution islamique iranienne (IRGC) a évoqué la possibilité de rouvrir le détroit d&#39;Ormuz, crucial pour le commerce mondial du pétrole. Le bombardement israélien de Beyrouth marque une rupture significative du cessez-le-feu récemment établi au Liban, suggérant une fragmentation des accords régionaux. Ces développements reflètent l&#39;absence d&#39;avancées diplomatiques et un retour à l&#39;escalade militaire dans une région déjà fragilisée par des années de conflits.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/world/live/2026/may/06/trump-iran-hormuz-us-project-freedom-live-updates-middle-east-crisis" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-0', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-1" data-art-id="news-1" data-domain="Politique américaine">
+      <div class="article-img"><img src="https://media.guim.co.uk/9817ec8668ef443a3b2661e4434313bcaa249288/681_0_4583_3667/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Politique américaine</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Controverse Lutnick : les démocrates critiquent le secrétaire au Commerce pour ses liens présumés avec Epstein</h3>
+      <p class="article-summary">Des démocrates de la Chambre des représentants appelent Trump à limoger Howard Lutnick, secrétaire au Commerce, après des révélations concernant une déposition sur ses liens avec Jeffrey Epstein.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-1">
+        <div class="expand-body">Ro Khanna et d&#39;autres démocrates ont jugé &#39;embarrassante&#39; la prestation de Lutnick lors d&#39;une audition à huis clos concernant ses connexions avec le financier pédophile condamné. Cette controverse survient dans un contexte où Trump menace déjà ses propres membres du Cabinet, suggérant une instabilité au sein de l&#39;administration. Les accusations ne précisent pas la nature exacte des liens, mais le simple fait de figurer dans les dossiers Epstein suffit à raviver les suspicions médiatiques. Cette affaire exemplifie les tensions persistantes autour de l&#39;héritage Epstein et de ceux qui auraient pu avoir des relations compromettantes avec lui.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/us-news/live/2026/may/06/donald-trump-iran-howard-lutnick-jeffrey-epstein-midterms-redistricting-latest-news-updates" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-1', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-2" data-art-id="news-2" data-domain="Sécurité intérieure Australie">
+      <div class="article-img"><img src="https://media.guim.co.uk/9bcaaaa397f166bfde0687de4b8851e65ad3395d/231_0_1964_1571/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Sécurité intérieure Australie</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Australie : surveillance accrue des retours de familles liées aux combattants de l&#39;État islamique</h3>
+      <p class="article-summary">La police de Nouvelle-Galles du Sud intensifie sa surveillance des familles australiennes revenant de zones contrôlées par l&#39;État islamique, tandis que les banques sont incitées à soutenir les clients en difficulté.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-2">
+        <div class="expand-body">Ce renforcement des contrôles reflète les préoccupations sécuritaires persistantes concernant les retours de combattants étrangers et leurs familles qui ont pu être radicalisés ou exposés à l&#39;idéologie djihadiste. L&#39;Australie a dû gérer le retour de plusieurs centaines de ressortissants qui ont rejoint l&#39;État islamique en Irak et en Syrie. Le volet bancaire de cette politique reconnaît les difficultés économiques des familles réintégrées, déchirées entre impératifs de sécurité et réadaptation sociale. Cette approche combinée vise à équilibrer prévention de la menace terroriste et aide sociale aux populations vulnérables.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/australia-news/live/2026/may/07/royal-commission-antisemitism-budget-cost-of-living-jim-chalmers-anthony-albanese-tax-islamic-state-families-syria-ntwnfb" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-2', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-3" data-art-id="news-3" data-domain="Environnement Nouvelle-Zélande">
+      <div class="article-img"><img src="https://media.guim.co.uk/eb693cde00975f2f8ed7db3184dda47cf26d63fb/243_0_7277_5822/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Environnement Nouvelle-Zélande</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Nouvelle-Zélande : le dilemme de la gestion des rivières tressées entre agriculture et protection naturelle</h3>
+      <p class="article-summary">Les communautés néo-zélandaises débattent de stratégies pour protéger les rivières tressées uniques du pays face aux risques d&#39;inondation et aux besoins agricoles.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-3">
+        <div class="expand-body">Les rivières tressées (braided rivers) sont des écosystèmes géomorphologiquement rares, caractérisés par plusieurs canaux entrecroisés. Les interventions humaines pour contrôler l&#39;eau et réduire les risques d&#39;inondation menacent ces systèmes naturels fragiles, éléments clés de la biodiversité et du paysage néo-zélandais. L&#39;agriculture intensive pousse à canaliser et modifier ces cours d&#39;eau, créant un conflit majeur entre productivité économique et préservation écologique. Les communautés locales doivent négocier des solutions de coexistence entre exploitation des terres et maintien de ces formations géologiques uniques.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/world/ng-interactive/2026/may/07/tame-the-water-or-let-it-flow-new-zealand-grapples-with-how-to-protect-its-braided-rivers" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-3', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-4" data-art-id="news-4" data-domain="IA &amp; conflits d&#39;intérêts">
+      <div class="article-img"><img src="https://media.guim.co.uk/f222d1c4f28560087c5d72edd603b477299de542/203_0_1987_1590/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">IA &amp; conflits d&#39;intérêts</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Procès OpenAI : témoignage de Shivon Zilis, mère de quatre enfants d&#39;Elon Musk</h3>
+      <p class="article-summary">Shivon Zilis, cadre de Neuralink et ancienne administratrice d&#39;OpenAI, témoigne dans le procès opposant Elon Musk à la startup d&#39;IA, révélant des conflits d&#39;intérêts potentiels.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-4">
+        <div class="expand-body">Zilis a siégé au conseil d&#39;administration d&#39;OpenAI de 2020 à 2023, période durant laquelle elle occupait aussi des fonctions exécutives chez Neuralink, une autre entreprise contrôlée par Musk. Son témoignage pourrait clarifier la gouvernance d&#39;OpenAI et les accusations de Musk selon lesquelles la société aurait dévié de sa mission non lucrative initiale. La présence d&#39;administrateurs avec des liens familiaux ou professionnels multiples soulève des questions sur les conflits d&#39;intérêts et la transparence des décisions d&#39;IA. Ce procès devient un baromètre crucial des enjeux éthiques et corporatifs dans le secteur de l&#39;IA générative.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/technology/2026/may/06/shivon-zilis-testimony-elon-musk-openai-lawsuit" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-4', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-5" data-art-id="news-5" data-domain="Discriminations Australie">
+      <div class="article-img"><img src="https://media.guim.co.uk/50d95549bd5994debc9be38b524a865e7cf6bd06/513_0_7857_6286/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Discriminations Australie</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Australie : témoignage glaçant d&#39;une mère juive sur l&#39;antisémitisme croissant à Bondi</h3>
+      <p class="article-summary">Une mère juive australienne dénonce l&#39;antisémitisme galopant dans sa communauté, révélant que sa fille a peur pour sa vie à Bondi, symptôme de la crise des droits civiques juifs en Australie.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-5">
+        <div class="expand-body">Ce témoignage intervient dans le contexte d&#39;une commission royale sur l&#39;antisémitisme en Australie, mettant en lumière la dimension personnelle et intime des discriminations religieuses. Le quartier de Bondi, populaire et cosmopolite, devient le symbole d&#39;une montée alarmante des tensions communautaires. Les événements récents au Moyen-Orient ont amplifié les préjugés et l&#39;hostilité envers les Juifs australiens, transformant des espaces publics autrefois accessibles en zones perçues comme menaçantes. Ce rapport illustre comment la géopolitique internationale exacerbe les divisions domestiques et affecte directement la sécurité physique et psychologique des minorités religieuses.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/commentisfree/2026/may/07/antisemitism-royal-commission-bondi-dying-jewish-mother-ntwnfb" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-5', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Tech & IA
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="tech">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="2"/>
+          <rect x="9" y="9" width="6" height="6"/>
+          <path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Tech & IA</h2>
+      <span class="section-count">10</span>
+    </div>
+
+    
+    
+    <div class="article-card" id="article-tech-0" data-art-id="tech-0" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">evidentia-ai 0.8.0</h3>
+      <p class="article-summary">LLM-powered risk statement generator and evidence validator for Evidentia</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-0">
+        <div class="expand-body">LLM-powered risk statement generator and evidence validator for Evidentia</div>
+        
+        <a class="source-link" href="https://pypi.org/project/evidentia-ai/0.8.0/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-0', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-1" data-art-id="tech-1" data-domain="">
+      <div class="article-img"><img src="https://pypi.org/static/images/twitter.abaf4b19.webp" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">evidentia-mcp added to PyPI</h3>
+      <p class="article-summary">Model Context Protocol (MCP) server for Evidentia — exposes gap analysis, risk generation, explanation, and OSCAL emit to MCP-aware AI clients (Claude Desktop, Claude Code, ChatGPT, etc.)</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-1">
+        <div class="expand-body">Model Context Protocol (MCP) server for Evidentia — exposes gap analysis, risk generation, explanation, and OSCAL emit to MCP-aware AI clients (Claude Desktop, Claude Code, ChatGPT, etc.)</div>
+        
+        <a class="source-link" href="https://pypi.org/project/evidentia-mcp/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-1', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-2" data-art-id="tech-2" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">mindroom 2026.5.45</h3>
+      <p class="article-summary">A universal interface for AI agents with persistent memory, where every conversation has a home</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-2">
+        <div class="expand-body">A universal interface for AI agents with persistent memory, where every conversation has a home</div>
+        
+        <a class="source-link" href="https://pypi.org/project/mindroom/2026.5.45/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-2', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-3" data-art-id="tech-3" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">openclaw-output-vetter-mcp 1.1.0</h3>
+      <p class="article-summary">MCP server for verifying AI agent claims vs reality — inline grounding-check on retrieval context, swallowed-exception scanner on agent-written code, and multi-turn transcript review for unverified co</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-3">
+        <div class="expand-body">MCP server for verifying AI agent claims vs reality — inline grounding-check on retrieval context, swallowed-exception scanner on agent-written code, and multi-turn transcript review for unverified completions + cross-turn contradictions. Sub-second, local, f…</div>
+        
+        <a class="source-link" href="https://pypi.org/project/openclaw-output-vetter-mcp/1.1.0/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-3', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-4" data-art-id="tech-4" data-domain="">
+      <div class="article-img"><img src="https://variety.com/wp-content/uploads/2022/11/jason-blum-cinematheque.jpg?w=1000&amp;h=563&amp;crop=1" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Variety</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Jason Blum, Mickael De Luca and Tom Quinn to Speak at PGA’s Produced By Conference</h3>
+      <p class="article-summary">Blumhouse CEO and Founder Jason Blum, Warner Bros. Motion Picture Group Co-Chair and CEO Michael De Luca and Neon CEO and Founder Tom Quinn are among those slated to speak at the Producers Guild of Am</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-4">
+        <div class="expand-body">Blumhouse CEO and Founder Jason Blum, Warner Bros. Motion Picture Group Co-Chair and CEO Michael De Luca and Neon CEO and Founder Tom Quinn are among those slated to speak at the Producers Guild of America’s annual Produced By Conference. The event will take …</div>
+        
+        <a class="source-link" href="https://variety.com/2026/film/news/produced-by-conference-pga-2026-1236738827/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-4', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-5" data-art-id="tech-5" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">supervertaler 1.9.446</h3>
+      <p class="article-summary">Professional AI-enhanced translation workbench with multi-LLM support, glossary system, TM, spellcheck, voice commands, and PyQt6 interface. Batteries included (core).</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-5">
+        <div class="expand-body">Professional AI-enhanced translation workbench with multi-LLM support, glossary system, TM, spellcheck, voice commands, and PyQt6 interface. Batteries included (core).</div>
+        
+        <a class="source-link" href="https://pypi.org/project/supervertaler/1.9.446/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-5', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-6" data-art-id="tech-6" data-domain="">
+      <div class="article-img"><img src="https://www.nzherald.co.nz/resizer/v2/U2VQJOA5MNFBLOMRGYPTH24M24.jpg?auth=538be4715af5bb687aefa494f908e3de25edd3413dd1d94470a844440d8b811f&amp;width=1200&amp;height=675&amp;quality=70&amp;focal=952%2C726&amp;smart=false" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">New Zealand Herald</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Fonterra Dairy Woman of the Year 2026: Bay of Plenty’s Hinehou Timutimu takes the title</h3>
+      <p class="article-summary">&#39;Her commitment to people, land, and the next generation of farmers is truly inspiring.&#39;</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-6">
+        <div class="expand-body">&#39;Her commitment to people, land, and the next generation of farmers is truly inspiring.&#39;</div>
+        
+        <a class="source-link" href="https://www.nzherald.co.nz/the-country/news/fonterra-dairy-woman-of-the-year-2026-bay-of-plentys-hinehou-timutimu-takes-the-title/HLUCV6YRXBAG3IMJM2AGAFPJOI/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-6', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-7" data-art-id="tech-7" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">flwr-nightly 1.30.0.dev20260505</h3>
+      <p class="article-summary">Flower: A Friendly Federated AI Framework</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-7">
+        <div class="expand-body">Flower: A Friendly Federated AI Framework</div>
+        
+        <a class="source-link" href="https://pypi.org/project/flwr-nightly/1.30.0.dev20260505/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-7', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-8" data-art-id="tech-8" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">zhivex-ai-sdk 0.6.0</h3>
+      <p class="article-summary">Agent-first Python SDK for building orchestrated AI systems across multiple providers</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-8">
+        <div class="expand-body">Agent-first Python SDK for building orchestrated AI systems across multiple providers</div>
+        
+        <a class="source-link" href="https://pypi.org/project/zhivex-ai-sdk/0.6.0/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-8', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-9" data-art-id="tech-9" data-domain="">
+      <div class="article-img"><img src="https://www.artsjournal.com/belknap/wp-content/uploads/2021/06/AJLogo-circle.png" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Artsjournal.com</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Pulitzers Land, Institutions Wobble</h3>
+      <p class="article-summary">Good Morning, This year’s Pulitzers were announced. Bess Wohl’s Liberation took Drama (Playbill). Gabriela Lena Frank’s Picaflor, premiered last year by the Philadelphia Orchestra, won Music (Philadel</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-9">
+        <div class="expand-body">Good Morning, This year’s Pulitzers were announced. Bess Wohl’s Liberation took Drama (Playbill). Gabriela Lena Frank’s Picaflor, premiered last year by the Philadelphia Orchestra, won Music (Philadelphia Inquirer). Mark Lamster of the Dallas Morning News won…</div>
+        
+        <a class="source-link" href="https://www.artsjournal.com/2026/05/pulitzers-land-institutions-wobble.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-9', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Finance
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="finance">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+          <polyline points="17 6 23 6 23 12"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Finance</h2>
+    </div>
+
+    <!-- TradingView Widget -->
+    <div class="tv-container">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {
+          "lineWidth": 2,
+          "lineType": 0,
+          "chartType": "area",
+          "fontColor": "rgb(106, 109, 120)",
+          "gridLineColor": "rgba(242, 242, 242, 0.06)",
+          "volumeUpColor": "rgba(34, 171, 148, 0.5)",
+          "volumeDownColor": "rgba(247, 82, 95, 0.5)",
+          "backgroundColor": "#0F0F0F",
+          "widgetFontColor": "#DBDBDB",
+          "upColor": "#22ab94",
+          "downColor": "#f7525f",
+          "borderUpColor": "#22ab94",
+          "borderDownColor": "#f7525f",
+          "wickUpColor": "#22ab94",
+          "wickDownColor": "#f7525f",
+          "colorTheme": "dark",
+          "isTransparent": false,
+          "locale": "fr",
+          "chartOnly": false,
+          "scalePosition": "right",
+          "scaleMode": "Normal",
+          "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+          "valuesTracking": "1",
+          "changeMode": "price-and-percent",
+          "symbols": [
+            ["INDEX:CAC40|1D|EUR"],
+            ["TVC:SPX|1D|EUR"],
+            ["IG:NASDAQ|1D|EUR"],
+            ["OANDA:XAUEUR|1D|EUR"],
+            ["FX_IDC:XAGEUR|1D|EUR"],
+            ["CRYPTO:BTCUSD|1D|EUR"],
+            ["EASYMARKETS:OILUSD|1D|EUR"]
+          ],
+          "dateRanges": ["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"],
+          "fontSize": "10",
+          "headerFontSize": "medium",
+          "autosize": true,
+          "dateFormat": "dd/MM/yyyy",
+          "width": "100%",
+          "height": "100%",
+          "noTimeScale": false,
+          "hideDateRanges": false,
+          "hideMarketStatus": false,
+          "hideSymbolLogo": false
+        }
+        </script>
+        
+      </div>
+    </div>
+
+    <!-- Fear & Greed Index -->
+    
+    
+    <div class="fear-greed">
+      <div class="fg-label">Fear &amp; Greed Index</div>
+      <div class="fg-bar-wrap">
+        <div class="fg-marker" style="left: 46%"></div>
+      </div>
+      <div class="fg-bottom">
+        <span class="fg-value">46</span>
+        <span class="fg-sentiment">Fear</span>
+      </div>
+    </div>
+    
+
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : YouTube
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="youtube">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Vidéo</h2>
+    </div>
+
+    
+    <a class="video-card" href="https://www.youtube.com/watch?v=QTLm7t_rBJg" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://i.ytimg.com/vi/QTLm7t_rBJg/mqdefault.jpg" alt="" loading="lazy">
+        <div class="video-play">
+          <div class="video-play-icon">
+            <svg viewBox="0 0 16 16"><polygon points="5,3 13,8 5,13"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-channel">Benjamin Code</div>
+        <div class="video-title">Mon application commence enfin à décoller.</div>
+        <div class="video-meta">
+          5 mai 18:05
+           · 21:38
+        </div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://www.youtube.com/watch?v=xEA-qgdOGRc" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://i.ytimg.com/vi/xEA-qgdOGRc/mqdefault.jpg" alt="" loading="lazy">
+        <div class="video-play">
+          <div class="video-play-icon">
+            <svg viewBox="0 0 16 16"><polygon points="5,3 13,8 5,13"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-channel">Will Phillips</div>
+        <div class="video-title">New INSIDE STARTUPS episode with StackAI out now!</div>
+        <div class="video-meta">
+          7 mai 00:30
+           · 0:34
+        </div>
+      </div>
+    </a>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Culture
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="culture">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Culture</h2>
+    </div>
+
+    
+    
+    <div class="mot-card">
+      <div class="mot-classe">nom féminin</div>
+      <div class="mot-word">épiphanie</div>
+      <p class="mot-def">Apparition soudaine et lumineuse d&#39;une réalité jusque-là obscure ; moment de compréhension fulgurante où une vérité profonde se révèle à l&#39;esprit avec une clarté inattendue.</p>
+      <p class="mot-etym">Du grec &#39;epiphaneia&#39; (ἐπιφάνεια), « apparition, manifestation », dérivé de &#39;epiphainein&#39;, « se montrer, briller à la surface ».</p>
+      <p class="mot-exemple">« C&#39;est au détour d&#39;une phrase anodine, dans le silence blanc de la bibliothèque, qu&#39;il eut l&#39;épiphanie qui allait bouleverser dix années de recherches. »</p>
+    </div>
+    
+
+    
+    <div class="qcm-item" data-idx="0" data-type="culture">
+      <div class="qcm-theme">sciences</div>
+      <div class="qcm-question">En physique, qu&#39;est-ce que la loi de conservation de l&#39;énergie mécanique stipule dans un système sans frottement ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. L&#39;énergie cinétique seule reste constante tout au long du mouvement.</button>
+        
+        <button class="qcm-option">B. La somme de l&#39;énergie cinétique et de l&#39;énergie potentielle reste constante.</button>
+        
+        <button class="qcm-option">C. L&#39;énergie potentielle se transforme intégralement en chaleur.</button>
+        
+        <button class="qcm-option">D. L&#39;énergie mécanique totale augmente proportionnellement à la vitesse.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="1" data-type="culture">
+      <div class="qcm-theme">sciences</div>
+      <div class="qcm-question">En informatique, qu&#39;est-ce qu&#39;une table de hachage (hash table) permet de réaliser de manière optimale ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Trier un ensemble de données en ordre croissant en temps O(n log n).</button>
+        
+        <button class="qcm-option">B. Stocker et rechercher des données en temps moyen O(1) grâce à une fonction de hachage.</button>
+        
+        <button class="qcm-option">C. Compresser des fichiers volumineux en réduisant leur taille de 50 %.</button>
+        
+        <button class="qcm-option">D. Parcourir un graphe en profondeur sans utiliser de pile d&#39;appels.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="2" data-type="culture">
+      <div class="qcm-theme">geographie</div>
+      <div class="qcm-question">Quel nom désigne le vaste ensemble montagneux qui s&#39;étend sur environ 7 000 km à travers le centre et l&#39;est de l&#39;Asie, formant la frontière naturelle entre la Russie et le Kazakhstan d&#39;un côté, et la Chine et la Mongolie de l&#39;autre ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Le massif de l&#39;Oural</button>
+        
+        <button class="qcm-option">B. Le Tian Shan</button>
+        
+        <button class="qcm-option">C. L&#39;Altaï</button>
+        
+        <button class="qcm-option">D. Le Pamir</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+
+    
+    <div class="actu-qcm-header">
+      <span class="actu-qcm-label">Quiz de l'actu</span>
+      <span class="actu-qcm-count">5</span>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="0" data-type="actu">
+      <div class="qcm-theme">Iran / Ormuz</div>
+      <div class="qcm-question">Dans le contexte de la crise au Moyen-Orient décrite par le Guardian, quelle menace spécifique l&#39;IRGC a-t-il évoquée en réponse aux ultimatums américains ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Fermer l&#39;espace aérien iranien aux vols commerciaux internationaux</button>
+        
+        <button class="qcm-option">B. Rouvrir le détroit d&#39;Ormuz aux navires militaires russes</button>
+        
+        <button class="qcm-option">C. Évoquer la possibilité de bloquer ou fermer le détroit d&#39;Ormuz</button>
+        
+        <button class="qcm-option">D. Déclencher des frappes de missiles balistiques sur des bases américaines au Golfe</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="1" data-type="actu">
+      <div class="qcm-theme">Controverse Lutnick</div>
+      <div class="qcm-question">Quel représentant démocrate est cité dans l&#39;article du Guardian comme ayant qualifié d&#39;&#39;embarrassante&#39; la prestation de Lutnick lors de l&#39;audition à huis clos ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Adam Schiff</button>
+        
+        <button class="qcm-option">B. Alexandria Ocasio-Cortez</button>
+        
+        <button class="qcm-option">C. Ro Khanna</button>
+        
+        <button class="qcm-option">D. Bernie Sanders</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="2" data-type="actu">
+      <div class="qcm-theme">Australie / État islamique</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur la surveillance en Australie, quelle catégorie de personnes fait l&#39;objet d&#39;un renforcement accru des contrôles à leur retour ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Les réfugiés afghans arrivés après le retrait américain de 2021</button>
+        
+        <button class="qcm-option">B. Les familles liées aux combattants australiens ayant rejoint l&#39;État islamique en Irak et en Syrie</button>
+        
+        <button class="qcm-option">C. Les ressortissants étrangers soupçonnés d&#39;espionnage industriel</button>
+        
+        <button class="qcm-option">D. Les militants environnementaux revenus de campagnes à l&#39;étranger</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="3" data-type="actu">
+      <div class="qcm-theme">Rivières tressées NZ</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur la Nouvelle-Zélande, qu&#39;est-ce qui caractérise géomorphologiquement une rivière tressée (braided river) ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Un lit unique et très profond creusé dans la roche volcanique</button>
+        
+        <button class="qcm-option">B. Plusieurs canaux entrecroisés formant un réseau complexe</button>
+        
+        <button class="qcm-option">C. Une succession de rapides et de chutes d&#39;eau régulières</button>
+        
+        <button class="qcm-option">D. Un estuaire élargi soumis aux marées océaniques</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="4" data-type="actu">
+      <div class="qcm-theme">Procès OpenAI</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur le procès OpenAI, pendant combien d&#39;années Shivon Zilis a-t-elle siégé au conseil d&#39;administration d&#39;OpenAI ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Deux ans (2018 à 2020)</button>
+        
+        <button class="qcm-option">B. Cinq ans (2018 à 2023)</button>
+        
+        <button class="qcm-option">C. Trois ans (2020 à 2023)</button>
+        
+        <button class="qcm-option">D. Quatre ans (2019 à 2023)</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    
+
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Révision (anciens briefs — 30 jours)
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="revision">
+    <div class="revision-header">
+      <span class="revision-label">Révision</span>
+      <span class="revision-count">3</span>
+    </div>
+    
+    <div class="qcm-item revision" data-idx="0" data-type="revision">
+      <div class="qcm-theme">2026-05-02</div>
+      <div class="qcm-question">Quelle est la raison principale de la démission du président de Bard College selon l&#39;article du Guardian ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Une enquête sur des malversations financières au sein de l&#39;université.</button>
+        
+        <button class="qcm-option">B. Une enquête interne révélant des contacts réguliers avec Jeffrey Epstein, en contradiction avec ses déclarations publiques.</button>
+        
+        <button class="qcm-option">C. Des accusations de harcèlement moral envers des étudiants.</button>
+        
+        <button class="qcm-option">D. Un désaccord avec le conseil d&#39;administration sur la stratégie académique.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item revision" data-idx="1" data-type="revision">
+      <div class="qcm-theme">2026-04-20</div>
+      <div class="qcm-question">En chimie, qu&#39;appelle-t-on l&#39;électronégativité d&#39;un atome ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. La capacité d&#39;un atome à attirer vers lui les électrons d&#39;une liaison chimique partagée.</button>
+        
+        <button class="qcm-option">B. Le nombre d&#39;électrons libérés lors d&#39;une réaction d&#39;oxydation.</button>
+        
+        <button class="qcm-option">C. L&#39;énergie nécessaire pour arracher un électron à un atome à l&#39;état gazeux.</button>
+        
+        <button class="qcm-option">D. La charge portée par le noyau d&#39;un atome exprimée en coulombs.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item revision" data-idx="2" data-type="revision">
+      <div class="qcm-theme">2026-04-21</div>
+      <div class="qcm-question">En génétique, qu&#39;est-ce que le phénomène d&#39;épissage alternatif (alternative splicing) permet d&#39;accomplir ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. De réparer les cassures double brin de l&#39;ADN grâce à des enzymes de recombinaison.</button>
+        
+        <button class="qcm-option">B. De produire plusieurs protéines différentes à partir d&#39;un seul et même gène en combinant différemment ses exons.</button>
+        
+        <button class="qcm-option">C. De dupliquer l&#39;intégralité du génome avant la division cellulaire.</button>
+        
+        <button class="qcm-option">D. De transférer horizontalement des gènes entre deux organismes d&#39;espèces différentes.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : QCM Mots du jour
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="mot-review">
+    <div class="mot-review-header">
+      <span class="mot-review-label">Mots du jour — Révision</span>
+      <span class="mot-review-count">3</span>
+    </div>
+    
+    <div class="qcm-item mot-review" data-idx="0" data-type="mot_review">
+      <div class="qcm-theme">kaléidoscopique</div>
+      <div class="qcm-question">Quel est le sens du mot « kaléidoscopique » ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Qui désigne une vision floue et déformée de la réalité, comme dans un miroir brisé.</button>
+        
+        <button class="qcm-option">B. Qui présente une succession rapide et chatoyante de formes, de couleurs ou d&#39;aspects variés, évoquant une diversité foisonnante et en perpétuel mouvement.</button>
+        
+        <button class="qcm-option">C. Qui se rapporte à une structure géométrique régulière et symétrique, d&#39;une grande précision formelle.</button>
+        
+        <button class="qcm-option">D. Qui qualifie un phénomène lumineux produit par la réfraction de la lumière à travers un prisme.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item mot-review" data-idx="1" data-type="mot_review">
+      <div class="qcm-theme">sillage</div>
+      <div class="qcm-question">Quel est le sens du mot « sillage » ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Bruit sourd et continu produit par le frottement de la coque d&#39;un navire contre les vagues.</button>
+        
+        <button class="qcm-option">B. Courant marin profond qui s&#39;écoule en sens inverse de la surface.</button>
+        
+        <button class="qcm-option">C. Trace laissée à la surface de l&#39;eau par le passage d&#39;un navire ou d&#39;un objet en mouvement ; par extension, l&#39;empreinte ou l&#39;influence durable qu&#39;une personne ou un événement laisse derrière lui.</button>
+        
+        <button class="qcm-option">D. Zone de calme et d&#39;absence de vent qui se forme autour d&#39;un voilier par temps de tempête.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item mot-review" data-idx="2" data-type="mot_review">
+      <div class="qcm-theme">hypallage</div>
+      <div class="qcm-question">Quel est le sens du mot « hypallage » ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Procédé rhétorique consistant à répéter un même mot en début de plusieurs propositions successives pour créer un effet d&#39;insistance.</button>
+        
+        <button class="qcm-option">B. Figure de style par laquelle on substitue le nom d&#39;une chose à celui d&#39;une autre avec laquelle elle entretient un lien de contiguïté ou de cause à effet.</button>
+        
+        <button class="qcm-option">C. Tournure poétique qui consiste à interrompre brusquement une phrase pour laisser le lecteur en suspens face à un non-dit.</button>
+        
+        <button class="qcm-option">D. Figure de style par laquelle un qualificatif ou un complément est rattaché grammaticalement à un mot alors qu&#39;il se rapporte logiquement à un autre mot de la phrase, créant un décalage poétique entre syntaxe et sens réel.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer-gen">Jeudi 7 mai 2026 · 01:43</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;flex-wrap:wrap">
+      <a class="footer-home" href="../index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Accueil
+      </a>
+      
+      <a class="footer-archive" href="https://felixmining.github.io/FLMorningBrief/briefs/index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Archive
+      </a>
+      
+    </div>
+    
+    <div class="footer-meta">
+      <span>Généré 01:43:24 → 01:45:17</span>
+      &nbsp;·&nbsp;
+      <span>9184 → 7772 tokens</span>
+      &nbsp;·&nbsp;
+      <span class="cost">$0.0891</span>
+    </div>
+    
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  // ── Progress bar ──────────────────────────────────
+  
+  const progressEl = document.getElementById('progress');
+  function updateProgress() {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressEl.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  
+
+  // ── Reading Timer — accumulé entre visites ─────────
+  const BRIEF_DATE   = '2026-05-07';
+  const _statsInit   = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
+  const prevSeconds  = (_statsInit[BRIEF_DATE] && _statsInit[BRIEF_DATE].reading)
+                        ? (_statsInit[BRIEF_DATE].reading.total_seconds || 0) : 0;
+  const sessionStart = Date.now();
+  const chipEl       = document.getElementById('reading-chip');
+  const timerEl      = document.getElementById('reading-time');
+
+  function fmtTime(s) {
+    const m = Math.floor(s / 60);
+    const sc = s % 60;
+    return m + ':' + (sc < 10 ? '0' : '') + sc;
+  }
+
+  setInterval(function() {
+    const sessionSecs = Math.floor((Date.now() - sessionStart) / 1000);
+    timerEl.textContent = fmtTime(prevSeconds + sessionSecs);
+  }, 1000);
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 80) chipEl.classList.add('visible');
+  }, { passive: true });
+
+  // ── Section Time Tracking ─────────────────────────
+  const SECTION_IDS = ['news', 'tech', 'finance', 'youtube', 'culture', 'revision', 'mot-review'];
+  const sectionTimes  = {};
+  const sectionActive = {};
+  SECTION_IDS.forEach(function(id) {
+    const prev = (_statsInit[BRIEF_DATE] && _statsInit[BRIEF_DATE].reading &&
+                  _statsInit[BRIEF_DATE].reading.sections)
+                 ? (_statsInit[BRIEF_DATE].reading.sections[id] || 0) : 0;
+    sectionTimes[id] = prev;
+  });
+
+  const sectionObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      const id = e.target.id;
+      if (e.isIntersecting) {
+        sectionActive[id] = Date.now();
+      } else if (sectionActive[id]) {
+        sectionTimes[id] += Math.floor((Date.now() - sectionActive[id]) / 1000);
+        delete sectionActive[id];
+      }
+    });
+  }, { threshold: 0.1 });
+
+  SECTION_IDS.forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) sectionObs.observe(el);
+  });
+
+  // ── Article Time Tracking ─────────────────────────
+  const articleTimes  = {};
+  const articleActive = {};
+
+  const articleObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      const id = e.target.id;
+      if (e.isIntersecting) {
+        articleActive[id] = Date.now();
+      } else if (articleActive[id]) {
+        if (!articleTimes[id]) articleTimes[id] = 0;
+        articleTimes[id] += Math.floor((Date.now() - articleActive[id]) / 1000);
+        delete articleActive[id];
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.article-card[id]').forEach(function(el) {
+    if (!articleTimes[el.id]) articleTimes[el.id] = 0;
+    articleObs.observe(el);
+  });
+
+  function flushAll() {
+    const now = Date.now();
+    Object.keys(sectionActive).forEach(function(id) {
+      sectionTimes[id] += Math.floor((now - sectionActive[id]) / 1000);
+      sectionActive[id] = now;
+    });
+    Object.keys(articleActive).forEach(function(id) {
+      if (!articleTimes[id]) articleTimes[id] = 0;
+      articleTimes[id] += Math.floor((now - articleActive[id]) / 1000);
+      articleActive[id] = now;
+    });
+  }
+
+  // ── Stats persistence ─────────────────────────────
+  const qcmScores = {
+    culture:    { correct: 0, total: 0 },
+    actu:       { correct: 0, total: 0 },
+    revision:   { correct: 0, total: 0 },
+    mot_review: { correct: 0, total: 0 },
+  };
+  // Recharger les scores existants
+  if (_statsInit[BRIEF_DATE]) {
+    ['culture', 'actu', 'revision', 'mot_review'].forEach(function(t) {
+      if (_statsInit[BRIEF_DATE][t]) {
+        qcmScores[t].correct = _statsInit[BRIEF_DATE][t].correct || 0;
+        qcmScores[t].total   = _statsInit[BRIEF_DATE][t].total   || 0;
+      }
+    });
+  }
+
+  function saveStats() {
+    flushAll();
+    const sessionSecs = Math.floor((Date.now() - sessionStart) / 1000);
+    const totalSecs   = prevSeconds + sessionSecs;
+    const existing    = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
+    if (!existing[BRIEF_DATE]) existing[BRIEF_DATE] = {};
+    existing[BRIEF_DATE].culture    = { correct: qcmScores.culture.correct,    total: qcmScores.culture.total    };
+    existing[BRIEF_DATE].actu       = { correct: qcmScores.actu.correct,       total: qcmScores.actu.total       };
+    existing[BRIEF_DATE].revision   = { correct: qcmScores.revision.correct,   total: qcmScores.revision.total   };
+    existing[BRIEF_DATE].mot_review = { correct: qcmScores.mot_review.correct, total: qcmScores.mot_review.total };
+    existing[BRIEF_DATE].reading = {
+      total_seconds: totalSecs,
+      sections:      Object.assign({}, sectionTimes),
+      articles:      Object.assign({}, articleTimes),
+      saved_at:      new Date().toISOString(),
+    };
+    localStorage.setItem('flmb_stats', JSON.stringify(existing));
+  }
+
+  document.addEventListener('visibilitychange', function() { if (document.hidden) saveStats(); });
+  window.addEventListener('pagehide', saveStats);
+
+  // ── Expand / Collapse ─────────────────────────────
+  function toggleExpand(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const open = el.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.querySelector('span').textContent = open ? 'Fermer' : 'Lire';
+  }
+
+  // ── Feedback articles ─────────────────────────────
+  function loadFeedback() {
+    try { return JSON.parse(localStorage.getItem('flmb_feedback') || '{}'); }
+    catch(e) { return {}; }
+  }
+  function saveFeedback(fb) {
+    localStorage.setItem('flmb_feedback', JSON.stringify(fb));
+  }
+
+  function setFeedback(feedbackDiv, val) {
+    const card  = feedbackDiv.closest('.article-card');
+    const artId = card ? card.dataset.artId : null;
+    if (!artId) return;
+    const domain = card.dataset.domain || '';
+
+    const likeBtn    = feedbackDiv.querySelector('.btn-like');
+    const dislikeBtn = feedbackDiv.querySelector('.btn-dislike');
+
+    const fb     = loadFeedback();
+    if (!fb[BRIEF_DATE]) fb[BRIEF_DATE] = {};
+    const prev   = fb[BRIEF_DATE][artId] || {};
+    const newVal = (prev.like === val) ? 0 : val; // toggle si recliqué
+
+    fb[BRIEF_DATE][artId] = Object.assign({}, prev, { like: newVal, domain: domain });
+    saveFeedback(fb);
+
+    likeBtn.classList.toggle('active', newVal === 1);
+    dislikeBtn.classList.toggle('active', newVal === -1);
+  }
+
+  function toggleComment(btn) {
+    const area = btn.nextElementSibling;
+    const open = area.style.display === 'none';
+    area.style.display = open ? 'block' : 'none';
+    btn.classList.toggle('active', open);
+    if (open) {
+      const ta  = area.querySelector('textarea');
+      const card = btn.closest('.article-card');
+      const artId = card ? card.dataset.artId : null;
+      if (artId) {
+        const fb = loadFeedback();
+        ta.value = (fb[BRIEF_DATE] && fb[BRIEF_DATE][artId] && fb[BRIEF_DATE][artId].comment) || '';
+      }
+    }
+  }
+
+  function saveComment(btn) {
+    const area  = btn.closest('.comment-area');
+    const fb_div = area.closest('.article-feedback');
+    const card  = fb_div.closest('.article-card');
+    const artId = card ? card.dataset.artId : null;
+    if (!artId) return;
+    const domain = card.dataset.domain || '';
+    const text   = area.querySelector('textarea').value.trim();
+
+    const fb = loadFeedback();
+    if (!fb[BRIEF_DATE]) fb[BRIEF_DATE] = {};
+    fb[BRIEF_DATE][artId] = Object.assign(fb[BRIEF_DATE][artId] || {}, { comment: text, domain: domain });
+    saveFeedback(fb);
+
+    area.style.display = 'none';
+    const toggleBtn = area.previousElementSibling;
+    if (toggleBtn) toggleBtn.classList.remove('active');
+  }
+
+  // Restaurer l'état des feedbacks au chargement
+  (function restoreFeedback() {
+    const fb = loadFeedback();
+    if (!fb[BRIEF_DATE]) return;
+    document.querySelectorAll('.article-card[data-art-id]').forEach(function(card) {
+      const artId  = card.dataset.artId;
+      const entry  = fb[BRIEF_DATE][artId];
+      if (!entry) return;
+      const fdiv   = card.querySelector('.article-feedback');
+      if (!fdiv) return;
+      if (entry.like === 1)  fdiv.querySelector('.btn-like').classList.add('active');
+      if (entry.like === -1) fdiv.querySelector('.btn-dislike').classList.add('active');
+    });
+  })();
+
+  // ── QCM Data ──────────────────────────────────────
+  const qcmCultureData = [];
+  
+  qcmCultureData.push({ correct: 1, explanation: "Dans un syst\u00e8me conservatif sans frottement, l\u0027\u00e9nergie m\u00e9canique totale \u2014 somme de l\u0027\u00e9nergie cin\u00e9tique (\u00bdmv\u00b2) et de l\u0027\u00e9nergie potentielle (mgh) \u2014 demeure constante : toute perte d\u0027\u00e9nergie potentielle se traduit par un gain \u00e9quivalent d\u0027\u00e9nergie cin\u00e9tique, et inversement." });
+  
+  qcmCultureData.push({ correct: 1, explanation: "Une table de hachage associe chaque cl\u00e9 \u00e0 un indice via une fonction de hachage, permettant des op\u00e9rations d\u0027insertion, de suppression et de recherche en temps moyen constant O(1), \u00e0 condition de g\u00e9rer efficacement les collisions (par cha\u00eenage ou adressage ouvert)." });
+  
+  qcmCultureData.push({ correct: 2, explanation: "L\u0027Alta\u00ef est un syst\u00e8me montagneux d\u0027Asie centrale et septentrionale qui s\u0027\u00e9tend sur la Russie, le Kazakhstan, la Mongolie et la Chine. Son point culminant est le Beluha (4 506 m). Il est distinct du Tian Shan (plus m\u00e9ridional) et du Pamir (au Tadjikistan), et ne doit pas \u00eatre confondu avec l\u0027Oural, fronti\u00e8re conventionnelle Europe-Asie." });
+  
+
+  const qcmActuData = [];
+  
+  qcmActuData.push({ correct: 2, explanation: "Selon l\u0027article du Guardian, l\u0027IRGC (R\u00e9volution islamique iranienne) a \u00e9voqu\u00e9 la possibilit\u00e9 de rouvrir \u2014 entendre ici de bloquer \u2014 le d\u00e9troit d\u0027Ormuz, passage crucial pour le commerce mondial du p\u00e9trole, en r\u00e9ponse aux pressions am\u00e9ricaines." });
+  
+  qcmActuData.push({ correct: 2, explanation: "L\u0027article du Guardian mentionne explicitement Ro Khanna parmi les d\u00e9mocrates ayant jug\u00e9 \u0027embarrassante\u0027 la prestation de Lutnick, secr\u00e9taire au Commerce, lors de l\u0027audition concernant ses liens pr\u00e9sum\u00e9s avec le financier p\u00e9dophile Epstein." });
+  
+  qcmActuData.push({ correct: 1, explanation: "L\u0027article pr\u00e9cise que l\u0027Australie renforce la surveillance des retours de familles li\u00e9es aux combattants de l\u0027\u00c9tat islamique ayant op\u00e9r\u00e9 en Irak et en Syrie, en raison des risques de radicalisation ou d\u0027exposition \u00e0 l\u0027id\u00e9ologie djihadiste." });
+  
+  qcmActuData.push({ correct: 1, explanation: "L\u0027article du Guardian d\u00e9crit les rivi\u00e8res tress\u00e9es comme des \u00e9cosyst\u00e8mes g\u00e9omorphologiquement rares, caract\u00e9ris\u00e9s par plusieurs canaux entrecrois\u00e9s, formant un r\u00e9seau en tresse qui constitue un habitat naturel fragile et rare." });
+  
+  qcmActuData.push({ correct: 2, explanation: "L\u0027article indique que Shivon Zilis a si\u00e9g\u00e9 au conseil d\u0027administration d\u0027OpenAI de 2020 \u00e0 2023, soit une p\u00e9riode de trois ans, tout en occupant simultan\u00e9ment des fonctions ex\u00e9cutives chez Neuralink, une entreprise d\u0027Elon Musk." });
+  
+
+  const qcmRevisionData = [];
+  
+  qcmRevisionData.push({ correct: 1, explanation: "Selon l\u0027article, une enqu\u00eate interne a document\u00e9 des contacts r\u00e9guliers entre Botstein et Jeffrey Epstein, malgr\u00e9 ses affirmations publiques niant toute amiti\u00e9 avec ce dernier." });
+  
+  qcmRevisionData.push({ correct: 0, explanation: "L\u0027\u00e9lectron\u00e9gativit\u00e9 mesure la tendance d\u0027un atome \u00e0 attirer les \u00e9lectrons d\u0027une liaison covalente vers lui. Le fluor est l\u0027\u00e9l\u00e9ment le plus \u00e9lectron\u00e9gatif de la classification p\u00e9riodique, selon l\u0027\u00e9chelle de Pauling." });
+  
+  qcmRevisionData.push({ correct: 1, explanation: "L\u0027\u00e9pissage alternatif est un m\u00e9canisme post-transcriptionnel par lequel les exons d\u0027un ARN pr\u00e9-messager peuvent \u00eatre assembl\u00e9s de diff\u00e9rentes fa\u00e7ons, g\u00e9n\u00e9rant plusieurs ARNm matures \u2014 et donc plusieurs prot\u00e9ines distinctes \u2014 \u00e0 partir d\u0027un unique g\u00e8ne." });
+  
+
+  const qcmMotReviewData = [];
+  
+  qcmMotReviewData.push({ correct: 1, explanation: "\u00ab Kal\u00e9idoscopique \u00bb signifie : qui pr\u00e9sente une succession rapide et chatoyante de formes, de couleurs ou d\u0027aspects vari\u00e9s, \u00e0 la mani\u00e8re des images produites par un kal\u00e9idoscope, et s\u0027emploie au sens figur\u00e9 pour \u00e9voquer une diversit\u00e9 foisonnante et en perp\u00e9tuel mouvement." });
+  
+  qcmMotReviewData.push({ correct: 2, explanation: "\u00ab Sillage \u00bb d\u00e9signe la trace laiss\u00e9e \u00e0 la surface de l\u0027eau par le passage d\u0027un navire ou d\u0027un objet en mouvement ; par extension, l\u0027empreinte ou l\u0027influence durable qu\u0027une personne ou un \u00e9v\u00e9nement laisse derri\u00e8re lui." });
+  
+  qcmMotReviewData.push({ correct: 3, explanation: "\u00ab Hypallage \u00bb d\u00e9signe une figure de style par laquelle un qualificatif ou un compl\u00e9ment est rattach\u00e9 grammaticalement \u00e0 un mot alors qu\u0027il se rapporte logiquement \u00e0 un autre mot de la phrase, cr\u00e9ant ainsi un d\u00e9calage po\u00e9tique entre la structure syntaxique et le sens r\u00e9el." });
+  
+
+  function selectAnswer(qcmEl, optIdx) {
+    const idx  = parseInt(qcmEl.dataset.idx);
+    const type = qcmEl.dataset.type || 'culture';
+    let data;
+    if (type === 'actu')       data = qcmActuData[idx];
+    else if (type === 'revision')   data = qcmRevisionData[idx];
+    else if (type === 'mot_review') data = qcmMotReviewData[idx];
+    else                             data = qcmCultureData[idx];
+    if (!data) return;
+
+    const btns = qcmEl.querySelectorAll('.qcm-option');
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === data.correct) b.classList.add('correct');
+      else if (i === optIdx)  b.classList.add('wrong');
+    });
+    const expEl = qcmEl.querySelector('.qcm-explanation');
+    expEl.textContent = data.explanation;
+    expEl.style.display = 'block';
+
+    const scoreKey = (type === 'mot_review') ? 'mot_review' : type;
+    if (qcmScores[scoreKey]) {
+      qcmScores[scoreKey].total += 1;
+      if (optIdx === data.correct) qcmScores[scoreKey].correct += 1;
+    }
+    saveStats();
+  }
+
+  document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {
+    qcmEl.querySelectorAll('.qcm-option').forEach(function(btn, optIdx) {
+      btn.addEventListener('click', function() {
+        if (!btn.disabled) selectAnswer(qcmEl, optIdx);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

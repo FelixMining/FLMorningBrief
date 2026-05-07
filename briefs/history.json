@@ -1,51 +1,53 @@
 {
   "seen_video_ids": [
-    "5ekLY3eDWQE",
-    "JYUGfNoyDKs",
-    "IRzaCS0QLno",
+    "Np0Sknk5F5U",
+    "eqRGwYn-fyw",
+    "xEA-qgdOGRc",
     "DpO3CpInUas",
-    "-MA67mAVRl8",
-    "LPFzIRgGsOo",
-    "EJM-qmy3Muw",
-    "M22BEuoGvOY",
     "gCLQqJew78A",
-    "2x2RfHg6ddk",
-    "iFRXQolDzMU",
+    "-MA67mAVRl8",
+    "0mwL5BWLaWM",
     "bTRDBbEaG-8",
+    "n7SGKGaFkpM",
+    "6kBAuqaJQfc",
+    "yWPOfiEN3aA",
+    "2ySyjm1clrA",
+    "JYUGfNoyDKs",
+    "kEr1J4MtOGg",
+    "QTLm7t_rBJg",
+    "OlmHf6l2pa0",
+    "QK47x1J12RU",
+    "oOsl-Cgu34g",
+    "2EhZcxHVuhA",
+    "EJM-qmy3Muw",
+    "Ldm6pUWi9Lc",
+    "w_-8GfTIhrc",
+    "bboOnKktKsw",
+    "jqPoco7C738",
+    "FVWLdrb8HoQ",
+    "PxqgixX9fBQ",
+    "N6481-FfSxU",
+    "RxyIv_sXo3g",
+    "Zl5JB9q7LUw",
     "F0PPE8-KHwM",
     "PviXGJM5wfM",
-    "Ldm6pUWi9Lc",
-    "Up5qdICHi6w",
-    "IEwFcEs4hUw",
-    "yCWoUqQXFFU",
+    "P-wAr687qxg",
     "goQd4dL6MNo",
-    "2ySyjm1clrA",
-    "bboOnKktKsw",
-    "RxyIv_sXo3g",
-    "Np0Sknk5F5U",
-    "kEr1J4MtOGg",
+    "Up5qdICHi6w",
+    "ULTV6T6jRTw",
     "DQVV1ARVDOU",
     "nwjz-oOLmMY",
-    "OlmHf6l2pa0",
-    "w_-8GfTIhrc",
-    "2EhZcxHVuhA",
-    "QTLm7t_rBJg",
-    "P-wAr687qxg",
-    "0mwL5BWLaWM",
-    "PxqgixX9fBQ",
     "wrsJ4iAfa2c",
-    "QK47x1J12RU",
-    "FVWLdrb8HoQ",
-    "N6481-FfSxU",
-    "eqRGwYn-fyw",
-    "6kBAuqaJQfc",
-    "n7SGKGaFkpM",
+    "5ekLY3eDWQE",
+    "iFRXQolDzMU",
+    "LPFzIRgGsOo",
+    "yCWoUqQXFFU",
+    "BvYzzJ20bbk",
+    "IRzaCS0QLno",
+    "M22BEuoGvOY",
     "vd973v3rhiA",
-    "xEA-qgdOGRc",
-    "oOsl-Cgu34g",
-    "Zl5JB9q7LUw",
-    "ULTV6T6jRTw",
-    "BvYzzJ20bbk"
+    "2x2RfHg6ddk",
+    "IEwFcEs4hUw"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -1610,6 +1612,115 @@
         ],
         "answer_index": 2,
         "explanation": "L'article indique que Shivon Zilis a siégé au conseil d'administration d'OpenAI de 2020 à 2023, soit une période de trois ans, tout en occupant simultanément des fonctions exécutives chez Neuralink, une entreprise d'Elon Musk."
+      }
+    ]
+  },
+  "2026-05-08": {
+    "mot_du_jour": {
+      "mot": "tmèse",
+      "classe": "nom féminin",
+      "definition": "Figure de style consistant à intercaler un ou plusieurs mots à l'intérieur d'un mot composé ou d'une locution, créant un effet d'insistance ou d'expressivité. Elle est fréquente dans la langue parlée familière.",
+      "etymologie": "Du grec ancien tmêsis, « action de couper », dérivé de temnein, « couper ».",
+      "exemple": "En glissant un juron entre les deux syllabes d'une interjection, le comédien recourut habilement à la tmèse pour provoquer l'éclat de rire du public."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En physique quantique, que stipule le principe d'exclusion de Pauli ?",
+        "options": [
+          "A. Deux photons ne peuvent pas occuper le même état quantique simultanément.",
+          "B. Deux fermions identiques ne peuvent pas occuper le même état quantique dans un système.",
+          "C. La position et la vitesse d'une particule ne peuvent pas être connues simultanément avec précision.",
+          "D. L'énergie d'un système quantique est toujours un multiple entier d'une constante fondamentale."
+        ],
+        "answer_index": 1,
+        "explanation": "Le principe d'exclusion de Pauli (1925) s'applique aux fermions (électrons, protons, neutrons), qui obéissent à la statistique de Fermi-Dirac : deux fermions identiques ne peuvent partager le même état quantique complet, ce qui explique notamment la structure des couches électroniques des atomes."
+      },
+      {
+        "theme": "sciences",
+        "question": "En mathématiques, qu'est-ce que le théorème des valeurs intermédiaires (TVI) garantit pour une fonction continue f sur un intervalle [a, b] ?",
+        "options": [
+          "A. La fonction atteint nécessairement un maximum et un minimum sur cet intervalle.",
+          "B. La fonction est dérivable en tout point de l'intervalle ouvert ]a, b[.",
+          "C. Pour toute valeur k comprise entre f(a) et f(b), il existe au moins un réel c dans ]a, b[ tel que f(c) = k.",
+          "D. L'intégrale de la fonction sur [a, b] est égale à (b − a) multiplié par la valeur moyenne de f."
+        ],
+        "answer_index": 2,
+        "explanation": "Le TVI affirme que si f est continue sur [a, b] et si k est une valeur intermédiaire entre f(a) et f(b), alors f prend nécessairement la valeur k en au moins un point c de l'intervalle ouvert ]a, b[. C'est un outil fondamental pour démontrer l'existence de solutions d'équations."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne la grande dépression tectonique d'Afrique de l'Est, longue d'environ 6 000 km, qui s'étend de la mer Rouge jusqu'au Mozambique et concentre certains des lacs les plus profonds du monde ?",
+        "options": [
+          "A. La dorsale médio-atlantique",
+          "B. Le Rift Est-Africain",
+          "C. Le Fossé rhénan",
+          "D. La dépression de l'Afar"
+        ],
+        "answer_index": 1,
+        "explanation": "Le Rift Est-Africain (ou Grand Rift africain) est une zone de divergence tectonique active où la plaque africaine se fragmente lentement. Il abrite des lacs remarquables comme le Tanganyika (deuxième lac le plus profond du monde) et le lac Malawi, et constitue un berceau majeur de l'évolution humaine."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Détroit d'Ormuz",
+        "question": "Selon l'article du Guardian sur le cessez-le-feu entre les États-Unis et l'Iran, quelle fraction approximative du pétrole maritime mondial transite par le détroit d'Ormuz ?",
+        "options": [
+          "A. Environ un cinquième",
+          "B. Environ un quart",
+          "C. Environ un tiers",
+          "D. Environ la moitié"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise explicitement qu'environ un tiers du pétrole maritime mondial transite par le détroit d'Ormuz, soulignant l'importance stratégique et économique de ce passage."
+      },
+      {
+        "theme": "Élections britanniques 2026",
+        "question": "Selon l'article du Guardian sur les élections de 2026 au Royaume-Uni, quelles sont les trois nations du Royaume-Uni concernées par ce scrutin simultané ?",
+        "options": [
+          "A. Angleterre, Irlande du Nord et Écosse",
+          "B. Angleterre, Écosse et Galles",
+          "C. Angleterre, Galles et Irlande du Nord",
+          "D. Écosse, Galles et Irlande du Nord"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article indique clairement que le comptage est en cours en Angleterre, Écosse et Galles, ces trois nations étant concernées simultanément par ce scrutin."
+      },
+      {
+        "theme": "Femmes liées Daech",
+        "question": "Selon l'article du Guardian sur les femmes liées à Daech inculpées, dans quel pays ces femmes auraient-elles commis les actes présumés avant leur retour en Australie ?",
+        "options": [
+          "A. En Irak",
+          "B. En Libye",
+          "C. En Syrie",
+          "D. Au Yémen"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que les accusations de crimes contre l'humanité concernent des actions présumées commises en Syrie, sous le contrôle du groupe État islamique."
+      },
+      {
+        "theme": "Deepfakes écoles britanniques",
+        "question": "Selon l'article du Guardian sur la menace du chantage par IA dans les écoles britanniques, quelle mesure concrète est recommandée aux établissements scolaires pour protéger les élèves ?",
+        "options": [
+          "A. Interdire les smartphones dans les établissements",
+          "B. Supprimer les photos des élèves disponibles en ligne",
+          "C. Installer des logiciels de détection de deepfakes",
+          "D. Former les élèves à la cybersécurité"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article indique que les écoles britanniques sont invitées à supprimer les photos en ligne des élèves, car ces images constituent des données brutes exploitables par des criminels pour créer des deepfakes à des fins de chantage."
+      },
+      {
+        "theme": "Policier Los Angeles",
+        "question": "Selon l'article du Guardian sur le verdict du jury à Los Angeles, quel était le prénom et le nom de l'adolescente tuée par une balle perdue lors d'une intervention policière en 2021 ?",
+        "options": [
+          "A. Isabella Ramirez-Garcia",
+          "B. Sofia Mendoza-Cruz",
+          "C. Valentina Orellana-Peralta",
+          "D. Camila Torres-Vega"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article identifie précisément la victime comme Valentina Orellana-Peralta, une adolescente innocente tuée par une balle tirée par le policier qui tentait de maîtriser un client du magasin."
       }
     ]
   }

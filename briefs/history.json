@@ -1,53 +1,55 @@
 {
   "seen_video_ids": [
-    "Np0Sknk5F5U",
-    "eqRGwYn-fyw",
-    "xEA-qgdOGRc",
-    "DpO3CpInUas",
-    "gCLQqJew78A",
-    "-MA67mAVRl8",
-    "0mwL5BWLaWM",
-    "bTRDBbEaG-8",
-    "n7SGKGaFkpM",
+    "vd973v3rhiA",
     "6kBAuqaJQfc",
+    "IRzaCS0QLno",
+    "QK47x1J12RU",
+    "-MA67mAVRl8",
+    "n7SGKGaFkpM",
+    "OlmHf6l2pa0",
+    "LPFzIRgGsOo",
+    "FVWLdrb8HoQ",
+    "2EhZcxHVuhA",
+    "bTRDBbEaG-8",
+    "0mwL5BWLaWM",
+    "Ldm6pUWi9Lc",
+    "QTLm7t_rBJg",
+    "DpO3CpInUas",
+    "Zl5JB9q7LUw",
+    "eqRGwYn-fyw",
+    "jqPoco7C738",
+    "F0PPE8-KHwM",
+    "2x2RfHg6ddk",
+    "oOsl-Cgu34g",
+    "bboOnKktKsw",
+    "M22BEuoGvOY",
+    "N6481-FfSxU",
     "yWPOfiEN3aA",
     "2ySyjm1clrA",
-    "JYUGfNoyDKs",
-    "kEr1J4MtOGg",
-    "QTLm7t_rBJg",
-    "OlmHf6l2pa0",
-    "QK47x1J12RU",
-    "oOsl-Cgu34g",
-    "2EhZcxHVuhA",
-    "EJM-qmy3Muw",
-    "Ldm6pUWi9Lc",
+    "BvYzzJ20bbk",
     "w_-8GfTIhrc",
-    "bboOnKktKsw",
-    "jqPoco7C738",
-    "FVWLdrb8HoQ",
+    "nwjz-oOLmMY",
+    "kEr1J4MtOGg",
+    "EJM-qmy3Muw",
+    "wrsJ4iAfa2c",
+    "-PQr9ghYLok",
+    "iFRXQolDzMU",
+    "ULTV6T6jRTw",
+    "5ekLY3eDWQE",
+    "gCLQqJew78A",
     "PxqgixX9fBQ",
-    "N6481-FfSxU",
-    "RxyIv_sXo3g",
-    "Zl5JB9q7LUw",
-    "F0PPE8-KHwM",
-    "PviXGJM5wfM",
     "P-wAr687qxg",
+    "xEA-qgdOGRc",
+    "Np0Sknk5F5U",
+    "JYUGfNoyDKs",
+    "DQVV1ARVDOU",
+    "RxyIv_sXo3g",
+    "yCWoUqQXFFU",
+    "IEwFcEs4hUw",
     "goQd4dL6MNo",
     "Up5qdICHi6w",
-    "ULTV6T6jRTw",
-    "DQVV1ARVDOU",
-    "nwjz-oOLmMY",
-    "wrsJ4iAfa2c",
-    "5ekLY3eDWQE",
-    "iFRXQolDzMU",
-    "LPFzIRgGsOo",
-    "yCWoUqQXFFU",
-    "BvYzzJ20bbk",
-    "IRzaCS0QLno",
-    "M22BEuoGvOY",
-    "vd973v3rhiA",
-    "2x2RfHg6ddk",
-    "IEwFcEs4hUw"
+    "0csyOC02ap8",
+    "PviXGJM5wfM"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -1721,6 +1723,115 @@
         ],
         "answer_index": 2,
         "explanation": "L'article identifie précisément la victime comme Valentina Orellana-Peralta, une adolescente innocente tuée par une balle tirée par le policier qui tentait de maîtriser un client du magasin."
+      }
+    ]
+  },
+  "2026-05-09": {
+    "mot_du_jour": {
+      "mot": "noctambule",
+      "classe": "nom et adjectif",
+      "definition": "Personne qui aime sortir, se divertir ou travailler la nuit, tirant une énergie particulière des heures nocturnes. Par extension, désigne celui qui déambule la nuit comme en état de somnambulisme.",
+      "etymologie": "Du latin nox, noctis (nuit) et ambulare (marcher), apparu en français au XVIIe siècle.",
+      "exemple": "Noctambule impénitent, il retrouvait dans le silence des rues désertes une inspiration que le jour, trop bavard, lui refusait obstinément."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En chimie organique, qu'est-ce qu'une réaction d'estérification ?",
+        "options": [
+          "A. La réaction entre un acide carboxylique et un alcool produisant un ester et de l'eau.",
+          "B. La réaction entre deux acides aminés formant une liaison peptidique.",
+          "C. La décomposition d'un glucide en présence d'une enzyme en deux monosaccharides.",
+          "D. La neutralisation d'un acide par une base produisant un sel et de l'eau."
+        ],
+        "answer_index": 0,
+        "explanation": "L'estérification est une réaction lente, limitée et réversible entre un acide carboxylique (–COOH) et un alcool (–OH), catalysée par un acide fort, qui produit un ester et de l'eau. La réaction inverse s'appelle hydrolyse."
+      },
+      {
+        "theme": "sciences",
+        "question": "En astronomie, qu'est-ce que le point de Lagrange L2 du système Terre-Soleil, utilisé notamment par le télescope spatial James Webb ?",
+        "options": [
+          "A. Le point situé entre la Terre et le Soleil où leurs attractions gravitationnelles s'annulent exactement.",
+          "B. Un point d'équilibre gravitationnel situé à environ 1,5 million de km de la Terre dans la direction opposée au Soleil.",
+          "C. Le point de l'orbite terrestre le plus éloigné du Soleil, correspondant à l'aphélie.",
+          "D. Le centre de masse commun du système Terre-Lune autour duquel les deux corps orbitent."
+        ],
+        "answer_index": 1,
+        "explanation": "Le point de Lagrange L2 est situé à environ 1,5 million de km de la Terre dans la direction opposée au Soleil. C'est un point d'équilibre où un objet peut orbiter de façon stable en restant aligné Soleil-Terre-L2, idéal pour les télescopes car il permet de se protéger du rayonnement solaire avec un simple bouclier."
+      },
+      {
+        "theme": "sciences",
+        "question": "En mathématiques, que représente l'espérance mathématique E(X) d'une variable aléatoire discrète X ?",
+        "options": [
+          "A. La valeur la plus fréquente prise par X dans une série d'expériences répétées.",
+          "B. L'écart entre la valeur maximale et la valeur minimale que peut prendre X.",
+          "C. La somme pondérée de toutes les valeurs possibles de X par leurs probabilités respectives.",
+          "D. La médiane de la distribution de probabilité de X, soit la valeur centrale qui partage la distribution en deux."
+        ],
+        "answer_index": 2,
+        "explanation": "L'espérance E(X) est définie par E(X) = Σ xᵢ · P(X = xᵢ), soit la moyenne pondérée de toutes les valeurs possibles par leurs probabilités. Elle représente la valeur moyenne théorique obtenue sur un très grand nombre de répétitions de l'expérience aléatoire."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Élections britanniques",
+        "question": "Selon l'article du Guardian sur les élections britanniques de 2026, quel parti politique a infligé une défaite au Labour au Pays de Galles en lui prenant des électeurs sur sa gauche ?",
+        "options": [
+          "A. Reform UK",
+          "B. Plaid Cymru",
+          "C. SNP",
+          "D. Liberal Democrats"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article précise que le Labour a perdu des électeurs sur sa gauche au profit de Plaid Cymru, le parti nationaliste gallois, tandis que Reform lui prenait des électeurs sur sa droite populiste."
+      },
+      {
+        "theme": "Reform UK",
+        "question": "Selon l'article du Guardian sur les gains électoraux de Reform UK, comment Nigel Farage a-t-il qualifié les résultats obtenus par son parti lors de ces élections ?",
+        "options": [
+          "A. 'Victoire décisive'",
+          "B. 'Révolution populaire'",
+          "C. 'Tournant historique'",
+          "D. 'Percée sans précédent'"
+        ],
+        "answer_index": 2,
+        "explanation": "Nigel Farage a utilisé l'expression 'tournant historique' pour décrire les gains électoraux de Reform UK, consolidant ainsi la position du parti comme troisième force politique britannique."
+      },
+      {
+        "theme": "SNP Écosse",
+        "question": "Selon l'article du Guardian sur les élections écossaises, quelle est la position du SNP vis-à-vis de Westminster selon l'argument mis en avant après la victoire électorale ?",
+        "options": [
+          "A. Seul un parti britannique peut défendre l'Écosse",
+          "B. Seul un parti écossais peut défendre les intérêts régionaux face à Westminster",
+          "C. L'indépendance immédiate est la seule solution viable",
+          "D. Une coalition avec le Labour est nécessaire pour peser sur Westminster"
+        ],
+        "answer_index": 1,
+        "explanation": "Après sa victoire, le SNP a renforcé son argument selon lequel seul un parti écossais peut défendre les intérêts régionaux face à Westminster, consolidant sa position politique dominante en Écosse."
+      },
+      {
+        "theme": "Antisémitisme Australie",
+        "question": "Selon l'article du Guardian sur la montée de l'antisémitisme en Australie, quel événement est décrit comme ayant fonctionné comme un 'catalyseur symbolique' révélant et amplifiant les tensions au sein de la communauté juive australienne ?",
+        "options": [
+          "A. L'attaque terroriste de Bondi",
+          "B. La manifestation pro-palestinienne de Sydney",
+          "C. L'incendie d'une synagogue à Melbourne",
+          "D. L'assassinat d'un rabbin à Brisbane"
+        ],
+        "answer_index": 0,
+        "explanation": "L'article identifie l'attaque terroriste de Bondi comme le catalyseur symbolique qui a révélé et amplifié les tensions préexistantes liées aux conflits géopolitiques lointains dans la communauté juive australienne."
+      },
+      {
+        "theme": "Redistribution Virginie",
+        "question": "Selon l'article du Guardian sur la redistribution électorale en Virginie, au bénéfice de quel parti le jugement annulant le référendum démocrate constitue-t-il une victoire stratégique ?",
+        "options": [
+          "A. Au bénéfice des Démocrates",
+          "B. Au bénéfice des Indépendants",
+          "C. Au bénéfice des Républicains",
+          "D. Au bénéfice du Reform américain"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que le jugement de vendredi annulant le référendum démocrate constitue une victoire stratégique pour les Républicains, modifiant potentiellement l'équilibre des forces politiques à l'assemblée législative de Virginie."
       }
     ]
   }

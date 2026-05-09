@@ -1,55 +1,57 @@
 {
   "seen_video_ids": [
-    "vd973v3rhiA",
-    "6kBAuqaJQfc",
-    "IRzaCS0QLno",
-    "QK47x1J12RU",
-    "-MA67mAVRl8",
-    "n7SGKGaFkpM",
-    "OlmHf6l2pa0",
-    "LPFzIRgGsOo",
-    "FVWLdrb8HoQ",
-    "2EhZcxHVuhA",
-    "bTRDBbEaG-8",
-    "0mwL5BWLaWM",
-    "Ldm6pUWi9Lc",
-    "QTLm7t_rBJg",
-    "DpO3CpInUas",
-    "Zl5JB9q7LUw",
-    "eqRGwYn-fyw",
-    "jqPoco7C738",
-    "F0PPE8-KHwM",
-    "2x2RfHg6ddk",
-    "oOsl-Cgu34g",
-    "bboOnKktKsw",
-    "M22BEuoGvOY",
-    "N6481-FfSxU",
-    "yWPOfiEN3aA",
-    "2ySyjm1clrA",
-    "BvYzzJ20bbk",
-    "w_-8GfTIhrc",
-    "nwjz-oOLmMY",
-    "kEr1J4MtOGg",
-    "EJM-qmy3Muw",
-    "wrsJ4iAfa2c",
-    "-PQr9ghYLok",
-    "iFRXQolDzMU",
-    "ULTV6T6jRTw",
-    "5ekLY3eDWQE",
-    "gCLQqJew78A",
-    "PxqgixX9fBQ",
-    "P-wAr687qxg",
-    "xEA-qgdOGRc",
     "Np0Sknk5F5U",
-    "JYUGfNoyDKs",
-    "DQVV1ARVDOU",
-    "RxyIv_sXo3g",
+    "K_joHVaAGO0",
+    "yWPOfiEN3aA",
+    "ULTV6T6jRTw",
+    "vd973v3rhiA",
+    "Ldm6pUWi9Lc",
+    "bboOnKktKsw",
     "yCWoUqQXFFU",
-    "IEwFcEs4hUw",
+    "FVWLdrb8HoQ",
+    "2x2RfHg6ddk",
+    "OlmHf6l2pa0",
+    "5ekLY3eDWQE",
+    "-PQr9ghYLok",
     "goQd4dL6MNo",
-    "Up5qdICHi6w",
+    "2EhZcxHVuhA",
+    "RxyIv_sXo3g",
+    "ojUP1aN9Vto",
+    "Zl5JB9q7LUw",
+    "IEwFcEs4hUw",
+    "IRzaCS0QLno",
+    "xEA-qgdOGRc",
     "0csyOC02ap8",
-    "PviXGJM5wfM"
+    "PviXGJM5wfM",
+    "0mwL5BWLaWM",
+    "bTRDBbEaG-8",
+    "nwjz-oOLmMY",
+    "eqRGwYn-fyw",
+    "kEr1J4MtOGg",
+    "DQVV1ARVDOU",
+    "F0PPE8-KHwM",
+    "-MA67mAVRl8",
+    "M22BEuoGvOY",
+    "EJM-qmy3Muw",
+    "P-wAr687qxg",
+    "6kBAuqaJQfc",
+    "PxqgixX9fBQ",
+    "w_-8GfTIhrc",
+    "DpO3CpInUas",
+    "N6481-FfSxU",
+    "iFRXQolDzMU",
+    "gCLQqJew78A",
+    "LPFzIRgGsOo",
+    "jqPoco7C738",
+    "QK47x1J12RU",
+    "JYUGfNoyDKs",
+    "QTLm7t_rBJg",
+    "oOsl-Cgu34g",
+    "Up5qdICHi6w",
+    "2ySyjm1clrA",
+    "wrsJ4iAfa2c",
+    "n7SGKGaFkpM",
+    "BvYzzJ20bbk"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -1832,6 +1834,115 @@
         ],
         "answer_index": 2,
         "explanation": "L'article précise que le jugement de vendredi annulant le référendum démocrate constitue une victoire stratégique pour les Républicains, modifiant potentiellement l'équilibre des forces politiques à l'assemblée législative de Virginie."
+      }
+    ]
+  },
+  "2026-05-10": {
+    "mot_du_jour": {
+      "mot": "psithurisme",
+      "classe": "nom masculin",
+      "definition": "Bruissement doux produit par le vent dans les feuilles des arbres ou dans l'herbe, évoquant un murmure naturel apaisant. Ce terme poétique capture la voix discrète de la forêt.",
+      "etymologie": "Du grec ancien 'psithurismos', dérivé de 'psithurízō' (murmurer, chuchoter), lui-même issu de 'psíthuros' (qui chuchote).",
+      "exemple": "Allongée sous les frênes, elle laissait le psithurisme de la canopée recouvrir peu à peu le tumulte de ses pensées."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En astronomie, qu'est-ce qu'une naine blanche représente dans le cycle de vie d'une étoile comme le Soleil ?",
+        "options": [
+          "A. Le stade précédant l'explosion en supernova d'une étoile massive",
+          "B. Le résidu dense et chaud d'une étoile de faible à moyenne masse ayant épuisé son combustible nucléaire",
+          "C. Une étoile en formation au sein d'un nuage de gaz et de poussières interstellaires",
+          "D. Un objet céleste dont la masse est trop faible pour déclencher la fusion nucléaire"
+        ],
+        "answer_index": 1,
+        "explanation": "Lorsqu'une étoile de type solaire épuise son hydrogène, elle passe par le stade de géante rouge puis expulse ses couches externes en nébuleuse planétaire, laissant un cœur compact appelé naine blanche, composé principalement de carbone et d'oxygène, qui se refroidit progressivement sur des milliards d'années."
+      },
+      {
+        "theme": "sciences",
+        "question": "En mathématiques, que signifie dire qu'une matrice carrée est 'diagonalisable' ?",
+        "options": [
+          "A. Que tous ses coefficients sont nuls en dehors de la diagonale principale",
+          "B. Que son déterminant est égal à la somme de ses éléments diagonaux",
+          "C. Qu'il existe une base de l'espace vectoriel formée de vecteurs propres de cette matrice",
+          "D. Que ses valeurs propres sont toutes strictement positives"
+        ],
+        "answer_index": 2,
+        "explanation": "Une matrice est diagonalisable si et seulement si elle admet une base de vecteurs propres, c'est-à-dire qu'elle est semblable à une matrice diagonale dont les entrées sont ses valeurs propres. Cela ne requiert pas que ces valeurs propres soient positives ni que la matrice soit déjà diagonale."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne l'immense plateau d'Amérique du Sud, situé principalement en Bolivie et au Pérou, qui culmine entre 3 700 et 4 200 mètres d'altitude et abrite le lac navigable le plus haut du monde ?",
+        "options": [
+          "A. La Pampa",
+          "B. Le Cerrado",
+          "C. L'Altiplano",
+          "D. La Patagonie"
+        ],
+        "answer_index": 2,
+        "explanation": "L'Altiplano est un vaste plateau d'altitude encadré par les cordillères des Andes, s'étendant principalement sur la Bolivie et le Pérou. Il abrite le lac Titicaca, reconnu comme le lac navigable le plus haut du monde à environ 3 812 mètres d'altitude, et constitue l'un des hauts plateaux habités les plus étendus de la planète."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Explosion Miami",
+        "question": "Selon l'article du Guardian sur l'explosion présumée d'un bateau à Miami, combien de personnes ont été hospitalisées suite à cet incident ?",
+        "options": [
+          "A. 7 personnes",
+          "B. 11 personnes",
+          "C. 15 personnes",
+          "D. 9 personnes"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article indique qu'au moins 11 personnes ont été hospitalisées après l'explosion présumée du bateau à Miami, les victimes ayant notamment subi des brûlures significatives."
+      },
+      {
+        "theme": "Hantavirus CDC",
+        "question": "Selon l'article du Guardian sur l'épidémie de hantavirus à bord d'un navire de croisière, quelle décision de l'administration Trump est pointée comme ayant aggravé la gestion de la crise sanitaire ?",
+        "options": [
+          "A. La fermeture du CDC",
+          "B. La sortie des États-Unis de l'OMS",
+          "C. La suppression du budget de la FEMA",
+          "D. Le retrait des États-Unis de l'accord de Paris"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article souligne que la sortie des États-Unis de l'OMS sous Trump a créé un vide de coordination, que l'organisation mondiale de la santé a dû combler face à cette épidémie de hantavirus."
+      },
+      {
+        "theme": "Boxe Dubois",
+        "question": "Selon l'article du Guardian sur le combat de boxe entre Daniel Dubois et Fabio Wardley, quel titre Daniel Dubois a-t-il remporté à l'issue de cet affrontement ?",
+        "options": [
+          "A. Le titre IBF des poids lourds",
+          "B. Le titre WBA des poids lourds",
+          "C. Le titre WBO des poids lourds",
+          "D. Le titre WBC des poids lourds"
+        ],
+        "answer_index": 2,
+        "explanation": "Selon l'article, Daniel Dubois a remporté le titre WBO des poids lourds face à Fabio Wardley dans ce combat décrit comme épique, malgré un début difficile avec un knock-down dès les premières secondes."
+      },
+      {
+        "theme": "Airbnb Sydney",
+        "question": "Selon l'article du Guardian sur la crise du logement à Sydney, à quel niveau minimal le taux de vacance locative est-il tombé dans certains quartiers en raison de la prolifération des locations Airbnb ?",
+        "options": [
+          "A. 5 %",
+          "B. 3 %",
+          "C. 1 %",
+          "D. 7 %"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que le taux de vacance est tombé à aussi peu que 1 % dans certains secteurs de Sydney, rendant le logement permanent pratiquement inaccessible pour les résidents de longue durée."
+      },
+      {
+        "theme": "Sans-abri Australie",
+        "question": "Selon l'article du Guardian sur les décès de sans-abri dans les parcs australiens, combien de sans-abri meurent en moyenne chaque année dans ces espaces publics selon le rapport ?",
+        "options": [
+          "A. 8 personnes",
+          "B. 14 personnes",
+          "C. 20 personnes",
+          "D. 25 personnes"
+        ],
+        "answer_index": 1,
+        "explanation": "Le rapport cité par le Guardian dénonce la mort de 14 sans-abri par an dans les parcs australiens, incluant des cas aussi tragiques qu'un bébé, une jeune mère et une étudiante."
       }
     ]
   }

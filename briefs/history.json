@@ -1,57 +1,59 @@
 {
   "seen_video_ids": [
-    "Np0Sknk5F5U",
-    "K_joHVaAGO0",
-    "yWPOfiEN3aA",
-    "ULTV6T6jRTw",
-    "vd973v3rhiA",
+    "BvYzzJ20bbk",
     "Ldm6pUWi9Lc",
-    "bboOnKktKsw",
-    "yCWoUqQXFFU",
-    "FVWLdrb8HoQ",
-    "2x2RfHg6ddk",
-    "OlmHf6l2pa0",
-    "5ekLY3eDWQE",
-    "-PQr9ghYLok",
-    "goQd4dL6MNo",
-    "2EhZcxHVuhA",
-    "RxyIv_sXo3g",
-    "ojUP1aN9Vto",
-    "Zl5JB9q7LUw",
-    "IEwFcEs4hUw",
+    "yWPOfiEN3aA",
     "IRzaCS0QLno",
-    "xEA-qgdOGRc",
-    "0csyOC02ap8",
-    "PviXGJM5wfM",
-    "0mwL5BWLaWM",
-    "bTRDBbEaG-8",
-    "nwjz-oOLmMY",
-    "eqRGwYn-fyw",
     "kEr1J4MtOGg",
-    "DQVV1ARVDOU",
-    "F0PPE8-KHwM",
-    "-MA67mAVRl8",
-    "M22BEuoGvOY",
-    "EJM-qmy3Muw",
-    "P-wAr687qxg",
-    "6kBAuqaJQfc",
-    "PxqgixX9fBQ",
-    "w_-8GfTIhrc",
     "DpO3CpInUas",
-    "N6481-FfSxU",
-    "iFRXQolDzMU",
-    "gCLQqJew78A",
-    "LPFzIRgGsOo",
+    "xEA-qgdOGRc",
     "jqPoco7C738",
-    "QK47x1J12RU",
-    "JYUGfNoyDKs",
-    "QTLm7t_rBJg",
+    "PxqgixX9fBQ",
     "oOsl-Cgu34g",
-    "Up5qdICHi6w",
+    "gCLQqJew78A",
+    "0mwL5BWLaWM",
+    "bboOnKktKsw",
+    "vd973v3rhiA",
+    "OlmHf6l2pa0",
+    "goQd4dL6MNo",
+    "-MA67mAVRl8",
+    "Np0Sknk5F5U",
+    "bTRDBbEaG-8",
+    "IEwFcEs4hUw",
+    "QK47x1J12RU",
+    "2EhZcxHVuhA",
+    "nwjz-oOLmMY",
     "2ySyjm1clrA",
+    "M22BEuoGvOY",
+    "K_joHVaAGO0",
+    "ojUP1aN9Vto",
+    "DQVV1ARVDOU",
+    "JYUGfNoyDKs",
+    "-PQr9ghYLok",
+    "2x2RfHg6ddk",
+    "6kBAuqaJQfc",
     "wrsJ4iAfa2c",
+    "5ekLY3eDWQE",
+    "Zl5JB9q7LUw",
+    "0csyOC02ap8",
+    "w4upywbPtuk",
+    "EJM-qmy3Muw",
+    "E5eNbgcUCcQ",
+    "ULTV6T6jRTw",
+    "F0PPE8-KHwM",
+    "yCWoUqQXFFU",
+    "iFRXQolDzMU",
+    "RxyIv_sXo3g",
+    "QTLm7t_rBJg",
+    "eqRGwYn-fyw",
+    "LPFzIRgGsOo",
+    "Up5qdICHi6w",
+    "FVWLdrb8HoQ",
+    "PviXGJM5wfM",
     "n7SGKGaFkpM",
-    "BvYzzJ20bbk"
+    "N6481-FfSxU",
+    "w_-8GfTIhrc",
+    "P-wAr687qxg"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -1943,6 +1945,115 @@
         ],
         "answer_index": 1,
         "explanation": "Le rapport cité par le Guardian dénonce la mort de 14 sans-abri par an dans les parcs australiens, incluant des cas aussi tragiques qu'un bébé, une jeune mère et une étudiante."
+      }
+    ]
+  },
+  "2026-05-11": {
+    "mot_du_jour": {
+      "mot": "fulgurance",
+      "classe": "nom féminin",
+      "definition": "Caractère de ce qui frappe par son éclat soudain et intense, comme un éclair ; qualité d'une pensée ou d'une création qui éblouit par sa rapidité et sa brillance.",
+      "etymologie": "Du latin 'fulgur' (éclair, foudre), lui-même issu de 'fulgere' (briller, resplendir).",
+      "exemple": "La fulgurance de sa démonstration laissa l'assemblée sans voix, comme si une évidence cachée venait d'être illuminée en un instant."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En chimie, qu'est-ce que la chromatographie en phase gazeuse (CPG) permet de réaliser ?",
+        "options": [
+          "A. Séparer et identifier les composants volatils d'un mélange selon leur affinité avec une phase stationnaire.",
+          "B. Mesurer la masse molaire d'un composé organique par ionisation.",
+          "C. Déterminer la structure tridimensionnelle d'une molécule par diffraction des rayons X.",
+          "D. Quantifier la concentration d'ions en solution par conductimétrie."
+        ],
+        "answer_index": 0,
+        "explanation": "La CPG vaporise un mélange et le fait migrer avec un gaz vecteur à travers une colonne contenant une phase stationnaire ; chaque composant est retenu différemment selon ses interactions physico-chimiques, ce qui permet leur séparation et leur identification par le temps de rétention."
+      },
+      {
+        "theme": "sciences",
+        "question": "En informatique, qu'est-ce qu'un algorithme 'glouton' (greedy algorithm) ?",
+        "options": [
+          "A. Un algorithme qui explore toutes les solutions possibles avant de choisir la meilleure.",
+          "B. Un algorithme qui résout un problème en effectuant à chaque étape le choix localement optimal, sans revenir en arrière.",
+          "C. Un algorithme qui divise récursivement le problème en sous-problèmes indépendants de taille égale.",
+          "D. Un algorithme qui mémorise les résultats intermédiaires pour éviter les calculs redondants."
+        ],
+        "answer_index": 1,
+        "explanation": "Un algorithme glouton construit la solution pas à pas en sélectionnant à chaque étape l'option qui paraît la meilleure localement. Il est efficace mais ne garantit pas toujours l'optimum global, sauf dans certains problèmes bien structurés comme l'algorithme de Dijkstra ou le problème du rendu de monnaie."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne l'ensemble des îles et archipels dispersés sur des millions de km² dans le centre et le sud de l'océan Pacifique, subdivisé en Mélanésie, Micronésie et Polynésie ?",
+        "options": [
+          "A. L'Insulinde",
+          "B. L'Australasie",
+          "C. L'Océanie insulaire",
+          "D. La Mer de Corail"
+        ],
+        "answer_index": 2,
+        "explanation": "L'Océanie insulaire désigne l'ensemble des îles du Pacifique réparties en trois grandes régions culturelles et géographiques : la Mélanésie (Papouasie, Vanuatu, Fidji…), la Micronésie (Guam, Palau…) et la Polynésie (Hawaï, Tahiti, Nouvelle-Zélande…), un découpage consacré par les géographes au XIXe siècle."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "One Nation Australie",
+        "question": "Selon l'article du Guardian sur la politique australienne, quelle circonscription est citée comme exemple de la progression électorale de One Nation ?",
+        "options": [
+          "A. Warringah",
+          "B. Farrer",
+          "C. Kooyong",
+          "D. Grayndler"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article mentionne explicitement la circonscription de Farrer comme l'un des territoires où One Nation gagne du terrain électoral, illustrant la montée en puissance du parti d'extrême-droite."
+      },
+      {
+        "theme": "Crise Starmer",
+        "question": "Selon l'article du Guardian sur la fragilité du gouvernement Starmer, quelle double dynamique est décrite comme menaçant sa stabilité exécutive ?",
+        "options": [
+          "A. Des défaites aux élections locales et une motion de censure formelle déposée",
+          "B. Des appels à la démission de l'arrière-ban travailliste et les ambitions affichées de figures ministérielles",
+          "C. Une coalition minoritaire et le retrait du soutien des syndicats",
+          "D. Des scandales financiers et des dissensions sur la politique étrangère"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article précise que la fragilité de Starmer résulte de la combinaison des appels à la démission massifs de l'arrière-ban parlementaire et des ambitions de succession affichées par des figures ministérielles majeures."
+      },
+      {
+        "theme": "Nobel Iran prison",
+        "question": "Selon l'article du Guardian sur le mémoire clandestin de la lauréate du Nobel, quel type de pratiques carcérales Mohammadi documente-t-elle dans son témoignage ?",
+        "options": [
+          "A. Des conditions d'isolement et de privation alimentaire",
+          "B. Des pratiques de corruption judiciaire et de détention arbitraire",
+          "C. De la torture et de la négligence systémiques contre les activistes politiques",
+          "D. Des transferts forcés vers des camps de rééducation"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article indique que Mohammadi révèle un pattern de répression brutale incluant torture et négligence, ciblant les voix dissidentes dans les prisons iraniennes."
+      },
+      {
+        "theme": "Hantavirus croisière",
+        "question": "Selon l'article du Guardian sur l'épidémie à bord du navire de croisière infecté, quel pays a organisé l'opération de rapatriement d'urgence de ses ressortissants ?",
+        "options": [
+          "A. La Nouvelle-Zélande",
+          "B. Le Royaume-Uni",
+          "C. Les États-Unis",
+          "D. L'Australie"
+        ],
+        "answer_index": 3,
+        "explanation": "L'article précise que l'opération de rapatriement coordonnée par Canberra désigne l'Australie comme le pays ayant affrété un vol pour rapatrier ses ressortissants du navire contaminé par le hantavirus."
+      },
+      {
+        "theme": "Semaine 4 jours obésité",
+        "question": "Selon l'article du Guardian sur la semaine de quatre jours au Royaume-Uni, quel mécanisme est avancé pour expliquer le lien entre semaines de travail prolongées et épidémies d'obésité ?",
+        "options": [
+          "A. Une alimentation industrielle imposée par les entreprises à leurs employés",
+          "B. L'épuisement des ressources individuelles pour l'autosoins et l'exercice",
+          "C. Une sédentarité accrue liée au travail en open space",
+          "D. Une consommation excessive d'alcool pour compenser le stress professionnel"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article explique que le surmenage lié aux semaines de travail prolongées épuise les ressources individuelles consacrées à l'autosoins et à l'exercice physique, favorisant ainsi les épidémies d'obésité."
       }
     ]
   }

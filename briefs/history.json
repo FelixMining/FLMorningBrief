@@ -1,59 +1,61 @@
 {
   "seen_video_ids": [
-    "BvYzzJ20bbk",
-    "Ldm6pUWi9Lc",
-    "yWPOfiEN3aA",
-    "IRzaCS0QLno",
-    "kEr1J4MtOGg",
-    "DpO3CpInUas",
-    "xEA-qgdOGRc",
-    "jqPoco7C738",
-    "PxqgixX9fBQ",
-    "oOsl-Cgu34g",
-    "gCLQqJew78A",
-    "0mwL5BWLaWM",
-    "bboOnKktKsw",
-    "vd973v3rhiA",
+    "iFRXQolDzMU",
     "OlmHf6l2pa0",
-    "goQd4dL6MNo",
-    "-MA67mAVRl8",
-    "Np0Sknk5F5U",
-    "bTRDBbEaG-8",
-    "IEwFcEs4hUw",
-    "QK47x1J12RU",
-    "2EhZcxHVuhA",
-    "nwjz-oOLmMY",
-    "2ySyjm1clrA",
-    "M22BEuoGvOY",
     "K_joHVaAGO0",
-    "ojUP1aN9Vto",
-    "DQVV1ARVDOU",
-    "JYUGfNoyDKs",
-    "-PQr9ghYLok",
-    "2x2RfHg6ddk",
-    "6kBAuqaJQfc",
-    "wrsJ4iAfa2c",
-    "5ekLY3eDWQE",
-    "Zl5JB9q7LUw",
-    "0csyOC02ap8",
-    "w4upywbPtuk",
-    "EJM-qmy3Muw",
-    "E5eNbgcUCcQ",
-    "ULTV6T6jRTw",
+    "yWPOfiEN3aA",
     "F0PPE8-KHwM",
     "yCWoUqQXFFU",
-    "iFRXQolDzMU",
-    "RxyIv_sXo3g",
-    "QTLm7t_rBJg",
     "eqRGwYn-fyw",
-    "LPFzIRgGsOo",
-    "Up5qdICHi6w",
-    "FVWLdrb8HoQ",
-    "PviXGJM5wfM",
-    "n7SGKGaFkpM",
-    "N6481-FfSxU",
     "w_-8GfTIhrc",
-    "P-wAr687qxg"
+    "PxqgixX9fBQ",
+    "M22BEuoGvOY",
+    "Ldm6pUWi9Lc",
+    "2ySyjm1clrA",
+    "FVWLdrb8HoQ",
+    "DQVV1ARVDOU",
+    "goQd4dL6MNo",
+    "2x2RfHg6ddk",
+    "PviXGJM5wfM",
+    "P-wAr687qxg",
+    "0mwL5BWLaWM",
+    "DpO3CpInUas",
+    "w4upywbPtuk",
+    "gCLQqJew78A",
+    "nwjz-oOLmMY",
+    "TdBrAWKX3tE",
+    "jqPoco7C738",
+    "xEA-qgdOGRc",
+    "IEwFcEs4hUw",
+    "6kBAuqaJQfc",
+    "E5eNbgcUCcQ",
+    "EJM-qmy3Muw",
+    "N6481-FfSxU",
+    "oOsl-Cgu34g",
+    "wrsJ4iAfa2c",
+    "JYUGfNoyDKs",
+    "RxyIv_sXo3g",
+    "n7SGKGaFkpM",
+    "BvYzzJ20bbk",
+    "Zl5JB9q7LUw",
+    "0csyOC02ap8",
+    "bboOnKktKsw",
+    "vd973v3rhiA",
+    "-MA67mAVRl8",
+    "LPFzIRgGsOo",
+    "Xxg_8mge50U",
+    "bTRDBbEaG-8",
+    "QK47x1J12RU",
+    "kEr1J4MtOGg",
+    "5ekLY3eDWQE",
+    "Up5qdICHi6w",
+    "ULTV6T6jRTw",
+    "Np0Sknk5F5U",
+    "2EhZcxHVuhA",
+    "ojUP1aN9Vto",
+    "IRzaCS0QLno",
+    "QTLm7t_rBJg",
+    "-PQr9ghYLok"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -2054,6 +2056,115 @@
         ],
         "answer_index": 1,
         "explanation": "L'article explique que le surmenage lié aux semaines de travail prolongées épuise les ressources individuelles consacrées à l'autosoins et à l'exercice physique, favorisant ainsi les épidémies d'obésité."
+      }
+    ]
+  },
+  "2026-05-12": {
+    "mot_du_jour": {
+      "mot": "catabasis",
+      "classe": "nom féminin",
+      "definition": "Descente aux enfers symbolique ou littéraire, désignant tout voyage initiatique d'un héros vers le monde souterrain ou vers les profondeurs de soi, suivi d'un retour transformateur. Par extension, toute période de déclin ou d'épreuve profonde avant une renaissance.",
+      "etymologie": "Du grec ancien katabasis, de kata (vers le bas) et bainein (aller, marcher), utilisé notamment par Xénophon pour désigner la retraite des Dix Mille.",
+      "exemple": "Son exil forcé dans les rues de la ville fut une véritable catabasis dont il revint, deux ans plus tard, dépouillé de ses certitudes mais riche d'une lucidité que rien n'aurait pu lui enseigner autrement."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En biologie moléculaire, que désigne le terme 'épigénétique' ?",
+        "options": [
+          "A. L'ensemble des mutations ponctuelles affectant la séquence d'ADN sous l'effet de rayonnements ionisants.",
+          "B. L'étude des modifications héritables de l'expression des gènes sans altération de la séquence nucléotidique elle-même.",
+          "C. Le mécanisme de réplication semi-conservative de l'ADN au cours de la mitose.",
+          "D. La synthèse de protéines à partir d'un ARN messager par les ribosomes."
+        ],
+        "answer_index": 1,
+        "explanation": "L'épigénétique étudie les modifications de l'expression génique — comme la méthylation de l'ADN ou l'acétylation des histones — qui sont potentiellement héritables mais n'impliquent aucun changement dans la séquence des bases azotées de l'ADN."
+      },
+      {
+        "theme": "sciences",
+        "question": "En mathématiques, qu'énonce le théorème de Bayes concernant les probabilités conditionnelles ?",
+        "options": [
+          "A. La probabilité d'un événement est toujours égale à la somme des probabilités de ses événements élémentaires constitutifs.",
+          "B. Deux événements indépendants ont une probabilité d'intersection égale au produit de leurs probabilités marginales.",
+          "C. Il permet de calculer la probabilité d'une cause sachant un effet observé, en reliant P(A|B) à P(B|A), P(A) et P(B).",
+          "D. La variance d'une somme de variables aléatoires indépendantes est égale à la somme de leurs variances."
+        ],
+        "answer_index": 2,
+        "explanation": "Le théorème de Bayes établit que P(A|B) = P(B|A) × P(A) / P(B). Il permet d'inverser le conditionnement : connaissant la probabilité qu'un effet B survienne sachant la cause A, on peut calculer la probabilité de la cause A sachant que l'effet B a été observé."
+      },
+      {
+        "theme": "histoire",
+        "question": "Quel nom désigne le vaste mouvement de réformes économiques et sociales lancé par Mikhaïl Gorbatchev à partir de 1985 en URSS, visant à restructurer en profondeur l'économie soviétique ?",
+        "options": [
+          "A. La glasnost",
+          "B. La perestroïka",
+          "C. Le Komintern",
+          "D. La nomenklatura"
+        ],
+        "answer_index": 1,
+        "explanation": "La perestroïka (qui signifie 'restructuration' en russe) désigne la politique de réforme économique et administrative lancée par Gorbatchev, distincte de la glasnost ('transparence') qui concernait l'ouverture politique et la liberté d'expression."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Cour suprême Alabama",
+        "question": "Selon l'article du Guardian sur la décision de la Cour suprême américaine en Alabama, quelle était la raison invoquée par la cour inférieure pour bloquer le redécoupage électoral ?",
+        "options": [
+          "A. Fraude électorale avérée",
+          "B. Discrimination raciale",
+          "C. Violation du droit de vote des femmes",
+          "D. Irrégularités de procédure administrative"
+        ],
+        "answer_index": 1,
+        "explanation": "La cour inférieure avait bloqué le redécoupage électoral en Alabama au motif de discrimination raciale, ordonnance que la Cour suprême à majorité conservatrice a annulée."
+      },
+      {
+        "theme": "Rencontre Trump-Xi",
+        "question": "Selon l'article du Guardian sur la rencontre Trump-Xi, quels sont les trois grands sujets identifiés à l'agenda de cette rencontre géopolitique majeure ?",
+        "options": [
+          "A. Corée du Nord, climat et technologie",
+          "B. Taïwan, tarifs douaniers et négociations iraniennes",
+          "C. Ukraine, OTAN et sanctions commerciales",
+          "D. Hong Kong, droits de l'homme et armement nucléaire"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article cite explicitement Taïwan, les tarifs douaniers affectant les relations commerciales bilatérales, et les négociations iraniennes comme les trois enjeux majeurs de la rencontre entre Trump et Xi."
+      },
+      {
+        "theme": "Dépenses UK",
+        "question": "Selon l'article du Guardian sur les dépenses des ménages au Royaume-Uni, sur quelle période de référence cette contraction des dépenses est-elle décrite comme la plus rapide ?",
+        "options": [
+          "A. 6 mois",
+          "B. 12 mois",
+          "C. 18 mois",
+          "D. 24 mois"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que la baisse des dépenses de consommation au Royaume-Uni est la plus rapide en un an et demi, soit 18 mois."
+      },
+      {
+        "theme": "Texas vs Netflix",
+        "question": "Selon l'article du Guardian sur la poursuite judiciaire du Texas contre Netflix, qui est à l'origine de cette action en justice contre la plateforme de streaming ?",
+        "options": [
+          "A. Greg Abbott",
+          "B. Ron DeSantis",
+          "C. Ken Paxton",
+          "D. Ted Cruz"
+        ],
+        "answer_index": 2,
+        "explanation": "C'est Paxton, le procureur général du Texas, qui soutient que Netflix utilise des mécanismes de conception addictive ciblant les enfants et masque l'ampleur de la collecte de données personnelles."
+      },
+      {
+        "theme": "BuzzFeed vendu",
+        "question": "Selon l'article du Guardian sur la vente de BuzzFeed, pour quel montant Byron Allen a-t-il acquis BuzzFeed, et en quelle année cette entreprise médiatique avait-elle été fondée ?",
+        "options": [
+          "A. 80 millions de dollars, fondée en 2004",
+          "B. 120 millions de dollars, fondée en 2006",
+          "C. 150 millions de dollars, fondée en 2008",
+          "D. 200 millions de dollars, fondée en 2010"
+        ],
+        "answer_index": 1,
+        "explanation": "L'article indique clairement que BuzzFeed a été vendu à Byron Allen pour 120 millions de dollars, et que l'entreprise avait été fondée en 2006."
       }
     ]
   }

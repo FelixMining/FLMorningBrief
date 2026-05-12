@@ -1,61 +1,63 @@
 {
   "seen_video_ids": [
-    "iFRXQolDzMU",
-    "OlmHf6l2pa0",
-    "K_joHVaAGO0",
-    "yWPOfiEN3aA",
-    "F0PPE8-KHwM",
-    "yCWoUqQXFFU",
-    "eqRGwYn-fyw",
-    "w_-8GfTIhrc",
-    "PxqgixX9fBQ",
-    "M22BEuoGvOY",
-    "Ldm6pUWi9Lc",
-    "2ySyjm1clrA",
-    "FVWLdrb8HoQ",
-    "DQVV1ARVDOU",
-    "goQd4dL6MNo",
-    "2x2RfHg6ddk",
-    "PviXGJM5wfM",
-    "P-wAr687qxg",
-    "0mwL5BWLaWM",
     "DpO3CpInUas",
-    "w4upywbPtuk",
-    "gCLQqJew78A",
+    "QTLm7t_rBJg",
+    "ojUP1aN9Vto",
+    "IEwFcEs4hUw",
+    "LPFzIRgGsOo",
+    "0csyOC02ap8",
+    "bTRDBbEaG-8",
+    "-PQr9ghYLok",
+    "Xxg_8mge50U",
+    "Np0Sknk5F5U",
+    "PxqgixX9fBQ",
+    "iFRXQolDzMU",
+    "Up5qdICHi6w",
+    "oOsl-Cgu34g",
+    "RxyIv_sXo3g",
+    "vd973v3rhiA",
+    "2x2RfHg6ddk",
+    "ULTV6T6jRTw",
+    "Zl5JB9q7LUw",
     "nwjz-oOLmMY",
-    "TdBrAWKX3tE",
+    "Ldm6pUWi9Lc",
+    "BvYzzJ20bbk",
+    "2EhZcxHVuhA",
+    "IRzaCS0QLno",
+    "kEr1J4MtOGg",
+    "DQVV1ARVDOU",
+    "M22BEuoGvOY",
+    "PviXGJM5wfM",
+    "EJM-qmy3Muw",
+    "eqRGwYn-fyw",
+    "5ekLY3eDWQE",
+    "goQd4dL6MNo",
+    "E5eNbgcUCcQ",
+    "0mwL5BWLaWM",
+    "P-wAr687qxg",
+    "R-Jw7LTCKgA",
+    "QK47x1J12RU",
+    "JYUGfNoyDKs",
+    "w_-8GfTIhrc",
+    "WMIb5YZgaEI",
+    "gCLQqJew78A",
+    "FVWLdrb8HoQ",
     "jqPoco7C738",
     "xEA-qgdOGRc",
-    "IEwFcEs4hUw",
-    "6kBAuqaJQfc",
-    "E5eNbgcUCcQ",
-    "EJM-qmy3Muw",
-    "N6481-FfSxU",
-    "oOsl-Cgu34g",
-    "wrsJ4iAfa2c",
-    "JYUGfNoyDKs",
-    "RxyIv_sXo3g",
-    "n7SGKGaFkpM",
-    "BvYzzJ20bbk",
-    "Zl5JB9q7LUw",
-    "0csyOC02ap8",
+    "yCWoUqQXFFU",
+    "K_joHVaAGO0",
     "bboOnKktKsw",
-    "vd973v3rhiA",
+    "6kBAuqaJQfc",
+    "wrsJ4iAfa2c",
+    "w4upywbPtuk",
+    "n7SGKGaFkpM",
+    "F0PPE8-KHwM",
+    "OlmHf6l2pa0",
     "-MA67mAVRl8",
-    "LPFzIRgGsOo",
-    "Xxg_8mge50U",
-    "bTRDBbEaG-8",
-    "QK47x1J12RU",
-    "kEr1J4MtOGg",
-    "5ekLY3eDWQE",
-    "Up5qdICHi6w",
-    "ULTV6T6jRTw",
-    "Np0Sknk5F5U",
-    "2EhZcxHVuhA",
-    "ojUP1aN9Vto",
-    "IRzaCS0QLno",
-    "QTLm7t_rBJg",
-    "-PQr9ghYLok"
+    "N6481-FfSxU",
+    "yWPOfiEN3aA",
+    "2ySyjm1clrA",
+    "TdBrAWKX3tE"
   ],
   "2026-04-16": {
     "mot_du_jour": {
@@ -2165,6 +2167,115 @@
         ],
         "answer_index": 1,
         "explanation": "L'article indique clairement que BuzzFeed a été vendu à Byron Allen pour 120 millions de dollars, et que l'entreprise avait été fondée en 2006."
+      }
+    ]
+  },
+  "2026-05-13": {
+    "mot_du_jour": {
+      "mot": "ædicula",
+      "classe": "nom féminin",
+      "definition": "Petite niche ou édicule architectural servant à abriter une statue, une image sacrée ou un objet précieux ; par extension, tout espace intime qui confère une dignité particulière à ce qu'il renferme.",
+      "etymologie": "Du latin ædicula, diminutif de ædes (maison, temple), désignant une petite construction ou chapelle votif.",
+      "exemple": "Dans l'angle obscur de la ruelle, une ædicula creusée dans la pierre abritait une vierge de faïence que les passants effleuraient encore du bout des doigts."
+    },
+    "culture_qcm": [
+      {
+        "theme": "sciences",
+        "question": "En biologie cellulaire, quel est le rôle principal du réticulum endoplasmique rugueux (RER) ?",
+        "options": [
+          "A. Synthétiser les lipides membranaires et les hormones stéroïdes",
+          "B. Assurer la synthèse et le repliement des protéines destinées à être sécrétées ou intégrées aux membranes",
+          "C. Produire l'ATP nécessaire aux réactions métaboliques de la cellule",
+          "D. Dégrader les organites endommagés par autolyse contrôlée"
+        ],
+        "answer_index": 1,
+        "explanation": "Le RER est hérissé de ribosomes qui traduisent les ARN messagers codant des protéines secrétées ou membranaires ; celles-ci sont ensuite repliées et modifiées (glycosylation) dans la lumière du réticulum avant d'être acheminées vers l'appareil de Golgi."
+      },
+      {
+        "theme": "sciences",
+        "question": "En mathématiques, qu'est-ce que la transformée de Fourier d'un signal permet fondamentalement de réaliser ?",
+        "options": [
+          "A. Calculer la dérivée partielle du signal par rapport au temps",
+          "B. Résoudre une équation différentielle ordinaire par la méthode des séries entières",
+          "C. Décomposer un signal temporel en une somme de sinusoïdes de fréquences et d'amplitudes différentes",
+          "D. Déterminer la probabilité qu'un signal dépasse un certain seuil d'amplitude"
+        ],
+        "answer_index": 2,
+        "explanation": "La transformée de Fourier opère un changement de domaine : elle exprime tout signal (périodique ou non) comme une superposition continue de fonctions sinusoïdales, révélant ainsi son spectre fréquentiel et permettant l'analyse et le filtrage du signal."
+      },
+      {
+        "theme": "geographie",
+        "question": "Quel nom désigne le courant marin chaud qui longe la côte est de l'Amérique du Nord, transporte des eaux tropicales vers l'Atlantique Nord et joue un rôle majeur dans la régulation du climat européen ?",
+        "options": [
+          "A. Le courant de Humboldt",
+          "B. Le courant du Labrador",
+          "C. Le Gulf Stream",
+          "D. Le courant de Benguela"
+        ],
+        "answer_index": 2,
+        "explanation": "Le Gulf Stream est un puissant courant chaud qui prend naissance dans le golfe du Mexique, remonte la côte est nord-américaine puis traverse l'Atlantique Nord ; il cède sa chaleur à l'atmosphère et contribue à tempérer significativement le climat de l'Europe occidentale."
+      }
+    ],
+    "actu_qcm": [
+      {
+        "theme": "Kash Patel FBI",
+        "question": "Selon l'article du Guardian sur l'audience sénatoriale de Kash Patel, comment ce dernier a-t-il qualifié les accusations portées contre lui concernant son comportement professionnel ?",
+        "options": [
+          "A. « Pure diffamation »",
+          "B. « Totale farce »",
+          "C. « Complot politique »",
+          "D. « Mensonge délibéré »"
+        ],
+        "answer_index": 1,
+        "explanation": "Dans l'article, Kash Patel répond aux accusations des sénateurs démocrates en qualifiant ces rapports de « totale farce », rejetant catégoriquement les allégations sur ses absences et son comportement."
+      },
+      {
+        "theme": "Guerre Iran coûts",
+        "question": "Selon l'article du Guardian sur les coûts de la guerre contre l'Iran, qui comparaît devant le Parlement pour répondre aux questions sur l'utilisation des ressources de défense dans ce conflit ?",
+        "options": [
+          "A. Mark Milley",
+          "B. Lloyd Austin",
+          "C. Pete Hegseth",
+          "D. Mike Pompeo"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article précise que Pete Hegseth, accompagné d'autres responsables militaires, fait face aux élus qui souhaitent comprendre l'ampleur réelle des dépenses liées à l'escalade militaire américaine contre l'Iran."
+      },
+      {
+        "theme": "Budget australien Shorten",
+        "question": "Selon l'article du Guardian sur le budget australien 2026, quelle est la réaction de Bill Shorten face aux réformes fiscales présentées dans ce budget ?",
+        "options": [
+          "A. Il dénonce un détournement de ses idées sans crédit",
+          "B. Il se déclare vengé, estimant que ses propositions électorales ont finalement été adoptées",
+          "C. Il critique le manque d'ambition des mesures proposées",
+          "D. Il annonce son retrait définitif de la vie politique australienne"
+        ],
+        "answer_index": 1,
+        "explanation": "Bill Shorten déclare se sentir vengé par ces réformes fiscales, soulignant que des mesures clés de sa plateforme électorale passée ont finalement été intégrées au budget, validant son approche politique antérieure."
+      },
+      {
+        "theme": "Millionnaires impôts UK",
+        "question": "Selon l'article du Guardian sur la fiscalité au Royaume-Uni, quelle proportion des millionnaires britanniques interrogés se déclarerait prête à payer davantage d'impôts ?",
+        "options": [
+          "A. La moitié",
+          "B. Un tiers",
+          "C. Trois quarts",
+          "D. Neuf dixièmes"
+        ],
+        "answer_index": 2,
+        "explanation": "L'article indique que trois quarts des millionnaires britanniques sondés accepteraient de payer plus d'impôts, contredisant les craintes d'une fuite des capitaux vers d'autres juridictions fiscalement plus favorables."
+      },
+      {
+        "theme": "Aidants âgés déclin",
+        "question": "Selon l'article du Guardian sur les personnes âgées assumant un rôle de soignant, quel effet un engagement intensif dans l'aide aux proches produit-il sur leur santé selon cette recherche universitaire ?",
+        "options": [
+          "A. Une amélioration du sentiment de bien-être et de la mémoire à long terme",
+          "B. Une détérioration cognitive et mentale au-delà d'un certain seuil critique",
+          "C. Une augmentation de la longévité liée au sentiment d'utilité sociale",
+          "D. Un renforcement des capacités physiques par la stimulation quotidienne"
+        ],
+        "answer_index": 1,
+        "explanation": "La recherche met en évidence qu'au-delà d'un seuil critique, la charge physique et émotionnelle du rôle de soignant intensif provoque une détérioration cognitive et mentale chez les personnes âgées concernées."
       }
     ]
   }

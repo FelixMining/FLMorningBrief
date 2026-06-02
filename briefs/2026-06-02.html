@@ -1,0 +1,2491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Morning Brief — Mardi 2 juin 2026</title>
+  <link rel="icon" href="../logo-sans-fond.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+
+  <style>
+    /* ── Design tokens ─────────────────────────────────────── */
+    :root {
+      --bg:         #080A0F;
+      --surface:    #0D1117;
+      --card:       #0F1724;
+      --border:     #1C2333;
+      --text:       #EDF2FF;
+      --text-2:     #8B9CC8;
+      --text-3:     #3D4A60;
+      --accent:     #00D4FF;
+      --accent-dim: rgba(0,212,255,.08);
+      --accent-mid: rgba(0,212,255,.2);
+      --purple:     #8B5CF6;
+      --green:      #10B981;
+      --red:        #F43F5E;
+      --amber:      #F59E0B;
+      --h: 'Montserrat', system-ui, sans-serif;
+      --s: 'Inter', system-ui, sans-serif;
+      --m: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--s);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,.018) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Progress bar ────────────────────────────────────────── */
+    
+    #progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(0,212,255,.4);
+      z-index: 100;
+      transition: width .1s linear;
+    }
+    
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+      position: relative;
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    .header {
+      padding: 48px 0 28px;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 56px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(0,212,255,.3);
+    }
+    .header-eyebrow {
+      font-family: var(--m);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      opacity: .65;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .header-logo {
+      width: 22px; height: 22px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(0,212,255,.25));
+      opacity: 1;
+    }
+    .header-day {
+      font-family: var(--h);
+      font-size: clamp(50px, 13vw, 72px);
+      font-weight: 900;
+      line-height: .9;
+      color: var(--text);
+      letter-spacing: -.035em;
+      margin-bottom: 4px;
+    }
+    .header-month {
+      font-family: var(--h);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 22px;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+    }
+    .header-meta .sep { color: var(--border); }
+    .header-meta .time-badge {
+      display: flex; align-items: center; gap: 5px;
+      color: var(--accent);
+      opacity: .75;
+    }
+    .header-meta .time-badge svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+    /* ── Section ─────────────────────────────────────────────── */
+    .section { margin-bottom: 52px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 44px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .section-icon {
+      width: 32px; height: 32px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-icon svg { width: 15px; height: 15px; stroke: var(--accent); fill: none; }
+    .section-title {
+      font-family: var(--h);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+      flex: 1;
+    }
+    .section-count {
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 8px;
+    }
+
+    /* ── Article card ────────────────────────────────────────── */
+    .article-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
+      transition: border-color .15s, box-shadow .15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity .15s;
+    }
+    .article-card:hover {
+      border-color: var(--accent-mid);
+      box-shadow: 0 4px 24px rgba(0,212,255,.05);
+    }
+    .article-card:hover::before { opacity: 1; }
+
+    /* Card meta row */
+    .card-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .source-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: rgba(139,92,246,.1);
+      border: 1px solid rgba(139,92,246,.25);
+      color: #A78BFA;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .source-badge.hn {
+      background: rgba(245,158,11,.1);
+      border-color: rgba(245,158,11,.28);
+      color: #FCD34D;
+    }
+    .domain-pill {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .read-time {
+      font-size: 10px;
+      font-family: var(--m);
+      color: var(--text-3);
+      margin-left: auto;
+      display: flex; align-items: center; gap: 3px;
+    }
+    .read-time svg { width: 10px; height: 10px; }
+
+    /* Article content */
+    .article-title {
+      font-family: var(--h);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
+    .article-summary {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-2);
+      font-weight: 300;
+    }
+
+    /* Expand panel */
+    .article-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, opacity .2s;
+      opacity: 0;
+    }
+    .article-expand.open { max-height: 600px; opacity: 1; }
+    .expand-body {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--text-2);
+      font-weight: 300;
+      padding: 14px 0 10px;
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+    }
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      text-decoration: none;
+      margin-top: 10px;
+      transition: color .15s;
+    }
+    .source-link:hover { color: var(--text-2); }
+    .source-link svg { width: 10px; height: 10px; fill: none; }
+
+    /* Lire button */
+    .btn-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 11px;
+      font-family: var(--s);
+      font-weight: 500;
+      color: var(--text-3);
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+    .btn-read:hover, .btn-read.open {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-read .chevron {
+      width: 12px; height: 12px;
+      transition: transform .2s;
+      flex-shrink: 0;
+      fill: none;
+    }
+    .btn-read.open .chevron { transform: rotate(180deg); }
+
+    /* ── Finance ─────────────────────────────────────────────── */
+    .tv-container {
+      background: #0F0F0F;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 420px;
+      margin-bottom: 20px;
+    }
+    .tv-container .tradingview-widget-container,
+    .tv-container .tradingview-widget-container__widget { height: 100%; }
+    .tv-container .tradingview-widget-copyright { display: none; }
+
+    /* Fear & Greed */
+    .fear-greed {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .fg-label {
+      font-size: 10px;
+      font-family: var(--m);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .fg-bar-wrap {
+      position: relative;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(to right,
+        #F43F5E 0%, #F43F5E 25%,
+        #F97316 25%, #F97316 45%,
+        #EAB308 45%, #EAB308 55%,
+        #84CC16 55%, #84CC16 75%,
+        #10B981 75%, #10B981 100%
+      );
+      margin-bottom: 12px;
+    }
+    .fg-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px; height: 14px;
+      background: var(--bg);
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(255,255,255,.25);
+    }
+    .fg-bottom { display: flex; align-items: baseline; gap: 8px; }
+    .fg-value {
+      font-family: var(--m);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .fg-sentiment { font-size: 13px; color: var(--text-2); font-weight: 300; }
+
+    /* ── YouTube ─────────────────────────────────────────────── */
+    .video-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: border-color .15s;
+    }
+    .video-card:hover { border-color: var(--accent-mid); }
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.4);
+      transition: background .15s;
+    }
+    .video-card:hover .video-play { background: rgba(0,0,0,.25); }
+    .video-play-icon {
+      width: 46px; height: 46px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 20px rgba(0,212,255,.5);
+    }
+    .video-play-icon svg { width: 16px; height: 16px; margin-left: 2px; fill: #080A0F; }
+    .video-info { padding: 14px 16px; }
+    .video-channel {
+      font-size: 10px;
+      font-family: var(--m);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 5px;
+      opacity: .75;
+    }
+    .video-title {
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .video-meta {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── Mot du jour ─────────────────────────────────────────── */
+    .mot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 20px;
+      margin-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mot-card::after {
+      content: '"';
+      position: absolute;
+      top: -18px; right: 14px;
+      font-family: Georgia, serif;
+      font-size: 130px;
+      color: var(--border);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .mot-classe {
+      font-size: 10px;
+      font-family: var(--m);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      opacity: .7;
+    }
+    .mot-word {
+      font-family: var(--h);
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .mot-def {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-2);
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+    .mot-etym {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-bottom: 10px;
+      border-left: 2px solid var(--accent);
+      padding-left: 10px;
+      opacity: .65;
+    }
+    .mot-exemple {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── QCM ─────────────────────────────────────────────────── */
+    .qcm-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
+    }
+    .qcm-theme {
+      font-size: 10px;
+      font-family: var(--m);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 8px;
+    }
+    .qcm-question {
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .qcm-options { display: flex; flex-direction: column; gap: 6px; }
+    .qcm-option {
+      display: block; width: 100%; text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: background .12s, border-color .12s, color .12s;
+      font-family: var(--s);
+    }
+    .qcm-option:hover:not(:disabled) {
+      background: var(--accent-dim);
+      border-color: var(--accent-mid);
+      color: var(--text);
+    }
+    .qcm-option:disabled { cursor: default; }
+    .qcm-option.correct {
+      background: rgba(16,185,129,.12);
+      border-color: #10B981;
+      color: #6EE7B7;
+    }
+    .qcm-option.wrong {
+      background: rgba(244,63,94,.08);
+      border-color: #F43F5E;
+      color: #FDA4AF;
+    }
+    .qcm-explanation {
+      display: none;
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-3);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    /* ── Reading timer chip ─────────────────────────────────── */
+    #reading-chip {
+      position: fixed;
+      top: 8px; right: 12px;
+      z-index: 101;
+      display: flex; align-items: center; gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px 4px 8px;
+      font-family: var(--m);
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .04em;
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+    #reading-chip.visible { opacity: 1; }
+    #reading-chip svg { width: 11px; height: 11px; flex-shrink: 0; opacity: .7; }
+
+    /* ── Article image ───────────────────────────────────────── */
+    .article-img {
+      margin: -16px -16px 12px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 7px 7px 0 0;
+      background: var(--surface);
+    }
+    .article-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+    .article-card:hover .article-img img { opacity: 1; }
+
+    /* ── Actu QCM ────────────────────────────────────────────── */
+    .actu-qcm-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .actu-qcm-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+    }
+    .actu-qcm-label {
+      font-family: var(--h);
+      font-size: 11px; font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--amber); flex: 1;
+    }
+    .actu-qcm-count {
+      font-size: 11px; font-family: var(--m);
+      color: var(--text-3);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 1px 8px;
+    }
+    .qcm-item.actu { border-color: rgba(245,158,11,.2); }
+    .qcm-item.actu .qcm-theme { color: var(--amber); opacity: .8; }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    .footer {
+      padding: 24px 0 8px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-gen {
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .footer-archive {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-archive:hover { color: var(--accent); }
+    .footer-archive svg { width: 12px; height: 12px; fill: none; }
+
+    /* ── Feedback article ──────────────────────────────────── */
+    .article-feedback {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 12px; padding-top: 10px;
+      border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .btn-like, .btn-dislike, .btn-comment-toggle {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: none; border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 10px;
+      font-size: 11px; font-family: var(--m);
+      color: var(--text-3); cursor: pointer; transition: all .15s;
+    }
+    .btn-like svg, .btn-dislike svg, .btn-comment-toggle svg {
+      width: 12px; height: 12px; fill: none;
+      stroke: currentColor; stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .btn-like:hover   { border-color: var(--green); color: var(--green); }
+    .btn-dislike:hover { border-color: var(--red);   color: var(--red);   }
+    .btn-comment-toggle:hover { border-color: var(--accent-mid); color: var(--accent); }
+    .btn-like.active   { background: rgba(16,185,129,.12); border-color: var(--green); color: var(--green); }
+    .btn-dislike.active { background: rgba(244,63,94,.08);  border-color: var(--red);   color: var(--red);   }
+    .btn-comment-toggle.active { border-color: var(--accent-mid); color: var(--accent); }
+    .comment-area { width: 100%; margin-top: 6px; }
+    .comment-area textarea {
+      width: 100%; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 8px 12px; font-size: 12px; font-family: var(--s);
+      color: var(--text-2); resize: vertical; margin-bottom: 6px;
+    }
+    .comment-area textarea::placeholder { color: var(--text-3); }
+    .comment-area textarea:focus { outline: none; border-color: var(--accent-mid); }
+    .btn-save-comment {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 5px; padding: 5px 14px; font-size: 11px;
+      font-family: var(--m); color: var(--text-3); cursor: pointer; transition: all .12s;
+    }
+    .btn-save-comment:hover { border-color: var(--accent-mid); color: var(--accent); }
+
+    /* ── Révision & Mots du jour ────────────────────────────── */
+    .revision-header, .mot-review-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 16px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border); position: relative;
+    }
+    .revision-header::after {
+      content: ''; position: absolute; bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--purple); box-shadow: 0 0 8px var(--purple);
+    }
+    .mot-review-header::after {
+      content: ''; position: absolute; bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--green); box-shadow: 0 0 8px var(--green);
+    }
+    .revision-label {
+      font-family: var(--h); font-size: 11px; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--purple); flex: 1;
+    }
+    .mot-review-label {
+      font-family: var(--h); font-size: 11px; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--green); flex: 1;
+    }
+    .revision-count, .mot-review-count {
+      font-size: 11px; font-family: var(--m); color: var(--text-3);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1px 8px;
+    }
+    .qcm-item.revision  { border-color: rgba(139,92,246,.2); }
+    .qcm-item.revision .qcm-theme  { color: var(--purple); opacity: .8; }
+    .qcm-item.mot-review { border-color: rgba(16,185,129,.2); }
+    .qcm-item.mot-review .qcm-theme { color: var(--green); opacity: .8; }
+
+    /* ── Bouton retour accueil & méta footer ────────────────── */
+    .footer-home {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-family: var(--m); color: var(--text-3);
+      text-decoration: none; transition: color .15s; letter-spacing: .04em;
+    }
+    .footer-home:hover { color: var(--accent); }
+    .footer-home svg { width: 12px; height: 12px; fill: none; }
+    .footer-meta {
+      font-size: 10px; font-family: var(--m); color: var(--text-3);
+      margin-top: 10px; line-height: 2; text-align: center;
+    }
+    .footer-meta .cost { color: var(--green); opacity: .75; }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ── Reading Timer ─────────────────────────────── -->
+<div id="reading-chip">
+  <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  <span id="reading-time">0:00</span>
+</div>
+
+<div class="wrap">
+
+  <!-- ── Header ──────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-eyebrow">
+      <img src="../logo-sans-fond.svg" alt="" class="header-logo">
+      FL Morning Brief
+    </div>
+    
+    <div class="header-day">Mardi 2</div>
+    <div class="header-month">juin 2026</div>
+    <div class="header-meta">
+      <span>02:08</span>
+      
+      <span class="sep">·</span>
+      <span class="time-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        ~52 min
+      </span>
+      
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Actualités
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="news">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Actualités</h2>
+      <span class="section-count">6</span>
+    </div>
+
+    
+    
+    <div class="article-card" id="article-news-0" data-art-id="news-0" data-domain="Géopolitique, Moyen-Orient">
+      <div class="article-img"><img src="https://media.guim.co.uk/280380211e22edac733ac82128ca2bcadd7be8e4/657_0_4128_3302/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Géopolitique, Moyen-Orient</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Crise au Moyen-Orient : Israël affirme que des roquettes ont été tirées après l&#39;annonce de Trump</h3>
+      <p class="article-summary">Israël signale des tirs de roquettes depuis le nord après que Trump ait annoncé un accord de cessez-le-feu avec Netanyahou et le Hezbollah. Les promesses américaines de fin des hostilités sont immédiatement contredites par les événements sur le terrain.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-0">
+        <div class="expand-body">Le président américain a déclaré que Benjamin Netanyahu avait accepté de ne pas envoyer de troupes à Beyrouth et que le Hezbollah s&#39;était engagé à cesser tous les tirs. Cependant, ces annonces ont été rapidement démenties par des rapports de bombardements, révélant un fossé entre les déclarations diplomatiques et la réalité du conflit. Cette situation illustre la fragilité des négociations au Moyen-Orient et les défis persistants dans l&#39;application d&#39;accords de cessez-le-feu. Les acteurs régionaux, dont le Hezbollah et les groupes alliés à l&#39;Iran, maintiennent des capacités offensives importantes malgré les pressions diplomatiques.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/world/live/2026/jun/01/iran-war-live-news-updates-kuwait-missile-drone-attack-us-strikes-iran-radar-sites" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-0', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-1" data-art-id="news-1" data-domain="Cybersécurité, IA">
+      <div class="article-img"><img src="https://media.guim.co.uk/0a1521f6c70403081189e0e46a7e802e2737a669/567_0_5665_4534/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Cybersécurité, IA</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Des pirates exploitent l&#39;IA de Meta pour infiltrer le compte Instagram de la Maison-Blanche</h3>
+      <p class="article-summary">Des hackers ont piégé le chatbot support de Meta pour accéder au compte Instagram de la Maison-Blanche d&#39;Obama. Cette brèche confirme par Meta soulève des questions critiques sur la fiabilité de l&#39;IA pour les mesures de sécurité sensibles.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-1">
+        <div class="expand-body">L&#39;incident démontre une vulnérabilité majeure dans les systèmes d&#39;authentification basés sur l&#39;IA, où les attaquants ont exploité les limites du bot de support pour contourner les protections de sécurité. Meta a confirmé la violation, ce qui représente un précédent inquiétant pour les institutions gouvernementales utilisant des services numériques commerciaux. Cette faille révèle que les systèmes d&#39;IA ne disposent pas encore de mécanismes suffisants pour distinguer les requêtes légitimes des tentatives malveillantes complexes. Les implications pour la sécurité des données sensibles et les comptes d&#39;importance nationale sont considérables, particulièrement pour les organisations qui dépendent de gestionnaires de mots de passe et de systèmes d&#39;authentification basés sur l&#39;IA.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/technology/2026/jun/01/meta-ai-hack-obama-sephora-instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-1', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-2" data-art-id="news-2" data-domain="IA, Droit, Protection">
+      <div class="article-img"><img src="https://media.guim.co.uk/c0964c5c069ea10a999ebc43dd184effb88e8bad/253_0_4592_3673/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">IA, Droit, Protection</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Floride : plainte contre OpenAI pour avoir ignoré les avertissements de sécurité</h3>
+      <p class="article-summary">La Floride poursuit OpenAI et Sam Altman, alléguant que ChatGPT est un produit dangereux ayant atteint des millions d&#39;utilisateurs, dont des enfants, malgré des avertissements ignorés.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-2">
+        <div class="expand-body">Cette action en justice représente une escalade des efforts réglementaires contre les entreprises de technologie de l&#39;IA, avec un État fédéré contestant directement la conformité et les responsabilités en matière de sécurité. Les accusations suggèrent qu&#39;OpenAI aurait eu connaissance de risques spécifiques mais aurait choisi de procéder au déploiement sans mesures d&#39;atténuation appropriées. Cette affaire s&#39;inscrit dans un contexte plus large de tensions entre l&#39;innovation technologique et la protection des utilisateurs vulnérables, notamment les mineurs. Les États-Unis commencent à explorer des cadres légaux pour tenir les développeurs d&#39;IA responsables des conséquences prévisibles de leurs produits.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/technology/2026/jun/01/florida-lawsuit-openai-sam-altman" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-2', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-3" data-art-id="news-3" data-domain="Politique australienne">
+      <div class="article-img"><img src="https://media.guim.co.uk/44d0a61861e54cd8806e23121fff2b5dc78470d7/0_0_2953_2362/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Politique australienne</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Politique australienne : les difficultés économiques poussent les électeurs vers le One Nation</h3>
+      <p class="article-summary">Le trésorier australien Chalmers attribue la montée du soutien au One Nation aux difficultés économiques, tandis que la population du pays dépasse les 28 millions d&#39;habitants.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-3">
+        <div class="expand-body">L&#39;analyse révèle que les crises économiques alimentent traditionnellement la popularité des partis populistes et anti-establishment en Australie. La population croissante, dépassant maintenant 28 millions habitants, pose des défis d&#39;intégration, de logement et d&#39;emploi qui exacerbent le sentiment d&#39;insécurité économique parmi les électeurs. Le One Nation, un parti de droite populiste connu pour ses positions anti-immigration et anti-élite, bénéficie de ce mécontentement croissant. Cette dynamique reflète des tendances similaires observées dans d&#39;autres démocraties occidentales, où les électeurs déçus par les politiques traditionnelles cherchent des alternatives radicales.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/australia-news/live/2026/jun/02/australia-politics-live-one-nation-minimum-wage-case-labor-coalition-anthony-albanese-angus-taylor-question-time-senate-estimates-ntwnfb" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-3', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-4" data-art-id="news-4" data-domain="Économie verte, Climat">
+      <div class="article-img"><img src="https://media.guim.co.uk/1800d58a8d5415e082bd1e1c5c33e3310d0e9ead/1617_0_2870_2296/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Économie verte, Climat</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">L&#39;économie verte britannique dépasse les 100 milliards de livres par an</h3>
+      <p class="article-summary">Selon la recherche de la Confédération de l&#39;industrie britannique, le secteur net zéro génère plus de 100 milliards de livres annuellement et emploie plus d&#39;un million de personnes.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-4">
+        <div class="expand-body">Cette analyse démontre que la transition énergétique peut être un moteur économique substantiel, créant des emplois et générant une richesse significative. L&#39;industrie net zéro du Royaume-Uni est devenue une force économique majeure, bénéficiant le pays dans son ensemble selon les données de CBI Economics. Ce secteur couvre les énergies renouvelables, l&#39;efficacité énergétique, les technologies de capture du carbone et l&#39;électrification des transports. Le rapport infirme la narratif selon laquelle les politiques climatiques nuisent à l&#39;économie, montrant au contraire qu&#39;elles génèrent une croissance inclusive et une diversification économique. Le Royaume-Uni positionne cette expertise comme un avantage compétitif sur le marché mondial des technologies vertes.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/environment/2026/jun/02/uk-green-economy-worth-more-than-100bn-a-year-net-zero" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-4', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-5" data-art-id="news-5" data-domain="Politique US, Israël">
+      <div class="article-img"><img src="https://media.guim.co.uk/1f8f66ede75c53e0785c1daf76d31476e8b8762c/428_0_5001_4000/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Politique US, Israël</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Démocrates divisés sur le défilé d&#39;Israël : tensions autour des ministres d&#39;extrême-droite</h3>
+      <p class="article-summary">Le maire de New York Sadiq Khan refuse d&#39;assister au défilé israélien en tenant sa promesse, tandis que d&#39;autres élus démocrates sont critiqués pour avoir marché aux côtés du ministre des Finances d&#39;extrême-droite.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-5">
+        <div class="expand-body">Cette controverse révèle les fractures internes au sein du Parti démocrate américain concernant la politique israélienne et la participation à des événements de solidarité. La présence de ministres israéliens d&#39;extrême-droite aux positions controversées crée un dilemme moral pour les politiciens progressistes qui soutiennent Israël mais désapprouvent certaines orientations idéologiques du gouvernement. Khan, figure importante des démocrates urbains, a maintenu sa position de principe en s&#39;abstenant de participer, malgré les pressions politiques. Cette situation illustre l&#39;évolution du débat démocrate sur le Moyen-Orient, où le soutien traditionnel à Israël doit désormais s&#39;équilibrer avec les préoccupations concernant les politiques gouvernementales spécifiques et les valeurs progressistes.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/us-news/2026/jun/01/democrats-israel-parade-new-york" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-5', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Tech & IA
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="tech">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="2"/>
+          <rect x="9" y="9" width="6" height="6"/>
+          <path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Tech & IA</h2>
+      <span class="section-count">10</span>
+    </div>
+
+    
+    
+    <div class="article-card" id="article-tech-0" data-art-id="tech-0" data-domain="">
+      <div class="article-img"><img src="https://skift.com/wp-content/uploads/2026/05/image1_74d784.jpg?resize=1024,576" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Skift</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">How AI Became the Reason Not to Buy the World’s Largest Corporate Travel Company</h3>
+      <p class="article-summary">With most potential buyers citing AI disruption risk and walking away, Long Lake&#39;s $6.3 billion acquisition of AmexGBT is the most contrarian bet in travel right now.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-0">
+        <div class="expand-body">With most potential buyers citing AI disruption risk and walking away, Long Lake&#39;s $6.3 billion acquisition of AmexGBT is the most contrarian bet in travel right now.</div>
+        
+        <a class="source-link" href="https://skift.com/2026/05/31/how-ai-became-the-reason-not-to-buy-the-worlds-largest-corporate-travel-company/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-0', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-1" data-art-id="tech-1" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">smartmemory-core 0.9.29</h3>
+      <p class="article-summary">Multi-layered AI memory system with graph databases, vector stores, and intelligent processing pipelines</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-1">
+        <div class="expand-body">Multi-layered AI memory system with graph databases, vector stores, and intelligent processing pipelines</div>
+        
+        <a class="source-link" href="https://pypi.org/project/smartmemory-core/0.9.29/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-1', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-2" data-art-id="tech-2" data-domain="">
+      <div class="article-img"><img src="https://imageio.forbes.com/specials-images/imageserve/68f94e65dd358adcf64ab95f/0x0.jpg?format=jpg&amp;height=900&amp;width=1600&amp;fit=bounds" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Forbes</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">SpaceX Says It’s Sparking One Of Galaxy’s Most Advanced Civilizations</h3>
+      <p class="article-summary">One of the most fantastical claims SpaceX is making during the countdown to its IPO is that it is helping create one of the most advanced civilizations in the Milky Way.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-2">
+        <div class="expand-body">One of the most fantastical claims SpaceX is making during the countdown to its IPO is that it is helping create one of the most advanced civilizations in the Milky Way.</div>
+        
+        <a class="source-link" href="https://www.forbes.com/sites/kevinholdenplatt/2026/05/31/spacex-says-its-sparking-one-of-galaxys-most-advanced-civilizations/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-2', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-3" data-art-id="tech-3" data-domain="">
+      <div class="article-img"><img src="https://cdn.wccftech.com/wp-content/uploads/2026/05/AMD-Radeon-RX-9070-GRE-GPU-1920x1032.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Wccftech</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">AMD Radeon RX 9070 GRE 12 GB GPU Launched: 48 “RDNA 4” Cores, Up To 22% Faster Than 5060 Ti, &amp; Priced at $549</h3>
+      <p class="article-summary">AMD has introduced a brand new graphics card, the Radeon RX 9070 GRE, featuring 12 GB of VRAM, RDNA 4 GPU architecture, &amp; a $549 price. AMD Radeon RX 9070 GRE 12 GB Launches At The Same Price As The R</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-3">
+        <div class="expand-body">AMD has introduced a brand new graphics card, the Radeon RX 9070 GRE, featuring 12 GB of VRAM, RDNA 4 GPU architecture, &amp; a $549 price. AMD Radeon RX 9070 GRE 12 GB Launches At The Same Price As The Radeon RX 9070 Non-XT The AMD Radeon RX 9000 &#34;RDNA 4&#34; GPU fa…</div>
+        
+        <a class="source-link" href="https://wccftech.com/amd-radeon-rx-9070-gre-12-gb-launched-22-percent-faster-vs-5060-ti-549-us-price/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-3', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-4" data-art-id="tech-4" data-domain="">
+      <div class="article-img"><img src="https://cdn.wccftech.com/wp-content/uploads/2024/04/2302705_Ryzen-AI-PRO_motherboard_01_0004_4K-Custom-1920x1080.png" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Wccftech</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">AMD Ryzen AI PRO 400 &amp; Ryzen 9 PRO 9965X3D 3D V-Cache CPUs Are Arriving In Q3 2026</h3>
+      <p class="article-summary">AMD is expanding its Ryzen PRO lineup with the Ryzen AI PRO 400 Desktop lineup &amp; the first 3D V-Cache Pro chip, the Ryzen 9 PRO 9965X3D AMD Ryzen AI PRO 400 CPUs Headed To Retail Shelves In OEM System</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-4">
+        <div class="expand-body">AMD is expanding its Ryzen PRO lineup with the Ryzen AI PRO 400 Desktop lineup &amp; the first 3D V-Cache Pro chip, the Ryzen 9 PRO 9965X3D AMD Ryzen AI PRO 400 CPUs Headed To Retail Shelves In OEM Systems By Q3 2026 AMD&#39;s Ryzen AI 400 APUs are finally coming to …</div>
+        
+        <a class="source-link" href="https://wccftech.com/amd-ryzen-ai-pro-400-ryzen-9-pro-9965x3d-3d-v-cache-cpus-arrive-q3-2026/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-4', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-5" data-art-id="tech-5" data-domain="">
+      <div class="article-img"><img src="https://opengraph.githubassets.com/cf9c8a1f61ef2ab5d86cb87a0c3a3b490253be34b0a0e5fc20dd0afbe47097f9/Fimeg/RedFlag" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Github.com</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Show HN: RedFlag – self-hosted update manager with a supply chain gate</h3>
+      <p class="article-summary">Article URL: https://github.com/Fimeg/RedFlag
+Comments URL: https://news.ycombinator.com/item?id=48351134
+Points: 1
+# Comments: 0</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-5">
+        <div class="expand-body">Article URL: https://github.com/Fimeg/RedFlag
+Comments URL: https://news.ycombinator.com/item?id=48351134
+Points: 1
+# Comments: 0</div>
+        
+        <a class="source-link" href="https://github.com/Fimeg/RedFlag" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-5', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-6" data-art-id="tech-6" data-domain="">
+      <div class="article-img"><img src="https://www.livemint.com/lm-img/img/2026/05/31/1600x900/logo/INDIA-GUJARAT-SUMMIT-9_1705051231945_1780241350332_d8c36089-fee7-468c-a8ce-3aa74ff70e67.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Livemint</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">In a likely sign of the times, RIL&#39;s new hires down by 90k in FY26</h3>
+      <p class="article-summary">Reliance Industries&#39; hiring in FY26 is likely to have been 90,000 lower, signalling a broader shift at large companies towards AI-led productivity, upskilling and leaner teams. While the overall headc</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-6">
+        <div class="expand-body">Reliance Industries&#39; hiring in FY26 is likely to have been 90,000 lower, signalling a broader shift at large companies towards AI-led productivity, upskilling and leaner teams. While the overall headcount continues to grow, recruiters expect hiring across cor…</div>
+        
+        <a class="source-link" href="https://www.livemint.com/companies/ril-hiring-hr-attrition-recruitment-ai-11780210285270.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-6', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-7" data-art-id="tech-7" data-domain="">
+      <div class="article-img"><img src="https://www.omnivancemedia.com/og-image.svg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Omnivancemedia.com</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">How to Measure Law Firm Digital Marketing ROI</h3>
+      <p class="article-summary">Learn how to measure law firm digital marketing ROI effectively. Discover key tools and strategies to connect ad spend with revenue growth.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-7">
+        <div class="expand-body">Learn how to measure law firm digital marketing ROI effectively. Discover key tools and strategies to connect ad spend with revenue growth.</div>
+        
+        <a class="source-link" href="https://www.omnivancemedia.com/blog/how-to-measure-law-firm-digital-marketing-roi" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-7', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-8" data-art-id="tech-8" data-domain="">
+      <div class="article-img"><img src="https://www.techpowerup.com/img/9Xq4ngtmFVnjjH1P.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Techpowerup.com</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">(PR) Carbice and Noctua Partner to Bring Advanced Thermal Pad Technology to DIY PC Builders</h3>
+      <p class="article-summary">Carbice, a U.S.-based developer and supplier of next-generation carbon nanotube thermal interface materials (TIMs) and high-performance cooling solutions, today announced a long-term strategic partner</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-8">
+        <div class="expand-body">Carbice, a U.S.-based developer and supplier of next-generation carbon nanotube thermal interface materials (TIMs) and high-performance cooling solutions, today announced a long-term strategic partnership with Noctua, the Austrian leader in premium quiet PC c…</div>
+        
+        <a class="source-link" href="https://www.techpowerup.com/349559/carbice-and-noctua-partner-to-bring-advanced-thermal-pad-technology-to-diy-pc-builders" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-8', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-9" data-art-id="tech-9" data-domain="">
+      <div class="article-img"><img src="https://opengraph.githubassets.com/695f63de2de8bf580217ee56aa6bae0ed76dba4f51e1182381a6e510586be74c/pssah4/vault-operator" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Github.com</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Karpathy LLM Wiki pattern integrated into Obsidian agenic workflow</h3>
+      <p class="article-summary">Real AI agent for your vault. Coworker, Copilot &amp;amp; thinking partner, that maintains your memory &amp;amp; knowledge, adapts to your workflows, uses plugins, skills &amp;amp; tools with full safety contr...</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-9">
+        <div class="expand-body">Real AI agent for your vault. Coworker, Copilot &amp;amp; thinking partner, that maintains your memory &amp;amp; knowledge, adapts to your workflows, uses plugins, skills &amp;amp; tools with full safety contr...</div>
+        
+        <a class="source-link" href="https://github.com/pssah4/vault-operator" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-9', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Finance
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="finance">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+          <polyline points="17 6 23 6 23 12"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Finance</h2>
+    </div>
+
+    <!-- TradingView Widget -->
+    <div class="tv-container">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {
+          "lineWidth": 2,
+          "lineType": 0,
+          "chartType": "area",
+          "fontColor": "rgb(106, 109, 120)",
+          "gridLineColor": "rgba(242, 242, 242, 0.06)",
+          "volumeUpColor": "rgba(34, 171, 148, 0.5)",
+          "volumeDownColor": "rgba(247, 82, 95, 0.5)",
+          "backgroundColor": "#0F0F0F",
+          "widgetFontColor": "#DBDBDB",
+          "upColor": "#22ab94",
+          "downColor": "#f7525f",
+          "borderUpColor": "#22ab94",
+          "borderDownColor": "#f7525f",
+          "wickUpColor": "#22ab94",
+          "wickDownColor": "#f7525f",
+          "colorTheme": "dark",
+          "isTransparent": false,
+          "locale": "fr",
+          "chartOnly": false,
+          "scalePosition": "right",
+          "scaleMode": "Normal",
+          "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+          "valuesTracking": "1",
+          "changeMode": "price-and-percent",
+          "symbols": [
+            ["INDEX:CAC40|1D|EUR"],
+            ["TVC:SPX|1D|EUR"],
+            ["IG:NASDAQ|1D|EUR"],
+            ["OANDA:XAUEUR|1D|EUR"],
+            ["FX_IDC:XAGEUR|1D|EUR"],
+            ["CRYPTO:BTCUSD|1D|EUR"],
+            ["EASYMARKETS:OILUSD|1D|EUR"]
+          ],
+          "dateRanges": ["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"],
+          "fontSize": "10",
+          "headerFontSize": "medium",
+          "autosize": true,
+          "dateFormat": "dd/MM/yyyy",
+          "width": "100%",
+          "height": "100%",
+          "noTimeScale": false,
+          "hideDateRanges": false,
+          "hideMarketStatus": false,
+          "hideSymbolLogo": false
+        }
+        </script>
+        
+      </div>
+    </div>
+
+    <!-- Fear & Greed Index -->
+    
+    
+    <div class="fear-greed">
+      <div class="fg-label">Fear &amp; Greed Index</div>
+      <div class="fg-bar-wrap">
+        <div class="fg-marker" style="left: 23%"></div>
+      </div>
+      <div class="fg-bottom">
+        <span class="fg-value">23</span>
+        <span class="fg-sentiment">Extreme Fear</span>
+      </div>
+    </div>
+    
+
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : YouTube
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="youtube">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Vidéo</h2>
+    </div>
+
+    
+    <a class="video-card" href="https://www.youtube.com/watch?v=Elwh6k7mljY" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://i.ytimg.com/vi/Elwh6k7mljY/mqdefault.jpg" alt="" loading="lazy">
+        <div class="video-play">
+          <div class="video-play-icon">
+            <svg viewBox="0 0 16 16"><polygon points="5,3 13,8 5,13"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-channel">Will Phillips</div>
+        <div class="video-title">INSIDE Startups episode with The Residency &amp; Nick Linck out now!</div>
+        <div class="video-meta">
+          1 juin 17:00
+           · 0:36
+        </div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://www.youtube.com/watch?v=7ZrjhSf-z6c" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://i.ytimg.com/vi/7ZrjhSf-z6c/mqdefault.jpg" alt="" loading="lazy">
+        <div class="video-play">
+          <div class="video-play-icon">
+            <svg viewBox="0 0 16 16"><polygon points="5,3 13,8 5,13"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-channel">FutureRadar</div>
+        <div class="video-title">Transhumanisme : sommes nous proche la vie éternelle grâce à la science ?</div>
+        <div class="video-meta">
+          30 mai 13:00
+           · 20:21
+        </div>
+      </div>
+    </a>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Culture
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="culture">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Culture</h2>
+    </div>
+
+    
+    
+    <div class="mot-card">
+      <div class="mot-classe">nom masculin</div>
+      <div class="mot-word">diapason</div>
+      <p class="mot-def">Instrument acoustique en forme de fourche métallique qui produit une note de référence pure lorsqu&#39;il vibre ; par extension, accord parfait ou harmonie entre des personnes ou des éléments.</p>
+      <p class="mot-etym">Du grec diapasôn, contraction de dia pasôn khordôn, &#39;à travers toutes les cordes&#39;, désignant l&#39;octave parfaite.</p>
+      <p class="mot-exemple">« Les deux interlocuteurs trouvèrent rapidement leur diapason commun, chaque mot de l&#39;un résonnant dans l&#39;esprit de l&#39;autre comme une corde attendant d&#39;être accordée. »</p>
+    </div>
+    
+
+    
+    <div class="qcm-item" data-idx="0" data-type="culture">
+      <div class="qcm-theme">sciences</div>
+      <div class="qcm-question">En chimie, qu&#39;est-ce que le pH d&#39;une solution aqueuse mesure, et quelle valeur délimite la frontière entre une solution acide et une solution basique à 25 °C ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. La concentration en ions hydroxyde OH⁻ ; la frontière est fixée à pH = 7.</button>
+        
+        <button class="qcm-option">B. Le logarithme décimal négatif de la concentration en ions H₃O⁺ ; la frontière est fixée à pH = 7.</button>
+        
+        <button class="qcm-option">C. Le logarithme décimal positif de la concentration en ions H₃O⁺ ; la frontière est fixée à pH = 5.</button>
+        
+        <button class="qcm-option">D. La concentration massique en soluté dissous ; la frontière est fixée à pH = 14.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="1" data-type="culture">
+      <div class="qcm-theme">sciences</div>
+      <div class="qcm-question">En informatique, qu&#39;est-ce que la complexité algorithmique dite &#39;O(n log n)&#39; signifie pour le temps d&#39;exécution d&#39;un algorithme ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Le temps d&#39;exécution est constant quelle que soit la taille n de l&#39;entrée.</button>
+        
+        <button class="qcm-option">B. Le temps d&#39;exécution croît proportionnellement au carré de n.</button>
+        
+        <button class="qcm-option">C. Le temps d&#39;exécution croît proportionnellement à n multiplié par le logarithme de n, ce qui est typique des algorithmes de tri efficaces comme le tri fusion.</button>
+        
+        <button class="qcm-option">D. Le temps d&#39;exécution double à chaque ajout d&#39;un élément, indépendamment de n.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="2" data-type="culture">
+      <div class="qcm-theme">geographie</div>
+      <div class="qcm-question">Quel nom désigne le détroit qui sépare la Nouvelle-Guinée de l&#39;Australie, relie la mer de Corail à la mer d&#39;Arafura, et constitue une voie maritime stratégique en Océanie ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Le détroit de Bass.</button>
+        
+        <button class="qcm-option">B. Le détroit de Makassar.</button>
+        
+        <button class="qcm-option">C. Le détroit de Cook.</button>
+        
+        <button class="qcm-option">D. Le détroit de Torrès.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+
+    
+    <div class="actu-qcm-header">
+      <span class="actu-qcm-label">Quiz de l'actu</span>
+      <span class="actu-qcm-count">5</span>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="0" data-type="actu">
+      <div class="qcm-theme">Crise Moyen-Orient</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur la crise au Moyen-Orient, quelle déclaration Trump a-t-il faite concernant Benjamin Netanyahu et le Hezbollah ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Netanyahu avait accepté un cessez-le-feu immédiat et le Hezbollah s&#39;était engagé à désarmer complètement.</button>
+        
+        <button class="qcm-option">B. Netanyahu avait accepté de ne pas envoyer de troupes à Beyrouth et le Hezbollah s&#39;était engagé à cesser tous les tirs.</button>
+        
+        <button class="qcm-option">C. Netanyahu avait accepté de retirer ses troupes du Liban et le Hezbollah avait accepté de libérer des otages.</button>
+        
+        <button class="qcm-option">D. Netanyahu avait accepté des négociations directes et le Hezbollah avait accepté une trêve de 72 heures.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="1" data-type="actu">
+      <div class="qcm-theme">Piratage IA Meta</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur le piratage du compte Instagram de la Maison-Blanche, quelle entreprise a confirmé la violation de sécurité ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Google</button>
+        
+        <button class="qcm-option">B. Microsoft</button>
+        
+        <button class="qcm-option">C. Meta</button>
+        
+        <button class="qcm-option">D. OpenAI</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="2" data-type="actu">
+      <div class="qcm-theme">Plainte OpenAI Floride</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur la plainte contre OpenAI en Floride, quelle est l&#39;accusation principale formulée contre l&#39;entreprise ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. OpenAI aurait délibérément volé des données personnelles d&#39;utilisateurs mineurs.</button>
+        
+        <button class="qcm-option">B. OpenAI aurait eu connaissance de risques spécifiques mais aurait choisi de procéder au déploiement malgré ceux-ci.</button>
+        
+        <button class="qcm-option">C. OpenAI aurait dissimulé des failles de cybersécurité à des agences gouvernementales fédérales.</button>
+        
+        <button class="qcm-option">D. OpenAI aurait violé des brevets technologiques détenus par des entreprises floridienne.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="3" data-type="actu">
+      <div class="qcm-theme">Économie verte UK</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur l&#39;économie verte britannique, quel seuil annuel l&#39;industrie net zéro du Royaume-Uni a-t-elle dépassé selon les données de CBI Economics ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. 50 milliards de livres par an</button>
+        
+        <button class="qcm-option">B. 75 milliards de livres par an</button>
+        
+        <button class="qcm-option">C. 100 milliards de livres par an</button>
+        
+        <button class="qcm-option">D. 150 milliards de livres par an</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="4" data-type="actu">
+      <div class="qcm-theme">One Nation Australie</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur One Nation en Australie, quelle est la population australienne mentionnée comme dépassant un nouveau seuil démographique ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. 25 millions d&#39;habitants</button>
+        
+        <button class="qcm-option">B. 26 millions d&#39;habitants</button>
+        
+        <button class="qcm-option">C. 27 millions d&#39;habitants</button>
+        
+        <button class="qcm-option">D. 28 millions d&#39;habitants</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    
+
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Révision (anciens briefs — 30 jours)
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="revision">
+    <div class="revision-header">
+      <span class="revision-label">Révision</span>
+      <span class="revision-count">3</span>
+    </div>
+    
+    <div class="qcm-item revision" data-idx="0" data-type="revision">
+      <div class="qcm-theme">2026-05-05</div>
+      <div class="qcm-question">En biologie, quel est le rôle principal des mitochondries dans la cellule eucaryote ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Synthétiser les protéines à partir des ARN messagers grâce aux ribosomes qu&#39;elles contiennent exclusivement.</button>
+        
+        <button class="qcm-option">B. Assurer la dégradation et le recyclage des organites et macromolécules usagés via leurs enzymes hydrolytiques.</button>
+        
+        <button class="qcm-option">C. Produire la majorité de l&#39;ATP cellulaire par phosphorylation oxydative grâce à la chaîne respiratoire.</button>
+        
+        <button class="qcm-option">D. Contrôler l&#39;expression génique en régulant l&#39;accès à la chromatine dans le noyau.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item revision" data-idx="1" data-type="revision">
+      <div class="qcm-theme">2026-05-05</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur les menaces de Trump envers l&#39;Iran, quel lieu géographique stratégique est au cœur des tensions entre les États-Unis et l&#39;Iran ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Le détroit de Bab-el-Mandeb</button>
+        
+        <button class="qcm-option">B. Le canal de Suez</button>
+        
+        <button class="qcm-option">C. Le détroit de Malacca</button>
+        
+        <button class="qcm-option">D. Le détroit d&#39;Ormuz</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item revision" data-idx="2" data-type="revision">
+      <div class="qcm-theme">2026-05-09</div>
+      <div class="qcm-question">En chimie organique, qu&#39;est-ce qu&#39;une réaction d&#39;estérification ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. La réaction entre un acide carboxylique et un alcool produisant un ester et de l&#39;eau.</button>
+        
+        <button class="qcm-option">B. La réaction entre deux acides aminés formant une liaison peptidique.</button>
+        
+        <button class="qcm-option">C. La décomposition d&#39;un glucide en présence d&#39;une enzyme en deux monosaccharides.</button>
+        
+        <button class="qcm-option">D. La neutralisation d&#39;un acide par une base produisant un sel et de l&#39;eau.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : QCM Mots du jour
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="mot-review">
+    <div class="mot-review-header">
+      <span class="mot-review-label">Mots du jour — Révision</span>
+      <span class="mot-review-count">1</span>
+    </div>
+    
+    <div class="qcm-item mot-review" data-idx="0" data-type="mot_review">
+      <div class="qcm-theme">anachorète</div>
+      <div class="qcm-question">Quel est le sens du mot « anachorète » ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Moine vivant en communauté dans un monastère, soumis à une règle collective stricte.</button>
+        
+        <button class="qcm-option">B. Personne qui vit seule et retirée du monde, dans la pratique d&#39;une ascèse spirituelle ou intellectuelle.</button>
+        
+        <button class="qcm-option">C. Érudit itinérant qui parcourt les contrées pour diffuser un enseignement philosophique ou religieux.</button>
+        
+        <button class="qcm-option">D. Individu qui rejette toute forme de croyance et prône un mode de vie purement matérialiste.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer-gen">Mardi 2 juin 2026 · 02:08</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;flex-wrap:wrap">
+      <a class="footer-home" href="../index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Accueil
+      </a>
+      
+      <a class="footer-archive" href="https://felixmining.github.io/FLMorningBrief/briefs/index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Archive
+      </a>
+      
+    </div>
+    
+    <div class="footer-meta">
+      <span>Généré 02:08:54 → 02:10:32</span>
+      &nbsp;·&nbsp;
+      <span>9899 → 7103 tokens</span>
+      &nbsp;·&nbsp;
+      <span class="cost">$0.0793</span>
+    </div>
+    
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  // ── Progress bar ──────────────────────────────────
+  
+  const progressEl = document.getElementById('progress');
+  function updateProgress() {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressEl.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  
+
+  // ── Reading Timer — accumulé entre visites ─────────
+  const BRIEF_DATE   = '2026-06-02';
+  const _statsInit   = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
+  const prevSeconds  = (_statsInit[BRIEF_DATE] && _statsInit[BRIEF_DATE].reading)
+                        ? (_statsInit[BRIEF_DATE].reading.total_seconds || 0) : 0;
+  const sessionStart = Date.now();
+  const chipEl       = document.getElementById('reading-chip');
+  const timerEl      = document.getElementById('reading-time');
+
+  function fmtTime(s) {
+    const m = Math.floor(s / 60);
+    const sc = s % 60;
+    return m + ':' + (sc < 10 ? '0' : '') + sc;
+  }
+
+  setInterval(function() {
+    const sessionSecs = Math.floor((Date.now() - sessionStart) / 1000);
+    timerEl.textContent = fmtTime(prevSeconds + sessionSecs);
+  }, 1000);
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 80) chipEl.classList.add('visible');
+  }, { passive: true });
+
+  // ── Section Time Tracking ─────────────────────────
+  const SECTION_IDS = ['news', 'tech', 'finance', 'youtube', 'culture', 'revision', 'mot-review'];
+  const sectionTimes  = {};
+  const sectionActive = {};
+  SECTION_IDS.forEach(function(id) {
+    const prev = (_statsInit[BRIEF_DATE] && _statsInit[BRIEF_DATE].reading &&
+                  _statsInit[BRIEF_DATE].reading.sections)
+                 ? (_statsInit[BRIEF_DATE].reading.sections[id] || 0) : 0;
+    sectionTimes[id] = prev;
+  });
+
+  const sectionObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      const id = e.target.id;
+      if (e.isIntersecting) {
+        sectionActive[id] = Date.now();
+      } else if (sectionActive[id]) {
+        sectionTimes[id] += Math.floor((Date.now() - sectionActive[id]) / 1000);
+        delete sectionActive[id];
+      }
+    });
+  }, { threshold: 0.1 });
+
+  SECTION_IDS.forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) sectionObs.observe(el);
+  });
+
+  // ── Article Time Tracking ─────────────────────────
+  const articleTimes  = {};
+  const articleActive = {};
+
+  const articleObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      const id = e.target.id;
+      if (e.isIntersecting) {
+        articleActive[id] = Date.now();
+      } else if (articleActive[id]) {
+        if (!articleTimes[id]) articleTimes[id] = 0;
+        articleTimes[id] += Math.floor((Date.now() - articleActive[id]) / 1000);
+        delete articleActive[id];
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.article-card[id]').forEach(function(el) {
+    if (!articleTimes[el.id]) articleTimes[el.id] = 0;
+    articleObs.observe(el);
+  });
+
+  function flushAll() {
+    const now = Date.now();
+    Object.keys(sectionActive).forEach(function(id) {
+      sectionTimes[id] += Math.floor((now - sectionActive[id]) / 1000);
+      sectionActive[id] = now;
+    });
+    Object.keys(articleActive).forEach(function(id) {
+      if (!articleTimes[id]) articleTimes[id] = 0;
+      articleTimes[id] += Math.floor((now - articleActive[id]) / 1000);
+      articleActive[id] = now;
+    });
+  }
+
+  // ── Stats persistence ─────────────────────────────
+  const qcmScores = {
+    culture:    { correct: 0, total: 0 },
+    actu:       { correct: 0, total: 0 },
+    revision:   { correct: 0, total: 0 },
+    mot_review: { correct: 0, total: 0 },
+  };
+  // Recharger les scores existants
+  if (_statsInit[BRIEF_DATE]) {
+    ['culture', 'actu', 'revision', 'mot_review'].forEach(function(t) {
+      if (_statsInit[BRIEF_DATE][t]) {
+        qcmScores[t].correct = _statsInit[BRIEF_DATE][t].correct || 0;
+        qcmScores[t].total   = _statsInit[BRIEF_DATE][t].total   || 0;
+      }
+    });
+  }
+
+  function saveStats() {
+    flushAll();
+    const sessionSecs = Math.floor((Date.now() - sessionStart) / 1000);
+    const totalSecs   = prevSeconds + sessionSecs;
+    const existing    = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
+    if (!existing[BRIEF_DATE]) existing[BRIEF_DATE] = {};
+    existing[BRIEF_DATE].culture    = { correct: qcmScores.culture.correct,    total: qcmScores.culture.total    };
+    existing[BRIEF_DATE].actu       = { correct: qcmScores.actu.correct,       total: qcmScores.actu.total       };
+    existing[BRIEF_DATE].revision   = { correct: qcmScores.revision.correct,   total: qcmScores.revision.total   };
+    existing[BRIEF_DATE].mot_review = { correct: qcmScores.mot_review.correct, total: qcmScores.mot_review.total };
+    existing[BRIEF_DATE].reading = {
+      total_seconds: totalSecs,
+      sections:      Object.assign({}, sectionTimes),
+      articles:      Object.assign({}, articleTimes),
+      saved_at:      new Date().toISOString(),
+    };
+    localStorage.setItem('flmb_stats', JSON.stringify(existing));
+  }
+
+  document.addEventListener('visibilitychange', function() { if (document.hidden) saveStats(); });
+  window.addEventListener('pagehide', saveStats);
+
+  // ── Expand / Collapse ─────────────────────────────
+  function toggleExpand(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const open = el.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.querySelector('span').textContent = open ? 'Fermer' : 'Lire';
+  }
+
+  // ── Feedback articles ─────────────────────────────
+  function loadFeedback() {
+    try { return JSON.parse(localStorage.getItem('flmb_feedback') || '{}'); }
+    catch(e) { return {}; }
+  }
+  function saveFeedback(fb) {
+    localStorage.setItem('flmb_feedback', JSON.stringify(fb));
+  }
+
+  function setFeedback(feedbackDiv, val) {
+    const card  = feedbackDiv.closest('.article-card');
+    const artId = card ? card.dataset.artId : null;
+    if (!artId) return;
+    const domain = card.dataset.domain || '';
+
+    const likeBtn    = feedbackDiv.querySelector('.btn-like');
+    const dislikeBtn = feedbackDiv.querySelector('.btn-dislike');
+
+    const fb     = loadFeedback();
+    if (!fb[BRIEF_DATE]) fb[BRIEF_DATE] = {};
+    const prev   = fb[BRIEF_DATE][artId] || {};
+    const newVal = (prev.like === val) ? 0 : val; // toggle si recliqué
+
+    fb[BRIEF_DATE][artId] = Object.assign({}, prev, { like: newVal, domain: domain });
+    saveFeedback(fb);
+
+    likeBtn.classList.toggle('active', newVal === 1);
+    dislikeBtn.classList.toggle('active', newVal === -1);
+  }
+
+  function toggleComment(btn) {
+    const area = btn.nextElementSibling;
+    const open = area.style.display === 'none';
+    area.style.display = open ? 'block' : 'none';
+    btn.classList.toggle('active', open);
+    if (open) {
+      const ta  = area.querySelector('textarea');
+      const card = btn.closest('.article-card');
+      const artId = card ? card.dataset.artId : null;
+      if (artId) {
+        const fb = loadFeedback();
+        ta.value = (fb[BRIEF_DATE] && fb[BRIEF_DATE][artId] && fb[BRIEF_DATE][artId].comment) || '';
+      }
+    }
+  }
+
+  function saveComment(btn) {
+    const area  = btn.closest('.comment-area');
+    const fb_div = area.closest('.article-feedback');
+    const card  = fb_div.closest('.article-card');
+    const artId = card ? card.dataset.artId : null;
+    if (!artId) return;
+    const domain = card.dataset.domain || '';
+    const text   = area.querySelector('textarea').value.trim();
+
+    const fb = loadFeedback();
+    if (!fb[BRIEF_DATE]) fb[BRIEF_DATE] = {};
+    fb[BRIEF_DATE][artId] = Object.assign(fb[BRIEF_DATE][artId] || {}, { comment: text, domain: domain });
+    saveFeedback(fb);
+
+    area.style.display = 'none';
+    const toggleBtn = area.previousElementSibling;
+    if (toggleBtn) toggleBtn.classList.remove('active');
+  }
+
+  // Restaurer l'état des feedbacks au chargement
+  (function restoreFeedback() {
+    const fb = loadFeedback();
+    if (!fb[BRIEF_DATE]) return;
+    document.querySelectorAll('.article-card[data-art-id]').forEach(function(card) {
+      const artId  = card.dataset.artId;
+      const entry  = fb[BRIEF_DATE][artId];
+      if (!entry) return;
+      const fdiv   = card.querySelector('.article-feedback');
+      if (!fdiv) return;
+      if (entry.like === 1)  fdiv.querySelector('.btn-like').classList.add('active');
+      if (entry.like === -1) fdiv.querySelector('.btn-dislike').classList.add('active');
+    });
+  })();
+
+  // ── QCM Data ──────────────────────────────────────
+  const qcmCultureData = [];
+  
+  qcmCultureData.push({ correct: 1, explanation: "Le pH est d\u00e9fini par pH = \u2212log[H\u2083O\u207a]. \u00c0 25 \u00b0C, une solution neutre a pH = 7 ; en dessous, la solution est acide (exc\u00e8s d\u0027ions H\u2083O\u207a) ; au-dessus, elle est basique (exc\u00e8s d\u0027ions OH\u207b)." });
+  
+  qcmCultureData.push({ correct: 2, explanation: "La notation O(n log n) d\u00e9crit une croissance quasi-lin\u00e9aire : pour n = 1 000, le co\u00fbt est environ 10 000 op\u00e9rations. C\u0027est la complexit\u00e9 des algorithmes de tri optimaux comme le tri fusion (merge sort) ou le tri rapide (quicksort) en moyenne." });
+  
+  qcmCultureData.push({ correct: 3, explanation: "Le d\u00e9troit de Torr\u00e8s, large d\u0027environ 150 km, s\u00e9pare la pointe nord du Queensland (cap York) de la Nouvelle-Guin\u00e9e. Parsem\u00e9 de r\u00e9cifs et d\u0027\u00eeles, il est un axe de navigation important et un espace de droits traditionnels pour les peuples des \u00eeles du D\u00e9troit." });
+  
+
+  const qcmActuData = [];
+  
+  qcmActuData.push({ correct: 1, explanation: "Selon l\u0027article, Trump a d\u00e9clar\u00e9 que Netanyahu avait accept\u00e9 de ne pas envoyer de troupes \u00e0 Beyrouth et que le Hezbollah s\u0027\u00e9tait engag\u00e9 \u00e0 cesser tous les tirs, des annonces rapidement d\u00e9menties par des rapports de bombardements." });
+  
+  qcmActuData.push({ correct: 2, explanation: "Meta a confirm\u00e9 la violation de s\u00e9curit\u00e9 apr\u00e8s que des pirates ont exploit\u00e9 les limites du bot de support IA de Meta pour contourner les protections et infiltrer le compte Instagram de la Maison-Blanche." });
+  
+  qcmActuData.push({ correct: 1, explanation: "L\u0027article indique qu\u0027OpenAI est accus\u00e9 d\u0027avoir eu connaissance de risques sp\u00e9cifiques mais d\u0027avoir choisi de proc\u00e9der au d\u00e9ploiement malgr\u00e9 ces avertissements, dans le cadre d\u0027une action men\u00e9e par l\u0027\u00c9tat de Floride." });
+  
+  qcmActuData.push({ correct: 2, explanation: "Selon l\u0027article, l\u0027\u00e9conomie verte britannique a d\u00e9pass\u00e9 les 100 milliards de livres par an, faisant de l\u0027industrie net z\u00e9ro une force \u00e9conomique majeure au Royaume-Uni selon les donn\u00e9es de CBI Economics." });
+  
+  qcmActuData.push({ correct: 3, explanation: "L\u0027article mentionne que la population australienne d\u00e9passe maintenant 28 millions d\u0027habitants, posant des d\u00e9fis d\u0027int\u00e9gration, de logement et d\u0027emploi qui alimentent le sentiment d\u0027ins\u00e9curit\u00e9 \u00e9conomique favorable \u00e0 One Nation." });
+  
+
+  const qcmRevisionData = [];
+  
+  qcmRevisionData.push({ correct: 2, explanation: "Les mitochondries sont le si\u00e8ge de la respiration cellulaire a\u00e9robie : elles oxydent les substrats (pyruvate, acides gras) via le cycle de Krebs et produisent l\u0027essentiel de l\u0027ATP cellulaire gr\u00e2ce \u00e0 la cha\u00eene de transport des \u00e9lectrons et l\u0027ATP synthase, dans un processus appel\u00e9 phosphorylation oxydative." });
+  
+  qcmRevisionData.push({ correct: 3, explanation: "L\u0027article identifie le d\u00e9troit d\u0027Ormuz comme le passage maritime strat\u00e9gique crucial pour le commerce mondial du p\u00e9trole, constituant le principal point d\u0027inflexion dans les tensions entre les \u00c9tats-Unis et l\u0027Iran." });
+  
+  qcmRevisionData.push({ correct: 0, explanation: "L\u0027est\u00e9rification est une r\u00e9action lente, limit\u00e9e et r\u00e9versible entre un acide carboxylique (\u2013COOH) et un alcool (\u2013OH), catalys\u00e9e par un acide fort, qui produit un ester et de l\u0027eau. La r\u00e9action inverse s\u0027appelle hydrolyse." });
+  
+
+  const qcmMotReviewData = [];
+  
+  qcmMotReviewData.push({ correct: 1, explanation: "\u00ab Anachor\u00e8te \u00bb d\u00e9signe une personne qui vit seule et retir\u00e9e du monde, dans la pratique d\u0027une asc\u00e8se spirituelle ou intellectuelle ; par extension, un individu \u00e9pris d\u0027une solitude profonde et volontaire." });
+  
+
+  function selectAnswer(qcmEl, optIdx) {
+    const idx  = parseInt(qcmEl.dataset.idx);
+    const type = qcmEl.dataset.type || 'culture';
+    let data;
+    if (type === 'actu')       data = qcmActuData[idx];
+    else if (type === 'revision')   data = qcmRevisionData[idx];
+    else if (type === 'mot_review') data = qcmMotReviewData[idx];
+    else                             data = qcmCultureData[idx];
+    if (!data) return;
+
+    const btns = qcmEl.querySelectorAll('.qcm-option');
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === data.correct) b.classList.add('correct');
+      else if (i === optIdx)  b.classList.add('wrong');
+    });
+    const expEl = qcmEl.querySelector('.qcm-explanation');
+    expEl.textContent = data.explanation;
+    expEl.style.display = 'block';
+
+    const scoreKey = (type === 'mot_review') ? 'mot_review' : type;
+    if (qcmScores[scoreKey]) {
+      qcmScores[scoreKey].total += 1;
+      if (optIdx === data.correct) qcmScores[scoreKey].correct += 1;
+    }
+    saveStats();
+  }
+
+  document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {
+    qcmEl.querySelectorAll('.qcm-option').forEach(function(btn, optIdx) {
+      btn.addEventListener('click', function() {
+        if (!btn.disabled) selectAnswer(qcmEl, optIdx);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FL Morning Brief — Lundi 8 juin 2026</title>
+  <link rel="icon" href="../logo-sans-fond.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+
+  <style>
+    /* ── Design tokens ─────────────────────────────────────── */
+    :root {
+      --bg:         #080A0F;
+      --surface:    #0D1117;
+      --card:       #0F1724;
+      --border:     #1C2333;
+      --text:       #EDF2FF;
+      --text-2:     #8B9CC8;
+      --text-3:     #3D4A60;
+      --accent:     #00D4FF;
+      --accent-dim: rgba(0,212,255,.08);
+      --accent-mid: rgba(0,212,255,.2);
+      --purple:     #8B5CF6;
+      --green:      #10B981;
+      --red:        #F43F5E;
+      --amber:      #F59E0B;
+      --h: 'Montserrat', system-ui, sans-serif;
+      --s: 'Inter', system-ui, sans-serif;
+      --m: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--s);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,255,.018) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Progress bar ────────────────────────────────────────── */
+    
+    #progress {
+      position: fixed; top: 0; left: 0;
+      height: 2px; width: 0%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(0,212,255,.4);
+      z-index: 100;
+      transition: width .1s linear;
+    }
+    
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+      position: relative;
+    }
+
+    /* ── Header ─────────────────────────────────────────────── */
+    .header {
+      padding: 48px 0 28px;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 56px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(0,212,255,.3);
+    }
+    .header-eyebrow {
+      font-family: var(--m);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      opacity: .65;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .header-logo {
+      width: 22px; height: 22px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(0,212,255,.25));
+      opacity: 1;
+    }
+    .header-day {
+      font-family: var(--h);
+      font-size: clamp(50px, 13vw, 72px);
+      font-weight: 900;
+      line-height: .9;
+      color: var(--text);
+      letter-spacing: -.035em;
+      margin-bottom: 4px;
+    }
+    .header-month {
+      font-family: var(--h);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 22px;
+    }
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+    }
+    .header-meta .sep { color: var(--border); }
+    .header-meta .time-badge {
+      display: flex; align-items: center; gap: 5px;
+      color: var(--accent);
+      opacity: .75;
+    }
+    .header-meta .time-badge svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+    /* ── Section ─────────────────────────────────────────────── */
+    .section { margin-bottom: 52px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 44px; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .section-icon {
+      width: 32px; height: 32px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-icon svg { width: 15px; height: 15px; stroke: var(--accent); fill: none; }
+    .section-title {
+      font-family: var(--h);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+      flex: 1;
+    }
+    .section-count {
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 8px;
+    }
+
+    /* ── Article card ────────────────────────────────────────── */
+    .article-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
+      transition: border-color .15s, box-shadow .15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity .15s;
+    }
+    .article-card:hover {
+      border-color: var(--accent-mid);
+      box-shadow: 0 4px 24px rgba(0,212,255,.05);
+    }
+    .article-card:hover::before { opacity: 1; }
+
+    /* Card meta row */
+    .card-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .source-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: rgba(139,92,246,.1);
+      border: 1px solid rgba(139,92,246,.25);
+      color: #A78BFA;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .source-badge.hn {
+      background: rgba(245,158,11,.1);
+      border-color: rgba(245,158,11,.28);
+      color: #FCD34D;
+    }
+    .domain-pill {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      color: var(--accent);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .read-time {
+      font-size: 10px;
+      font-family: var(--m);
+      color: var(--text-3);
+      margin-left: auto;
+      display: flex; align-items: center; gap: 3px;
+    }
+    .read-time svg { width: 10px; height: 10px; }
+
+    /* Article content */
+    .article-title {
+      font-family: var(--h);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
+    .article-summary {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-2);
+      font-weight: 300;
+    }
+
+    /* Expand panel */
+    .article-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, opacity .2s;
+      opacity: 0;
+    }
+    .article-expand.open { max-height: 600px; opacity: 1; }
+    .expand-body {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: var(--text-2);
+      font-weight: 300;
+      padding: 14px 0 10px;
+      border-top: 1px solid var(--border);
+      margin-top: 12px;
+    }
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      text-decoration: none;
+      margin-top: 10px;
+      transition: color .15s;
+    }
+    .source-link:hover { color: var(--text-2); }
+    .source-link svg { width: 10px; height: 10px; fill: none; }
+
+    /* Lire button */
+    .btn-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 11px;
+      font-family: var(--s);
+      font-weight: 500;
+      color: var(--text-3);
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+    .btn-read:hover, .btn-read.open {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-read .chevron {
+      width: 12px; height: 12px;
+      transition: transform .2s;
+      flex-shrink: 0;
+      fill: none;
+    }
+    .btn-read.open .chevron { transform: rotate(180deg); }
+
+    /* ── Finance ─────────────────────────────────────────────── */
+    .tv-container {
+      background: #0F0F0F;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 420px;
+      margin-bottom: 20px;
+    }
+    .tv-container .tradingview-widget-container,
+    .tv-container .tradingview-widget-container__widget { height: 100%; }
+    .tv-container .tradingview-widget-copyright { display: none; }
+
+    /* Fear & Greed */
+    .fear-greed {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .fg-label {
+      font-size: 10px;
+      font-family: var(--m);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .fg-bar-wrap {
+      position: relative;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(to right,
+        #F43F5E 0%, #F43F5E 25%,
+        #F97316 25%, #F97316 45%,
+        #EAB308 45%, #EAB308 55%,
+        #84CC16 55%, #84CC16 75%,
+        #10B981 75%, #10B981 100%
+      );
+      margin-bottom: 12px;
+    }
+    .fg-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px; height: 14px;
+      background: var(--bg);
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(255,255,255,.25);
+    }
+    .fg-bottom { display: flex; align-items: baseline; gap: 8px; }
+    .fg-value {
+      font-family: var(--m);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .fg-sentiment { font-size: 13px; color: var(--text-2); font-weight: 300; }
+
+    /* ── YouTube ─────────────────────────────────────────────── */
+    .video-card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: border-color .15s;
+    }
+    .video-card:hover { border-color: var(--accent-mid); }
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.4);
+      transition: background .15s;
+    }
+    .video-card:hover .video-play { background: rgba(0,0,0,.25); }
+    .video-play-icon {
+      width: 46px; height: 46px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 20px rgba(0,212,255,.5);
+    }
+    .video-play-icon svg { width: 16px; height: 16px; margin-left: 2px; fill: #080A0F; }
+    .video-info { padding: 14px 16px; }
+    .video-channel {
+      font-size: 10px;
+      font-family: var(--m);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 5px;
+      opacity: .75;
+    }
+    .video-title {
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .video-meta {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── Mot du jour ─────────────────────────────────────────── */
+    .mot-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 20px;
+      margin-bottom: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mot-card::after {
+      content: '"';
+      position: absolute;
+      top: -18px; right: 14px;
+      font-family: Georgia, serif;
+      font-size: 130px;
+      color: var(--border);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .mot-classe {
+      font-size: 10px;
+      font-family: var(--m);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      opacity: .7;
+    }
+    .mot-word {
+      font-family: var(--h);
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .mot-def {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-2);
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+    .mot-etym {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-bottom: 10px;
+      border-left: 2px solid var(--accent);
+      padding-left: 10px;
+      opacity: .65;
+    }
+    .mot-exemple {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── QCM ─────────────────────────────────────────────────── */
+    .qcm-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 10px;
+    }
+    .qcm-theme {
+      font-size: 10px;
+      font-family: var(--m);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 8px;
+    }
+    .qcm-question {
+      font-family: var(--h);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .qcm-options { display: flex; flex-direction: column; gap: 6px; }
+    .qcm-option {
+      display: block; width: 100%; text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: background .12s, border-color .12s, color .12s;
+      font-family: var(--s);
+    }
+    .qcm-option:hover:not(:disabled) {
+      background: var(--accent-dim);
+      border-color: var(--accent-mid);
+      color: var(--text);
+    }
+    .qcm-option:disabled { cursor: default; }
+    .qcm-option.correct {
+      background: rgba(16,185,129,.12);
+      border-color: #10B981;
+      color: #6EE7B7;
+    }
+    .qcm-option.wrong {
+      background: rgba(244,63,94,.08);
+      border-color: #F43F5E;
+      color: #FDA4AF;
+    }
+    .qcm-explanation {
+      display: none;
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-3);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    /* ── Reading timer chip ─────────────────────────────────── */
+    #reading-chip {
+      position: fixed;
+      top: 8px; right: 12px;
+      z-index: 101;
+      display: flex; align-items: center; gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px 4px 8px;
+      font-family: var(--m);
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: .04em;
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+    #reading-chip.visible { opacity: 1; }
+    #reading-chip svg { width: 11px; height: 11px; flex-shrink: 0; opacity: .7; }
+
+    /* ── Article image ───────────────────────────────────────── */
+    .article-img {
+      margin: -16px -16px 12px;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 7px 7px 0 0;
+      background: var(--surface);
+    }
+    .article-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      opacity: .85;
+      transition: opacity .2s;
+    }
+    .article-card:hover .article-img img { opacity: 1; }
+
+    /* ── Actu QCM ────────────────────────────────────────────── */
+    .actu-qcm-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .actu-qcm-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+    }
+    .actu-qcm-label {
+      font-family: var(--h);
+      font-size: 11px; font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--amber); flex: 1;
+    }
+    .actu-qcm-count {
+      font-size: 11px; font-family: var(--m);
+      color: var(--text-3);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 1px 8px;
+    }
+    .qcm-item.actu { border-color: rgba(245,158,11,.2); }
+    .qcm-item.actu .qcm-theme { color: var(--amber); opacity: .8; }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    .footer {
+      padding: 24px 0 8px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-gen {
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      margin-bottom: 10px;
+    }
+    .footer-archive {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-family: var(--m);
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-archive:hover { color: var(--accent); }
+    .footer-archive svg { width: 12px; height: 12px; fill: none; }
+
+    /* ── Feedback article ──────────────────────────────────── */
+    .article-feedback {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 12px; padding-top: 10px;
+      border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .btn-like, .btn-dislike, .btn-comment-toggle {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: none; border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 10px;
+      font-size: 11px; font-family: var(--m);
+      color: var(--text-3); cursor: pointer; transition: all .15s;
+    }
+    .btn-like svg, .btn-dislike svg, .btn-comment-toggle svg {
+      width: 12px; height: 12px; fill: none;
+      stroke: currentColor; stroke-width: 1.8;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .btn-like:hover   { border-color: var(--green); color: var(--green); }
+    .btn-dislike:hover { border-color: var(--red);   color: var(--red);   }
+    .btn-comment-toggle:hover { border-color: var(--accent-mid); color: var(--accent); }
+    .btn-like.active   { background: rgba(16,185,129,.12); border-color: var(--green); color: var(--green); }
+    .btn-dislike.active { background: rgba(244,63,94,.08);  border-color: var(--red);   color: var(--red);   }
+    .btn-comment-toggle.active { border-color: var(--accent-mid); color: var(--accent); }
+    .comment-area { width: 100%; margin-top: 6px; }
+    .comment-area textarea {
+      width: 100%; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 8px 12px; font-size: 12px; font-family: var(--s);
+      color: var(--text-2); resize: vertical; margin-bottom: 6px;
+    }
+    .comment-area textarea::placeholder { color: var(--text-3); }
+    .comment-area textarea:focus { outline: none; border-color: var(--accent-mid); }
+    .btn-save-comment {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 5px; padding: 5px 14px; font-size: 11px;
+      font-family: var(--m); color: var(--text-3); cursor: pointer; transition: all .12s;
+    }
+    .btn-save-comment:hover { border-color: var(--accent-mid); color: var(--accent); }
+
+    /* ── Révision & Mots du jour ────────────────────────────── */
+    .revision-header, .mot-review-header {
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 16px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border); position: relative;
+    }
+    .revision-header::after {
+      content: ''; position: absolute; bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--purple); box-shadow: 0 0 8px var(--purple);
+    }
+    .mot-review-header::after {
+      content: ''; position: absolute; bottom: -1px; left: 0;
+      width: 36px; height: 1px;
+      background: var(--green); box-shadow: 0 0 8px var(--green);
+    }
+    .revision-label {
+      font-family: var(--h); font-size: 11px; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--purple); flex: 1;
+    }
+    .mot-review-label {
+      font-family: var(--h); font-size: 11px; font-weight: 900;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--green); flex: 1;
+    }
+    .revision-count, .mot-review-count {
+      font-size: 11px; font-family: var(--m); color: var(--text-3);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1px 8px;
+    }
+    .qcm-item.revision  { border-color: rgba(139,92,246,.2); }
+    .qcm-item.revision .qcm-theme  { color: var(--purple); opacity: .8; }
+    .qcm-item.mot-review { border-color: rgba(16,185,129,.2); }
+    .qcm-item.mot-review .qcm-theme { color: var(--green); opacity: .8; }
+
+    /* ── Bouton retour accueil & méta footer ────────────────── */
+    .footer-home {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-family: var(--m); color: var(--text-3);
+      text-decoration: none; transition: color .15s; letter-spacing: .04em;
+    }
+    .footer-home:hover { color: var(--accent); }
+    .footer-home svg { width: 12px; height: 12px; fill: none; }
+    .footer-meta {
+      font-size: 10px; font-family: var(--m); color: var(--text-3);
+      margin-top: 10px; line-height: 2; text-align: center;
+    }
+    .footer-meta .cost { color: var(--green); opacity: .75; }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ── Reading Timer ─────────────────────────────── -->
+<div id="reading-chip">
+  <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  <span id="reading-time">0:00</span>
+</div>
+
+<div class="wrap">
+
+  <!-- ── Header ──────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-eyebrow">
+      <img src="../logo-sans-fond.svg" alt="" class="header-logo">
+      FL Morning Brief
+    </div>
+    
+    <div class="header-day">Lundi 8</div>
+    <div class="header-month">juin 2026</div>
+    <div class="header-meta">
+      <span>02:01</span>
+      
+      <span class="sep">·</span>
+      <span class="time-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        ~52 min
+      </span>
+      
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Actualités
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="news">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Actualités</h2>
+      <span class="section-count">6</span>
+    </div>
+
+    
+    
+    <div class="article-card" id="article-news-0" data-art-id="news-0" data-domain="Conflit Moyen-Orient">
+      <div class="article-img"><img src="https://media.guim.co.uk/b06af9f3e5e591c7ba77a1915e4f819a0bb7fe85/227_0_2273_1819/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Conflit Moyen-Orient</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">L&#39;Iran lance des missiles vers Israël après les frappes sur le Liban</h3>
+      <p class="article-summary">L&#39;Iran a lancé des missiles balistiques vers Israël en réponse aux bombardements israéliens sur Beyrouth, marquant la première attaque directe depuis le cessez-le-feu d&#39;avril.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-0">
+        <div class="expand-body">Cette escalade intervient après que Israël a frappé des immeubles d&#39;habitation dans la banlieue sud de Beyrouth, un bastion du Hezbollah. Les autorités iraniennes avaient promis une réplique « décisive et douloureuse » aux attaques israéliennes. Cette riposte représente une intensification majeure du conflit régional et risque de déstabiliser davantage le Moyen-Orient, avec des implications pour la sécurité internationale et les équilibres géopolitiques.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/world/live/2026/jun/07/israel-lebanon-southern-beirut-hezbollah-idf-ceasefire-iran-latest-news-updates" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-0', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-1" data-art-id="news-1" data-domain="Conflit Ukraine">
+      <div class="article-img"><img src="https://media.guim.co.uk/457b94d131e55cb7cbed4d05c7ec8770d3e5e55c/443_0_4841_3874/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Conflit Ukraine</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Zelenskyy discute de l&#39;urgence de renforcer les défenses aériennes avec ses alliés à Londres</h3>
+      <p class="article-summary">Le président ukrainien rencontre les dirigeants français, allemands et britanniques pour coordonner une augmentation des capacités de défense aérienne face aux frappes russes aux armes hypersoniques.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-1">
+        <div class="expand-body">Cette réunion au 10 Downing Street reflète l&#39;intensification des attaques russes utilisant des missiles hypersoniques contre l&#39;Ukraine, ce qui expose les vulnérabilités des systèmes de défense actuels. La coordination entre les trois puissances européennes majeures et le Royaume-Uni montre un effort de soutien militaire consolidé face aux stratégies d&#39;escalade russe. Cet engagement renouvelé sur les capacités aériennes est crucial pour la survie de l&#39;Ukraine dans ce conflit prolongé.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/world/2026/jun/07/zelenskyy-starmer-macron-merz-ukraine-talks-london" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-1', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-2" data-art-id="news-2" data-domain="Géopolitique Asie">
+      <div class="article-img"><img src="https://media.guim.co.uk/e2ba55eafec6e38e0d89b455f1a0cd1766e6172a/419_0_4193_3354/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Géopolitique Asie</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Xi Jinping s&#39;apprête à rencontrer Kim Jong-un en Corée du Nord</h3>
+      <p class="article-summary">Le président chinois envisage une visite en Corée du Nord pour revitaliser les relations sino-nord-coréennes fragilisées par une baisse du commerce et l&#39;alignement croissant de Pyongyang vers la Russie.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-2">
+        <div class="expand-body">La relation entre la Chine et la Corée du Nord s&#39;est détériorée pendant la pandémie, avec une réduction significative des échanges commerciaux. Parallèlement, la Corée du Nord a renforcé ses liens avec la Russie, notamment dans le contexte de la guerre en Ukraine. Pékin cherche à reassert son influence stratégique dans la région et à contrebalancer l&#39;alignement russe de Pyongyang, enjeu majeur de la géopolitique asiatique.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/world/2026/jun/08/xi-jinping-kim-jong-un-meeting-north-korea" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-2', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-3" data-art-id="news-3" data-domain="Faits divers Royaume-Uni">
+      <div class="article-img"><img src="https://media.guim.co.uk/17a3d0b5c302f8b96edce6a2ccca195022a355de/0_509_4899_3918/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Faits divers Royaume-Uni</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Appel à enquête sur le trafic d&#39;êtres humains lié à Mohamed Al Fayed</h3>
+      <p class="article-summary">Les survivants des abus commis par l&#39;ancien propriétaire de Harrods demandent une enquête officielle pour révéler l&#39;ampleur complète de son réseau présumé d&#39;exploitation.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-3">
+        <div class="expand-body">Mohamed Al Fayed, figure emblématique du secteur du luxe britannique, est au cœur d&#39;accusations d&#39;abus systématiques et potentiellement de trafic. Les associations de victimes soutiennent qu&#39;une enquête approfondie est essentielle pour établir les responsabilités et protéger d&#39;autres victimes. Cette affaire remet en lumière les failles dans la détection et la prévention des abus au sein des institutions corporatives prestigieuses.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/business/2026/jun/08/survivors-abuse-mohamed-al-fayed-harrods-trafficking-investigation" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-3', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-4" data-art-id="news-4" data-domain="Cybersécurité et Fraude">
+      <div class="article-img"><img src="https://media.guim.co.uk/8eaa0e41c7b388e9ff9d9426b5f151cf8715476a/226_0_2590_2072/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Cybersécurité et Fraude</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Un ex-officier de la CIA accusé d&#39;avoir volé 40 millions de dollars en or</h3>
+      <p class="article-summary">David Rush, arrêté en mai, aurait détourné des millions de dollars du gouvernement américain en créant un faux programme d&#39;accès spécial à la CIA.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-4">
+        <div class="expand-body">Le vol de 40 millions de dollars en lingots d&#39;or représente l&#39;un des plus grands détournements de fonds dans l&#39;histoire de l&#39;agence de renseignement américaine. Rush aurait exploité sa position d&#39;officier senior pour mettre en place un programme fictif et justifier l&#39;extraction de ressources gouvernementales. Cette affaire soulève des questions majeures sur les contrôles internes de la CIA et la vulnérabilité des systèmes de surveillance institutionnels.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/us-news/2026/jun/07/david-rush-cia-gold-bars-fake-spy-program" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-4', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-news-5" data-art-id="news-5" data-domain="Politique Inde">
+      <div class="article-img"><img src="https://media.guim.co.uk/0e801845b13bd398ad130c79077090109d6945b8/722_0_6520_5216/500.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge">The Guardian</span>
+        <span class="domain-pill">Politique Inde</span>
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Le mouvement jeunesse du Cockroach Janta menace de bousculer la politique indienne</h3>
+      <p class="article-summary">Né comme blague en ligne, le parti Cockroach Janta s&#39;impose comme l&#39;un des défis électoraux les plus inattendus au gouvernement nationaliste hindou de l&#39;Inde.</p>
+
+      
+      
+      <div class="article-expand" id="exp-news-5">
+        <div class="expand-body">Ce mouvement politique émergent représente un phénomène nouveau en Inde : une mobilisation politique organique née des réseaux sociaux, échappant aux structures partisanes établies. Son succès auprès de la jeunesse urbaine reflète une frustration face aux politiques du gouvernement actuel et une quête d&#39;alternatives politiques. Cette dynamique illustre le potentiel transformateur des mouvements numériques dans les démocraties électorales contemporaines.</div>
+        
+        <a class="source-link" href="https://www.theguardian.com/world/2026/jun/08/cockroach-janta-party-youth-movement-india-politics" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-news-5', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Tech & IA
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="tech">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="2"/>
+          <rect x="9" y="9" width="6" height="6"/>
+          <path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Tech & IA</h2>
+      <span class="section-count">10</span>
+    </div>
+
+    
+    
+    <div class="article-card" id="article-tech-0" data-art-id="tech-0" data-domain="">
+      <div class="article-img"><img src="https://thegadgetflow.com/wp-content/uploads/2026/06/Creality-SPARKX-i7-01.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Gadget Flow</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Creality SPARKX i7</h3>
+      <p class="article-summary">Maximize your printing potential with the Creality SPARKX i7. It’s a high-end 3D printer for creators who value consistency. AI-Powered Model Creation: The built-in CubeMe tool turns portraits into pr</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-0">
+        <div class="expand-body">Maximize your printing potential with the Creality SPARKX i7. It’s a high-end 3D printer for creators who value consistency. AI-Powered Model Creation: The built-in CubeMe tool turns portraits into print-ready 3D models. You skip manual modeling and parameter…</div>
+        
+        <a class="source-link" href="https://thegadgetflow.com/?p=731838" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-0', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-1" data-art-id="tech-1" data-domain="">
+      <div class="article-img"><img src="https://hoover-s3-website.s3.us-west-2.amazonaws.com/s3fs-public/styles/facebook/public/research/images/csgp_authoritarianism.jpg?h=2d9e26d4&amp;itok=q7HWDjak" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Hoover.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Articles On: Tiananmen Square, Anti-Corruption, Trade, Neo-Familism, Surveillance, Electric Vehicles, Taiwan, Japan, Iran, EU, Meta-Menus, Nvidia, and more</h3>
+      <p class="article-summary">Articles that illuminate the lack of personal freedom and political liberty under the Chinese Communist Party.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-1">
+        <div class="expand-body">Articles that illuminate the lack of personal freedom and political liberty under the Chinese Communist Party.</div>
+        
+        <a class="source-link" href="https://www.hoover.org/research/articles-tiananmen-square-anti-corruption-trade-neo-familism-surveillance-electric" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-1', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-2" data-art-id="tech-2" data-domain="">
+      <div class="article-img"><img src="https://soldiersystems.net/wp-content/uploads/2026/06/image-2.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Soldiersystems.net</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Leveraging Artificial Intelligence to Ensure Secure Army Communications</h3>
+      <p class="article-summary">FORT HUACHUCA, Ariz. — In today’s rapidly evolving digital landscape, the convergence of large datasets and AI is transforming the way the Army secures and operates its networks. The U.S. Army Informa</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-2">
+        <div class="expand-body">FORT HUACHUCA, Ariz. — In today’s rapidly evolving digital landscape, the convergence of large datasets and AI is transforming the way the Army secures and operates its networks. The U.S. Army Information Systems Engineering Command, a major subordinate comma…</div>
+        
+        <a class="source-link" href="https://soldiersystems.net/2026/06/07/leveraging-artificial-intelligence-to-ensure-secure-army-communications/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-2', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-3" data-art-id="tech-3" data-domain="">
+      <div class="article-img"><img src="https://hoover-s3-website.s3.us-west-2.amazonaws.com/s3fs-public/styles/facebook/public/research/images/csgp_cyber.jpg?h=2d9e26d4&amp;itok=eG4unC9X" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Hoover.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Articles On: Chinese Robots, Waymo, Nvidia, Tourism, and AI</h3>
+      <p class="article-summary">The Chinese Communist Party seeks to control information technology as a means to shape and censor the communications and opinions of its own people, as well as the communications of individuals beyon</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-3">
+        <div class="expand-body">The Chinese Communist Party seeks to control information technology as a means to shape and censor the communications and opinions of its own people, as well as the communications of individuals beyond China&#39;s borders.</div>
+        
+        <a class="source-link" href="https://www.hoover.org/research/articles-chinese-robots-waymo-nvidia-tourism-and-ai" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-3', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-4" data-art-id="tech-4" data-domain="">
+      <div class="article-img"><img src="https://www.bigconfig.ai/blog/scaffold-bigconfig-packages-with-claude-code-skills.png" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Bigconfig.ai</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">How to Scaffold BigConfig Packages with Claude Code Skills</h3>
+      <p class="article-summary">This tutorial shows how to install and try the three Claude Code skills that scaffold minimal, launcher-conformant BigConfig packages in TypeScript, Python, and Clojure. Each starter package includes </p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-4">
+        <div class="expand-body">This tutorial shows how to install and try the three Claude Code skills that scaffold minimal, launcher-conformant BigConfig packages in TypeScript, Python, and Clojure. Each starter package includes validate and build verbs, a root run file, packaged resourc…</div>
+        
+        <a class="source-link" href="https://www.bigconfig.ai/blog/scaffold-bigconfig-packages-with-claude-code-skills/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-4', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-5" data-art-id="tech-5" data-domain="">
+      <div class="article-img"><img src="https://hoover-s3-website.s3.us-west-2.amazonaws.com/s3fs-public/styles/facebook/public/research/images/csgp_opinion.jpg?itok=CWLylxYk" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Hoover.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Articles On: China’s Surplus, America’s Industrial Future, US and Taiwanese Militaries, US Aviation, Hong Kong, AI, and Europe</h3>
+      <p class="article-summary">This section collects opinion pieces from across the world commenting on the harms caused by the activities of the Chinese Communist Party and provides insight into the various solutions that experts </p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-5">
+        <div class="expand-body">This section collects opinion pieces from across the world commenting on the harms caused by the activities of the Chinese Communist Party and provides insight into the various solutions that experts and leaders suggest we pursue to protect our interests.</div>
+        
+        <a class="source-link" href="https://www.hoover.org/research/articles-chinas-surplus-americas-industrial-future-us-and-taiwanese-militaries-us-aviation" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-5', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-6" data-art-id="tech-6" data-domain="">
+      <div class="article-img"><img src="https://hoover-s3-website.s3.us-west-2.amazonaws.com/s3fs-public/styles/facebook/public/research/images/csgp_foreigninterference.jpg?itok=bc-960Cv" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="card-meta">
+        <span class="source-badge ">Hoover.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">Articles On: Spain, AI Deepfakes, Foreign Hacks, Taiwan, Fentanyl, Nvidia, Passport, AI, American Scientist, and New Zealand</h3>
+      <p class="article-summary">The Chinese Communist Party wages a series of foreign interference and coercion campaigns and this section provides articles and reports explaining those actions, as well as the damage they do abroad.</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-6">
+        <div class="expand-body">The Chinese Communist Party wages a series of foreign interference and coercion campaigns and this section provides articles and reports explaining those actions, as well as the damage they do abroad.</div>
+        
+        <a class="source-link" href="https://www.hoover.org/research/articles-spain-ai-deepfakes-foreign-hacks-taiwan-fentanyl-nvidia-passport-ai-american" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-6', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-7" data-art-id="tech-7" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">regard-cli 0.49.0</h3>
+      <p class="article-summary">AI trading partner for the unified speculator — Hyperliquid + Polymarket</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-7">
+        <div class="expand-body">AI trading partner for the unified speculator — Hyperliquid + Polymarket</div>
+        
+        <a class="source-link" href="https://pypi.org/project/regard-cli/0.49.0/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-7', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-8" data-art-id="tech-8" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">chalkruntime 3.36.9</h3>
+      <p class="article-summary">Runtime support library for Chalk AI</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-8">
+        <div class="expand-body">Runtime support library for Chalk AI</div>
+        
+        <a class="source-link" href="https://pypi.org/project/chalkruntime/3.36.9/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-8', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="article-card" id="article-tech-9" data-art-id="tech-9" data-domain="">
+      
+      <div class="card-meta">
+        <span class="source-badge ">Pypi.org</span>
+        
+        
+        <span class="read-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          2 min
+        </span>
+        
+      </div>
+      <h3 class="article-title">sniff-mcp 0.1.2</h3>
+      <p class="article-summary">Agent-callable canine genomics — open MCP server + REST API over the Sniff Atlas: breed-stratified allele frequencies for 9.67M variants across 188 dog breeds, calibrated AI pathogenicity, and a varia</p>
+
+      
+      
+      <div class="article-expand" id="exp-tech-9">
+        <div class="expand-body">Agent-callable canine genomics — open MCP server + REST API over the Sniff Atlas: breed-stratified allele frequencies for 9.67M variants across 188 dog breeds, calibrated AI pathogenicity, and a variant/gene/breed/disease knowledge graph.</div>
+        
+        <a class="source-link" href="https://pypi.org/project/sniff-mcp/0.1.2/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Voir la source
+        </a>
+        
+      </div>
+      <button class="btn-read" onclick="toggleExpand('exp-tech-9', this)">
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+        <span>Lire</span>
+      </button>
+      
+      <div class="article-feedback">
+        <button class="btn-like" title="J'aime" onclick="setFeedback(this.closest('.article-feedback'),1)">
+          <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+        </button>
+        <button class="btn-dislike" title="Pas apprécié" onclick="setFeedback(this.closest('.article-feedback'),-1)">
+          <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>
+        </button>
+        <button class="btn-comment-toggle" title="Commenter" onclick="toggleComment(this)">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="comment-area" style="display:none">
+          <textarea placeholder="Votre retour sur cet article…" rows="2"></textarea>
+          <button class="btn-save-comment" onclick="saveComment(this)">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Finance
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="finance">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+          <polyline points="17 6 23 6 23 12"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Finance</h2>
+    </div>
+
+    <!-- TradingView Widget -->
+    <div class="tv-container">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+        {
+          "lineWidth": 2,
+          "lineType": 0,
+          "chartType": "area",
+          "fontColor": "rgb(106, 109, 120)",
+          "gridLineColor": "rgba(242, 242, 242, 0.06)",
+          "volumeUpColor": "rgba(34, 171, 148, 0.5)",
+          "volumeDownColor": "rgba(247, 82, 95, 0.5)",
+          "backgroundColor": "#0F0F0F",
+          "widgetFontColor": "#DBDBDB",
+          "upColor": "#22ab94",
+          "downColor": "#f7525f",
+          "borderUpColor": "#22ab94",
+          "borderDownColor": "#f7525f",
+          "wickUpColor": "#22ab94",
+          "wickDownColor": "#f7525f",
+          "colorTheme": "dark",
+          "isTransparent": false,
+          "locale": "fr",
+          "chartOnly": false,
+          "scalePosition": "right",
+          "scaleMode": "Normal",
+          "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+          "valuesTracking": "1",
+          "changeMode": "price-and-percent",
+          "symbols": [
+            ["INDEX:CAC40|1D|EUR"],
+            ["TVC:SPX|1D|EUR"],
+            ["IG:NASDAQ|1D|EUR"],
+            ["OANDA:XAUEUR|1D|EUR"],
+            ["FX_IDC:XAGEUR|1D|EUR"],
+            ["CRYPTO:BTCUSD|1D|EUR"],
+            ["EASYMARKETS:OILUSD|1D|EUR"]
+          ],
+          "dateRanges": ["1d|1","1m|30","3m|60","12m|1D","60m|1W","all|1M"],
+          "fontSize": "10",
+          "headerFontSize": "medium",
+          "autosize": true,
+          "dateFormat": "dd/MM/yyyy",
+          "width": "100%",
+          "height": "100%",
+          "noTimeScale": false,
+          "hideDateRanges": false,
+          "hideMarketStatus": false,
+          "hideSymbolLogo": false
+        }
+        </script>
+        
+      </div>
+    </div>
+
+    <!-- Fear & Greed Index -->
+    
+    
+    <div class="fear-greed">
+      <div class="fg-label">Fear &amp; Greed Index</div>
+      <div class="fg-bar-wrap">
+        <div class="fg-marker" style="left: 8%"></div>
+      </div>
+      <div class="fg-bottom">
+        <span class="fg-value">8</span>
+        <span class="fg-sentiment">Extreme Fear</span>
+      </div>
+    </div>
+    
+
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : YouTube
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="youtube">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Vidéo</h2>
+    </div>
+
+    
+    <a class="video-card" href="https://www.youtube.com/watch?v=MZjSwYE8_uI" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://i.ytimg.com/vi/MZjSwYE8_uI/mqdefault.jpg" alt="" loading="lazy">
+        <div class="video-play">
+          <div class="video-play-icon">
+            <svg viewBox="0 0 16 16"><polygon points="5,3 13,8 5,13"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-channel">Will Phillips</div>
+        <div class="video-title">New INSIDE Startups episode with sunbeam out now!</div>
+        <div class="video-meta">
+          5 juin 19:00
+           · 0:36
+        </div>
+      </div>
+    </a>
+    
+    <a class="video-card" href="https://www.youtube.com/watch?v=hRwbX-iXNb8" target="_blank" rel="noopener">
+      <div class="video-thumb">
+        <img src="https://i.ytimg.com/vi/hRwbX-iXNb8/mqdefault.jpg" alt="" loading="lazy">
+        <div class="video-play">
+          <div class="video-play-icon">
+            <svg viewBox="0 0 16 16"><polygon points="5,3 13,8 5,13"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-channel">Vision IA</div>
+        <div class="video-title">Le James Webb a trouvé un objet qui ne devrait pas exister</div>
+        <div class="video-meta">
+          7 juin 08:12
+           · 16:33
+        </div>
+      </div>
+    </a>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Culture
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="culture">
+    <div class="section-header">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Culture</h2>
+    </div>
+
+    
+    
+    <div class="mot-card">
+      <div class="mot-classe">nom féminin</div>
+      <div class="mot-word">tmèse</div>
+      <p class="mot-def">Figure de style consistant à insérer un ou plusieurs mots à l&#39;intérieur d&#39;un mot composé ou d&#39;une locution, les séparant ainsi de façon inattendue. Elle crée un effet de surprise ou d&#39;emphase en brisant l&#39;unité attendue d&#39;une expression.</p>
+      <p class="mot-etym">Du grec tmêsis, « action de couper », dérivé de temnein, « couper ».</p>
+      <p class="mot-exemple">« Dans l&#39;exclamation populaire « n&#39;im-porte-quoi », la tmèse introduit une fracture rythmique qui trahit l&#39;exaspération bien mieux qu&#39;un mot lisse ne saurait le faire. »</p>
+    </div>
+    
+
+    
+    <div class="qcm-item" data-idx="0" data-type="culture">
+      <div class="qcm-theme">sciences</div>
+      <div class="qcm-question">En biologie cellulaire, qu&#39;est-ce que la méiose produit, contrairement à la mitose ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Deux cellules filles identiques à la cellule mère avec le même nombre de chromosomes</button>
+        
+        <button class="qcm-option">B. Quatre cellules filles haploïdes contenant chacune la moitié du nombre de chromosomes de la cellule mère</button>
+        
+        <button class="qcm-option">C. Une seule cellule fille diploïde résultant d&#39;une division asymétrique</button>
+        
+        <button class="qcm-option">D. Des cellules somatiques différenciées incapables de se reproduire</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="1" data-type="culture">
+      <div class="qcm-theme">sciences</div>
+      <div class="qcm-question">En mathématiques, que représente la dérivée d&#39;une fonction f en un point x₀ géométriquement ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. L&#39;aire sous la courbe entre 0 et x₀</button>
+        
+        <button class="qcm-option">B. La valeur moyenne de la fonction sur un intervalle centré en x₀</button>
+        
+        <button class="qcm-option">C. Le coefficient directeur de la tangente à la courbe de f au point d&#39;abscisse x₀</button>
+        
+        <button class="qcm-option">D. La distance entre le point (x₀, f(x₀)) et l&#39;origine du repère</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item" data-idx="2" data-type="culture">
+      <div class="qcm-theme">geographie</div>
+      <div class="qcm-question">Quel nom désigne le vaste golfe situé entre la péninsule Arabique et l&#39;Iran, bordé par huit pays dont l&#39;Arabie saoudite, les Émirats arabes unis et le Koweït, et constituant l&#39;une des régions pétrolières les plus stratégiques au monde ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. La mer Rouge</button>
+        
+        <button class="qcm-option">B. Le golfe d&#39;Oman</button>
+        
+        <button class="qcm-option">C. La mer d&#39;Arabie</button>
+        
+        <button class="qcm-option">D. Le golfe Persique</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+
+    
+    <div class="actu-qcm-header">
+      <span class="actu-qcm-label">Quiz de l'actu</span>
+      <span class="actu-qcm-count">5</span>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="0" data-type="actu">
+      <div class="qcm-theme">Iran missiles Israël</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur l&#39;escalade iranienne, quelle zone d&#39;Israël a été ciblée par les frappes israéliennes au Liban qui ont précédé la riposte iranienne ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Le centre de Beyrouth, quartier financier</button>
+        
+        <button class="qcm-option">B. La banlieue sud de Beyrouth, bastion du Hezbollah</button>
+        
+        <button class="qcm-option">C. La vallée de la Bekaa, fief du Hezbollah</button>
+        
+        <button class="qcm-option">D. La ville de Tyr, au sud du Liban</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="1" data-type="actu">
+      <div class="qcm-theme">Zelenskyy défense aérienne</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur la réunion à Londres, quel type de missiles russes est mis en avant comme révélateur des vulnérabilités des systèmes de défense aérienne ukrainiens ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Les missiles balistiques intercontinentaux</button>
+        
+        <button class="qcm-option">B. Les missiles de croisière Kalibr</button>
+        
+        <button class="qcm-option">C. Les missiles hypersoniques</button>
+        
+        <button class="qcm-option">D. Les missiles sol-sol Iskander</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="2" data-type="actu">
+      <div class="qcm-theme">Xi Jinping Kim Jong-un</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur la rencontre diplomatique sino-coréenne, qu&#39;est-ce qui a provoqué une détérioration des relations entre la Chine et la Corée du Nord ces dernières années ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Les essais nucléaires nord-coréens répétés</button>
+        
+        <button class="qcm-option">B. La pandémie de Covid-19 ayant réduit les échanges commerciaux</button>
+        
+        <button class="qcm-option">C. Le rapprochement de Pyongyang avec les États-Unis</button>
+        
+        <button class="qcm-option">D. Les sanctions imposées par Pékin contre Pyongyang</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="3" data-type="actu">
+      <div class="qcm-theme">Al Fayed trafic humain</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur l&#39;affaire Mohamed Al Fayed, qui soutient la nécessité d&#39;une enquête approfondie pour établir les responsabilités ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Le gouvernement britannique</button>
+        
+        <button class="qcm-option">B. Scotland Yard</button>
+        
+        <button class="qcm-option">C. Les associations de victimes</button>
+        
+        <button class="qcm-option">D. La famille Al Fayed</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item actu" data-idx="4" data-type="actu">
+      <div class="qcm-theme">CIA vol lingots or</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur l&#39;ex-officier de la CIA accusé de détournement, quelle est la valeur estimée des lingots d&#39;or qui auraient été volés ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. 10 millions de dollars</button>
+        
+        <button class="qcm-option">B. 25 millions de dollars</button>
+        
+        <button class="qcm-option">C. 40 millions de dollars</button>
+        
+        <button class="qcm-option">D. 75 millions de dollars</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    
+
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : Révision (anciens briefs — 30 jours)
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="revision">
+    <div class="revision-header">
+      <span class="revision-label">Révision</span>
+      <span class="revision-count">3</span>
+    </div>
+    
+    <div class="qcm-item revision" data-idx="0" data-type="revision">
+      <div class="qcm-theme">2026-06-03</div>
+      <div class="qcm-question">En biochimie, quel est le rôle principal de l&#39;ATP (adénosine triphosphate) dans les cellules vivantes ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Stocker l&#39;information génétique sous forme de séquences nucléotidiques.</button>
+        
+        <button class="qcm-option">B. Transporter le dioxygène vers les tissus via le flux sanguin.</button>
+        
+        <button class="qcm-option">C. Servir de principale molécule de transfert d&#39;énergie pour alimenter les réactions cellulaires.</button>
+        
+        <button class="qcm-option">D. Catalyser les réactions métaboliques en abaissant leur énergie d&#39;activation.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item revision" data-idx="1" data-type="revision">
+      <div class="qcm-theme">2026-06-07</div>
+      <div class="qcm-question">Selon l&#39;article du Guardian sur le match de préparation de l&#39;Angleterre contre la Nouvelle-Zélande, combien de changements de joueurs l&#39;équipe anglaise a-t-elle effectués à la mi-temps ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. 5 changements</button>
+        
+        <button class="qcm-option">B. 7 changements</button>
+        
+        <button class="qcm-option">C. 9 changements</button>
+        
+        <button class="qcm-option">D. 11 changements</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item revision" data-idx="2" data-type="revision">
+      <div class="qcm-theme">2026-05-13</div>
+      <div class="qcm-question">En mathématiques, qu&#39;est-ce que la transformée de Fourier d&#39;un signal permet fondamentalement de réaliser ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Calculer la dérivée partielle du signal par rapport au temps</button>
+        
+        <button class="qcm-option">B. Résoudre une équation différentielle ordinaire par la méthode des séries entières</button>
+        
+        <button class="qcm-option">C. Décomposer un signal temporel en une somme de sinusoïdes de fréquences et d&#39;amplitudes différentes</button>
+        
+        <button class="qcm-option">D. Déterminer la probabilité qu&#39;un signal dépasse un certain seuil d&#39;amplitude</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ══════════════════════════════════════════
+       SECTION : QCM Mots du jour
+  ══════════════════════════════════════════ -->
+  
+  <section class="section" id="mot-review">
+    <div class="mot-review-header">
+      <span class="mot-review-label">Mots du jour — Révision</span>
+      <span class="mot-review-count">3</span>
+    </div>
+    
+    <div class="qcm-item mot-review" data-idx="0" data-type="mot_review">
+      <div class="qcm-theme">désuétude</div>
+      <div class="qcm-question">Quel est le sens du mot « désuétude » ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Sentiment de nostalgie intense provoqué par un souvenir d&#39;enfance oublié.</button>
+        
+        <button class="qcm-option">B. État de ce qui est tombé hors d&#39;usage, abandonné progressivement sans avoir été formellement aboli.</button>
+        
+        <button class="qcm-option">C. Processus juridique par lequel une loi est officiellement révoquée par un tribunal.</button>
+        
+        <button class="qcm-option">D. Tendance d&#39;un individu à rejeter les innovations et à préférer les pratiques anciennes.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item mot-review" data-idx="1" data-type="mot_review">
+      <div class="qcm-theme">kenopsia</div>
+      <div class="qcm-question">Quel est le sens du mot « kenopsia » ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Peur irrationnelle des grands espaces ouverts et des lieux sans repères visuels.</button>
+        
+        <button class="qcm-option">B. Plaisir coupable ressenti à observer la vie des autres depuis l&#39;espace public.</button>
+        
+        <button class="qcm-option">C. Fascination esthétique pour les ruines et les bâtiments abandonnés depuis longtemps.</button>
+        
+        <button class="qcm-option">D. Sentiment étrange et mélancolique face à un lieu habituellement animé mais désert.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+    <div class="qcm-item mot-review" data-idx="2" data-type="mot_review">
+      <div class="qcm-theme">ostinato</div>
+      <div class="qcm-question">Quel est le sens du mot « ostinato » ?</div>
+      <div class="qcm-options">
+        
+        <button class="qcm-option">A. Motif mélodique, rythmique ou harmonique bref, répété de façon persistante tout au long d&#39;une œuvre musicale.</button>
+        
+        <button class="qcm-option">B. Technique vocale consistant à alterner rapidement entre la voix de poitrine et la voix de tête.</button>
+        
+        <button class="qcm-option">C. Passage musical joué en solo par un instrument à cordes en dehors du tempo général.</button>
+        
+        <button class="qcm-option">D. Ornement musical caractéristique du baroque, consistant en une succession rapide de notes brodées.</button>
+        
+      </div>
+      <div class="qcm-explanation"></div>
+    </div>
+    
+  </section>
+  
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer-gen">Lundi 8 juin 2026 · 02:01</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px;flex-wrap:wrap">
+      <a class="footer-home" href="../index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Accueil
+      </a>
+      
+      <a class="footer-archive" href="https://felixmining.github.io/FLMorningBrief/briefs/index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Archive
+      </a>
+      
+    </div>
+    
+    <div class="footer-meta">
+      <span>Généré 02:01:34 → 02:03:10</span>
+      &nbsp;·&nbsp;
+      <span>9581 → 6817 tokens</span>
+      &nbsp;·&nbsp;
+      <span class="cost">$0.0809</span>
+    </div>
+    
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  // ── Progress bar ──────────────────────────────────
+  
+  const progressEl = document.getElementById('progress');
+  function updateProgress() {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progressEl.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  
+
+  // ── Reading Timer — accumulé entre visites ─────────
+  const BRIEF_DATE   = '2026-06-08';
+  const _statsInit   = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
+  const prevSeconds  = (_statsInit[BRIEF_DATE] && _statsInit[BRIEF_DATE].reading)
+                        ? (_statsInit[BRIEF_DATE].reading.total_seconds || 0) : 0;
+  const sessionStart = Date.now();
+  const chipEl       = document.getElementById('reading-chip');
+  const timerEl      = document.getElementById('reading-time');
+
+  function fmtTime(s) {
+    const m = Math.floor(s / 60);
+    const sc = s % 60;
+    return m + ':' + (sc < 10 ? '0' : '') + sc;
+  }
+
+  setInterval(function() {
+    const sessionSecs = Math.floor((Date.now() - sessionStart) / 1000);
+    timerEl.textContent = fmtTime(prevSeconds + sessionSecs);
+  }, 1000);
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 80) chipEl.classList.add('visible');
+  }, { passive: true });
+
+  // ── Section Time Tracking ─────────────────────────
+  const SECTION_IDS = ['news', 'tech', 'finance', 'youtube', 'culture', 'revision', 'mot-review'];
+  const sectionTimes  = {};
+  const sectionActive = {};
+  SECTION_IDS.forEach(function(id) {
+    const prev = (_statsInit[BRIEF_DATE] && _statsInit[BRIEF_DATE].reading &&
+                  _statsInit[BRIEF_DATE].reading.sections)
+                 ? (_statsInit[BRIEF_DATE].reading.sections[id] || 0) : 0;
+    sectionTimes[id] = prev;
+  });
+
+  const sectionObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      const id = e.target.id;
+      if (e.isIntersecting) {
+        sectionActive[id] = Date.now();
+      } else if (sectionActive[id]) {
+        sectionTimes[id] += Math.floor((Date.now() - sectionActive[id]) / 1000);
+        delete sectionActive[id];
+      }
+    });
+  }, { threshold: 0.1 });
+
+  SECTION_IDS.forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) sectionObs.observe(el);
+  });
+
+  // ── Article Time Tracking ─────────────────────────
+  const articleTimes  = {};
+  const articleActive = {};
+
+  const articleObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      const id = e.target.id;
+      if (e.isIntersecting) {
+        articleActive[id] = Date.now();
+      } else if (articleActive[id]) {
+        if (!articleTimes[id]) articleTimes[id] = 0;
+        articleTimes[id] += Math.floor((Date.now() - articleActive[id]) / 1000);
+        delete articleActive[id];
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.article-card[id]').forEach(function(el) {
+    if (!articleTimes[el.id]) articleTimes[el.id] = 0;
+    articleObs.observe(el);
+  });
+
+  function flushAll() {
+    const now = Date.now();
+    Object.keys(sectionActive).forEach(function(id) {
+      sectionTimes[id] += Math.floor((now - sectionActive[id]) / 1000);
+      sectionActive[id] = now;
+    });
+    Object.keys(articleActive).forEach(function(id) {
+      if (!articleTimes[id]) articleTimes[id] = 0;
+      articleTimes[id] += Math.floor((now - articleActive[id]) / 1000);
+      articleActive[id] = now;
+    });
+  }
+
+  // ── Stats persistence ─────────────────────────────
+  const qcmScores = {
+    culture:    { correct: 0, total: 0 },
+    actu:       { correct: 0, total: 0 },
+    revision:   { correct: 0, total: 0 },
+    mot_review: { correct: 0, total: 0 },
+  };
+  // Recharger les scores existants
+  if (_statsInit[BRIEF_DATE]) {
+    ['culture', 'actu', 'revision', 'mot_review'].forEach(function(t) {
+      if (_statsInit[BRIEF_DATE][t]) {
+        qcmScores[t].correct = _statsInit[BRIEF_DATE][t].correct || 0;
+        qcmScores[t].total   = _statsInit[BRIEF_DATE][t].total   || 0;
+      }
+    });
+  }
+
+  function saveStats() {
+    flushAll();
+    const sessionSecs = Math.floor((Date.now() - sessionStart) / 1000);
+    const totalSecs   = prevSeconds + sessionSecs;
+    const existing    = JSON.parse(localStorage.getItem('flmb_stats') || '{}');
+    if (!existing[BRIEF_DATE]) existing[BRIEF_DATE] = {};
+    existing[BRIEF_DATE].culture    = { correct: qcmScores.culture.correct,    total: qcmScores.culture.total    };
+    existing[BRIEF_DATE].actu       = { correct: qcmScores.actu.correct,       total: qcmScores.actu.total       };
+    existing[BRIEF_DATE].revision   = { correct: qcmScores.revision.correct,   total: qcmScores.revision.total   };
+    existing[BRIEF_DATE].mot_review = { correct: qcmScores.mot_review.correct, total: qcmScores.mot_review.total };
+    existing[BRIEF_DATE].reading = {
+      total_seconds: totalSecs,
+      sections:      Object.assign({}, sectionTimes),
+      articles:      Object.assign({}, articleTimes),
+      saved_at:      new Date().toISOString(),
+    };
+    localStorage.setItem('flmb_stats', JSON.stringify(existing));
+  }
+
+  document.addEventListener('visibilitychange', function() { if (document.hidden) saveStats(); });
+  window.addEventListener('pagehide', saveStats);
+
+  // ── Expand / Collapse ─────────────────────────────
+  function toggleExpand(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const open = el.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.querySelector('span').textContent = open ? 'Fermer' : 'Lire';
+  }
+
+  // ── Feedback articles ─────────────────────────────
+  function loadFeedback() {
+    try { return JSON.parse(localStorage.getItem('flmb_feedback') || '{}'); }
+    catch(e) { return {}; }
+  }
+  function saveFeedback(fb) {
+    localStorage.setItem('flmb_feedback', JSON.stringify(fb));
+  }
+
+  function setFeedback(feedbackDiv, val) {
+    const card  = feedbackDiv.closest('.article-card');
+    const artId = card ? card.dataset.artId : null;
+    if (!artId) return;
+    const domain = card.dataset.domain || '';
+
+    const likeBtn    = feedbackDiv.querySelector('.btn-like');
+    const dislikeBtn = feedbackDiv.querySelector('.btn-dislike');
+
+    const fb     = loadFeedback();
+    if (!fb[BRIEF_DATE]) fb[BRIEF_DATE] = {};
+    const prev   = fb[BRIEF_DATE][artId] || {};
+    const newVal = (prev.like === val) ? 0 : val; // toggle si recliqué
+
+    fb[BRIEF_DATE][artId] = Object.assign({}, prev, { like: newVal, domain: domain });
+    saveFeedback(fb);
+
+    likeBtn.classList.toggle('active', newVal === 1);
+    dislikeBtn.classList.toggle('active', newVal === -1);
+  }
+
+  function toggleComment(btn) {
+    const area = btn.nextElementSibling;
+    const open = area.style.display === 'none';
+    area.style.display = open ? 'block' : 'none';
+    btn.classList.toggle('active', open);
+    if (open) {
+      const ta  = area.querySelector('textarea');
+      const card = btn.closest('.article-card');
+      const artId = card ? card.dataset.artId : null;
+      if (artId) {
+        const fb = loadFeedback();
+        ta.value = (fb[BRIEF_DATE] && fb[BRIEF_DATE][artId] && fb[BRIEF_DATE][artId].comment) || '';
+      }
+    }
+  }
+
+  function saveComment(btn) {
+    const area  = btn.closest('.comment-area');
+    const fb_div = area.closest('.article-feedback');
+    const card  = fb_div.closest('.article-card');
+    const artId = card ? card.dataset.artId : null;
+    if (!artId) return;
+    const domain = card.dataset.domain || '';
+    const text   = area.querySelector('textarea').value.trim();
+
+    const fb = loadFeedback();
+    if (!fb[BRIEF_DATE]) fb[BRIEF_DATE] = {};
+    fb[BRIEF_DATE][artId] = Object.assign(fb[BRIEF_DATE][artId] || {}, { comment: text, domain: domain });
+    saveFeedback(fb);
+
+    area.style.display = 'none';
+    const toggleBtn = area.previousElementSibling;
+    if (toggleBtn) toggleBtn.classList.remove('active');
+  }
+
+  // Restaurer l'état des feedbacks au chargement
+  (function restoreFeedback() {
+    const fb = loadFeedback();
+    if (!fb[BRIEF_DATE]) return;
+    document.querySelectorAll('.article-card[data-art-id]').forEach(function(card) {
+      const artId  = card.dataset.artId;
+      const entry  = fb[BRIEF_DATE][artId];
+      if (!entry) return;
+      const fdiv   = card.querySelector('.article-feedback');
+      if (!fdiv) return;
+      if (entry.like === 1)  fdiv.querySelector('.btn-like').classList.add('active');
+      if (entry.like === -1) fdiv.querySelector('.btn-dislike').classList.add('active');
+    });
+  })();
+
+  // ── QCM Data ──────────────────────────────────────
+  const qcmCultureData = [];
+  
+  qcmCultureData.push({ correct: 1, explanation: "La m\u00e9iose est une double division cellulaire qui produit quatre cellules haplo\u00efdes (gam\u00e8tes), chacune poss\u00e9dant n chromosomes au lieu de 2n, permettant la reproduction sexu\u00e9e et le maintien du nombre chromosomique de l\u0027esp\u00e8ce apr\u00e8s f\u00e9condation." });
+  
+  qcmCultureData.push({ correct: 2, explanation: "La d\u00e9riv\u00e9e f\u0027(x\u2080) repr\u00e9sente la limite du taux d\u0027accroissement de f en x\u2080, ce qui correspond g\u00e9om\u00e9triquement \u00e0 la pente (coefficient directeur) de la tangente \u00e0 la courbe au point d\u0027abscisse x\u2080." });
+  
+  qcmCultureData.push({ correct: 3, explanation: "Le golfe Persique, appel\u00e9 aussi golfe Arabique selon les pays riverains, est une mer semi-ferm\u00e9e de l\u0027oc\u00e9an Indien bord\u00e9e par l\u0027Iran au nord et les \u00c9tats arabes du Golfe au sud et \u00e0 l\u0027ouest. Il concentre environ 40 % des r\u00e9serves mondiales de p\u00e9trole prouv\u00e9es." });
+  
+
+  const qcmActuData = [];
+  
+  qcmActuData.push({ correct: 1, explanation: "Les frappes isra\u00e9liennes visaient des immeubles d\u0027habitation dans la banlieue sud de Beyrouth, consid\u00e9r\u00e9e comme un bastion du Hezbollah, ce qui a d\u00e9clench\u00e9 la promesse iranienne d\u0027une r\u00e9plique d\u00e9cisive." });
+  
+  qcmActuData.push({ correct: 2, explanation: "L\u0027article pr\u00e9cise que l\u0027intensification des attaques russes utilisant des missiles hypersoniques expose les vuln\u00e9rabilit\u00e9s des syst\u00e8mes de d\u00e9fense actuels, justifiant la r\u00e9union d\u0027urgence au 10 Downing Street." });
+  
+  qcmActuData.push({ correct: 1, explanation: "L\u0027article indique que la relation sino-nord-cor\u00e9enne s\u0027est d\u00e9t\u00e9rior\u00e9e pendant la pand\u00e9mie, avec une r\u00e9duction significative des \u00e9changes commerciaux, poussant P\u00e9kin \u00e0 chercher \u00e0 reasserter son influence." });
+  
+  qcmActuData.push({ correct: 2, explanation: "Selon l\u0027article, ce sont les associations de victimes qui soutiennent qu\u0027une enqu\u00eate approfondie est essentielle pour \u00e9tablir les responsabilit\u00e9s et prot\u00e9ger d\u0027autres victimes potentielles." });
+  
+  qcmActuData.push({ correct: 2, explanation: "L\u0027article mentionne explicitement que le vol portait sur 40 millions de dollars en lingots d\u0027or, qualifi\u00e9 de l\u0027un des plus grands d\u00e9tournements de fonds dans l\u0027histoire de la CIA." });
+  
+
+  const qcmRevisionData = [];
+  
+  qcmRevisionData.push({ correct: 2, explanation: "L\u0027ATP est souvent qualifi\u00e9e de \u0027monnaie \u00e9nerg\u00e9tique\u0027 de la cellule. L\u0027hydrolyse de sa liaison phosphoanhydride lib\u00e8re de l\u0027\u00e9nergie (environ 30 kJ/mol) qui alimente des processus tels que la contraction musculaire, le transport actif ou la synth\u00e8se prot\u00e9ique. L\u0027option A d\u00e9crit l\u0027ADN, B d\u00e9crit l\u0027h\u00e9moglobine, et D d\u00e9crit les enzymes." });
+  
+  qcmRevisionData.push({ correct: 3, explanation: "L\u0027article indique que l\u0027Angleterre a effectu\u00e9 11 changements \u00e0 la mi-temps, une approche permettant \u00e0 Gareth Southgate d\u0027\u00e9valuer diff\u00e9rentes compositions d\u0027\u00e9quipe." });
+  
+  qcmRevisionData.push({ correct: 2, explanation: "La transform\u00e9e de Fourier op\u00e8re un changement de domaine : elle exprime tout signal (p\u00e9riodique ou non) comme une superposition continue de fonctions sinuso\u00efdales, r\u00e9v\u00e9lant ainsi son spectre fr\u00e9quentiel et permettant l\u0027analyse et le filtrage du signal." });
+  
+
+  const qcmMotReviewData = [];
+  
+  qcmMotReviewData.push({ correct: 1, explanation: "\u00ab D\u00e9su\u00e9tude \u00bb d\u00e9signe l\u0027\u00e9tat de ce qui est tomb\u00e9 hors d\u0027usage, abandonn\u00e9 progressivement par le temps ou l\u0027\u00e9volution des pratiques, sans avoir \u00e9t\u00e9 formellement aboli." });
+  
+  qcmMotReviewData.push({ correct: 3, explanation: "\u00ab Kenopsia \u00bb d\u00e9signe le sentiment \u00e9trange et m\u00e9lancolique qui s\u0027empare de nous face \u00e0 un lieu habituellement anim\u00e9 mais d\u00e9sert, comme une \u00e9cole vide la nuit ou une salle de f\u00eate apr\u00e8s la fin des festivit\u00e9s." });
+  
+  qcmMotReviewData.push({ correct: 0, explanation: "\u00ab Ostinato \u00bb d\u00e9signe un motif m\u00e9lodique, rythmique ou harmonique bref, r\u00e9p\u00e9t\u00e9 de fa\u00e7on persistante tout au long d\u0027une \u0153uvre ou d\u0027un passage musical. Par extension, toute id\u00e9e ou sensation qui revient inlassablement dans l\u0027esprit." });
+  
+
+  function selectAnswer(qcmEl, optIdx) {
+    const idx  = parseInt(qcmEl.dataset.idx);
+    const type = qcmEl.dataset.type || 'culture';
+    let data;
+    if (type === 'actu')       data = qcmActuData[idx];
+    else if (type === 'revision')   data = qcmRevisionData[idx];
+    else if (type === 'mot_review') data = qcmMotReviewData[idx];
+    else                             data = qcmCultureData[idx];
+    if (!data) return;
+
+    const btns = qcmEl.querySelectorAll('.qcm-option');
+    btns.forEach(function(b, i) {
+      b.disabled = true;
+      if (i === data.correct) b.classList.add('correct');
+      else if (i === optIdx)  b.classList.add('wrong');
+    });
+    const expEl = qcmEl.querySelector('.qcm-explanation');
+    expEl.textContent = data.explanation;
+    expEl.style.display = 'block';
+
+    const scoreKey = (type === 'mot_review') ? 'mot_review' : type;
+    if (qcmScores[scoreKey]) {
+      qcmScores[scoreKey].total += 1;
+      if (optIdx === data.correct) qcmScores[scoreKey].correct += 1;
+    }
+    saveStats();
+  }
+
+  document.querySelectorAll('.qcm-item').forEach(function(qcmEl) {
+    qcmEl.querySelectorAll('.qcm-option').forEach(function(btn, optIdx) {
+      btn.addEventListener('click', function() {
+        if (!btn.disabled) selectAnswer(qcmEl, optIdx);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
